@@ -1,4 +1,5 @@
-from .forms import LeadForm
+from .models import LeadModel
+from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -19,9 +20,11 @@ def profile(request):
 
 def lead(request, username):
     user = get_object_or_404(User, username=username)
-    form = LeadForm()
+    fields = (['name', 'email'])
+    CustomForm = modelform_factory(model=LeadModel, fields=fields)
+    form = CustomForm()
     if request.method == 'POST':
-        form = LeadForm(request.POST)
+        form = CustomForm(data=request.POST)
         form.instance.lead_from = user
         if form.is_valid():
             form.save()
