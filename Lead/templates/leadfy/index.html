@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% block meta %}
+    {% endblock %}
+    <meta property="og:image" content="{% static 'leadfy/img/bg13-1.jpg' %}"/> <!-- image link, make sure it's jpg -->
+
+    <link rel="icon" type="image/png" href="{% static 'leadfy/img/FAVICON/favicon-16x16.png' %}"/>
+
+    {% block title %}
+    {% endblock %}
+
+
+    <link rel="stylesheet" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'leadfy/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/css/styles.css' %}">
+    {% block style %}
+
+    {% endblock %}
+
+</head>
+<body>
+    <main>
+
+        <!-- HEADER -->
+          <header id="header">
+            <a id="logo" href="{% url 'home' %}">Shine It</a>
+            <nav id="nav">
+              <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+                <span id="hamburger"></span>
+              </button>
+              <ul id="menu" role="menu">
+                <li><a href="{% url 'home' %}">Talk to Us</a></li>
+                <li><a href="{% url 'home' %}">Carrers</a></li>
+                <!-- <li><a href="/">About</a></li> -->
+              </ul>
+            </nav>
+          </header>
+
+            <div class="container">
+              {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+    </main>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div>
+                <div class="socials">
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-linkedin"></i></a>
+                </div>
+
+                <div class="footer-info">
+                    <div class="rights">
+                        <p>&copy; 2021 ShineIT</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="{% static 'leadfy/js/navbar.js' %}"></script>
+        <script type="text/javascript" src="{% static 'leadfy/js/popper.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'leadfy/js/bootstrap.min.js' %}"></script>
+
+    {% block js %}
+
+    {% endblock %}
+
+</body>
+</html>
