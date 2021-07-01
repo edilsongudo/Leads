@@ -10,12 +10,12 @@
     {% endblock %}
 
     {% block content %}
-        <h1>Lead Page</h1>
+        <p>{{ user.preferences.bio }}</p>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <div class="form-group">
-                <button class="cta cta1" type="submit">Submit</button>
+                <button class="cta cta1" type="submit">{{ user.preferences.button_text }}</button>
             </div>
         </form>
     {% endblock %}

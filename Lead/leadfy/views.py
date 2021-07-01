@@ -1,3 +1,4 @@
+from .forms import PreferencesForm
 from .models import LeadModel
 from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
@@ -14,8 +15,14 @@ def home(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'leadfy/profile.html')
+def preferences(request):
+    form = PreferencesForm(instance=request.user.preferences)
+    if request.method == 'POST':
+        form = PreferencesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request, 'leadfy/preferences.html', {'form': form})
 
 
 def lead(request, username):
@@ -28,8 +35,8 @@ def lead(request, username):
         form.instance.lead_from = user
         if form.is_valid():
             form.save()
-            return redirect('home')
-    return render(request, 'leadfy/lead.html', {'form': form})
+            return redirect(request.user.preferences.link)
+    return render(request, 'leadfy/lead.html', {'form': form, 'user': user})
 
 
 def error_404_view(request, exception):

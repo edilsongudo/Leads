@@ -9,7 +9,7 @@ sitemaps = {
 
 urlpatterns = [
     path('', home, name="home"),
-    path('profile/', profile, name="profile"),
+    path('preferences/', preferences, name="preferences"),
     path('<str:username>/', lead, name="lead"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
 ]

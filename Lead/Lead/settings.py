@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'leadfy',
-    'users',
+    'leadfy.apps.LeadfyConfig',
+    'users.apps.UsersConfig',
     'crispy_forms',
-    'phonenumber_field',
     'ckeditor',
     'ckeditor_uploader',
 ]

@@ -1,4 +1,5 @@
 {% extends "leadfy/index.html" %}
+{% load crispy_forms_tags %}
 
     {% block meta %}
         <meta name="description" content="">
@@ -9,7 +10,14 @@
     {% endblock %}
 
     {% block content %}
-        <h1>Profile Page</h1>
+        <h1>Preferences</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="cta cta1" type="submit">Save</button>
+            </div>
+        </form>
     {% endblock %}
 
     {% block js %}
