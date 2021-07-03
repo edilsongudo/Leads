@@ -1,0 +1,73 @@
+body {
+    background: rgb(251, 249, 251);
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: rgba(213, 221, 236, 0.4) 0px 20px 20px 0px;
+    border: none;
+}
+
+.small {
+    width: 45%;
+}
+
+
+.content {
+    width: 65%;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.card-title {
+    color: black;
+    font-size: 1.3rem;
+}
+
+.card-days {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.active {
+    background-color: #E6ECF6;s
+}
+
+
+.card-day {
+    width: 31%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: rgb(48, 112, 212);
+    border-radius: 10px;
+}
+
+.card-stats {
+    width: 41%;
+}
+
+.card-stat {
+    color: black;
+}
+
+
+.section2 {
+    margin-top: 10px;
+    display: flex;
+}
+
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    width: 95%;
+    margin: 0 auto;
+  }

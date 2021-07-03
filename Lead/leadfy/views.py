@@ -1,5 +1,5 @@
 from .forms import PageForm
-from .models import LeadModel, Page
+from .models import LeadModel, Page, PageVisit
 from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,9 +7,32 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 
 
+def set_cookies_in_response(request, response):
+    referer = request.META.get('HTTP_REFERER')
+    if referer is not None:
+        if not 'referer' in request.COOKIES:
+            response.set_cookie("referer", referer)
+    return response
+
+
 def home(request):
     if request.user.is_authenticated:
-        return render(request, 'leadfy/dash.html')
+
+        # 1
+        number_of_clicks = 0
+        pages = Page.objects.filter(user=request.user)
+        for page in pages:
+            number_of_clicks += page.view_count
+
+        # 2
+        hours = []
+        for i in range(0, 24):
+            pages_visits = PageVisit.objects.filter(
+                page__user=request.user, time__hour=i)
+            hours.append(len(pages_visits))
+        print(hours)
+        analytics = {'page_views': number_of_clicks}
+        return render(request, 'leadfy/dash.html', analytics)
     return render(request, 'leadfy/home.html')
 
 
@@ -59,7 +82,16 @@ def lead(request, code):
         if form.is_valid():
             form.save()
             return redirect(page.link)
-    return render(request, 'leadfy/forms/myform/index.html', {'form': form, 'user': user, 'page': page})
+
+    response = render(request, 'leadfy/forms/myform/index.html',
+                      {'form': form, 'user': user, 'page': page})
+    if not code in request.COOKIES:
+        response.set_cookie(code, code)
+        page.view_count += 1
+        page.save()
+        new_visit = PageVisit(page=page)
+        new_visit.save()
+    return response
 
 
 def error_404_view(request, exception):

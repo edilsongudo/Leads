@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .utils import generate_ref_code
+from django.utils import timezone
 
 
 class LeadModel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=False)
     email = models.EmailField(null=True, blank=False)
     lead_from = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    date_submited = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.email
@@ -24,6 +26,8 @@ class Page(models.Model):
     bio = models.CharField(max_length=200, null=True,
                            default='Tell your users about what you have to offer them here', blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
+    view_count = models.IntegerField(
+        default=0)
 
     def __str__(self):
         return f'{self.code}'
@@ -34,3 +38,14 @@ class Page(models.Model):
             self.code = code
 
         super().save(*args, **kwargs)
+
+
+class PageVisit(models.Model):
+    page = models.ForeignKey(
+        Page, on_delete=models.CASCADE, null=True)
+    time = models.DateTimeField(default=timezone.now)
+    country = models.CharField(max_length=50, null=True, blank=True)
+    referer = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return f'/{self.page.code} at {self.time}'

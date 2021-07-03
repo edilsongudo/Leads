@@ -1,18 +1,140 @@
-{% extends "leadfy/index.html" %}
+{% load static %}
 
-    {% block meta %}
-        <meta name="description" content="">
-    {% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="{% static 'leadfy/img/bg13-1.jpg' %}"/> <!-- image link, make sure it's jpg -->
+    <link rel="stylesheet" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'leadfy/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/css/dashboard.css' %}">
+</head>
+<body>
+    <div class="content">
+        <section class="card">
+            <div>
+                <i class="fas fa-link"></i>
+                <span class="card-title">Analytics</span>
+            </div>
+            <div class="card-days">
+                <div class="card-day active">
+                    Today
+                </div>
+                <div class="card-day">
+                    7 days
+                </div>
+                <div class="card-day">
+                    30 days
+                </div>
+            </div>
+        </section>
 
-    {% block title %}
-        <title>Great Leads - Capture Leads with your links.</title>
-    {% endblock %}
 
-    {% block content %}
-        <h1>DashBoard Page</h1>
-    {% endblock %}
+        <div class="flex">
+            <section class="section2 card small">
+                <div class="card-stats">
+                    <div class="card-stat">
+                        <h3>{{ page_views }}</h3>
+                        <span>Page views</span>
+                    </div>
+                </div>
+            </section>
 
-    {% block js %}
-        <script type="text/javascript" src="../../static/leadfy/js/index.js"></script>
-        <script type="text/javascript" src="../../static/leadfy/js/animation.js"></script>
-    {% endblock %}
+            <section class="section2 card small">
+                <div class="card-stats">
+                    <div class="card-stat">
+                        <h3>0</h3>
+                        <span>Link Clicks</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+
+    </div>
+    <!-- end of content div -->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script type="text/javascript">
+
+    const labels = [
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20',
+      '21',
+      '22',
+      '23',
+      '24',
+    ];
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Page Views',
+        backgroundColor: 'rgb(48, 112, 212)',
+        borderColor: 'rgb(48, 112, 212)',
+        data: [0, 10, 5, 2, 20, 30, 45, 9, 3, 10, 22, 43, 33, 27, 28, 18, 23, 19, 43, 11, 12, 14, 16, 19],
+      }]
+    };
+
+    // var options = {
+    //     scales: {
+    //         xAxes: [{
+    //             gridLines: {
+    //                 display: false
+    //             }
+    //         }],
+    //         yAxes: [{
+    //             gridLines: {
+    //                 display: false
+    //             }
+    //         }]
+    //     }
+    // }
+
+    const config = {
+      type: 'line',
+      data,
+      options: {}
+    };
+
+  // === include 'setup' then 'config' above ===
+      var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+    </script>
+
+</body>
+</html>
