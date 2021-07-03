@@ -12,26 +12,25 @@ class LeadModel(models.Model):
         return self.email
 
 
-class Preferences(models.Model):
-    user = models.OneToOneField(
+class Page(models.Model):
+    title = models.CharField(max_length=30, null=True, blank=True)
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True)
-    code = models.CharField(max_length=12, blank=True, null=True)
+    code = models.SlugField(blank=True, null=True)
     link = models.URLField(
-        max_length=200, default='http://www.yourlink.com', null=True, blank=False)
+        max_length=200, default='http://www.yourdestinationurl.com', null=True, blank=False)
     button_text = models.CharField(max_length=20, null=True,
-                                   default='Download', blank=False)
-    bio = models.CharField(max_length=200, null=True, blank=True)
+                                   default='Your cta', blank=False)
+    bio = models.CharField(max_length=200, null=True,
+                           default='Tell your users about what you have to offer them here', blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.user.username} preferences'
+        return f'{self.code}'
 
     def save(self, *args, **kwargs):
         if self.code == '' or self.code == None:
             code = generate_ref_code()
             self.code = code
-
-        if self.bio == '' or self.bio == None:
-            self.bio = 'Would you like to give your email, so I can share things you may find interesting?'
 
         super().save(*args, **kwargs)

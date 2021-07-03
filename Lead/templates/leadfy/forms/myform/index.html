@@ -1,0 +1,47 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V12</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="icon" type="image/png" href="{% static 'leadfy/forms/ContactFrom_v12/images/icons/favicon.ico' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/forms/ContactFrom_v12/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/forms/ContactFrom_v12/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/forms/myform1/css/main.css' %}">
+</head>
+<body>
+
+	<div class="skip">
+		<form method="POST">
+      		{% csrf_token %}
+      		<input type="hidden" name="skip">
+			<button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+		</form>
+	</div>
+
+	<div class="content">
+
+		<div class="center">
+			<div class="subcontent">
+				<img class="round" src="{{ user.profile.image.url }}">
+				<h1 class="name">{{ user.username }}</h1>
+			</div>
+		</div>
+
+		<p>{{ page.bio }}</p>
+
+		<form method="POST">
+      		{% csrf_token %}
+			{{ form|crispy }}
+		<div class="subcontent center">
+			<button class="cta cta1" type="submit">{{ page.button_text }}</button>
+		</div>
+		</form>
+
+	</div>
+
+</body>
+</html>

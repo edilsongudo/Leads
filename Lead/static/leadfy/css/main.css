@@ -1,0 +1,66 @@
+body {
+  background-image: linear-gradient(90deg, #E8CBC0, #636FA4);
+/*  background-image: linear-gradient(90deg, #eecda3, #ef629f);
+  background-image: linear-gradient(90deg, #e1eec3, #f05053);*/
+  color: white;
+}
+
+.content {
+  max-width: 640px;
+  margin: 50px auto;
+}
+
+.page-link {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background: transparent;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.page-link:hover {
+  background-image: linear-gradient(90deg, #eecda3, #ef629f);
+  color: white;
+}
+
+.round {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.center {
+  text-align: center;
+}
+
+.name {
+  font-size: 1.25rem;
+}
+
+.cta {
+  border-radius: 50px;
+  padding-right: 85px;
+  padding-left: 85px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+}
+
+.cta1 {
+  border: solid 2px white;
+  color: black;
+  background: white;
+}
+
+.cta1:hover {
+  background:  transparent;
+  transition: 0.3s;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    max-width: 90%;
+  }
+}

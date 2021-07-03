@@ -4,5 +4,5 @@ from django.apps import AppConfig
 class LeadfyConfig(AppConfig):
     name = 'leadfy'
 
-    def ready(self):
-        import leadfy.signals
+    # def ready(self):
+    #     import leadfy.signals

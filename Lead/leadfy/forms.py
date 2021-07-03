@@ -1,10 +1,10 @@
 from django import forms
-from .models import Preferences
+from .models import Page
 
-class PreferencesForm(forms.ModelForm):
+class PageForm(forms.ModelForm):
 
     class Meta:
-        model = Preferences
+        model = Page
         fields = '__all__'
         exclude = ['user']
 
