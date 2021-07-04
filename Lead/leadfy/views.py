@@ -5,34 +5,39 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
-
-
-def set_cookies_in_response(request, response):
-    referer = request.META.get('HTTP_REFERER')
-    if referer is not None:
-        if not 'referer' in request.COOKIES:
-            response.set_cookie("referer", referer)
-    return response
+import json
+from django.http import FileResponse, JsonResponse
 
 
 def home(request):
     if request.user.is_authenticated:
 
-        # 1
-        number_of_clicks = 0
-        pages = Page.objects.filter(user=request.user)
-        for page in pages:
-            number_of_clicks += page.view_count
+        def number_of_clicks():
+            number_of_clicks = 0
+            pages = Page.objects.filter(user=request.user)
+            for page in pages:
+                number_of_clicks += page.view_count
+            return number_of_clicks
 
-        # 2
-        hours = []
-        for i in range(0, 24):
-            pages_visits = PageVisit.objects.filter(
-                page__user=request.user, time__hour=i)
-            hours.append(len(pages_visits))
-        print(hours)
-        analytics = {'page_views': number_of_clicks}
-        return render(request, 'leadfy/dash.html', analytics)
+        def number_of_leads():
+            number_of_clicks = 0
+            number_of_leads = LeadModel.objects.filter(lead_from=request.user).count()
+            print(number_of_leads)
+            return number_of_leads
+
+        def hours():
+            hours = []
+            for i in range(0, 24):
+                pages_visits = PageVisit.objects.filter(
+                    page__user=request.user, time__hour=i)
+                hours.append(len(pages_visits))
+            return hours
+
+        if request.is_ajax():
+            return JsonResponse({'page_views': number_of_clicks(), 'clicks_per_hours': hours(), 'number_of_leads': number_of_leads()})
+
+        return render(request, 'leadfy/dash.html')
+
     return render(request, 'leadfy/home.html')
 
 

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'leadfy/css/dashboard.css' %}">
 </head>
 <body>
+    {% csrf_token %}
     <div class="content">
         <section class="card">
             <div>
@@ -36,19 +37,21 @@
 
         <div class="flex">
             <section class="section2 card small">
+                <div class="icon"><i class="fas fa-eye"></i></div>
                 <div class="card-stats">
                     <div class="card-stat">
-                        <h3>{{ page_views }}</h3>
+                        <h3 id="page_views_count"></h3>
                         <span>Page views</span>
                     </div>
                 </div>
             </section>
 
             <section class="section2 card small">
+                <div class="icon"><i class="fas fa-eye"></i></div>
                 <div class="card-stats">
                     <div class="card-stat">
-                        <h3>0</h3>
-                        <span>Link Clicks</span>
+                        <h3 id="number_of_leads"></h3>
+                        <span>Leads</span>
                     </div>
                 </div>
             </section>
@@ -65,75 +68,102 @@
 
 
 
-
+    <script type="text/javascript" src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <script type="text/javascript">
 
-    const labels = [
-      '0',
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      '11',
-      '12',
-      '13',
-      '14',
-      '15',
-      '16',
-      '17',
-      '18',
-      '19',
-      '20',
-      '21',
-      '22',
-      '23',
-      '24',
-    ];
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'Page Views',
-        backgroundColor: 'rgb(48, 112, 212)',
-        borderColor: 'rgb(48, 112, 212)',
-        data: [0, 10, 5, 2, 20, 30, 45, 9, 3, 10, 22, 43, 33, 27, 28, 18, 23, 19, 43, 11, 12, 14, 16, 19],
-      }]
-    };
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+        $(document).ready(function() {
+            // var csrfToken = $('input[name="csrfmiddlewaretoken"]').val()
+            const csrfToken = getCookie('csrftoken');
+            dict = {"request": "Hello from JS." }
+            var data = JSON.stringify(dict)
 
-    // var options = {
-    //     scales: {
-    //         xAxes: [{
-    //             gridLines: {
-    //                 display: false
-    //             }
-    //         }],
-    //         yAxes: [{
-    //             gridLines: {
-    //                 display: false
-    //             }
-    //         }]
-    //     }
-    // }
+            $.ajax({
+                url: '',
+                headers: {'X-CSRFToken': csrfToken},
+                dataType: 'json',
+                data: data,
+                type: 'post',
+                success: function(response) {
+                    var p = document.getElementById('page_views_count')
+                    var l = document.getElementById('number_of_leads')
+                    p.innerHTML = response.page_views
+                    l.innerHTML = response.number_of_leads
 
-    const config = {
-      type: 'line',
-      data,
-      options: {}
-    };
+                    const labels = [
+                      '0', '1', '2', '3', '4','5','6','7','8','9','10','11','12',
+                      '13', '14','15','16','17','18','19','20','21','22','23','24',
+                    ];
+                    const data = {
+                      labels: labels,
+                      datasets: [
+                      {
+                        label: 'Page Views',
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: '#A6A6F0',
+                        borderColor: 'rgb(48, 112, 212)',
+                        // borderCapStyle: 'butt',
+                        // borderDash: [],
+                        // borderDashOffset: 0.0,
+                        // borderJoinStyle: 'miter',
+                        // pointBorderColor: '#fff',
+                        // pointBorderWidth: 1,
+                        // pointHoverRadius: 5,
+                        // pointHoverBackgroundColor: '#fff',
+                        // pointHoverBorderColor: '#fff',
+                        // pointHoverBorderWidth: 2,
+                        //pointRadius: 1,
+                        //pointHitRadius: 10,
+                        data: response.clicks_per_hours,
+                      },
+                      ]
+                    };
 
-  // === include 'setup' then 'config' above ===
-      var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-      );
+                    const config = {
+                      type: 'line',
+                      data,
+                      options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                      }
+                    };
+
+                  // === include 'setup' then 'config' above ===
+                      var myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                      );
+
+
+
+
+                }
+                    })
+
+            });
     </script>
 
 </body>
