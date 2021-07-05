@@ -9,6 +9,7 @@ sitemaps = {
 
 urlpatterns = [
     path('', home, name="home"),
+    path('dashboard/<str:days>', dashboard, name="dashboard"),
     path('page/create/', createpage, name="page-create"),
     path('page/<str:code>/edit/', editpage, name="page-edit"),
     path('<str:code>/', lead, name="lead"),

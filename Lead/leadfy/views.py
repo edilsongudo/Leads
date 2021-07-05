@@ -7,38 +7,15 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 import json
 from django.http import FileResponse, JsonResponse
+import datetime
+
 
 
 def home(request):
     if request.user.is_authenticated:
-
-        def number_of_clicks():
-            number_of_clicks = 0
-            pages = Page.objects.filter(user=request.user)
-            for page in pages:
-                number_of_clicks += page.view_count
-            return number_of_clicks
-
-        def number_of_leads():
-            number_of_clicks = 0
-            number_of_leads = LeadModel.objects.filter(lead_from=request.user).count()
-            print(number_of_leads)
-            return number_of_leads
-
-        def hours():
-            hours = []
-            for i in range(0, 24):
-                pages_visits = PageVisit.objects.filter(
-                    page__user=request.user, time__hour=i)
-                hours.append(len(pages_visits))
-            return hours
-
-        if request.is_ajax():
-            return JsonResponse({'page_views': number_of_clicks(), 'clicks_per_hours': hours(), 'number_of_leads': number_of_leads()})
-
-        return render(request, 'leadfy/dash.html')
-
-    return render(request, 'leadfy/home.html')
+        return redirect('dashboard', days='0')
+    else:
+        return render(request, 'leadfy/home.html')
 
 
 def landing(request, username):
@@ -101,3 +78,52 @@ def lead(request, code):
 
 def error_404_view(request, exception):
     return render(request, 'leadfy/404.html')
+
+
+@login_required
+def dashboard(request, days):
+    day2 = datetime.date.today()
+    day1 = day2 - datetime.timedelta(days=int(days))
+
+    def get_days(date1, date2):
+        delta = day2 - day1
+        list_of_days = []
+        list_of_days2 = []
+        for i in range(delta.days + 1):
+            day = day1 + datetime.timedelta(days=i)
+            pages_visits = PageVisit.objects.filter(
+                page__user=request.user, time__date=day).count()
+            list_of_days.append(pages_visits)
+            list_of_days2.append(f'{day.strftime("%d/%m")}')
+        return {'list_of_days': list_of_days, 'list_of_days2': list_of_days2}
+
+    def number_of_clicks(date1, date2):
+        number_of_clicks = PageVisit.objects.filter(
+            page__user=request.user, time__date__gte=date1, time__date__lte=date2).count()
+        return number_of_clicks
+
+    def number_of_leads(date1, date2):
+        number_of_leads = LeadModel.objects.filter(lead_from=request.user, date_submited__date__gte=date1, date_submited__date__lte=date2).count()
+        return number_of_leads
+
+    def hours(date1, date2):
+        hours = []
+        labels = []
+        for i in range(0, 24):
+            pages_visits = PageVisit.objects.filter(
+                page__user=request.user, time__date__gte=date1, time__date__lte=date2, time__hour=i)
+            hours.append(len(pages_visits))
+            labels.append(i)
+        return {'hours': hours, 'labels': labels}
+
+    if request.is_ajax():
+        if days == '0':
+            return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': hours(day1, day2)['hours'], 'labels': hours(day1, day2)['labels'], 'number_of_leads': number_of_leads(day1, day2)})
+        elif days == '7':
+            labels = get_days(day1, day2)['list_of_days2']
+            return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': get_days(day1, day2)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2)})
+        elif days == '30':
+            labels = get_days(day1, day2)['list_of_days2']
+            return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': get_days(day1, day2)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2)})
+
+    return render(request, 'leadfy/dash.html')

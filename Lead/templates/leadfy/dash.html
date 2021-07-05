@@ -22,21 +22,21 @@
                 <span class="card-title">Analytics</span>
             </div>
             <div class="card-days">
-                <div class="card-day active">
+                <a class="card-day active" href="0">
                     Today
-                </div>
-                <div class="card-day">
+                </a>
+                <a class="card-day" href="7">
                     7 days
-                </div>
-                <div class="card-day">
+                </a>
+                <a class="card-day" href="30">
                     30 days
-                </div>
+                </a>
             </div>
         </section>
 
 
         <div class="flex">
-            <section class="section2 card small">
+            <a class="section2 card small">
                 <div class="icon"><i class="fas fa-eye"></i></div>
                 <div class="card-stats">
                     <div class="card-stat">
@@ -44,9 +44,9 @@
                         <span>Page views</span>
                     </div>
                 </div>
-            </section>
+            </a>
 
-            <section class="section2 card small">
+            <a class="section2 card small">
                 <div class="icon"><i class="fas fa-eye"></i></div>
                 <div class="card-stats">
                     <div class="card-stat">
@@ -54,13 +54,35 @@
                         <span>Leads</span>
                     </div>
                 </div>
-            </section>
+            </a>
+
         </div>
 
+        <a class="section2 card mostclickedlinks">
+            <p class="">Other Stats</p>
+            <div>
+                <p>
+                    <div class="flex-space-between">
+                        <div><i class="fas fa-link"></i><span class="mostclickedlinks-link">Best Source</span></div>
+                        Instagram
+                    </div>
+                </p>
+                <p>
+                    <div class="flex-space-between">
+                        <div><i class="fas fa-link"></i><span class="mostclickedlinks-link">Main Location</span></div>
+                        New York
+                    </div>
+                </p>
+            </div>
+        </a>
 
+        <section class="section2 card">
         <div>
             <canvas id="myChart"></canvas>
         </div>
+
+        </section>
+
 
 
     </div>
@@ -70,101 +92,7 @@
 
     <script type="text/javascript" src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-    <script type="text/javascript">
-
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-        $(document).ready(function() {
-            // var csrfToken = $('input[name="csrfmiddlewaretoken"]').val()
-            const csrfToken = getCookie('csrftoken');
-            dict = {"request": "Hello from JS." }
-            var data = JSON.stringify(dict)
-
-            $.ajax({
-                url: '',
-                headers: {'X-CSRFToken': csrfToken},
-                dataType: 'json',
-                data: data,
-                type: 'post',
-                success: function(response) {
-                    var p = document.getElementById('page_views_count')
-                    var l = document.getElementById('number_of_leads')
-                    p.innerHTML = response.page_views
-                    l.innerHTML = response.number_of_leads
-
-                    const labels = [
-                      '0', '1', '2', '3', '4','5','6','7','8','9','10','11','12',
-                      '13', '14','15','16','17','18','19','20','21','22','23','24',
-                    ];
-                    const data = {
-                      labels: labels,
-                      datasets: [
-                      {
-                        label: 'Page Views',
-                        fill: true,
-                        lineTension: 0.1,
-                        backgroundColor: '#A6A6F0',
-                        borderColor: 'rgb(48, 112, 212)',
-                        // borderCapStyle: 'butt',
-                        // borderDash: [],
-                        // borderDashOffset: 0.0,
-                        // borderJoinStyle: 'miter',
-                        // pointBorderColor: '#fff',
-                        // pointBorderWidth: 1,
-                        // pointHoverRadius: 5,
-                        // pointHoverBackgroundColor: '#fff',
-                        // pointHoverBorderColor: '#fff',
-                        // pointHoverBorderWidth: 2,
-                        //pointRadius: 1,
-                        //pointHitRadius: 10,
-                        data: response.clicks_per_hours,
-                      },
-                      ]
-                    };
-
-                    const config = {
-                      type: 'line',
-                      data,
-                      options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                      }
-                    };
-
-                  // === include 'setup' then 'config' above ===
-                      var myChart = new Chart(
-                        document.getElementById('myChart'),
-                        config
-                      );
-
-
-
-
-                }
-                    })
-
-            });
-    </script>
+    <script type="text/javascript" src="{% static 'leadfy/js/dashboard.js' %}"></script>
 
 </body>
 </html>

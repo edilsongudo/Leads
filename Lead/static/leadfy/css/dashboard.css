@@ -3,6 +3,10 @@
     src:  url('../fonts/CeraProBold.woff2')
 }
 
+@font-face {
+    font-family: 'CeraProMedium';
+    src:  url('../fonts/CeraProMedium.woff2')
+}
 
 body {
     background: rgb(251, 249, 251);
@@ -17,8 +21,14 @@ body {
     border: none;
 }
 
+a:hover {
+    background-image: linear-gradient(90deg, #F9FACB, #E6ECF6);
+    color: white;
+    cursor: pointer;
+}
+
 .small {
-    width: 45%;
+    width: 47%;
 }
 
 
@@ -61,7 +71,6 @@ body {
     color: black;
 }
 
-
 .section2 {
     margin-top: 10px;
     display: flex;
@@ -71,6 +80,11 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
 }
 
 .icon {
@@ -86,6 +100,18 @@ body {
     color: purple;
 }
 
+
+.mostclickedlinks {
+    color: black;
+}
+
+.mostclickedlinks i {
+    color:rgb(48, 112, 212);
+}
+
+.mostclickedlinks-link {
+    margin-left: 10px;
+}
 
 @media only screen and (max-width: 600px) {
   .content {
