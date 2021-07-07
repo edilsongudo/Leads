@@ -88,3 +88,7 @@ function getCookie(name) {
 // window.onhashchange = function (argument) {
 //     alert(window.location.hash)
 // }
+
+var pageURL = window.location.href
+var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1)
+alert(lastURLSegment)

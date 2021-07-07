@@ -11,6 +11,8 @@
 body {
     background: rgb(251, 249, 251);
     font-family: 'CeraProBold', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .card {
@@ -32,10 +34,8 @@ a:hover {
 }
 
 
-.content {
-    width: 65%;
-    margin-left: auto;
-    margin-right: 20px;
+.maincontent {
+    min-width: 65%;
 }
 
 .card-title {
@@ -58,7 +58,7 @@ a:hover {
 }
 
 .active {
-    background-image: linear-gradient(90deg, rgb(48, 112, 212), #E6ECF6)/*#E6ECF6*/;
+    background-image: linear-gradient(90deg, rgb(48, 112, 212, 0.4), #E6ECF6)/*#E6ECF6*/;
     color: white;
 }
 
@@ -87,6 +87,15 @@ a:hover {
     justify-content: space-between;
 }
 
+.other-stats-stats {
+    font-family: 'CeraProMedium';
+    color: black;
+}
+
+.nonbold {
+    font-family: 'CeraProMedium';
+}
+
 .icon {
     margin-left: auto;
     background: rgba(255, 0, 222, 0.2);
@@ -113,8 +122,71 @@ a:hover {
     margin-left: 10px;
 }
 
+
+.sidebar {
+    min-width: 20%;
+    height: 100vh;
+    text-align: center;
+}
+
+.sidebar img {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    color: black;
+    font-family: 'CeraProMedium';
+}
+
+.sidebar-link a {
+    padding: 10px;
+}
+
+.sidebar-link img {
+    margin-right: 10px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    justify-content: space-around;
+    height: 65px;
+    box-shadow: rgba(213, 221, 236, 0.4) 0px 20px 20px 0px;
+}
+
+.footer img {
+    height: 24px;
+    width: 24px;
+    margin: 0;
+}
+
 @media only screen and (max-width: 600px) {
-  .content {
-    width: 95%;
-    margin: 0 auto;
+  .sidebar {
+    display: none;
   }
+
+  .footer {
+    display: flex;
+  }
+
+.content, .maincontent {
+    width: 97%;
+    margin: 0 auto;
+}
+}
