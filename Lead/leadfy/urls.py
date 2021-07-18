@@ -9,10 +9,11 @@ sitemaps = {
 
 urlpatterns = [
     path('', home, name="home"),
+    path('leads/see/', leads, name="leads"),
     path('dashboard/<str:days>', dashboard, name="dashboard"),
-    path('page/create/', createpage, name="page-create"),
-    path('page/<str:code>/edit/', editpage, name="page-edit"),
-    path('<str:code>/', lead, name="lead"),
+    path('link/create/', createlink, name="link-create"),
+    path('link/<str:short_url>/edit/', editlink, name="link-edit"),
+    path('<str:short_url>/', lead, name="lead"),
     path('u/<str:username>/', landing, name="user-landing"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
 ]

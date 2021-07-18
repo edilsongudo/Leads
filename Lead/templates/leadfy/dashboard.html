@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="{% static 'leadfy/img/bg13-1.jpg' %}"/> <!-- image link, make sure it's jpg -->
+    <link rel="stylesheet" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'leadfy/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/css/dashboard.css' %}">
+</head>
+<body>
+    {% csrf_token %}
+    <div class="content">
+        <div class="sidebar">
+            <div class="sidebar-links">
+                <div class="sidebar-link">
+                    <a><img src="{% static 'leadfy/img/streamline-icon-house-entrance@48x48.png' %}"><span></span></a>
+                </div>
+                <div class="sidebar-link footer-active">
+                    <a><img src="{% static 'leadfy/img/streamline-icon-graph-stats@48x48.png' %}"></a>
+                </div>
+                <div class="sidebar-link">
+                    <a><img src="{% static 'leadfy/img/streamline-icon-lock-1@48x48.png' %}"></a>
+                </div>
+                <div class="sidebar-link">
+                    <a><img src="{% static 'leadfy/img/streamline-icon-cog@48x48.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <div class="maincontent">
+            <section class="card">
+                <div>
+                    <i class="fas fa-link"></i>
+                    <span class="card-title">Analytics</span>
+                </div>
+                <div class="card-days">
+                    <a class="card-day" href="0" id="0">
+                        Today
+                    </a>
+                    <a class="card-day" href="7" id="7">
+                        7 days
+                    </a>
+                    <a class="card-day" href="30" id="30">
+                        30 days
+                    </a>
+                </div>
+            </section>
+
+
+            <div class="flex">
+                <a class="section2 card small">
+                    <span class="icon"><i class="fas fa-eye"></i></span>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <h3 id="page_views_count"></h3>
+                            <span class="nonbold">Page views</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="section2 card small">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <h3 id="number_of_leads"></h3>
+                            <span class="nonbold">Leads</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <a class="section2 card mostclickedlinks">
+                <p class="">Other Stats</p>
+                <div class="other-stats-stats">
+                    <p>
+                        <div class="flex-space-between">
+                            <div><i class="fas fa-link"></i><span class="mostclickedlinks-link">Best Source</span></div>
+                            Instagram
+                        </div>
+                    </p>
+                    <p>
+                        <div class="flex-space-between">
+                            <div><i class="fas fa-link"></i><span class="mostclickedlinks-link">Main Location</span></div>
+                            New York
+                        </div>
+                    </p>
+                </div>
+            </a>
+
+            <section class="section2 card">
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            </section>
+        </div>
+    </div>
+    <!-- end of content div -->
+
+    <!-- Bottom Footer Mobile -->
+    <div class="footer flex">
+        <div class="sidebar-link">
+            <a><img src="{% static 'leadfy/img/streamline-icon-house-entrance@48x48.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a><img src="{% static 'leadfy/img/streamline-icon-graph-stats@48x48.png' %}">Analytics</a>
+        </div>
+        <div class="sidebar-link">
+            <a><img src="{% static 'leadfy/img/streamline-icon-lock-1@48x48.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a><img src="{% static 'leadfy/img/streamline-icon-cog@48x48.png' %}"></a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'leadfy/js/jquery.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="{% static 'leadfy/js/dashboard.js' %}"></script>
+
+</body>
+</html>

@@ -1,13 +1,29 @@
+@font-face {
+    font-family: 'Heaters';
+    src:  url('/media/fonts/Heaters.otf')
+}
+
 body {
-  background-image: linear-gradient(90deg, #E8CBC0, #636FA4);
-/*  background-image: linear-gradient(90deg, #eecda3, #ef629f);
-  background-image: linear-gradient(90deg, #e1eec3, #f05053);*/
-  color: black;
+
+  background-image: linear-gradient(rgba(0,0,0, 0.5) , rgba(0, 0, 0, 0.5)), url(/media/finch4.jpg);
+/*  background-image: linear-gradient(90deg, #E8CBC0, #636FA4);
+  background-image: linear-gradient(90deg, #eecda3, #ef629f);
+*/
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: 'Heaters', sans-serif;
+  font-size: 1.5rem;
+  height: 100vh;
 }
 
 .skip {
   font-size: 30px;
   padding: 20px;
+}
+
+.skip i {
+  color: white;
 }
 
 .hidden {
@@ -33,10 +49,23 @@ body {
   margin: 0 auto;
 }
 
+.image-border {
+  padding: 0;
+  background-image: transparent;
+  height: 105px;
+  width: 105px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .round {
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  border: 1px solid white;
 }
 
 .center {
@@ -44,13 +73,13 @@ body {
 }
 
 .name {
-  font-size: 2.25rem;
+  font-size: 4rem;
 }
 
 .cta {
   border-radius: 50px;
-  padding-right: 85px;
-  padding-left: 85px;
+  padding-right: 50px;
+  padding-left: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
@@ -68,7 +97,14 @@ body {
 }
 
 .form-group input {
-  border-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50px;
+  padding: 12px;
+}
+
+label {
+  display: none;
 }
 
 @media only screen and (max-width: 800px) {

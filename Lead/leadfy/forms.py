@@ -1,12 +1,19 @@
 from django import forms
-from .models import Page
+from .models import Link
 
-class PageForm(forms.ModelForm):
+class LinkCreateForm(forms.ModelForm):
 
     class Meta:
-        model = Page
+        model = Link
         fields = '__all__'
-        exclude = ['user']
+        exclude = ['user', 'view_count']
+
+class LinkEditForm(forms.ModelForm):
+
+    class Meta:
+        model = Link
+        fields = '__all__'
+        exclude = ['user', 'view_count', 'short_url']
 
         # widgets = {
         #     'primary_text_color': TextInput(attrs={'type': 'color'}),

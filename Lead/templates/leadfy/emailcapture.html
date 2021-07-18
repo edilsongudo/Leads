@@ -1,0 +1,47 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V12</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/main.css' %}">
+</head>
+<body>
+
+	<div class="skip">
+		<form method="POST">
+      		{% csrf_token %}
+      		<input type="hidden" name="skip">
+			<button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+		</form>
+	</div>
+
+	<div class="content">
+
+		<div class="center">
+			<div class="subcontent">
+				<div class="image-border">
+					<img class="round" src="{{ user.profile.image.url }}">
+				</div>
+				<h1 class="name">{{ user.username }}</h1>
+			</div>
+		</div>
+
+		<p>{{ page.bio }}</p>
+
+		<form method="POST">
+      		{% csrf_token %}
+			{{ form|crispy }}
+		<div class="subcontent center">
+			<button class="cta cta1" type="submit">{{ page.button_text }}</button>
+		</div>
+		</form>
+
+	</div>
+
+</body>
+</html>

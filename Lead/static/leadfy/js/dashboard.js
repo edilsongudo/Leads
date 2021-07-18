@@ -91,4 +91,8 @@ function getCookie(name) {
 
 var pageURL = window.location.href
 var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1)
-alert(lastURLSegment)
+
+var card_day = document.getElementById(lastURLSegment)
+card_day.classList.add('footer-active')
+console.log(card_day)
+

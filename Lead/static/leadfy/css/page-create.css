@@ -1,0 +1,45 @@
+body {
+  background-image: linear-gradient(0deg, #E8CBC0, #636FA4);
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  min-height: 100vh;
+}
+
+.content {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.cta {
+  border-radius: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+}
+
+.cta1 {
+  border: solid 2px white;
+  color: black;
+  background: white;
+}
+
+.cta1:hover {
+  background:  transparent;
+  transition: 0.3s;
+}
+
+.form-group input {
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50px;
+  padding: 25px;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    max-width: 90%;
+  }
+}

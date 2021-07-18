@@ -1,5 +1,5 @@
-from .forms import PageForm
-from .models import LeadModel, Page, PageVisit
+from .forms import LinkCreateForm
+from .models import LeadModel, Link, PageVisit
 from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,7 +8,36 @@ from django.http import HttpResponse, HttpResponseForbidden
 import json
 from django.http import FileResponse, JsonResponse
 import datetime
+from .utils import get_geo
+from django.forms import TextInput, EmailInput
+from urllib.parse import urlparse
 
+
+def set_http_referer(request, response):
+    referer = request.META.get('HTTP_REFERER')
+    print(referer)
+    if not referer in request.COOKIES:
+        max_age = 3600 * 24 * 90
+        response.set_cookie('referer', referer, max_age=max_age)
+    return referer
+
+def get_ip(request):
+    address = request.META.get('HTTP_X_FORWARDED_FOR')
+    if address:
+        ip = address.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+def get_location(request):
+    try:
+        ip = get_ip(request)
+        country, city, lat, lon = get_geo(ip)
+        return country
+    except Exception as e:
+        print(e)
+        return ''
 
 
 def home(request):
@@ -17,63 +46,96 @@ def home(request):
     else:
         return render(request, 'leadfy/home.html')
 
-
-def landing(request, username):
-    user = get_object_or_404(User, username=username)
-    pages = Page.objects.filter(user=user)
-    return render(request, 'leadfy/index (2).html', {'user': user, 'pages': pages})
-
-
 @login_required
-def createpage(request):
-    form = PageForm()
-    if request.method == 'POST':
-        form = PageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    return render(request, 'leadfy/page.html', {'form': form})
+def leads(request):
+    leads = LeadModel.objects.filter(lead_from=request.user)
+    return render(request, 'leadfy/leads.html', {'leads': leads})
 
 
-@login_required
-def editpage(request, code):
-    page = get_object_or_404(Page, code=code)
-    form = PageForm(instance=page)
-    # if request.user.username == page.user.username:
-    if request.method == 'POST':
-        form = PageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    return render(request, 'leadfy/page.html', {'form': form})
-    # else:
-    #     return HttpResponseForbidden()
-
-
-def lead(request, code):
-    page = get_object_or_404(Page, code=code)
-    user = page.user
+def lead(request, short_url):
+    link = get_object_or_404(Link, short_url=short_url)
+    user = link.user
     fields = (['name', 'email'])
-    CustomForm = modelform_factory(model=LeadModel, fields=fields)
+    widgets = {
+        'name': TextInput(attrs={'placeholder': 'Name'}),
+        'email': EmailInput(attrs={'placeholder': 'Email'})
+    }
+    CustomForm = modelform_factory(model=LeadModel, fields=fields, widgets=widgets)
     form = CustomForm()
     if request.method == 'POST':
         if 'skip' in request.POST:
-            return redirect(page.link)
+            return redirect(link.link)
         form = CustomForm(data=request.POST)
         form.instance.lead_from = user
+        form.instance.referer = set_http_referer(request)
+        form.instance.referer_main_domain = urlparse(set_http_referer(request)).netloc
+        form.instance.location = get_location(request)
         if form.is_valid():
             form.save()
-            return redirect(page.link)
+            return redirect(link.link)
 
-    response = render(request, 'leadfy/forms/myform/index.html',
-                      {'form': form, 'user': user, 'page': page})
-    if not code in request.COOKIES:
-        response.set_cookie(code, code)
-        page.view_count += 1
-        page.save()
-        new_visit = PageVisit(page=page)
+    response = render(request, 'leadfy/emailcapture.html',
+                      {'form': form, 'user': user, 'page': link})
+
+    set_http_referer(request, response=response)
+    def save_statistics():
+        link.view_count += 1
+        link.save()
+        new_visit = PageVisit(page=link)
+        new_visit.referer = set_http_referer(request, response=response)
+        new_visit.referer_main_domain = urlparse(set_http_referer(request, response=response)).netloc
+        new_visit.location = get_location(request)
         new_visit.save()
+
+    if not 'tried_to_capture_email' in request.COOKIES:
+        response.set_cookie('tried_to_capture_email', '', max_age=30)
+        if not short_url in request.COOKIES:
+            response.set_cookie(short_url, short_url)
+            save_statistics()
+        return response
+    else:
+        save_statistics()
+        return redirect(link.link)
+
+
+def landing(request, username):
+    print(get_ip(request))
+    print(get_location(request))
+
+    user = get_object_or_404(User, username=username)
+    links = Link.objects.filter(user=user)
+    response = render(request, 'leadfy/landing.html', {'user': user, 'links': links})
+    set_http_referer(request, response=response)
     return response
+
+
+@login_required
+def createlink(request):
+    form = LinkCreateForm()
+    if request.method == 'POST':
+        form = LinkCreateForm(request.POST)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+            return redirect('home')
+    return render(request, 'leadfy/link-create.html', {'form': form})
+
+
+@login_required
+def editlink(request, short_url):
+    link = get_object_or_404(Link, short_url=short_url)
+    form = LinkCreateForm(instance=link)
+    if request.user == link.user:
+        if request.method == 'POST':
+            form = LinkCreateForm(request.POST, instance=link)
+            if form.is_valid():
+                form.instance.user = request.user
+                form.save()
+                return redirect('user-landing', username=request.user.username)
+        return render(request, 'leadfy/link-edit.html', {'form': form})
+    else:
+        return HttpResponseForbidden()
+
 
 
 def error_404_view(request, exception):
@@ -126,4 +188,4 @@ def dashboard(request, days):
             labels = get_days(day1, day2)['list_of_days2']
             return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': get_days(day1, day2)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2)})
 
-    return render(request, 'leadfy/dash.html')
+    return render(request, 'leadfy/dashboard.html')

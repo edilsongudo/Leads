@@ -18,7 +18,6 @@ body {
 .card {
     background-color: white;
     padding: 10px;
-    border-radius: 12px;
     box-shadow: rgba(213, 221, 236, 0.4) 0px 20px 20px 0px;
     border: none;
 }
@@ -35,7 +34,14 @@ a:hover {
 
 
 .maincontent {
-    min-width: 65%;
+    min-width: 70%;
+    margin: 0 auto;
+}
+
+.sidebar {
+    min-width: 10%;
+    height: 100vh;
+    text-align: center;
 }
 
 .card-title {
@@ -60,11 +66,6 @@ a:hover {
 .active {
     background-image: linear-gradient(90deg, rgb(48, 112, 212, 0.4), #E6ECF6)/*#E6ECF6*/;
     color: white;
-}
-
-
-.card-stats {
-    width: 41%;
 }
 
 .card-stat {
@@ -98,7 +99,7 @@ a:hover {
 
 .icon {
     margin-left: auto;
-    background: rgba(255, 0, 222, 0.2);
+    background:  #E6ECF6;
     border-radius: 100%;
     width: 40px;
     height: 40px;
@@ -106,7 +107,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     font-size: 1.25rem;
-    color: purple;
+    color: rgb(48, 112, 212);
 }
 
 
@@ -123,12 +124,6 @@ a:hover {
 }
 
 
-.sidebar {
-    min-width: 20%;
-    height: 100vh;
-    text-align: center;
-}
-
 .sidebar img {
     width: 24px;
     height: 24px;
@@ -138,7 +133,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 30px;
     color: black;
     font-family: 'CeraProMedium';
 }
@@ -163,17 +158,21 @@ a:hover {
     left: 0;
     position: fixed;
     background: white;
-    border-radius: 12px;
     text-align: center;
     justify-content: space-around;
     height: 65px;
     box-shadow: rgba(213, 221, 236, 0.4) 0px 20px 20px 0px;
+    padding: 10px;
 }
 
 .footer img {
     height: 24px;
     width: 24px;
     margin: 0;
+}
+
+.footer-active {
+    background-image: linear-gradient(90deg, #F9FACB, #E6ECF6);
 }
 
 @media only screen and (max-width: 600px) {
@@ -189,4 +188,21 @@ a:hover {
     width: 97%;
     margin: 0 auto;
 }
+}
+
+/*LEADS PAGE*/
+
+.leads {
+    font-family: sans-serif;
+    color: black;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-bottom: 0.1px solid lightgrey;
+    justify-content: space-between;
+    font-family: 'CeraProMedium';
+}
+
+.mr {
+    margin-right: 100px;
+    width: 200px;
 }
