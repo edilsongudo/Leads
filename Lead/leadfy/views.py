@@ -11,6 +11,9 @@ import datetime
 from .utils import get_geo
 from django.forms import TextInput, EmailInput
 from urllib.parse import urlparse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import DeleteView
+from django.urls import reverse
 
 
 def set_http_referer(request, response):
@@ -108,6 +111,12 @@ def landing(request, username):
     set_http_referer(request, response=response)
     return response
 
+def landing_as_author_pv(request, username):
+    user = get_object_or_404(User, username=username)
+    links = Link.objects.filter(user=user)
+    response = render(request, 'leadfy/landing_as_author_pv.html', {'user': user, 'links': links})
+    return response
+
 
 @login_required
 def createlink(request):
@@ -117,7 +126,7 @@ def createlink(request):
         if form.is_valid():
             form.instance.user = request.user
             form.save()
-            return redirect('home')
+            return redirect('landing_as_author_pv', username=request.user.username)
     return render(request, 'leadfy/link-create.html', {'form': form})
 
 
@@ -131,11 +140,23 @@ def editlink(request, short_url):
             if form.is_valid():
                 form.instance.user = request.user
                 form.save()
-                return redirect('user-landing', username=request.user.username)
-        return render(request, 'leadfy/link-edit.html', {'form': form})
+                return redirect('landing_as_author_pv', username=request.user.username)
+        return render(request, 'leadfy/link-edit.html', {'form': form, 'link': link})
     else:
         return HttpResponseForbidden()
 
+
+class LinkDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Link
+
+    def get_success_url(self):
+        return reverse('landing_as_author_pv', kwargs={'username': self.request.user.username})
+
+    def test_func(self):
+        link = self.get_object()
+        if self.request.user == link.user:
+            return True
+        return False
 
 
 def error_404_view(request, exception):

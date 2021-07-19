@@ -1,28 +1,18 @@
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
-{% block profile %}
+{% block content %}
+    <div class="center">
+        <div class="subcontent">
+            <div class="image-border">
+                <img class="round" src="{{ user.profile.image.url }}">
+            </div>
+        </div>
+    </div>
 
-<div class="profile">
-	<div class="profile-image">
-    	<img class="round" src="{{ user.profile.image.url }}">		
-	</div>
-	<div class="profile-data">
-      <h2>{{ user.username }}</h2>
-      <p class="user-email">{{ user.email }}</p>
-	</div>
-</div>
-
-<div class="profileform">	
-<form method="POST" enctype="multipart/form-data" style="margin-top: 10rem; position: absolute; left: 8rem;">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Profile Info</legend>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ u_form|crispy }}
         {{ p_form|crispy }}
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Update</button>
-    </div>
-</form>
-</div>
-{% endblock profile %}
+        <button class="cta cta1" type="submit">Update</button>
+    </form>
+{% endblock %}
