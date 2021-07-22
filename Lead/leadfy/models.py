@@ -44,3 +44,26 @@ class PageVisit(models.Model):
 
     def __str__(self):
         return f'/{self.page.short_url} at {self.time}'
+
+
+myfonts = (
+    ('Gloss_And_Bloom.ttf', 'Gloss_And_Bloom.ttf'),
+    ('Heaters.otf', 'Heaters.otf'),
+)
+
+
+class Preferences(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True)
+    color1 = models.CharField(
+        max_length=100, default="#E8CBC0")
+    color2 = models.CharField(
+        max_length=100,  default="#636FA4")
+    background_image = models.ImageField(
+        upload_to='usersbackgroundimages', null=True)
+    font_family = models.CharField(
+        max_length=100, null=True, blank=False, choices=myfonts)
+    use_background_image = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.user.username} Landing Page Preferences'

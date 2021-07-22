@@ -1,0 +1,88 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V12</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
+
+    <!-- One of the following themes -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/> <!-- 'monolith' theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/> <!-- 'nano' theme -->
+
+</head>
+<body>
+    <div class="content">
+        <h1>Landing Page Preferences</h1>
+        <form method="POST" enctype="multipart/form-data">
+            color 1
+            <span class="color-picker"></span>
+            color 2
+            <span class="color-picker2"></span>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="cta cta1" type="submit">Save</button>
+            </div>
+            <input type="text" name="color1" id="color1" class="invisible" value="{{ color1 }}">
+            <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
+        </form>
+    </div>
+    <!-- Modern or es5 bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+
+    <script type="text/javascript">
+        const pickr = Pickr.create({
+            el: '.color-picker',
+            theme: 'nano',
+            default: "{{ color1 }}",
+
+            components: {
+
+                preview: true,
+                hue: true,
+
+                interaction: {
+                    save: true
+                }
+            }
+        });
+
+        const pickr2 = Pickr.create({
+            el: '.color-picker2',
+            theme: 'nano',
+            default: "{{ color2 }}",
+
+            components: {
+
+                preview: true,
+                hue: true,
+
+                interaction: {
+                    save: true
+                }
+            }
+        });
+
+        pickr.on('save', (...args) => {
+            let color = args[0].toHEXA().toString(3);
+            let color1_input = document.getElementById('color1')
+            color1_input.value = color
+            console.log(color1_input.value)
+        });
+
+        pickr2.on('save', (...args) => {
+            let color2 = args[0].toHEXA().toString(3);
+            let color2_input = document.getElementById('color2')
+            color2_input.value = color2
+            console.log(color2_input.value)
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-from .forms import LinkCreateForm
-from .models import LeadModel, Link, PageVisit
+from .forms import *
+from .models import *
 from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
@@ -58,6 +58,9 @@ def leads(request):
 def lead(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     user = link.user
+    color1 = user.preferences.color1
+    color2 = user.preferences.color2
+    font = user.preferences.font_family
     fields = (['name', 'email'])
     widgets = {
         'name': TextInput(attrs={'placeholder': 'Name'}),
@@ -78,7 +81,7 @@ def lead(request, short_url):
             return redirect(link.link)
 
     response = render(request, 'leadfy/emailcapture.html',
-                      {'form': form, 'user': user, 'page': link})
+                      {'form': form, 'user': user, 'page': link, 'color1': color1, 'color2': color2, 'font': font})
 
     set_http_referer(request, response=response)
     def save_statistics():
@@ -106,16 +109,47 @@ def landing(request, username):
     print(get_location(request))
 
     user = get_object_or_404(User, username=username)
+
+    color1 = user.preferences.color1
+    color2 = user.preferences.color2
+    font = user.preferences.font_family
+
     links = Link.objects.filter(user=user)
-    response = render(request, 'leadfy/landing.html', {'user': user, 'links': links})
+    response = render(request, 'leadfy/landing.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font})
     set_http_referer(request, response=response)
     return response
 
 def landing_as_author_pv(request, username):
     user = get_object_or_404(User, username=username)
-    links = Link.objects.filter(user=user)
-    response = render(request, 'leadfy/landing_as_author_pv.html', {'user': user, 'links': links})
-    return response
+    color1 = user.preferences.color1
+    color2 = user.preferences.color2
+    font = user.preferences.font_family
+
+    if request.user == user:
+        links = Link.objects.filter(user=user)
+        response = render(request, 'leadfy/landing_as_author_pv.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font})
+        return response
+    else:
+        return HttpResponseForbidden()
+
+
+
+@login_required
+def preferences(request):
+    form = PreferencesForm(instance=request.user.preferences)
+    color1 = request.user.preferences.color1
+    color2 = request.user.preferences.color2
+    if request.method == 'POST':
+        form = PreferencesForm(request.POST, instance=request.user.preferences)
+        if form.is_valid():
+            print(request.POST['color1'])
+            print(request.POST['color2'])
+            form.instance.color1 = request.POST['color1']
+            form.instance.color2 = request.POST['color2']
+            form.save()
+            return redirect('preferences')
+    return render(request, 'leadfy/preferences.html', {'form': form, 'color1': color1, 'color2': color2})
+
 
 
 @login_required

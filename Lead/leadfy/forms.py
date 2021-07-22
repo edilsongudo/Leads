@@ -1,5 +1,6 @@
 from django import forms
-from .models import Link
+from .models import *
+from django.forms.widgets import TextInput
 
 class LinkCreateForm(forms.ModelForm):
 
@@ -19,3 +20,9 @@ class LinkEditForm(forms.ModelForm):
         #     'primary_text_color': TextInput(attrs={'type': 'color'}),
         #     'brand_name_font_color': TextInput(attrs={'type': 'color'})
         # }
+
+class PreferencesForm(forms.ModelForm):
+
+    class Meta:
+        model = Preferences
+        fields = ['font_family', 'background_image', 'use_background_image']

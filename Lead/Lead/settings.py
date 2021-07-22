@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import json
+import socket
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +28,12 @@ SECRET_KEY = '@+7zuz+g%+c3m$c9*khcth2rya_fa9$@5(3@0c6wq9@%pm(zb+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.143']
+
+# Get local ip address to be able to run the app in local network using runserver 0.0.0.0:8000
+HOSTNAME = socket.gethostname()
+LOCAL_IP = socket.gethostbyname(HOSTNAME).split(':')[0]
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', LOCAL_IP]
 
 
 # Application definition

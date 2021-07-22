@@ -5,12 +5,11 @@ from .models import Preferences
 
 
 @receiver(post_save, sender=User)
-def createPreferences(sender, instance, created, **kwargs):
+def create_Preferences(sender, instance, created, **kwargs):
     if created:
         Preferences.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
-def savePreferences(sender, instance, created, **kwargs):
-    # if created == False:
+def save_Preferences(sender, instance, created, **kwargs):
     instance.preferences.save()
