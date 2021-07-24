@@ -61,6 +61,15 @@ def lead(request, short_url):
     color1 = user.preferences.color1
     color2 = user.preferences.color2
     font = user.preferences.font_family
+    use_background_image = user.preferences.use_background_image
+    image = user.preferences.background_image.url
+    background_image_brightness = user.preferences.background_image_brightness / 100
+
+    if use_background_image:
+        use_background_image = "true"
+    else:
+        use_background_image = "false"
+
     fields = (['name', 'email'])
     widgets = {
         'name': TextInput(attrs={'placeholder': 'Name'}),
@@ -81,7 +90,7 @@ def lead(request, short_url):
             return redirect(link.link)
 
     response = render(request, 'leadfy/emailcapture.html',
-                      {'form': form, 'user': user, 'page': link, 'color1': color1, 'color2': color2, 'font': font})
+                      {'form': form, 'user': user, 'page': link, 'color1': color1, 'color2': color2, 'font': font, 'image': image, "use_background_image": use_background_image, 'brightness': background_image_brightness})
 
     set_http_referer(request, response=response)
     def save_statistics():
@@ -113,9 +122,18 @@ def landing(request, username):
     color1 = user.preferences.color1
     color2 = user.preferences.color2
     font = user.preferences.font_family
+    use_background_image = user.preferences.use_background_image
+    image = user.preferences.background_image.url
+    background_image_brightness = user.preferences.background_image_brightness / 100
+
+
+    if use_background_image:
+        use_background_image = "true"
+    else:
+        use_background_image = "false"
 
     links = Link.objects.filter(user=user)
-    response = render(request, 'leadfy/landing.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font})
+    response = render(request, 'leadfy/landing.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font, 'image': image, "use_background_image": use_background_image, 'brightness': background_image_brightness})
     set_http_referer(request, response=response)
     return response
 
@@ -124,10 +142,19 @@ def landing_as_author_pv(request, username):
     color1 = user.preferences.color1
     color2 = user.preferences.color2
     font = user.preferences.font_family
+    use_background_image = user.preferences.use_background_image
+    image = user.preferences.background_image.url
+    background_image_brightness = user.preferences.background_image_brightness / 100
+
+    if use_background_image:
+        use_background_image = "true"
+    else:
+        use_background_image = "false"
+
 
     if request.user == user:
         links = Link.objects.filter(user=user)
-        response = render(request, 'leadfy/landing_as_author_pv.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font})
+        response = render(request, 'leadfy/landing_as_author_pv.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font, 'image': image, "use_background_image": use_background_image, 'brightness': background_image_brightness})
         return response
     else:
         return HttpResponseForbidden()
@@ -139,16 +166,18 @@ def preferences(request):
     form = PreferencesForm(instance=request.user.preferences)
     color1 = request.user.preferences.color1
     color2 = request.user.preferences.color2
+    brightness = request.user.preferences.background_image_brightness
     if request.method == 'POST':
-        form = PreferencesForm(request.POST, instance=request.user.preferences)
+        form = PreferencesForm(request.POST, request.FILES, instance=request.user.preferences)
         if form.is_valid():
             print(request.POST['color1'])
             print(request.POST['color2'])
             form.instance.color1 = request.POST['color1']
             form.instance.color2 = request.POST['color2']
+            form.instance.background_image_brightness = request.POST['brightness']
             form.save()
             return redirect('preferences')
-    return render(request, 'leadfy/preferences.html', {'form': form, 'color1': color1, 'color2': color2})
+    return render(request, 'leadfy/preferences.html', {'form': form, 'color1': color1, 'color2': color2, 'brightness': brightness})
 
 
 

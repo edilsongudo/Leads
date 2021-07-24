@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from .utils import generate_ref_code
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class LeadModel(models.Model):
@@ -61,9 +62,13 @@ class Preferences(models.Model):
         max_length=100,  default="#636FA4")
     background_image = models.ImageField(
         upload_to='usersbackgroundimages', null=True)
+    background_image_brightness = models.IntegerField(
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    use_background_image = models.BooleanField(default=False)
     font_family = models.CharField(
         max_length=100, null=True, blank=False, choices=myfonts)
-    use_background_image = models.BooleanField(default=False)
+    primary_font_size = models.IntegerField(
+        default=16, validators=[MinValueValidator(1), MaxValueValidator(100)])
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'

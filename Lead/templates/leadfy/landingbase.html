@@ -17,7 +17,15 @@
     <script type="text/javascript">
         let color1 = "{{ color1 }}"
         let color2 = "{{ color2 }}"
-        document.body.style.backgroundImage = `linear-gradient(90deg, ${color1}, ${color2})`
+        let brightness = {{ brightness }}
+
+        let use_background_image = {{ use_background_image }}
+        if (use_background_image == true) {
+            document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,${brightness}), rgba(0,0,0,${brightness})), url({{ image }}`
+        } else {
+            document.body.style.backgroundImage = `linear-gradient(90deg, ${color1}, ${color2})`
+        }
+
         new_font = new FontFace('customfont', 'url(/media/fonts/{{ font }})')
         new_font.load().then(function(loaded_face) {
             document.fonts.add(loaded_face)
