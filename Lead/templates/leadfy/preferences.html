@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/nano.min.css' %}">
-<!--     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>-->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>-->
 </head>
 <body>
     <div class="content">
@@ -35,7 +35,23 @@
             <div class="range-input">
               <input name="brightness" id="brightness" type="range" min="0" max="100" value="{{ brightness }}" step="1"/>
               <div class="value">
-                <div></div>
+                <div>{{ brightness }}</div>
+              </div>
+            </div>
+
+            brightness
+            <div class="range-input">
+              <input name="" id="" type="range" min="0" max="100" value="{{ brightness }}" step="1"/>
+              <div class="value">
+                <div>{{ brightness }}</div>
+              </div>
+            </div>
+
+            brightness
+            <div class="range-input">
+              <input name="" id="" type="range" min="0" max="100" value="{{ brightness }}" step="1"/>
+              <div class="value">
+                <div>{{ brightness }}</div>
               </div>
             </div>
 
@@ -46,8 +62,7 @@
             <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
         </form>
     </div>
-    <!-- Modern or es5 bundle -->
-<!--     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> -->
     <script src="{% static 'leadfy/js/pickr.min.js' %}"></script>
     <script src="{% static 'leadfy/js/pickr.es5.min.js' %}"></script>
@@ -101,22 +116,13 @@
         });
     </script>
     <script type="text/javascript">
-        let rangeInput = document.querySelector(".range-input input");
-        let rangeValue = document.querySelector(".range-input .value div");
-
-        let start = parseFloat(rangeInput.min);
-        let end = parseFloat(rangeInput.max);
-        let step = parseFloat(rangeInput.step);
-
-        for(let i=start;i<=end;i+=step){
-          rangeValue.innerHTML += '<div>'+i+'</div>';
-        }
-
-        rangeInput.addEventListener("input",function(){
-          let top = parseFloat(rangeInput.value)/step * -40;
-          rangeValue.style.marginTop = top+"px";
-          console.log(rangeInput.value)
-        });
+        let rangeInputs = document.querySelectorAll('.range-input input')
+        rangeInputs.forEach(function(rangeInput) {
+            rangeInput.addEventListener("input",function(){
+            rangeInput.parentElement.childNodes[3].innerHTML = '<div>' + rangeInput.value + '</div>'
+            console.log(rangeInput.value)
+            });
+        })
     </script>
 </body>
 </html>
