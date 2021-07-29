@@ -1,33 +1,32 @@
 {% extends 'leadfy/landingbase.html' %}
 
 {% block content %}
-    <div class="skip toinvisible">
-        <form method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="skip">
-            <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
-        </form>
-    </div>
-
     <div class="content">
-
-        <div class="center">
-            <div class="subcontent">
-                <div class="image-border">
-                    <img class="round" src="{{ user.profile.image.url }}">
-                </div>
-                <h1 class="name">{{ user.username }}</h1>
+        <div class="overflow">
+            <div class="skip toinvisible">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="skip">
+                    <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+                </form>
             </div>
+                <div class="center">
+                    <div class="subcontent">
+                        <div class="image-border">
+                            <img class="round" src="{{ user.profile.image.url }}">
+                        </div>
+                        <h1 class="name" id="name">{{ user.username }}</h1>
+                    </div>
+                </div>
+                <div class="space-between">
+                    <a href="{% url 'user-landing' user.username %}"><i class="fas fa-eye"></i> Preview</a>
+                    <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
+                </div>
+            {% for link in links %}
+                <a href="{% url 'link-edit' link.short_url %}" class="page-link link">{{ link.title }}
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+            {% endfor %}
         </div>
-        <div class="space-between">
-            <a href="{% url 'user-landing' user.username %}"><i class="fas fa-eye"></i> Preview</a>
-            <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
-        </div>
-        {% for link in links %}
-            <a href="{% url 'link-edit' link.short_url %}" class="page-link link">{{ link.title }}
-                <i class="fas fa-pencil-alt"></i>
-            </a>
-        {% endfor %}
-
     </div>
 {% endblock %}

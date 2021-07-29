@@ -68,7 +68,16 @@ class Preferences(models.Model):
     font_family = models.CharField(
         max_length=100, null=True, blank=False, choices=myfonts)
     primary_font_size = models.IntegerField(
-        default=16, validators=[MinValueValidator(1), MaxValueValidator(100)])
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    name_font_size = models.IntegerField(
+        default=48, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    border_radius = models.IntegerField(
+        default=48, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    link_background_color = models.CharField(
+        max_length=100,  default="#fff")
+    link_text_color = models.CharField(
+        max_length=100,  default="#fff")
+
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'

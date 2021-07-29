@@ -2,22 +2,22 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Contact V12</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/main.css' %}">
-</head>
-<body>
-    {% block content %}
-    {% endblock %}
-</body>
+    <head>
+        <title>Contact V12</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/main.css' %}">
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
     <script type="text/javascript">
         let color1 = "{{ color1 }}"
         let color2 = "{{ color2 }}"
-        let brightness = {{ brightness }}
+        let brightness = {{ brightness }} / 100
 
         let use_background_image = {{ use_background_image }}
         if (use_background_image == true) {
@@ -26,13 +26,29 @@
             document.body.style.backgroundImage = `linear-gradient(90deg, ${color1}, ${color2})`
         }
 
+        //Loading Font
         new_font = new FontFace('customfont', 'url(/media/fonts/{{ font }})')
         new_font.load().then(function(loaded_face) {
             document.fonts.add(loaded_face)
             document.body.style.fontFamily = 'customfont'
+            document.body.style.fontSize = "{{ primary_font_size }}" + "px"
+            document.getElementById('name').style.fontSize = "{{ name_font_size }}" + "px"
         }).catch(function(error) {
+            console.log('Error loading font')
+        });
+        // End of Loading Font
 
+        let pages = document.querySelectorAll('.page-link') //Only querySelector Works!
+        pages.forEach(function(element, index) {
+            element.style.borderRadius = "{{ border_radius }}" + "px"
+            element.style.backgroundColor = 'white'
+            element.style.color = "{{ link_text_color }}"
+            element.style.backgroundColor = "{{ link_background_color }}"
+            element.style.borderColor = "{{ link_background_color }}"
+            let alpha = parseFloat("{{ link_background_color }}".split(',')[3])
+            if (alpha < 0.25) {
+                element.style.borderColor = "#fff"
+            }
         });
     </script>
-
 </html>

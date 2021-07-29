@@ -19,6 +19,13 @@ body {
   font-size: 1.5rem;
 }
 
+/*TODO - Style Overflow*/
+.overflow {
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -30,7 +37,7 @@ a:hover {
 
 .skip {
   font-size: 30px;
-  padding: 20px;
+  padding: 5px;
 }
 
 .skip i {
@@ -124,7 +131,7 @@ label {
 
 @media only screen and (max-width: 800px) {
   .content {
-    max-width: 90%;
+    max-width: 98%;
   }
 }
 

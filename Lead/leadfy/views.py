@@ -15,32 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DeleteView
 from django.urls import reverse
 
-
-def set_http_referer(request, response):
-    referer = request.META.get('HTTP_REFERER')
-    print(referer)
-    if not referer in request.COOKIES:
-        max_age = 3600 * 24 * 90
-        response.set_cookie('referer', referer, max_age=max_age)
-    return referer
-
-def get_ip(request):
-    address = request.META.get('HTTP_X_FORWARDED_FOR')
-    if address:
-        ip = address.split(',')[-1].strip()
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
-
-
-def get_location(request):
-    try:
-        ip = get_ip(request)
-        country, city, lat, lon = get_geo(ip)
-        return country
-    except Exception as e:
-        print(e)
-        return ''
+from .views_utils import *
 
 
 def home(request):
@@ -58,17 +33,6 @@ def leads(request):
 def lead(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     user = link.user
-    color1 = user.preferences.color1
-    color2 = user.preferences.color2
-    font = user.preferences.font_family
-    use_background_image = user.preferences.use_background_image
-    image = user.preferences.background_image.url
-    background_image_brightness = user.preferences.background_image_brightness / 100
-
-    if use_background_image:
-        use_background_image = "true"
-    else:
-        use_background_image = "false"
 
     fields = (['name', 'email'])
     widgets = {
@@ -89,8 +53,8 @@ def lead(request, short_url):
             form.save()
             return redirect(link.link)
 
-    response = render(request, 'leadfy/emailcapture.html',
-                      {'form': form, 'user': user, 'page': link, 'color1': color1, 'color2': color2, 'font': font, 'image': image, "use_background_image": use_background_image, 'brightness': background_image_brightness})
+    context = context_dict(request=request, user=user, link=link, form=form)
+    response = render(request, 'leadfy/emailcapture.html', context=context)
 
     set_http_referer(request, response=response)
     def save_statistics():
@@ -114,47 +78,20 @@ def lead(request, short_url):
 
 
 def landing(request, username):
-    print(get_ip(request))
-    print(get_location(request))
-
     user = get_object_or_404(User, username=username)
-
-    color1 = user.preferences.color1
-    color2 = user.preferences.color2
-    font = user.preferences.font_family
-    use_background_image = user.preferences.use_background_image
-    image = user.preferences.background_image.url
-    background_image_brightness = user.preferences.background_image_brightness / 100
-
-
-    if use_background_image:
-        use_background_image = "true"
-    else:
-        use_background_image = "false"
-
     links = Link.objects.filter(user=user)
-    response = render(request, 'leadfy/landing.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font, 'image': image, "use_background_image": use_background_image, 'brightness': background_image_brightness})
+    context = context_dict(request=request, user=user, links=links)
+    response = render(request, 'leadfy/landing.html', context=context)
     set_http_referer(request, response=response)
     return response
 
 def landing_as_author_pv(request, username):
     user = get_object_or_404(User, username=username)
-    color1 = user.preferences.color1
-    color2 = user.preferences.color2
-    font = user.preferences.font_family
-    use_background_image = user.preferences.use_background_image
-    image = user.preferences.background_image.url
-    background_image_brightness = user.preferences.background_image_brightness / 100
-
-    if use_background_image:
-        use_background_image = "true"
-    else:
-        use_background_image = "false"
-
 
     if request.user == user:
         links = Link.objects.filter(user=user)
-        response = render(request, 'leadfy/landing_as_author_pv.html', {'user': user, 'links': links, 'color1': color1, 'color2': color2, 'font': font, 'image': image, "use_background_image": use_background_image, 'brightness': background_image_brightness})
+        context = context_dict(request=request, user=user, links=links)
+        response = render(request, 'leadfy/landing_as_author_pv.html', context=context)
         return response
     else:
         return HttpResponseForbidden()
@@ -164,20 +101,23 @@ def landing_as_author_pv(request, username):
 @login_required
 def preferences(request):
     form = PreferencesForm(instance=request.user.preferences)
-    color1 = request.user.preferences.color1
-    color2 = request.user.preferences.color2
-    brightness = request.user.preferences.background_image_brightness
+    user = request.user
+
     if request.method == 'POST':
         form = PreferencesForm(request.POST, request.FILES, instance=request.user.preferences)
         if form.is_valid():
-            print(request.POST['color1'])
-            print(request.POST['color2'])
             form.instance.color1 = request.POST['color1']
             form.instance.color2 = request.POST['color2']
+            form.instance.link_background_color = request.POST['link_background_color']
+            form.instance.link_text_color = request.POST['link_text_color']
+            form.instance.primary_font_size = request.POST['primary_font_size']
+            form.instance.name_font_size = request.POST['name_font_size']
             form.instance.background_image_brightness = request.POST['brightness']
+            form.instance.border_radius = request.POST['border_radius']
             form.save()
             return redirect('preferences')
-    return render(request, 'leadfy/preferences.html', {'form': form, 'color1': color1, 'color2': color2, 'brightness': brightness})
+    context = context_dict(request=request, user=user, form=form)
+    return render(request, 'leadfy/preferences.html', context=context)
 
 
 

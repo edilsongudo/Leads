@@ -33,7 +33,7 @@ DEBUG = True
 HOSTNAME = socket.gethostname()
 LOCAL_IP = socket.gethostbyname(HOSTNAME).split(':')[0]
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', LOCAL_IP]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.43.143']
 
 
 # Application definition
