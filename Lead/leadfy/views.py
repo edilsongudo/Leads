@@ -107,6 +107,7 @@ def preferences(request):
     if request.method == 'POST':
         form = PreferencesForm(request.POST, request.FILES, instance=request.user.preferences)
         if form.is_valid():
+            form.instance.font_family = request.POST['font']
             form.instance.color1 = request.POST['color1']
             form.instance.color2 = request.POST['color2']
             form.instance.link_background_color = request.POST['link_background_color']
@@ -117,7 +118,12 @@ def preferences(request):
             form.instance.border_radius = request.POST['border_radius']
             form.save()
             return redirect('preferences')
-    context = context_dict(user=user, form=form)
+
+    fonts = []
+    for font in myfonts:
+        fonts.append(font[0])
+    print(fonts)
+    context = context_dict(user=user, form=form, fonts=fonts)
     return render(request, 'leadfy/preferences.html', context=context)
 
 

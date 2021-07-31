@@ -8,7 +8,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from allauth.account.views import SignupView, LoginView, LogoutView
+# from allauth.account.views import SignupView, LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,9 +39,9 @@ urlpatterns = [
     path('ckeditor', include('ckeditor_uploader.urls')),
     path('', include('leadfy.urls')),
     path("accounts/", include("allauth.urls")),
-    path('accounts/signup/', SignupView, name='account_signup'),
-    path('accounts/login/', LoginView, name='account_login'),
-    path('accounts/logout/', LogoutView, name='account_logout'),
+    # path('accounts/signup/', SignupView, name='account_signup'),
+    # path('accounts/login/', LoginView, name='account_login'),
+    # path('accounts/logout/', LogoutView, name='account_logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # ckuploader
 
 handler404 = 'leadfy.views.error_404_view'

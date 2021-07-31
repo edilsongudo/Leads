@@ -1,10 +1,13 @@
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h3>You have been logged out</h3>
+    <h3>Are you sure you want to Logout?</h3>
     <div class="border-top pt-3">
         <small class="text-muted">
-            <a class="ml-2" href="{% url 'account_login' %}">Login Again</a>
+            <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                <button class="cta cta1" type="submit">Yes, Logout</button>
+            </form>
         </small>
     </div>
 {% endblock content %}

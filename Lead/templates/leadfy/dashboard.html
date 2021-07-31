@@ -50,6 +50,15 @@
                 </div>
             </section>
 
+            <div class="container">
+              {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+              {% endif %}
+            </div>
 
             <div class="flex">
                 <a class="section2 card small">

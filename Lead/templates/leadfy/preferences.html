@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/nano.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/customselect.css' %}">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>-->
 </head>
 <body>
@@ -40,6 +41,21 @@
 
             {% csrf_token %}
             {{ form|crispy }}
+
+      <div class="select-box">
+        <div class="options-container">
+            {% for font in fonts %}
+              <div class="option">
+                <input type="radio" value="{{ font }}"" class="radio" id="{{ font }}"/>
+                <label class="font" for="{{ font }}">{{ font }}</label>
+              </div>
+            {% endfor %}
+        </div>
+
+        <div class="selected">
+          Select Font Family
+        </div>
+      </div>
 
             brightness
             <div class="range-input">
@@ -76,6 +92,7 @@
             <div class="form-group">
                 <button class="cta cta1" type="submit">Save</button>
             </div>
+            <input type="text" name="font" id="font_input" class="invisible" value="">
             <input type="text" name="color1" id="color1" class="invisible" value="{{ color1 }}">
             <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
             <input type="text" name="link_background_color" id="link_background_color" class="invisible" value="{{ link_background_color }}">
@@ -86,7 +103,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> -->
     <script src="{% static 'leadfy/js/pickr.min.js' %}"></script>
     <script src="{% static 'leadfy/js/pickr.es5.min.js' %}"></script>
-
 
     <script type="text/javascript">
         const pickr = Pickr.create({
@@ -189,17 +205,18 @@
             });
         })
 
-        let options = document.querySelectorAll('option')
+        let options = document.querySelectorAll('.font')
         options.forEach(function(elem) {
-
-            new_font = new FontFace(elem.value.split('.')[0], `url(/media/fonts/${elem.value})`)
+            console.log(elem.parentElement.children[0].checked)
+            new_font = new FontFace(elem.parentElement.children[0].value.split('.')[0], `url(/media/fonts/${elem.parentElement.children[0].value})`)
             new_font.load().then(function(loaded_face) {
                 document.fonts.add(loaded_face)
-                elem.style.fontFamily = elem.value.split('.')[0]
+                elem.style.fontFamily = elem.parentElement.children[0].value.split('.')[0]
             }).catch(function(error) {
                 console.log(error)
             });
         })
     </script>
+    <script src="{% static 'leadfy/js/customselect.js' %}"></script>
 </body>
 </html>
