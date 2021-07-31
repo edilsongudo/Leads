@@ -1,9 +1,10 @@
-def context_dict(request=None, user=None, link=None, links=None, form=None):
+def context_dict(user, **kwargs):
     color1 = user.preferences.color1
     color2 = user.preferences.color2
     font = user.preferences.font_family
     use_background_image = user.preferences.use_background_image
-    image = user.preferences.background_image.url
+    mobileimage = user.preferences.background_image_mobile.url
+    desktopimage = user.preferences.background_image_desktop.url
     background_image_brightness = user.preferences.background_image_brightness
     primary_font_size = user.preferences.primary_font_size
     name_font_size = user.preferences.name_font_size
@@ -17,15 +18,13 @@ def context_dict(request=None, user=None, link=None, links=None, form=None):
         use_background_image = "false"
 
     data = {
-        'link': link,
-        'links': links,
-        'form': form,
         'user': user,
         'color1': color1,
         'color2': color2,
         'font': font,
         'use_background_image': use_background_image,
-        'image': image,
+        'mobileimage': mobileimage,
+        'desktopimage': desktopimage,
         'brightness': background_image_brightness,
         'primary_font_size': primary_font_size,
         'name_font_size': name_font_size,
@@ -33,6 +32,9 @@ def context_dict(request=None, user=None, link=None, links=None, form=None):
         'link_background_color': link_background_color,
         'link_text_color': link_text_color,
     }
+
+    for k, v in kwargs.items():
+        data[k] =  v
 
     return data
 

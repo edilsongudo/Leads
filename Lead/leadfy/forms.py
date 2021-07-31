@@ -25,4 +25,5 @@ class PreferencesForm(forms.ModelForm):
 
     class Meta:
         model = Preferences
-        fields = ['font_family', 'background_image', 'use_background_image']
+        fields = ['font_family', 'background_image_mobile',
+                  'background_image_desktop', 'use_background_image']

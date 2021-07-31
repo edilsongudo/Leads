@@ -22,8 +22,8 @@ body {
 /*TODO - Style Overflow*/
 .overflow {
   padding: 10px;
-  overflow-y: auto;
-  max-height: 100vh;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 a {
@@ -62,8 +62,8 @@ a:hover {
 }
 
 .content {
-  max-width: 640px;
-  margin: 0 auto;
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 .subcontent {

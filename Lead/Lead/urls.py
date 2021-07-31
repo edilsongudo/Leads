@@ -8,11 +8,13 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from allauth.account.views import SignupView, LoginView, LogoutView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', user_views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    # path('register/', user_views.register, name='register'),
+    # path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    # path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/', user_views.profile, name='profile'),
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
@@ -36,6 +38,10 @@ urlpatterns = [
          name='password_reset_complete'),
     path('ckeditor', include('ckeditor_uploader.urls')),
     path('', include('leadfy.urls')),
+    path("accounts/", include("allauth.urls")),
+    path('accounts/signup/', SignupView, name='account_signup'),
+    path('accounts/login/', LoginView, name='account_login'),
+    path('accounts/logout/', LogoutView, name='account_logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # ckuploader
 
 handler404 = 'leadfy.views.error_404_view'

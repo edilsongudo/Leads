@@ -1,0 +1,33 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact V12</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
+</head>
+<body>
+    <div class="skip toinvisible">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="skip">
+            <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+        </form>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <div class="skip toinvisible">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="skip">
+            <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+        </form>
+    </div>
+</body>
+</html>

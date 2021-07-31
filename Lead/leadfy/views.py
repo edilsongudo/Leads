@@ -1,7 +1,8 @@
 from .forms import *
 from .models import *
 from django.forms.models import modelform_factory
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
@@ -53,7 +54,7 @@ def lead(request, short_url):
             form.save()
             return redirect(link.link)
 
-    context = context_dict(request=request, user=user, link=link, form=form)
+    context = context_dict(user=user, link=link, form=form)
     response = render(request, 'leadfy/emailcapture.html', context=context)
 
     set_http_referer(request, response=response)
@@ -80,7 +81,7 @@ def lead(request, short_url):
 def landing(request, username):
     user = get_object_or_404(User, username=username)
     links = Link.objects.filter(user=user)
-    context = context_dict(request=request, user=user, links=links)
+    context = context_dict(user=user, links=links)
     response = render(request, 'leadfy/landing.html', context=context)
     set_http_referer(request, response=response)
     return response
@@ -90,7 +91,7 @@ def landing_as_author_pv(request, username):
 
     if request.user == user:
         links = Link.objects.filter(user=user)
-        context = context_dict(request=request, user=user, links=links)
+        context = context_dict(user=user, links=links)
         response = render(request, 'leadfy/landing_as_author_pv.html', context=context)
         return response
     else:
@@ -116,7 +117,7 @@ def preferences(request):
             form.instance.border_radius = request.POST['border_radius']
             form.save()
             return redirect('preferences')
-    context = context_dict(request=request, user=user, form=form)
+    context = context_dict(user=user, form=form)
     return render(request, 'leadfy/preferences.html', context=context)
 
 

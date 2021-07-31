@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 from .utils import generate_ref_code
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -50,6 +51,7 @@ class PageVisit(models.Model):
 myfonts = (
     ('Gloss_And_Bloom.ttf', 'Gloss_And_Bloom.ttf'),
     ('Heaters.otf', 'Heaters.otf'),
+    ('Arial.ttf', 'Arial.ttf'),
 )
 
 
@@ -60,24 +62,25 @@ class Preferences(models.Model):
         max_length=100, default="#E8CBC0")
     color2 = models.CharField(
         max_length=100,  default="#636FA4")
-    background_image = models.ImageField(
-        upload_to='usersbackgroundimages', null=True)
+    background_image_desktop = models.ImageField(
+        upload_to='usersbackgroundimages', default="defaultdesktopbackgroundimage.jpg", null=True)
+    background_image_mobile = models.ImageField(
+        upload_to='usersbackgroundimages', default="defaultmobilebackgroundimage.jpg", null=True)
     background_image_brightness = models.IntegerField(
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
     font_family = models.CharField(
-        max_length=100, null=True, blank=False, choices=myfonts)
+        max_length=100, null=True, default="Heaters.otf", choices=myfonts)
     primary_font_size = models.IntegerField(
-        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
+        default=25, validators=[MinValueValidator(0), MaxValueValidator(100)])
     name_font_size = models.IntegerField(
-        default=48, validators=[MinValueValidator(0), MaxValueValidator(100)])
+        default=25, validators=[MinValueValidator(0), MaxValueValidator(100)])
     border_radius = models.IntegerField(
-        default=48, validators=[MinValueValidator(0), MaxValueValidator(50)])
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(
-        max_length=100,  default="#fff")
+        max_length=100,  default="#ffffff")
     link_text_color = models.CharField(
-        max_length=100,  default="#fff")
-
+        max_length=100,  default="#000000")
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'

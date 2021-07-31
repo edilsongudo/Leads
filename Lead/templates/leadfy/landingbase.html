@@ -21,7 +21,20 @@
 
         let use_background_image = {{ use_background_image }}
         if (use_background_image == true) {
-            document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,${brightness}), rgba(0,0,0,${brightness})), url({{ image }}`
+
+            //function to handle responsive images loading
+            const mediaQuery = window.matchMedia('(max-width: 800px)')
+            function handleTabletChange(e) {
+                if (e.matches) {
+                    document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,${brightness}), rgba(0,0,0,${brightness})), url({{ mobileimage }}`
+                } else {
+                    document.body.style.backgroundImage = `linear-gradient(90deg, rgba(0,0,0,${brightness}), rgba(0,0,0,${brightness})), url({{ desktopimage }}`
+                }
+            }
+            mediaQuery.addListener(handleTabletChange)
+            handleTabletChange(mediaQuery)
+            //end of function
+
         } else {
             document.body.style.backgroundImage = `linear-gradient(90deg, ${color1}, ${color2})`
         }

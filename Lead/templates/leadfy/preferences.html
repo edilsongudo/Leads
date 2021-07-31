@@ -51,7 +51,7 @@
 
             Primary Font Size
             <div class="range-input">
-              <input name="primary_font_size" id="" type="range" min="0" max="100" value="{{ primary_font_size }}" step="1"/>
+              <input name="primary_font_size" type="range" min="0" max="100" value="{{ primary_font_size }}" step="1"/>
               <div class="value">
                 <div>{{ primary_font_size }}</div>
               </div>
@@ -59,7 +59,7 @@
 
             Name Font Size
             <div class="range-input">
-              <input name="name_font_size" id="" type="range" min="0" max="100" value="{{ name_font_size }}" step="1"/>
+              <input name="name_font_size" type="range" min="0" max="100" value="{{ name_font_size }}" step="1"/>
               <div class="value">
                 <div>{{ name_font_size }}</div>
               </div>
@@ -67,7 +67,7 @@
 
             Border Radius
             <div class="range-input">
-              <input name="border_radius" id="" type="range" min="0" max="50" value="{{ border_radius }}" step="1"/>
+              <input name="border_radius" type="range" min="0" max="50" value="{{ border_radius }}" step="1"/>
               <div class="value">
                 <div>{{ border_radius }}</div>
               </div>
@@ -186,6 +186,18 @@
             rangeInput.addEventListener("input",function(){
             rangeInput.parentElement.childNodes[3].innerHTML = '<div>' + rangeInput.value + '</div>'
             console.log(rangeInput.value)
+            });
+        })
+
+        let options = document.querySelectorAll('option')
+        options.forEach(function(elem) {
+
+            new_font = new FontFace(elem.value.split('.')[0], `url(/media/fonts/${elem.value})`)
+            new_font.load().then(function(loaded_face) {
+                document.fonts.add(loaded_face)
+                elem.style.fontFamily = elem.value.split('.')[0]
+            }).catch(function(error) {
+                console.log(error)
             });
         })
     </script>
