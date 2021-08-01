@@ -1,8 +1,7 @@
 from .forms import *
 from .models import *
 from django.forms.models import modelform_factory
-# from django.contrib.auth.models import User
-from users.models import User
+from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
@@ -79,7 +78,7 @@ def lead(request, short_url):
 
 
 def landing(request, username):
-    user = get_object_or_404(User, username=username)
+    user = get_object_or_404(get_user_model(), username=username)
     links = Link.objects.filter(user=user)
     context = context_dict(user=user, links=links)
     response = render(request, 'leadfy/landing.html', context=context)
@@ -87,7 +86,7 @@ def landing(request, username):
     return response
 
 def landing_as_author_pv(request, username):
-    user = get_object_or_404(User, username=username)
+    user = get_object_or_404(get_user_model(), username=username)
 
     if request.user == user:
         links = Link.objects.filter(user=user)

@@ -1,6 +1,5 @@
 from django.db import models
-# from django.contrib.auth.models import User
-from users.models import User
+from django.contrib.auth import get_user_model
 from .utils import generate_ref_code
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -9,7 +8,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class LeadModel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=False)
     email = models.EmailField(null=True, blank=False)
-    lead_from = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    lead_from = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True)
     date_submited = models.DateTimeField(default=timezone.now)
     referer = models.CharField(max_length=200, null=True, blank=True)
     referer_main_domain = models.CharField(
@@ -24,7 +23,7 @@ class Link(models.Model):
     title = models.CharField(max_length=30, null=True, default='My Website')
     description = models.CharField(max_length=200, null=True, blank=True)
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True)
+        get_user_model(), on_delete=models.CASCADE, null=True)
     short_url = models.SlugField(default=generate_ref_code, null=True)
     link = models.URLField(
         max_length=200, default='http://www.google.com', null=True, blank=False)
@@ -57,7 +56,7 @@ myfonts = (
 
 class Preferences(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True)
+        get_user_model(), on_delete=models.CASCADE, null=True)
     color1 = models.CharField(
         max_length=100, default="#E8CBC0")
     color2 = models.CharField(
