@@ -20,7 +20,7 @@
     </div>
     <div class="content">
         {% block content %}
-        {% endblock content %}
+        {% endblock %}
     </div>
     <div class="skip toinvisible">
         <form method="POST">
@@ -29,5 +29,7 @@
             <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
         </form>
     </div>
+    {% block js %}
+    {% endblock %}
 </body>
 </html>

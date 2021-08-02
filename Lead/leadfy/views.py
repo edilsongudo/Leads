@@ -106,6 +106,11 @@ def preferences(request):
     if request.method == 'POST':
         form = PreferencesForm(request.POST, request.FILES, instance=request.user.preferences)
         if form.is_valid():
+            print(request.POST['use_background_image'])
+            if request.POST['use_background_image'] == 'true':
+                form.instance.use_background_image = True
+            else:
+                form.instance.use_background_image = False
             form.instance.font_family = request.POST['font']
             form.instance.color1 = request.POST['color1']
             form.instance.color2 = request.POST['color2']

@@ -3,12 +3,15 @@ from django.contrib.auth import get_user_model
 from .utils import generate_ref_code
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
+import os
 
 
 class LeadModel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=False)
     email = models.EmailField(null=True, blank=False)
-    lead_from = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, blank=True)
+    lead_from = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, blank=True)
     date_submited = models.DateTimeField(default=timezone.now)
     referer = models.CharField(max_length=200, null=True, blank=True)
     referer_main_domain = models.CharField(
@@ -47,11 +50,12 @@ class PageVisit(models.Model):
         return f'/{self.page.short_url} at {self.time}'
 
 
-myfonts = (
-    ('Gloss_And_Bloom.ttf', 'Gloss_And_Bloom.ttf'),
-    ('Heaters.otf', 'Heaters.otf'),
-    ('Arial.ttf', 'Arial.ttf'),
-)
+fonts_folder = os.path.join(settings.MEDIA_ROOT, 'fonts')
+fonts = os.listdir(fonts_folder)
+myfonts = []
+for font in fonts:
+    if font.split('.')[-1] in ('otf', 'ttf'):
+        myfonts.append([font, font])
 
 
 class Preferences(models.Model):

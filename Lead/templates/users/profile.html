@@ -4,15 +4,44 @@
     <div class="center">
         <div class="subcontent">
             <div class="image-border">
-                <img class="round" src="{{ user.profile.image.url }}">
+                <img class="round" id="round" src="{{ user.profile.image.url }}">
+                <button class="clearbtnstyle"><i class="fas fa-pencil-alt"></i></button>
             </div>
         </div>
     </div>
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ u_form|crispy }}
         {{ p_form|crispy }}
+        {{ u_form|crispy }}
         <button class="cta cta1" type="submit">Update</button>
     </form>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        btn = document.querySelector('.clearbtnstyle')
+        image_input = document.querySelector('#id_image')
+        preview_image = document.querySelector('#round')
+
+        btn.addEventListener('click', function () {
+            image_input.click()
+        })
+
+        image_input.addEventListener('change', function() {
+
+            // console.log(this.files[0])
+            const file = this.files[0]
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const result = reader.result
+                    preview_image.setAttribute('src', reader.result)
+                }
+
+            reader.readAsDataURL(file)
+            }
+        })
+    </script>
 {% endblock %}

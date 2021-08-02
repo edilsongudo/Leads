@@ -11,6 +11,7 @@ def context_dict(user, **kwargs):
     border_radius = user.preferences.border_radius
     link_background_color = user.preferences.link_background_color
     link_text_color = user.preferences.link_text_color
+    font_family = user.preferences.font_family
 
     if use_background_image:
         use_background_image = "true"
@@ -31,10 +32,11 @@ def context_dict(user, **kwargs):
         'border_radius': border_radius,
         'link_background_color': link_background_color,
         'link_text_color': link_text_color,
+        'font_family': font_family
     }
 
     for k, v in kwargs.items():
-        data[k] =  v
+        data[k] = v
 
     return data
 
