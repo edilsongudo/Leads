@@ -121,13 +121,13 @@ def preferences(request):
             form.instance.background_image_brightness = request.POST['brightness']
             form.instance.border_radius = request.POST['border_radius']
             form.save()
-            return redirect('preferences')
+            return redirect('user-landing', username=user.username)
 
     fonts = []
     for font in myfonts:
         fonts.append(font[0])
-    print(fonts)
-    context = context_dict(user=user, form=form, fonts=fonts)
+    links = Link.objects.filter(user=user)
+    context = context_dict(user=user, form=form, fonts=fonts, links=links)
     return render(request, 'leadfy/preferences.html', context=context)
 
 

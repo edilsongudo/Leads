@@ -167,3 +167,47 @@ label {
   display: flex;
   justify-content: space-between;
 }
+
+
+
+
+
+
+.footer {
+    width: 100vw;
+    position: absolute;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    justify-content: space-around;
+    height: 65px;
+    padding: 10px;
+    display: flex;
+    z-index: 1000;
+}
+
+.footer img {
+    height: 48px;
+    width: 48px;
+    margin: 0;
+    transition: all 0.4s;
+}
+
+.footer img:hover {
+    height: 60px;
+    width: 60px;
+}
+
+.footer-active {
+}
+
+@media only screen and (min-width: 600px) {
+  .footer {
+    top: 0;
+    height: 100vh;
+    width: 65px;
+    flex-direction: column;
+  }
+}

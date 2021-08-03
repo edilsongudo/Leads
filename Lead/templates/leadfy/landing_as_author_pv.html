@@ -1,4 +1,5 @@
 {% extends 'leadfy/landingbase.html' %}
+{% load static %}
 
 {% block content %}
     <div class="content">
@@ -29,4 +30,24 @@
             {% endfor %}
         </div>
     </div>
+
+
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/home.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/graph.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/paint.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'user-landing' user.username %}"><img src="{% static 'leadfy/img/gear.png' %}"></a>
+        </div>
+    </div>
 {% endblock %}
+
+
+

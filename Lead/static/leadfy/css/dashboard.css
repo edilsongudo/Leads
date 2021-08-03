@@ -34,7 +34,7 @@ a:hover {
 
 
 .maincontent {
-    min-width: 70%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -124,71 +124,45 @@ a:hover {
 }
 
 
-.sidebar img {
-    width: 24px;
-    height: 24px;
-}
-
-.sidebar-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    color: black;
-    font-family: 'CeraProMedium';
-}
-
-.sidebar-link a {
-    padding: 10px;
-}
-
-.sidebar-link img {
-    margin-right: 10px;
-}
-
-.content {
-    display: flex;
-    justify-content: space-around;
-}
-
 .footer {
-    display: none;
+    width: 100vw;
     position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
-    position: fixed;
-    background: white;
+    background: rgba(0, 0, 0, 0.5);
     text-align: center;
     justify-content: space-around;
     height: 65px;
-    box-shadow: rgba(213, 221, 236, 0.4) 0px 20px 20px 0px;
     padding: 10px;
+    display: flex;
+    z-index: 1000;
 }
 
 .footer img {
-    height: 24px;
-    width: 24px;
+    height: 48px;
+    width: 48px;
     margin: 0;
+    transition: all 0.4s;
+}
+
+.footer img:hover {
+    height: 60px;
+    width: 60px;
 }
 
 .footer-active {
-    background-image: linear-gradient(90deg, #F9FACB, #E6ECF6);
 }
 
-@media only screen and (max-width: 600px) {
-  .sidebar {
-    display: none;
-  }
-
+@media only screen and (min-width: 600px) {
   .footer {
-    display: flex;
+    top: 0;
+    height: 100vh;
+    width: 65px;
+    flex-direction: column;
   }
+}
 
-.content, .maincontent {
-    width: 97%;
-    margin: 0 auto;
-}
-}
 
 /*LEADS PAGE*/
 

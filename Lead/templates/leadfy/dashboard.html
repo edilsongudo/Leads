@@ -15,22 +15,6 @@
 <body>
     {% csrf_token %}
     <div class="content">
-        <div class="sidebar">
-            <div class="sidebar-links">
-                <div class="sidebar-link">
-                    <a><img src="{% static 'leadfy/img/streamline-icon-house-entrance@48x48.png' %}"><span></span></a>
-                </div>
-                <div class="sidebar-link footer-active">
-                    <a><img src="{% static 'leadfy/img/streamline-icon-graph-stats@48x48.png' %}"></a>
-                </div>
-                <div class="sidebar-link">
-                    <a><img src="{% static 'leadfy/img/streamline-icon-lock-1@48x48.png' %}"></a>
-                </div>
-                <div class="sidebar-link">
-                    <a><img src="{% static 'leadfy/img/streamline-icon-cog@48x48.png' %}"></a>
-                </div>
-            </div>
-        </div>
         <div class="maincontent">
             <section class="card">
                 <div>
@@ -111,19 +95,19 @@
     </div>
     <!-- end of content div -->
 
-    <!-- Bottom Footer Mobile -->
+    <!-- Nav -->
     <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/home.png' %}"></a>
+        </div>
         <div class="sidebar-link">
-            <a><img src="{% static 'leadfy/img/streamline-icon-house-entrance@48x48.png' %}"></a>
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/graph.png' %}"></a>
         </div>
         <div class="sidebar-link footer-active">
-            <a><img src="{% static 'leadfy/img/streamline-icon-graph-stats@48x48.png' %}">Analytics</a>
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/paint.png' %}"></a>
         </div>
         <div class="sidebar-link">
-            <a><img src="{% static 'leadfy/img/streamline-icon-lock-1@48x48.png' %}"></a>
-        </div>
-        <div class="sidebar-link">
-            <a><img src="{% static 'leadfy/img/streamline-icon-cog@48x48.png' %}"></a>
+            <a href="{% url 'user-landing' user.username %}"><img src="{% static 'leadfy/img/gear.png' %}"></a>
         </div>
     </div>
 

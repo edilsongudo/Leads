@@ -15,325 +15,196 @@
 </head>
 <body>
     <div class="content">
-        <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+            <!-- Preferences -->
+        <div id="preferences">
+            <button id="togglepreviewbtn"><i class="fas fa-eye"></i></button>
 
-        <div class="bgtypechoose">
-            <h5>Background</h5>
-                <label form="bgtypeequalsimage">Image</label>
-                <input type="radio" name="use_background_image" value="true" id="bgtypeequalsimage">
-                <label form="bgtypeequalscolor">Gradient</label>
-                <input type="radio" name="use_background_image" value="false" id="bgtypeequalscolor">
+
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="bgtypechoose">
+                <h5>Background</h5>
+                    <label form="bgtypeequalsimage">Use Image</label>
+                    <input type="radio" name="use_background_image" value="true" id="bgtypeequalsimage">
+                    <label form="bgtypeequalscolor">Use Colors</label>
+                    <input type="radio" name="use_background_image" value="false" id="bgtypeequalscolor">
+            </div>
+
+          <div class="select-box">
+            <div class="options-container">
+                {% for font in fonts %}
+                  <div class="option">
+                    <input type="radio" value="{{ font }}"" class="radio" id="{{ font }}"/>
+                    <label class="font" for="{{ font }}">{{ font }}</label>
+                  </div>
+                {% endfor %}
+            </div>
+            <div class="selected">
+              {{ font_family }}
+            </div>
+          </div>
+
+                <div class="range-input">
+                <div class="inputlabel"">Text</div>
+                  <input name="primary_font_size" type="range" min="10" max="100" value="{{ primary_font_size }}" step="1"/>
+                  <div class="value">
+                    <div>{{ primary_font_size }}</div>
+                  </div>
+                </div>
+
+                <div class="range-input">
+                <div class="inputlabel"">Name</div>
+                  <input name="name_font_size" type="range" min="0" max="100" value="{{ name_font_size }}" step="1"/>
+                  <div class="value">
+                    <div>{{ name_font_size }}</div>
+                  </div>
+                </div>
+
+                <div class="range-input">
+                <div class="inputlabel"">Corners</div>
+                  <input name="border_radius" type="range" min="0" max="50" value="{{ border_radius }}" step="1"/>
+                  <div class="value">
+                    <div>{{ border_radius }}</div>
+                  </div>
+                </div>
+
+                <div class="range-input" id="brightness_container">
+                <div class="inputlabel"">Dim</div>
+                  <input name="brightness" id="brightness" type="range" min="0" max="100" value="{{ brightness }}" step="1"/>
+                  <div class="value">
+                    <div>{{ brightness }}</div>
+                  </div>
+                </div>
+
+                <div class="colorsdivcontainer">
+                    <div>
+                        <span id="colorsdiv1label">Background</span>
+                        <div class="colorsdivs1">
+                            <div class="colorsdiv">
+                                <span id="primarycolor" class="color-picker"></span>
+                            </div>
+                            <div class="colorsdiv">
+                                <span id="secondarycolor" class="color-picker2"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        Buttons
+                        <div class="colorsdivs2">
+                            <div class="colorsdiv">
+                                <span id="linkcolor" class="color-picker3"></span>
+                            </div>
+                            <div class="colorsdiv">
+                                <span id="linktextcolor" class="color-picker4"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="imagesinputs">
+                    <div>
+                        Mobile
+                        <div class="image-border">
+                            <img class="vertical" id="mobileimage" src="{{ mobileimage }}">
+                            <button class="clearbtnstyle mobilebtn"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div>
+                        Desktop
+                        <div class="image-border">
+                            <img class="horizontal" id="desktopimage" src="{{ desktopimage }}">
+                            <button class="clearbtnstyle desktopbtn"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                {{ form|crispy }}
+
+                <button class="cta cta1" type="submit">Save</button>
+                <input type="text" name="font" id="font_input" class="invisible" value="{{ font_family }}">
+                <input type="text" name="color1" id="color1" class="invisible" value="{{ color1 }}">
+                <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
+                <input type="text" name="link_background_color" id="link_background_color" class="invisible" value="{{ link_background_color }}">
+                <input type="text" name="link_text_color" id="link_text_color" class="invisible" value="{{ link_text_color }}">
+            </form>
         </div>
 
-      <div class="select-box">
-        <div class="options-container">
-            {% for font in fonts %}
-              <div class="option">
-                <input type="radio" value="{{ font }}"" class="radio" id="{{ font }}"/>
-                <label class="font" for="{{ font }}">{{ font }}</label>
-              </div>
-            {% endfor %}
+        <div style="height: 100px;">
+
         </div>
-        <div class="selected">
-          {{ font_family }}
+
+        <!-- Preview -->
+        <div id="previewlanding">
+            <button id="togglepreferencesbtn"><i class="fas fa-eye"></i></button>
+            <div class="overflow">
+                <div class="skip toinvisible">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="skip">
+                        <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+                    </form>
+                </div>
+                <div class="center">
+                    <div class="subcontent">
+                        <div class="image-border">
+                            <img class="round" src="{{ user.profile.image.url }}">
+                        </div>
+                        <h1 class="name" id="name">{{ user.username }}</h1>
+                    </div>
+                </div>
+                {% for link in links %}
+                    <a href="/{{ link.short_url }}" class="page-link link">{{ link.title }}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-      </div>
 
-            <div class="range-input">
-            <div class="inputlabel"">Text Size</div>
-              <input name="primary_font_size" type="range" min="0" max="100" value="{{ primary_font_size }}" step="1"/>
-              <div class="value">
-                <div>{{ primary_font_size }}</div>
-              </div>
-            </div>
-
-            <div class="range-input">
-            <div class="inputlabel"">Name Size</div>
-              <input name="name_font_size" type="range" min="0" max="100" value="{{ name_font_size }}" step="1"/>
-              <div class="value">
-                <div>{{ name_font_size }}</div>
-              </div>
-            </div>
-
-            <div class="range-input">
-            <div class="inputlabel"">Border Radius</div>
-              <input name="border_radius" type="range" min="0" max="50" value="{{ border_radius }}" step="1"/>
-              <div class="value">
-                <div>{{ border_radius }}</div>
-              </div>
-            </div>
-
-            <div class="range-input" id="brightness_container">
-            <div class="inputlabel"">Dim</div>
-              <input name="brightness" id="brightness" type="range" min="0" max="100" value="{{ brightness }}" step="1"/>
-              <div class="value">
-                <div>{{ brightness }}</div>
-              </div>
-            </div>
-
-            <div class="colorsdivcontainer">
-                <div class="colorsdivs1">
-                    <div class="colorsdiv">
-                        <span id="primarycolor" class="color-picker"></span>
-                    </div>
-                    <div class="colorsdiv">
-                        <span id="secondarycolor" class="color-picker2"></span>
-                    </div>
-                </div>
-
-                <div class="colorsdivs2">
-                    <div class="colorsdiv">
-                        <span id="linkcolor" class="color-picker3"></span>
-                    </div>
-                    <div class="colorsdiv">
-                        <span id="linktextcolor" class="color-picker4"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="imagesinputs">
-                Mobile Devices
-                <div class="image-border">
-                    <img class="round" id="mobileimage" src="{{ mobileimage }}">
-                    <button class="clearbtnstyle mobilebtn"><i class="fas fa-pencil-alt"></i></button>
-                </div>
-                    Desktop Devices
-                <div class="image-border">
-                    <img class="round" id="desktopimage" src="{{ desktopimage }}">
-                    <button class="clearbtnstyle desktopbtn"><i class="fas fa-pencil-alt"></i></button>
-                </div>
-            </div>
-
-
-            {{ form|crispy }}
-
-            <button class="cta cta1" type="submit">Save</button>
-            <input type="text" name="font" id="font_input" class="invisible" value="{{ font_family }}">
-            <input type="text" name="color1" id="color1" class="invisible" value="{{ color1 }}">
-            <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
-            <input type="text" name="link_background_color" id="link_background_color" class="invisible" value="{{ link_background_color }}">
-            <input type="text" name="link_text_color" id="link_text_color" class="invisible" value="{{ link_text_color }}">
-        </form>
     </div>
+
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/home.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/graph.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/paint.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'user-landing' user.username %}"><img src="{% static 'leadfy/img/gear.png' %}"></a>
+        </div>
+    </div>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> -->
     <script src="{% static 'leadfy/js/pickr.min.js' %}"></script>
     <script src="{% static 'leadfy/js/pickr.es5.min.js' %}"></script>
 
     <script type="text/javascript">
-        const pickr = Pickr.create({
-            el: '.color-picker',
-            theme: 'nano',
-            default: "{{ color1 }}",
+        var color1 = "{{ color1 }}"
+        var color2 = "{{ color2 }}"
+        var color3 = "{{ link_background_color }}"
+        var color4 = "{{ link_text_color }}"
+        var font_family = "{{ font_family }}"
+        var use_background_image = {{ use_background_image }}
 
-            components: {
-
-                preview: true,
-                hue: true,
-
-                interaction: {
-                    save: true
-                }
-            }
-        });
-
-        const pickr2 = Pickr.create({
-            el: '.color-picker2',
-            theme: 'nano',
-            default: "{{ color2 }}",
-
-            components: {
-
-                preview: true,
-                hue: true,
-
-                interaction: {
-                    save: true
-                }
-            }
-        });
-
-        const pickr3 = Pickr.create({
-            el: '.color-picker3',
-            theme: 'nano',
-            default: "{{ link_background_color }}",
-
-            components: {
-
-                preview: true,
-                hue: true,
-                opacity: true,
-
-                interaction: {
-                    save: true
-                }
-            }
-        });
-
-        const pickr4 = Pickr.create({
-            el: '.color-picker4',
-            theme: 'nano',
-            default: "{{ link_text_color }}",
-
-            components: {
-
-                preview: true,
-                hue: true,
-
-                interaction: {
-                    save: true
-                }
-            }
-        });
-
-        pickr.on('save', (...args) => {
-            let color = args[0].toHEXA().toString(3);
-            let color1_input = document.getElementById('color1')
-            color1_input.value = color
-        });
-
-        pickr2.on('save', (...args) => {
-            let color2 = args[0].toHEXA().toString(3);
-            let color2_input = document.getElementById('color2')
-            color2_input.value = color2
-        });
-        pickr3.on('save', (...args) => {
-            let color3 = args[0].toRGBA().toString(3);
-            let color3_input = document.getElementById('link_background_color')
-            color3_input.value = color3
-        });
-        pickr4.on('save', (...args) => {
-            let color4 = args[0].toHEXA().toString(3);
-            let color4_input = document.getElementById('link_text_color')
-            color4_input.value = color4
-        });
-    </script>
-    <script type="text/javascript">
-        let rangeInputs = document.querySelectorAll('.range-input input')
-        rangeInputs.forEach(function(rangeInput) {
-            rangeInput.addEventListener("input",function(){
-            rangeInput.parentElement.childNodes[5].innerHTML = '<div>' + rangeInput.value + '</div>'
-            });
-        })
-
-        let options = document.querySelectorAll('.font')
-        options.forEach(function(elem) {
-            new_font = new FontFace(elem.parentElement.children[0].value.split('.')[0], `url(/media/fonts/${elem.parentElement.children[0].value})`)
-            new_font.load().then(function(loaded_face) {
-                document.fonts.add(loaded_face)
-                elem.style.fontFamily = elem.parentElement.children[0].value.split('.')[0]
-            }).catch(function(error) {
-                console.log(error)
-            });
-        })
-    </script>
-    <script type="text/javascript">
-        const selected = document.querySelector(".selected");
-        const optionsContainer = document.querySelector(".options-container");
-        const input_font = document.querySelector("#font_input")
-        const optionsList = document.querySelectorAll(".option");
-
-        selected.style.fontFamily = "{{ font_family }}".split('.')[0]
-
-        selected.addEventListener("click", () => {
-          optionsContainer.classList.toggle("active");
-        });
-
-        optionsList.forEach(o => {
-          o.addEventListener("click", () => {
-            selected.innerHTML = o.querySelector("label").innerHTML;
-            input_font.value = o.querySelector("label").innerHTML;
-            selected.style.fontFamily = input_font.value.split('.')[0]
-            optionsContainer.classList.remove("active");
-          });
-        });
+        var brightness = {{ brightness }} / 100
+        var mobileimage = "{{ mobileimage }}"
+        var desktopimage = "{{ desktopimage }}"
+        var primary_font_size = "{{ primary_font_size }}"
+        var name_font_size = "{{ name_font_size }}"
+        var border_radius = "{{ border_radius }}"
+        var link_text_color = "{{ link_text_color }}"
+        var link_background_color = "{{ link_background_color }}"
+        var font = "{{ font }}"
     </script>
 
-    <script type="text/javascript">
-        const useimageorcolor = document.querySelector('form')
-        useimageorcolor.addEventListener('change', function () {
-            radio = document.querySelector('input[name="use_background_image"]:checked').value
-            if (radio == 'false') {
-                document.querySelector('#brightness_container').style.opacity = 0
-                document.querySelector('#brightness_container').style.display = 'none'
-                document.querySelector('.colorsdivs1').style.opacity = 1
-                document.querySelector('.colorsdivs1').style.display = 'flex'
-                document.querySelector('.imagesinputs').style.opacity = 0
-                document.querySelector('.imagesinputs').style.display = 'none'
-            } else {
-                document.querySelector('#brightness_container').style.opacity = 1
-                document.querySelector('#brightness_container').style.display = 'flex'
-                document.querySelector('.colorsdivs1').style.opacity = 0
-                document.querySelector('.colorsdivs1').style.display = 'none'
-                document.querySelector('.imagesinputs').style.opacity = 1
-                document.querySelector('.imagesinputs').style.display = 'flex'
-            }
-        })
-    </script>
-
-
-    <script type="text/javascript">
-        btn = document.querySelector('.desktopbtn')
-        image_input = document.querySelector('#id_background_image_desktop')
-        preview_image = document.querySelector('#desktopimage')
-
-        btn.addEventListener('click', function (e) {
-            e.preventDefault()
-            image_input.click()
-        })
-
-        image_input.addEventListener('change', function() {
-
-            // console.log(this.files[0])
-            const file = this.files[0]
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function () {
-                    const result = reader.result
-                    preview_image.setAttribute('src', reader.result)
-                }
-
-            reader.readAsDataURL(file)
-            }
-        })
-    </script>
-
-    <script type="text/javascript">
-        btn2 = document.querySelector('.mobilebtn')
-        image_input2 = document.querySelector('#id_background_image_mobile')
-        preview_image2 = document.querySelector('#mobileimage')
-
-        btn2.addEventListener('click', function (e) {
-            e.preventDefault()
-            image_input2.click()
-        })
-
-        image_input2.addEventListener('change', function() {
-
-            // console.log(this.files[0])
-            const file2 = this.files[0]
-
-            if (file2) {
-                const reader2 = new FileReader();
-                reader2.onload = function () {
-                    const result2 = reader2.result
-                    preview_image2.setAttribute('src', reader2.result)
-                }
-
-            reader2.readAsDataURL(file2)
-            }
-        })
-    </script>
-
-    <script type="text/javascript">
-            {% if use_background_image == 'true' %}
-                document.querySelectorAll('input[name="use_background_image"]')[0].click()
-            {% else %}
-                document.querySelectorAll('input[name="use_background_image"]')[1].click()
-            {% endif %}
-    </script>
-
+    <script src="{% static 'leadfy/js/page-create.js' %}"></script>
+    <!-- <script src="{% static 'leadfy/js/landingbase.js' %}"></script> -->
 </body>
 </html>
