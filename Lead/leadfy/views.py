@@ -97,6 +97,9 @@ def landing_as_author_pv(request, username):
         return HttpResponseForbidden()
 
 
+def settings(request):
+    response = render(request, 'leadfy/settings.html')
+    return response
 
 @login_required
 def preferences(request):
@@ -121,7 +124,7 @@ def preferences(request):
             form.instance.background_image_brightness = request.POST['brightness']
             form.instance.border_radius = request.POST['border_radius']
             form.save()
-            return redirect('user-landing', username=user.username)
+            return redirect('landing_as_author_pv', username=request.user.username)
 
     fonts = []
     for font in myfonts:
@@ -155,7 +158,8 @@ def editlink(request, short_url):
                 form.instance.user = request.user
                 form.save()
                 return redirect('landing_as_author_pv', username=request.user.username)
-        return render(request, 'leadfy/link-edit.html', {'form': form, 'link': link})
+        context = context_dict(user=request.user, form=form, link=link)
+        return render(request, 'leadfy/link-edit.html', context)
     else:
         return HttpResponseForbidden()
 

@@ -130,9 +130,11 @@ a:hover {
     position: fixed;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 1);
+    display:  flex;
     text-align: center;
     justify-content: space-around;
+    align-items: center;
     height: 65px;
     padding: 10px;
     display: flex;
@@ -140,8 +142,8 @@ a:hover {
 }
 
 .footer img {
-    height: 48px;
-    width: 48px;
+    height: 24px;
+    width: 24px;
     margin: 0;
     transition: all 0.4s;
 }
@@ -162,7 +164,6 @@ a:hover {
     flex-direction: column;
   }
 }
-
 
 /*LEADS PAGE*/
 

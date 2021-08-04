@@ -35,16 +35,16 @@
     <!-- Nav -->
     <div class="footer flex">
         <div class="sidebar-link footer-active">
-            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/home.png' %}"></a>
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/blackhome.png' %}"></a>
         </div>
         <div class="sidebar-link footer-active">
-            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/graph.png' %}"></a>
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
         </div>
         <div class="sidebar-link">
-            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/paint.png' %}"></a>
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
         </div>
         <div class="sidebar-link">
-            <a href="{% url 'user-landing' user.username %}"><img src="{% static 'leadfy/img/gear.png' %}"></a>
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
         </div>
     </div>
 {% endblock %}
