@@ -11,28 +11,28 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
 </head>
 <body>
-    <div class="content">
+    <div class="content settingscontainer">
         <div class="title">
             <h4>Account</h4>
         </div>
         <div class="settings">
             <div class="setting">
-                <div class="setting-content">
+                <a href="{% url 'profile' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/user.png' %}">
                     Edit Profile
-                </div>
+                </a>
             </div>
             <div class="setting">
-                <div class="setting-content">
+                <a href="{% url 'profile' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/crown.png' %}">
                     Upgrade Account
-                </div>
+                </a>
             </div>
             <div class="setting">
-                <div class="setting-content">
+                <a href="{% url 'profile' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/cookie.png' %}">
                     Advanced Features
-                </div>
+                </a>
             </div>
         </div>
 
@@ -41,10 +41,10 @@
         </div>
         <div class="settings">
             <div class="setting">
-                <div class="setting-content">
+                <a href="{% url 'account_logout' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/logout.png' %}">
                     Logout
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
             <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
         </div>
         <div class="sidebar-link">
-            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/bluegear.png' %}"></a>
         </div>
     </div>
 </body>
