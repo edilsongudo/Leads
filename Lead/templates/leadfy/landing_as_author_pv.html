@@ -16,9 +16,10 @@
                         <div class="image-border">
                             <img class="round" src="{{ user.profile.image.url }}">
                         </div>
-                        <h1 class="name" id="name">{{ user.username }}</h1>
+                        <h1 class="name" id="name">{{ user.profile.name }}</h1>
                     </div>
                 </div>
+                <p>{{ user.profile.bio }}</p>
                 <div class="space-between">
                     <a href="{% url 'user-landing' user.username %}"><i class="fas fa-eye"></i> Preview</a>
                     <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>

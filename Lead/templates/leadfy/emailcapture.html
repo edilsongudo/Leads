@@ -17,15 +17,15 @@
 					<div class="image-border">
 						<img class="round" src="{{ user.profile.image.url }}">
 					</div>
-					<h1 class="name" id="name">{{ user.username }}</h1>
+					<h1 class="name" id="name">{{ user.profile.name }}</h1>
 				</div>
 			</div>
-			<p>{{ page.bio }}</p>
+			<p>{{ user.advanced.call_to_action }}</p>
 			<form method="POST">
 	      		{% csrf_token %}
 				{{ form|crispy }}
 				<div class="subcontent center">
-					<button class="cta cta1" type="submit">{{ page.button_text }}</button>
+					<button class="cta cta1" type="submit">{{ user.advanced.call_to_action_button_text }}</button>
 				</div>
 			</form>
 		</div>

@@ -150,6 +150,7 @@ useimageorcolor.addEventListener('change', function () {
 btn = document.querySelector('.desktopbtn')
 image_input = document.querySelector('#id_background_image_desktop')
 preview_image = document.querySelector('#desktopimage')
+preview_image.style.backgroundImage = `url(/media/usersbackgroundimages/${desktopimage.split("/")[3]})`
 
 btn.addEventListener('click', function (e) {
     e.preventDefault()
@@ -165,7 +166,7 @@ image_input.addEventListener('change', function() {
         const reader = new FileReader();
         reader.onload = function () {
             const result = reader.result
-            preview_image.setAttribute('src', reader.result)
+            preview_image.style.backgroundImage = `url(${reader.result})`
         }
 
     reader.readAsDataURL(file)
@@ -175,6 +176,7 @@ image_input.addEventListener('change', function() {
 btn2 = document.querySelector('.mobilebtn')
 image_input2 = document.querySelector('#id_background_image_mobile')
 preview_image2 = document.querySelector('#mobileimage')
+preview_image2.style.backgroundImage = `url(/media/usersbackgroundimages/${mobileimage.split("/")[3]})`
 
 btn2.addEventListener('click', function (e) {
     e.preventDefault()
@@ -190,7 +192,7 @@ image_input2.addEventListener('change', function() {
         const reader2 = new FileReader();
         reader2.onload = function () {
             const result2 = reader2.result
-            preview_image2.setAttribute('src', reader2.result)
+            preview_image2.style.backgroundImage = `url(${reader2.result})`
         }
 
     reader2.readAsDataURL(file2)

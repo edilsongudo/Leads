@@ -53,13 +53,17 @@ body {
 .horizontal {
   height: 50px;
   width: 100px;
-  border: 1px solid white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .vertical {
   height: 100px;
   width: 50px;
-  border: 1px solid white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .image-border {

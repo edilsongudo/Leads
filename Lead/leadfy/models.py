@@ -62,9 +62,9 @@ class Preferences(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
     color1 = models.CharField(
-        max_length=100, default="#E8CBC0")
+        max_length=100, default="#9B23FA")
     color2 = models.CharField(
-        max_length=100,  default="#636FA4")
+        max_length=100,  default="#8AFBD8")
     background_image_desktop = models.ImageField(
         upload_to='usersbackgroundimages', default="defaultdesktopbackgroundimage.jpg", null=True)
     background_image_mobile = models.ImageField(
@@ -73,17 +73,26 @@ class Preferences(models.Model):
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
     font_family = models.CharField(
-        max_length=100, null=True, default="Heaters.otf", choices=myfonts)
+        max_length=100, null=True, default="arial.ttf", choices=myfonts)
     primary_font_size = models.IntegerField(
         default=25, validators=[MinValueValidator(0), MaxValueValidator(100)])
     name_font_size = models.IntegerField(
-        default=25, validators=[MinValueValidator(0), MaxValueValidator(100)])
+        default=45, validators=[MinValueValidator(0), MaxValueValidator(100)])
     border_radius = models.IntegerField(
-        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
+        default=10, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(
-        max_length=100,  default="#ffffff")
-    link_text_color = models.CharField(
         max_length=100,  default="#000000")
+    link_text_color = models.CharField(
+        max_length=100,  default="#ffffff")
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'
+
+
+class Advanced(models.Model):
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    call_to_action = models.CharField(max_length=150, default="Before you go please, would you like to subscribe to my email list? Hint: You can skip this step if you wish.")
+    call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
+
+    def __str__(self):
+        return f'{self.user.username} Advanced Preferences'
