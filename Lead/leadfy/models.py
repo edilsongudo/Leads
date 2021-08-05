@@ -93,6 +93,8 @@ class Advanced(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     call_to_action = models.CharField(max_length=150, default="Before you go please, would you like to subscribe to my email list? Hint: You can skip this step if you wish.")
     call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
+    seconds_to_wait_before_asking_user_to_subscribe_again = models.IntegerField(
+        default=3600, validators=[MinValueValidator(0), MaxValueValidator(324000)])
 
     def __str__(self):
         return f'{self.user.username} Advanced Preferences'

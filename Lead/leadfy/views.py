@@ -67,7 +67,8 @@ def lead(request, short_url):
         new_visit.save()
 
     if not 'tried_to_capture_email' in request.COOKIES:
-        response.set_cookie('tried_to_capture_email', '', max_age=30)
+        max_age = user.advanced.seconds_to_wait_before_asking_user_to_subscribe_again
+        response.set_cookie('tried_to_capture_email', '', max_age=max_age)
         if not short_url in request.COOKIES:
             response.set_cookie(short_url, short_url)
             save_statistics()
@@ -100,6 +101,19 @@ def landing_as_author_pv(request, username):
 def settings(request):
     response = render(request, 'leadfy/settings.html')
     return response
+
+
+@login_required
+def advanced(request):
+    form = AdvancedForm(instance=request.user.advanced)
+    if request.method == 'POST':
+        form = AdvancedForm(request.POST, instance=request.user.advanced)
+        if form.is_valid():
+            form.save()
+            return redirect('settings')
+    context = context_dict(user=request.user, form=form)
+    return render(request, 'leadfy/advanced.html', context)
+
 
 @login_required
 def preferences(request):
@@ -198,6 +212,7 @@ def dashboard(request, days):
             list_of_days2.append(f'{day.strftime("%d/%m")}')
         return {'list_of_days': list_of_days, 'list_of_days2': list_of_days2}
 
+
     def number_of_clicks(date1, date2):
         number_of_clicks = PageVisit.objects.filter(
             page__user=request.user, time__date__gte=date1, time__date__lte=date2).count()
@@ -206,6 +221,7 @@ def dashboard(request, days):
     def number_of_leads(date1, date2):
         number_of_leads = LeadModel.objects.filter(lead_from=request.user, date_submited__date__gte=date1, date_submited__date__lte=date2).count()
         return number_of_leads
+
 
     def hours(date1, date2):
         hours = []
@@ -216,6 +232,7 @@ def dashboard(request, days):
             hours.append(len(pages_visits))
             labels.append(i)
         return {'hours': hours, 'labels': labels}
+
 
     if request.is_ajax():
         if days == '0':

@@ -11,6 +11,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('preferences/', preferences, name="preferences"),
     path('settings/', settings, name="settings"),
+    path('advanced/', advanced, name="advanced"),
     path('leads/see/', leads, name="leads"),
     path('dashboard/<str:days>', dashboard, name="dashboard"),
     path('link/create/', createlink, name="link-create"),

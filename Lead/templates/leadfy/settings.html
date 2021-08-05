@@ -29,9 +29,15 @@
                 </a>
             </div>
             <div class="setting">
-                <a href="{% url 'profile' %}" class="setting-content">
+                <a href="{% url 'advanced' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/cookie.png' %}">
-                    Advanced Features
+                    Advanced Settings
+                </a>
+            </div>
+            <div class="setting">
+                <a href="{% url 'account_change_password' %}" class="setting-content">
+                    <img src="{% static 'leadfy/img/password-lock.png' %}">
+                    Change Password
                 </a>
             </div>
         </div>

@@ -27,3 +27,10 @@ class PreferencesForm(forms.ModelForm):
         model = Preferences
         fields = ['background_image_mobile',
                   'background_image_desktop']
+
+class AdvancedForm(forms.ModelForm):
+
+    class Meta:
+        model = Advanced
+        fields = '__all__'
+        exclude = ['user']
