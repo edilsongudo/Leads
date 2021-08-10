@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import json
 import socket
+import secrets
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    'subscriptions',
 ]
 
 MIDDLEWARE = [
@@ -149,16 +151,16 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'edilson4football@gmail.com'
+EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
 
-with open('secret.json', 'r') as f:
-    secret = json.load(f)
 
-EMAIL_HOST_PASSWORD = secret['EMAIL_HOST_PASSWORD']
+PAYPAL_ACCOUNT = secrets.ACCOUNT
+PAYPAL_CID = secrets.CID
+PAYPAL_SECRET = secrets.SECRET
+PAYPAL_ACCESS_TOKEN = secrets.ACCESS_TOKEN
+PAYPAL_PRODUCT_ID = secrets.PRODUCT_ID
+PAYPAL_PLAN_ID = secrets.PLAN_ID
 
-TWILIO_ACCOUNT_SID = secret['TWILIO_ACCOUNT_SID']
-TWILIO_AUTH_TOKEN = secret['TWILIO_AUTH_TOKEN']
-TWILIO_PHONE_NUMBER = secret['TWILIO_PHONE_NUMBER']
-PHONE_NUMBER = secret['PHONE_NUMBER']
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
@@ -182,3 +184,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
+PAYPAL_TEST = True

@@ -37,11 +37,9 @@ urlpatterns = [
          ),
          name='password_reset_complete'),
     path('ckeditor', include('ckeditor_uploader.urls')),
-    path('', include('leadfy.urls')),
     path("accounts/", include("allauth.urls")),
-    # path('accounts/signup/', SignupView, name='account_signup'),
-    # path('accounts/login/', LoginView, name='account_login'),
-    # path('accounts/logout/', LogoutView, name='account_logout'),
+    path('premium/', include('subscriptions.urls')),
+    path('', include('leadfy.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # ckuploader
 
 handler404 = 'leadfy.views.error_404_view'
