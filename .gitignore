@@ -4,6 +4,7 @@
 *.pyc
 *.secret
 *.mmdb
+*.ini
 __pycache__
 db.sqlite3
 secret.json
@@ -11,3 +12,4 @@ media
 *ContactFrom_v12
 production_settings.py
 paypal.py
+secrets.py

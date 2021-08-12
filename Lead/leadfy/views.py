@@ -1,33 +1,41 @@
+from .utils import *
 from .forms import *
 from .models import *
 from django.forms.models import modelform_factory
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, FileResponse, JsonResponse
 import json
-from django.http import FileResponse, JsonResponse
+import csv
 import datetime
-from .utils import get_geo
 from django.forms import TextInput, EmailInput
 from urllib.parse import urlparse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DeleteView
 from django.urls import reverse
 
-from .views_utils import *
-
 
 def home(request):
     if request.user.is_authenticated:
-        return redirect('dashboard', days='0')
+        return redirect('landing_as_author_pv', username=request.user.username)
     else:
         return render(request, 'leadfy/home.html')
 
 @login_required
 def leads(request):
+    response = HttpResponse(content_type="text/csv")
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Email', 'Date', 'Referrer', 'Refferer Main Domain', 'Location'])
+
     leads = LeadModel.objects.filter(lead_from=request.user)
-    return render(request, 'leadfy/leads.html', {'leads': leads})
+    for lead in leads.values_list('name', 'email', 'date_submited', 'referer', 'referer_main_domain', 'location'):
+        writer.writerow(lead)
+
+    response['Content-Disposition'] = 'attachment; filename="Leads.csv"'
+
+    return response
+
 
 
 def lead(request, short_url):
@@ -44,14 +52,15 @@ def lead(request, short_url):
     if request.method == 'POST':
         if 'skip' in request.POST:
             return redirect(link.link)
+        response = redirect(link.link)
         form = CustomForm(data=request.POST)
         form.instance.lead_from = user
-        form.instance.referer = set_http_referer(request)
-        form.instance.referer_main_domain = urlparse(set_http_referer(request)).netloc
+        form.instance.referer = set_http_referer(request, response)
+        form.instance.referer_main_domain = urlparse(set_http_referer(request, response)).netloc
         form.instance.location = get_location(request)
         if form.is_valid():
             form.save()
-            return redirect(link.link)
+            return response
 
     context = context_dict(user=user, link=link, form=form)
     response = render(request, 'leadfy/emailcapture.html', context=context)
@@ -151,23 +160,46 @@ def preferences(request):
 
 @login_required
 def createlink(request):
-    form = LinkCreateForm()
+    fields = '__all__'
+    exclude = ['user', 'view_count']
+    if request.user.subscription.plan == 'Free':
+        exclude.append('short_url')
+    widgets = {
+        'title': TextInput(attrs={'placeholder': 'Link Title'}),
+        'short_url': TextInput(attrs={'placeholder': 'Link short URL'}),
+        'link': TextInput(attrs={'placeholder': 'Link Destionation URL'}),
+    }
+    CustomForm = modelform_factory(model=Link, fields=fields, widgets=widgets, exclude=exclude)
+    form = CustomForm()
+    # form = LinkCreateForm()
     if request.method == 'POST':
-        form = LinkCreateForm(request.POST)
+        # form = LinkCreateForm(request.POST)
+        form = CustomForm(request.POST)
         if form.is_valid():
             form.instance.user = request.user
             form.save()
             return redirect('landing_as_author_pv', username=request.user.username)
-    return render(request, 'leadfy/link-create.html', {'form': form})
+    context = context_dict(user=request.user, form=form)
+    return render(request, 'leadfy/link-create.html', context)
 
 
 @login_required
 def editlink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
-    form = LinkCreateForm(instance=link)
+    # form = LinkCreateForm(instance=link)
+    fields = '__all__'
+    exclude = ['user', 'view_count', 'short_url']
+    widgets = {
+        'title': TextInput(attrs={'placeholder': 'Link Title'}),
+        'short_url': TextInput(attrs={'placeholder': 'Link short URL', 'disabled': 'disabled'}),
+        'link': TextInput(attrs={'placeholder': 'Link Destionation URL'}),
+    }
+    CustomForm = modelform_factory(model=Link, fields=fields, widgets=widgets, exclude=exclude)
+    form = CustomForm(instance=link)
     if request.user == link.user:
         if request.method == 'POST':
-            form = LinkCreateForm(request.POST, instance=link)
+            # form = LinkCreateForm(request.POST, instance=link)
+            form = CustomForm(request.POST, instance=link)
             if form.is_valid():
                 form.instance.user = request.user
                 form.save()

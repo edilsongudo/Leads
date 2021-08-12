@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,10 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Subscribe</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'subscriptions/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
 </head>
 <body>
     <script src="https://www.paypal.com/sdk/js?client-id=AfOSCHffwel5_IJUTZyAYV4fv4suQ6JT7g-4MJihCCNtY6ssO90uytF7PIwgO8zSW25HV_Y8-5oR7-do&vault=true&intent=subscription"></script>
-    <div id="paypal-button-container"></div>
+
+    <div class="container">
+        <div class="pricing-table">
+            <div><h1>Premium</h1></div>
+            <div class="price-container">
+                <div class="price-value">4$</div>
+                <div class="price-periodicy">/month</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check"></i>
+                <div>See Clicks Locations</div>
+            </div>
+            <div class="feature"><i class="fas fa-check"></i>See Clicks Refferal Channels</div>
+            <div class="feature"><i class="fas fa-check"></i>Facebook Pixel Integration</div>
+            <div class="feature"><i class="fas fa-check"></i>Mailchimp Integration</div>
+            <div class="feature"><i class="fas fa-check"></i>Export Data</div>
+            <div class="feature"><i class="fas fa-check"></i>Charts to Visualize Data</div>
+            <div class="feature"><i class="fas fa-check"></i>Advanced Settings</div>
+            <div id="paypal-button-container"></div>
+        </div>
+    </div>
     <script>
         paypal.Buttons(
             {

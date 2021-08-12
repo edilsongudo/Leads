@@ -23,13 +23,12 @@ class LeadModel(models.Model):
 
 
 class Link(models.Model):
-    title = models.CharField(max_length=30, null=True, default='My Website')
-    description = models.CharField(max_length=200, null=True, blank=True)
+    title = models.CharField(max_length=30, null=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True)
-    short_url = models.SlugField(default=generate_ref_code, null=True)
+    short_url = models.SlugField(default=generate_ref_code, null=True, unique=True)
     link = models.URLField(
-        max_length=200, default='http://www.google.com', null=True, blank=False)
+        max_length=200, null=True, blank=False)
     view_count = models.IntegerField(
         default=0)
 
@@ -91,6 +90,7 @@ class Preferences(models.Model):
 
 class Advanced(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    ask_visitors_to_subscribe = models.BooleanField(default=False)
     call_to_action = models.CharField(max_length=150, default="Before you go please, would you like to subscribe to my email list? Hint: You can skip this step if you wish.")
     call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
     seconds_to_wait_before_asking_user_to_subscribe_again = models.IntegerField(

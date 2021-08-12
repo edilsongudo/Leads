@@ -1,0 +1,52 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pricing-table {
+    margin: 0 auto;
+    color: #fff;
+    background: linear-gradient(90deg, #A5B6EC, #A5B6EC);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    border-radius: 10px;
+}
+
+.feature {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.feature i {
+    margin-right: 10px;
+}
+
+.price-container {
+    display: flex;
+}
+
+.price-value {
+    font-size: 6rem;
+}
+
+.price-periodicy {
+    font-size: 3rem;
+    margin-top: 3rem;
+}
+
+#paypal-button-container {
+    margin-top: 30px;
+    width: 110%;
+}

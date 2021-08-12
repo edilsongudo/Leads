@@ -13,8 +13,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import json
 import socket
-import secrets
+from configparser import ConfigParser
 
+config = ConfigParser()
+config.read('config.ini')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,13 +51,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'leadfy.apps.LeadfyConfig',
+    'subscriptions.apps.SubscriptionsConfig',
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    'subscriptions',
 ]
 
 MIDDLEWARE = [
@@ -151,15 +153,15 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'edilson4football@gmail.com'
-EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
+EMAIL_HOST_PASSWORD = config['email']['EMAIL_HOST_PASSWORD']
 
 
-PAYPAL_ACCOUNT = secrets.ACCOUNT
-PAYPAL_CID = secrets.CID
-PAYPAL_SECRET = secrets.SECRET
-PAYPAL_ACCESS_TOKEN = secrets.ACCESS_TOKEN
-PAYPAL_PRODUCT_ID = secrets.PRODUCT_ID
-PAYPAL_PLAN_ID = secrets.PLAN_ID
+PAYPAL_ACCOUNT = config['paypal']['ACCOUNT']
+PAYPAL_CID = config['paypal']['CID']
+PAYPAL_SECRET = config['paypal']['SECRET']
+PAYPAL_ACCESS_TOKEN = config['paypal']['ACCESS_TOKEN']
+PAYPAL_PRODUCT_ID = config['paypal']['PRODUCT_ID']
+PAYPAL_PLAN_ID = config['paypal']['PLAN_ID']
 
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')

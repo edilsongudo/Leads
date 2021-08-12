@@ -1,16 +1,12 @@
+{% extends 'leadfy/link-base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Contact V12</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
-</head>
-<body>
+
+{% block title %}
+    <title>Settings</title>
+{% endblock %}
+
+{% block content %}
     <div class="content settingscontainer">
         <div class="title">
             <h4>Account</h4>
@@ -22,16 +18,24 @@
                     Edit Profile
                 </a>
             </div>
-            <div class="setting">
-                <a href="{% url 'profile' %}" class="setting-content">
-                    <img src="{% static 'leadfy/img/crown.png' %}">
-                    Upgrade Account
-                </a>
-            </div>
+            {% if request.user.subscription.plan == 'Free' %}
+                <div class="setting">
+                    <a href="{% url 'subscribe' %}" class="setting-content">
+                        <img src="{% static 'leadfy/img/crown.png' %}">
+                        Upgrade Account
+                    </a>
+                </div>
+            {% endif %}
             <div class="setting">
                 <a href="{% url 'advanced' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/cookie.png' %}">
                     Advanced Settings
+                </a>
+            </div>
+            <div class="setting">
+                <a href="{% url 'leads' %}" class="setting-content">
+                    <img src="{% static 'leadfy/img/mailbox.png' %}">
+                    Export Contacts
                 </a>
             </div>
             <div class="setting">
@@ -69,5 +73,7 @@
             <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/bluegear.png' %}"></a>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
+
+
+

@@ -18,9 +18,9 @@
                     <h1 class="name" id="name">{{ user.profile.name }}</h1>
                 </div>
             </div>
-            <p>{{ user.profile.bio }}</p>
+            <div class="bio">{{ user.profile.bio }}</div>
             {% for link in links %}
-                <a href="/{{ link.short_url }}" class="page-link link">{{ link.title }}
+                <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}
                 </a>
             {% endfor %}
         </div>

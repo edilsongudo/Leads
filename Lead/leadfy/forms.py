@@ -7,7 +7,7 @@ class LinkCreateForm(forms.ModelForm):
     class Meta:
         model = Link
         fields = '__all__'
-        exclude = ['user', 'view_count']
+        exclude = ['user', 'view_count', 'description']
 
 class LinkEditForm(forms.ModelForm):
 

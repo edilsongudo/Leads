@@ -20,7 +20,7 @@
 					<h1 class="name" id="name">{{ user.profile.name }}</h1>
 				</div>
 			</div>
-			<p>{{ user.advanced.call_to_action }}</p>
+			<div class="bio">{{ user.advanced.call_to_action }}</div>
 			<form method="POST">
 	      		{% csrf_token %}
 				{{ form|crispy }}
