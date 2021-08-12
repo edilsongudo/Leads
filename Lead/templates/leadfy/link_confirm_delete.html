@@ -1,11 +1,27 @@
-{% extends "users/base.html" %}
+{% extends "leadfy/link-base.html" %}
+{% load static %}
 {% block content %}
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
-            <h2>Are you sure you want to delete link "{{ object.title }}"</h2>
+            <h2>Are you sure you want to delete link "{{ link.title }}"</h2>
             <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-            <a class="btn btn-outline-secondary" href="{% url 'link-edit' object.short_url %}">Cancel</a>
+            <a class="btn btn-outline-secondary" href="{% url 'landing_as_author_pv' request.user.username %}">Cancel</a>
         </form>
     </div>
+    <script type="text/javascript">
+        var color1 = "{{ color1 }}"
+        var color2 = "{{ color2 }}"
+        var brightness = {{ brightness }} / 100
+        var use_background_image = {{ use_background_image }}
+        var mobileimage = "{{ mobileimage }}"
+        var desktopimage = "{{ desktopimage }}"
+        var primary_font_size = "{{ primary_font_size }}"
+        var name_font_size = "{{ name_font_size }}"
+        var border_radius = "{{ border_radius }}"
+        var link_text_color = "{{ link_text_color }}"
+        var link_background_color = "{{ link_background_color }}"
+        var font = "{{ font }}"
+    </script>
+    <script src="{% static 'leadfy/js/landingbase.js' %}"></script>
 {% endblock content %}

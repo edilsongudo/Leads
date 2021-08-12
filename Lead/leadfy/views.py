@@ -210,21 +210,14 @@ def editlink(request, short_url):
         return HttpResponseForbidden()
 
 
-class LinkDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Link
 
-    def get_success_url(self):
-        return reverse('landing_as_author_pv', kwargs={'username': self.request.user.username})
-
-    def test_func(self):
-        link = self.get_object()
-        if self.request.user == link.user:
-            return True
-        return False
-
-
-def error_404_view(request, exception):
-    return render(request, 'leadfy/404.html')
+def deletelink(request, short_url):
+    link = get_object_or_404(Link, short_url=short_url)
+    if request.method == 'POST':
+        link.delete()
+        return redirect('landing_as_author_pv', username=request.user.username)
+    context = context_dict(user=request.user, link=link)
+    return render(request, 'leadfy/link_confirm_delete.html', context)
 
 
 @login_required
@@ -277,3 +270,7 @@ def dashboard(request, days):
             return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': get_days(day1, day2)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2)})
 
     return render(request, 'leadfy/dashboard.html')
+
+
+def error_404_view(request, exception):
+    return render(request, 'leadfy/404.html')

@@ -22,7 +22,7 @@
             {{ form|crispy }}
             <div class="form-group">
                 <button class="cta cta1" type="submit">Save</button>
-                <a  href="{% url 'link-delete' link.pk %}" class="cta cta1" type="submit">Delete</a>
+                <a  href="{% url 'link-delete' link.short_url %}" class="cta cta1" type="submit">Delete</a>
             </div>
         </form>
     </div>

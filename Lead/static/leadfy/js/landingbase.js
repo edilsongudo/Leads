@@ -29,15 +29,19 @@ new_font.load().then(function(loaded_face) {
 });
 // End of Loading Font
 
-let pages = document.querySelectorAll('.page-link') //Only querySelector Works!
-pages.forEach(function(element, index) {
-    element.style.borderRadius = border_radius + "px"
-    element.style.backgroundColor = 'white'
-    element.style.color = link_text_color
-    element.style.backgroundColor = link_background_color
-    element.style.borderColor = link_background_color
-    let alpha = parseFloat(link_background_color.split(',')[3])
-    if (alpha < 0.25) {
-        element.style.borderColor = "#fff"
-    }
-});
+try {
+    let pages = document.querySelectorAll('.page-link') //Only querySelector Works!
+    pages.forEach(function(element, index) {
+        element.style.borderRadius = border_radius + "px"
+        element.style.backgroundColor = 'white'
+        element.style.color = link_text_color
+        element.style.backgroundColor = link_background_color
+        element.style.borderColor = link_background_color
+        let alpha = parseFloat(link_background_color.split(',')[3])
+        if (alpha < 0.25) {
+            element.style.borderColor = "#fff"
+        }
+    });
+} catch(e) {
+    console.log(e);
+}
