@@ -1,6 +1,15 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load crispy_forms_tags %}
 
+{% block head %}
+	<style type="text/css">
+		label {
+			display: none;
+		}
+	</style>
+{% endblock %}
+
+
 {% block content %}
 	<div class="skip">
 		<form method="POST">
@@ -15,7 +24,7 @@
 			<div class="center">
 				<div class="subcontent">
 					<div class="image-border">
-						<img class="round" src="{{ user.profile.image.url }}">
+                        <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
 					</div>
 					<h1 class="name" id="name">{{ user.profile.name }}</h1>
 				</div>

@@ -9,8 +9,19 @@
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/main.css' %}">
+        {% block head %}
+        {% endblock %}
     </head>
     <body>
+        <div class="container">
+          {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+          {% endif %}
+        </div>
         {% block content %}
         {% endblock %}
     </body>

@@ -62,6 +62,9 @@ def lead(request, short_url):
             form.save()
             return response
 
+    if user.advanced.ask_visitors_to_subscribe == False:
+        return redirect(link.link)
+
     context = context_dict(user=user, link=link, form=form)
     response = render(request, 'leadfy/emailcapture.html', context=context)
 
@@ -188,7 +191,7 @@ def editlink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     # form = LinkCreateForm(instance=link)
     fields = '__all__'
-    exclude = ['user', 'view_count', 'short_url']
+    exclude = ['user', 'view_count', 'short_url', ]
     widgets = {
         'title': TextInput(attrs={'placeholder': 'Link Title'}),
         'short_url': TextInput(attrs={'placeholder': 'Link short URL', 'disabled': 'disabled'}),

@@ -1,10 +1,11 @@
-{% extends "leadfy/link-base.html" %}
+{% extends "leadfy/landingbase.html" %}
 {% load static %}
 {% block content %}
-    <div class="content-section">
+    <div class="formcontainer">
         <form method="POST">
             {% csrf_token %}
-            <h2>Are you sure you want to delete link "{{ link.title }}"</h2>
+            <h2>Are you sure you want to permantely delete this link?</h2>
+            <p>Note: If you delete this link, it will no longer be accessible in the internet, and you may lose of statistics about it.</p>
             <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
             <a class="btn btn-outline-secondary" href="{% url 'landing_as_author_pv' request.user.username %}">Cancel</a>
         </form>

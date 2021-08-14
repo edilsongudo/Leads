@@ -1,6 +1,6 @@
 import uuid
 from django.contrib.gis.geoip2 import GeoIP2
-
+from urllib.parse import urlparse
 
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
@@ -48,6 +48,10 @@ def context_dict(user, **kwargs):
 def generate_ref_code():
     code = str(uuid.uuid4()).replace('-', '')[:5]
     return code
+
+def generate_netloc(url):
+    netloc = urlparse(url).netloc
+    return netloc
 
 
 def get_ip_address(request):

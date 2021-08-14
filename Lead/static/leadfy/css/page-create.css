@@ -48,6 +48,9 @@ body {
   width: 100px;
   border-radius: 50%;
   border: 1px solid white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .horizontal {

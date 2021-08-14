@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from .utils import generate_ref_code
+from .utils import generate_ref_code, generate_netloc
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
@@ -23,6 +23,7 @@ class LeadModel(models.Model):
 
 
 class Link(models.Model):
+    show_link = models.BooleanField(default=True)
     title = models.CharField(max_length=30, null=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True)
@@ -34,6 +35,11 @@ class Link(models.Model):
 
     def __str__(self):
         return f'{self.short_url}'
+
+    # def save(self, *args, **kwargs):
+    #     if not self.netloc:
+    #         self.netloc = generate_netloc(self.link)
+    #         super(Link, self).save(*args, **kwargs)
 
 
 class PageVisit(models.Model):
@@ -65,18 +71,18 @@ class Preferences(models.Model):
     color2 = models.CharField(
         max_length=100,  default="#8AFBD8")
     background_image_desktop = models.ImageField(
-        upload_to='usersbackgroundimages', default="defaultdesktopbackgroundimage.jpg", null=True)
+        upload_to='usersbackgroundimages', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
     background_image_mobile = models.ImageField(
-        upload_to='usersbackgroundimages', default="defaultmobilebackgroundimage.jpg", null=True)
+        upload_to='usersbackgroundimages', default="usersbackgroundimages/defaultmobilebackgroundimage.jpg", null=True)
     background_image_brightness = models.IntegerField(
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
     font_family = models.CharField(
         max_length=100, null=True, default="arial.ttf", choices=myfonts)
     primary_font_size = models.IntegerField(
-        default=25, validators=[MinValueValidator(0), MaxValueValidator(100)])
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
     name_font_size = models.IntegerField(
-        default=45, validators=[MinValueValidator(0), MaxValueValidator(100)])
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
     border_radius = models.IntegerField(
         default=10, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(

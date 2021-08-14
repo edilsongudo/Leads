@@ -1,5 +1,5 @@
 {% extends 'leadfy/landingbase.html' %}
-
+{% load static %}
 {% block content %}
     <div class="content">
         <div class="overflow">
@@ -13,15 +13,16 @@
             <div class="center">
                 <div class="subcontent">
                     <div class="image-border">
-                        <img class="round" src="{{ user.profile.image.url }}">
+                        <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                     </div>
                     <h1 class="name" id="name">{{ user.profile.name }}</h1>
                 </div>
             </div>
             <div class="bio">{{ user.profile.bio }}</div>
             {% for link in links %}
-                <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}
-                </a>
+                {% if link.show_link %}
+                    <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}</a>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
