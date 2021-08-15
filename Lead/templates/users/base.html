@@ -10,8 +10,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/croppier.css' %}">
 </head>
 <body>
+    {% block body %}
+    {% endblock %}
     <div class="skip toinvisible">
         <form method="POST">
             {% csrf_token %}

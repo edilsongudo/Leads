@@ -38,6 +38,7 @@
 
             {% if use_background_image == "true" %}
                 body {
+                    color: #fff;
                     background-image: linear-gradient(90deg, rgba(0,0,0,{{ brightness_css_factor }}), rgba(0,0,0,{{ brightness_css_factor }}) ), url({{ desktopimage }});
                 }
                 @media only screen and (max-width: 800px) {

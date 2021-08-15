@@ -6,6 +6,11 @@
         i, a {
             color: {{ body_font_color }};
         }
+        {% if use_background_image == "true" %}
+            i, a {
+                color: #fff;
+            }
+        {% endif %}
     </style>
 {% endblock %}
 

@@ -1,8 +1,21 @@
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+
 {% block title %}
     <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'leadfy/Croppie-2.6.4/croppie.css' %}" />
 {% endblock %}
+
+{% block body %}
+    <div class="modal">
+        <div class="democontainer">
+            <div class="demo"></div>
+        </div>
+        <button id="cropbutton">Crop</button>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div class="center">
         <div class="subcontent">
@@ -23,6 +36,20 @@
 {% endblock %}
 
 {% block js %}
+    <script src="{% static 'leadfy/js/jquery.js' %}"></script>
+    <script src="{% static 'leadfy/Croppie-2.6.4/croppie.js' %}"></script>
+
+    <script type="text/javascript">
+        var basic = $('.demo').croppie({
+            viewport: {
+                width: 200,
+                height: 200,
+                type: 'circle'
+            },
+
+        });
+    </script>
+
     <script type="text/javascript">
         btn = document.querySelector('.clearbtnstyle')
         image_input = document.querySelector('#id_image')
@@ -34,17 +61,31 @@
 
         image_input.addEventListener('change', function() {
 
-            // console.log(this.files[0])
             const file = this.files[0]
 
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function () {
                     const result = reader.result
-                    preview_image.style.backgroundImage = `url(${reader.result})`
+
+                    basic.croppie('bind', {
+                        url: result,
+                    });
+                    // preview_image.style.backgroundImage = `url(${reader.result})`
                 }
 
             reader.readAsDataURL(file)
+            document.querySelector('.modal').style.display = 'flex'
+
+            document.querySelector('#cropbutton').addEventListener('click', function() {
+
+                basic.croppie('result', {type: 'canvas', size: 'viewport'}).then(function(response) {
+                    preview_image.style.backgroundImage = `url(${response})`
+                    document.querySelector('.modal').style.display = 'none'
+                });
+
+            })
+
             }
         })
     </script>
