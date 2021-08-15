@@ -48,30 +48,30 @@ const pickr3 = Pickr.create({
     }
 });
 
-const pickr4 = Pickr.create({
-    el: '.color-picker4',
-    theme: 'nano',
-    default: color4,
+// const pickr4 = Pickr.create({
+//     el: '.color-picker4',
+//     theme: 'nano',
+//     default: color4,
 
-    components: {
+//     components: {
 
-        preview: true,
-        hue: true,
+//         preview: true,
+//         hue: true,
 
-        interaction: {
-            save: true
-        }
-    }
-});
+//         interaction: {
+//             save: true
+//         }
+//     }
+// });
 
 pickr.on('save', (...args) => {
-    let color = args[0].toHEXA().toString(3);
+    let color = args[0].toRGBA().toString(3);
     let color1_input = document.getElementById('color1')
     color1_input.value = color
 });
 
 pickr2.on('save', (...args) => {
-    let color2 = args[0].toHEXA().toString(3);
+    let color2 = args[0].toRGBA().toString(3);
     let color2_input = document.getElementById('color2')
     color2_input.value = color2
 });
@@ -80,11 +80,11 @@ pickr3.on('save', (...args) => {
     let color3_input = document.getElementById('link_background_color')
     color3_input.value = color3
 });
-pickr4.on('save', (...args) => {
-    let color4 = args[0].toHEXA().toString(3);
-    let color4_input = document.getElementById('link_text_color')
-    color4_input.value = color4
-});
+// pickr4.on('save', (...args) => {
+//     let color4 = args[0].toRGBA().toString(3);
+//     let color4_input = document.getElementById('link_text_color')
+//     color4_input.value = color4
+// });
 let rangeInputs = document.querySelectorAll('.range-input input')
 rangeInputs.forEach(function(rangeInput) {
     rangeInput.addEventListener("input",function(){

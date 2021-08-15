@@ -14,7 +14,7 @@ from urllib.parse import urlparse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DeleteView
 from django.urls import reverse
-
+from ast import literal_eval as make_tuple
 
 def home(request):
     if request.user.is_authenticated:
@@ -135,7 +135,6 @@ def preferences(request):
     if request.method == 'POST':
         form = PreferencesForm(request.POST, request.FILES, instance=request.user.preferences)
         if form.is_valid():
-            print(request.POST['use_background_image'])
             if request.POST['use_background_image'] == 'true':
                 form.instance.use_background_image = True
             else:
@@ -143,12 +142,16 @@ def preferences(request):
             form.instance.font_family = request.POST['font']
             form.instance.color1 = request.POST['color1']
             form.instance.color2 = request.POST['color2']
+            color1 = make_tuple(request.POST['color1'].replace('rgba', ''))
+            color2 = make_tuple(request.POST['color2'].replace('rgba', ''))
+            form.instance.body_font_color = contrast_gradient(color1, color2)
             form.instance.link_background_color = request.POST['link_background_color']
-            form.instance.link_text_color = request.POST['link_text_color']
-            form.instance.primary_font_size = request.POST['primary_font_size']
-            form.instance.name_font_size = request.POST['name_font_size']
-            form.instance.background_image_brightness = request.POST['brightness']
-            form.instance.border_radius = request.POST['border_radius']
+            # form.instance.link_text_color = request.POST['link_text_color']
+            form.instance.link_text_color = contrast_color(make_tuple(request.POST['link_background_color'].replace('rgba', '')))
+            form.instance.primary_font_size = int(request.POST['primary_font_size'])
+            form.instance.name_font_size = int(request.POST['name_font_size'])
+            form.instance.background_image_brightness = int(request.POST['brightness'])
+            form.instance.border_radius = int(request.POST['border_radius'])
             form.save()
             return redirect('landing_as_author_pv', username=request.user.username)
 

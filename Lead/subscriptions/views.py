@@ -11,11 +11,13 @@ from django.http import HttpResponse, HttpResponseForbidden
 @login_required
 def subscribe(request):
     if request.user.subscription.plan == 'Free':
-        return render(request, 'subscriptions/subscribe.html')
+        return render(request, 'subscriptions/index.html')
     else:
         return HttpResponseForbidden()
 
 # BE CAREFUL DO NOT ALLOW USERS USE A FAKE PAYPAL ID
+
+
 @login_required
 def activate(request, subID):
     activate_subscription(request.user, subID)

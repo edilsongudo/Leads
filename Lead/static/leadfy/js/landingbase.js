@@ -33,7 +33,6 @@ try {
     let pages = document.querySelectorAll('.page-link') //Only querySelector Works!
     pages.forEach(function(element, index) {
         element.style.borderRadius = border_radius + "px"
-        element.style.backgroundColor = 'white'
         element.style.color = link_text_color
         element.style.backgroundColor = link_background_color
         element.style.borderColor = link_background_color

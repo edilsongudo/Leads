@@ -1,6 +1,14 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load static %}
 
+{% block head %}
+    <style type="text/css">
+        i, a {
+            color: {{ body_font_color }};
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <div class="content">
         <div class="overflow">

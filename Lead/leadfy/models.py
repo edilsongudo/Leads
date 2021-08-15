@@ -70,6 +70,8 @@ class Preferences(models.Model):
         max_length=100, default="#9B23FA")
     color2 = models.CharField(
         max_length=100,  default="#8AFBD8")
+    body_font_color = models.CharField(
+        max_length=100,  default="rgb(255, 255, 255)")
     background_image_desktop = models.ImageField(
         upload_to='usersbackgroundimages', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
     background_image_mobile = models.ImageField(

@@ -11,6 +11,31 @@
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/main.css' %}">
         {% block head %}
         {% endblock %}
+        <style type="text/css">
+
+            @font-face {
+                font-family: 'customfont';
+                src:  url(/media/fonts{{ font }})
+            }
+
+            body {
+                font-family: customfont, sans-serif;
+                font-size: {{ primary_font_size }}px;
+                color: {{ body_font_color }};
+            }
+
+            .page-link {
+                border-color: {{ link_background_color }};
+                color: {{ link_text_color }};
+                background-color: {{ link_background_color }};
+                border-radius: {{ border_radius }}px;
+            }
+
+            #name {
+                font-size: {{ name_font_size }}px;
+            }
+
+        </style>
     </head>
     <body>
         <div class="container">
