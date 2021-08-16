@@ -91,10 +91,12 @@
                     fd.append('csrfmiddlewaretoken', csrf[0].value)
                     fd.append('cropped', blob, 'image.png');
 
+                    $.ajaxSetup({async: false});
                     $('#submitbtn').click(function() {
                         $.ajax({
                             type: 'POST',
-                            url: image_input.formAction,
+                            async: false,
+                            url: '/profile/upload/',
                             enctype: 'multipart/form-data',
                             data: fd,
                             success: function(response){

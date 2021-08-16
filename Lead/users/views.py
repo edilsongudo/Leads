@@ -22,6 +22,7 @@ from .models import Profile
 
 @login_required
 def profile(request):
+
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -30,10 +31,6 @@ def profile(request):
         i_form = ProfileImageForm(request.POST,
                                   request.FILES,
                                   instance=request.user.profile)
-        if request.is_ajax():
-            profile = Profile.objects.get(user=request.user)
-            profile.image = request.FILES.get('cropped')
-            profile.save()
 
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -53,3 +50,12 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+
+@login_required
+def profileimage(request):
+    profile = Profile.objects.get(user=request.user)
+    print('REQUEST RECEIVED')
+    profile.image = request.FILES.get('cropped')
+    profile.save()
+    return JsonResponse({'success': 'success'})
