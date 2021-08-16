@@ -11,9 +11,18 @@
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/nano.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/customselect.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/croppier.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/Croppie-2.6.4/croppie.css' %}" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>-->
 </head>
 <body>
+    <div class="modal">
+        <div class="democontainer">
+            <div class="demo"></div>
+        </div>
+        <button class="cta cta1" id="cropbutton">Crop</button>
+    </div>
+
     <div class="content">
             <!-- Preferences -->
         <div id="preferences">
@@ -185,6 +194,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> -->
     <script src="{% static 'leadfy/js/pickr.min.js' %}"></script>
     <script src="{% static 'leadfy/js/pickr.es5.min.js' %}"></script>
+
+    <script src="{% static 'leadfy/js/jquery.js' %}"></script>
+    <script src="{% static 'leadfy/Croppie-2.6.4/croppie.js' %}"></script>
 
     <script type="text/javascript">
         var color1 = "{{ color1 }}"

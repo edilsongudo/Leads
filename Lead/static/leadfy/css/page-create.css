@@ -11,7 +11,7 @@ body {
   background-repeat: no-repeat;
   color: var(--color3);
   min-height: 100vh;
-  font-family: 'AmaticSC-Bold';
+  font-family: 'AmaticSC-Bold', sans-serif;
 }
 
 .invisible {
