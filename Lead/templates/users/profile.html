@@ -28,9 +28,10 @@
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ i_form|crispy }}
         {{ p_form|crispy }}
         {{ u_form|crispy }}
-        <button class="cta cta1" type="submit">Update</button>
+        <button class="cta cta1" id="submitbtn" type="submit">Update</button>
         <a href="{% url 'settings' %}" class="cta cta1">Return</a>
     </form>
 {% endblock %}
@@ -79,14 +80,44 @@
 
             document.querySelector('#cropbutton').addEventListener('click', function() {
 
-                basic.croppie('result', {type: 'canvas', size: 'viewport'}).then(function(response) {
-                    preview_image.style.backgroundImage = `url(${response})`
+                basic.croppie('result', {type: 'blob', size: 'viewport'}).then(function(response) {
+                    preview_image.style.backgroundImage = `url(${URL.createObjectURL(response, {oneTimeOnly: true})})`
                     document.querySelector('.modal').style.display = 'none'
+
+                    var blob = response
+                    var csrf = document.getElementsByName('csrfmiddlewaretoken')
+                    var form = document.querySelectorAll('form')[1]
+                    var fd = new FormData();
+                    fd.append('csrfmiddlewaretoken', csrf[0].value)
+                    fd.append('cropped', blob, 'image.png');
+
+                    $('#submitbtn').click(function() {
+                        $.ajax({
+                            type: 'POST',
+                            url: image_input.formAction,
+                            enctype: 'multipart/form-data',
+                            data: fd,
+                            success: function(response){
+                                console.log('success', response)
+                            },
+                            error: function(error){
+                                console.log('error', error)
+                            },
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                        })
+                    })
+
                 });
 
             })
 
             }
         })
+    </script>
+
+    <script type="text/javascript">
+
     </script>
 {% endblock %}

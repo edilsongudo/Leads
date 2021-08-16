@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserUpdateForm, ProfileUpdateForm
+from .forms import UserUpdateForm, ProfileUpdateForm, ProfileImageForm
 from django.contrib.auth.decorators import login_required
+
+from django.core.files.storage import FileSystemStorage
+from django.http import JsonResponse
+from .models import Profile
 
 # def register(request):
 #     if request.method == 'POST':
@@ -23,6 +27,14 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
+        i_form = ProfileImageForm(request.POST,
+                                  request.FILES,
+                                  instance=request.user.profile)
+        if request.is_ajax():
+            profile = Profile.objects.get(user=request.user)
+            profile.image = request.FILES.get('cropped')
+            profile.save()
+
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
@@ -32,10 +44,12 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+        i_form = ProfileImageForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'i_form': i_form
     }
 
     return render(request, 'users/profile.html', context)
