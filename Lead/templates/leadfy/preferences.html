@@ -23,6 +23,13 @@
         <button class="cta cta1" id="cropbutton">Crop</button>
     </div>
 
+    <div class="modal2">
+        <div class="democontainer2">
+            <div class="demo2"></div>
+        </div>
+        <button class="cta cta1" id="cropbutton2">Crop</button>
+    </div>
+
     <div class="content">
             <!-- Preferences -->
         <div id="preferences">
@@ -80,7 +87,7 @@
 
                 <div class="range-input" id="brightness_container">
                 <div class="inputlabel"">Dim</div>
-                  <input name="brightness" id="brightness" type="range" min="0" max="100" value="{{ brightness }}" step="1"/>
+                  <input name="brightness" id="brightness" type="range" min="0" max="75" value="{{ brightness }}" step="1"/>
                   <div class="value">
                     <div>{{ brightness }}</div>
                   </div>
@@ -132,7 +139,7 @@
 
                 {{ form|crispy }}
 
-                <button class="cta cta1" type="submit">Save</button>
+                <button class="cta cta1" id="submitbutton" type="submit">Save</button>
                 <input type="text" name="font" id="font_input" class="invisible" value="{{ font_family }}">
                 <input type="text" name="color1" id="color1" class="invisible" value="{{ color1 }}">
                 <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
@@ -197,6 +204,7 @@
 
     <script src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="{% static 'leadfy/Croppie-2.6.4/croppie.js' %}"></script>
+    <script src="{% static 'leadfy/js/cropperutils2.js' %}"></script>
 
     <script type="text/javascript">
         var color1 = "{{ color1 }}"
@@ -218,6 +226,7 @@
     </script>
 
     <script src="{% static 'leadfy/js/page-create.js' %}"></script>
+    <script src="{% static 'leadfy/js/preferences.js' %}"></script>
     <!-- <script src="{% static 'leadfy/js/landingbase.js' %}"></script> -->
 </body>
 </html>

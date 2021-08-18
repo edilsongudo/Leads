@@ -133,26 +133,27 @@ def preferences(request):
     user = request.user
 
     if request.method == 'POST':
+        preference = Preferences.objects.get(user=request.user)
         form = PreferencesForm(request.POST, request.FILES, instance=request.user.preferences)
         if form.is_valid():
             if request.POST['use_background_image'] == 'true':
-                form.instance.use_background_image = True
+                preference.use_background_image = True
             else:
-                form.instance.use_background_image = False
-            form.instance.font_family = request.POST['font']
-            form.instance.color1 = request.POST['color1']
-            form.instance.color2 = request.POST['color2']
+                preference.use_background_image = False
+            preference.font_family = request.POST['font']
+            preference.color1 = request.POST['color1']
+            preference.color2 = request.POST['color2']
             color1 = make_tuple(request.POST['color1'].replace('rgba', ''))
             color2 = make_tuple(request.POST['color2'].replace('rgba', ''))
-            form.instance.body_font_color = contrast_gradient(color1, color2)
-            form.instance.link_background_color = request.POST['link_background_color']
-            # form.instance.link_text_color = request.POST['link_text_color']
-            form.instance.link_text_color = contrast_color(make_tuple(request.POST['link_background_color'].replace('rgba', '')))
-            form.instance.primary_font_size = int(request.POST['primary_font_size'])
-            form.instance.name_font_size = int(request.POST['name_font_size'])
-            form.instance.background_image_brightness = int(request.POST['brightness'])
-            form.instance.border_radius = int(request.POST['border_radius'])
-            form.save()
+            preference.body_font_color = contrast_gradient(color1, color2)
+            preference.link_background_color = request.POST['link_background_color']
+            # preference.link_text_color = request.POST['link_text_color']
+            preference.link_text_color = contrast_color(make_tuple(request.POST['link_background_color'].replace('rgba', '')))
+            preference.primary_font_size = int(request.POST['primary_font_size'])
+            preference.name_font_size = int(request.POST['name_font_size'])
+            preference.background_image_brightness = int(request.POST['brightness'])
+            preference.border_radius = int(request.POST['border_radius'])
+            preference.save()
             return redirect('landing_as_author_pv', username=request.user.username)
 
     fonts = []
@@ -280,3 +281,20 @@ def dashboard(request, days):
 
 def error_404_view(request, exception):
     return render(request, 'leadfy/404.html')
+
+
+@login_required
+def desktopimage(request):
+    preference = Preferences.objects.get(user=request.user)
+    print('REQUEST RECEIVED', request.FILES.get('cropped'))
+    preference.background_image_desktop = request.FILES.get('cropped')
+    preference.save()
+    return JsonResponse({'success': 'success'})
+
+@login_required
+def mobileimage(request):
+    preference = Preferences.objects.get(user=request.user)
+    print('REQUEST RECEIVED', request.FILES.get('cropped'))
+    preference.background_image_mobile = request.FILES.get('cropped')
+    preference.save()
+    return JsonResponse({'success': 'success'})

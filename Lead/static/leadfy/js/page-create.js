@@ -146,58 +146,61 @@ useimageorcolor.addEventListener('change', function () {
     }
 })
 
-//Logic 4
-btn = document.querySelector('.desktopbtn')
-image_input = document.querySelector('#id_background_image_desktop')
-preview_image = document.querySelector('#desktopimage')
-preview_image.style.backgroundImage = `url(/media/usersbackgroundimages/${desktopimage.split("/")[3]})`
+// //Logic 4
+// btn = document.querySelector('.desktopbtn')
+// image_input = document.querySelector('#id_background_image_desktop')
+// preview_image = document.querySelector('#desktopimage')
+// preview_image.style.backgroundImage = `url(/media/usersbackgroundimages/${desktopimage.split("/")[3]})`
 
-btn.addEventListener('click', function (e) {
-    e.preventDefault()
-    image_input.click()
-})
+// btn.addEventListener('click', function (e) {
+//     e.preventDefault()
+//     image_input.click()
+// })
 
-image_input.addEventListener('change', function() {
 
-    // console.log(this.files[0])
-    const file = this.files[0]
+// image_input.addEventListener('change', function() {
 
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function () {
-            const result = reader.result
-            preview_image.style.backgroundImage = `url(${reader.result})`
-        }
+//     // console.log(this.files[0])
+//     const file = this.files[0]
 
-    reader.readAsDataURL(file)
-    }
-})
+//     if (file) {
+//         const reader = new FileReader();
+//         reader.onload = function () {
+//             const result = reader.result
 
-btn2 = document.querySelector('.mobilebtn')
-image_input2 = document.querySelector('#id_background_image_mobile')
-preview_image2 = document.querySelector('#mobileimage')
-preview_image2.style.backgroundImage = `url(/media/usersbackgroundimages/${mobileimage.split("/")[3]})`
+//             preview_image.style.backgroundImage = `url(${reader.result})` //delete this line when everything is ok
+//         }
 
-btn2.addEventListener('click', function (e) {
-    e.preventDefault()
-    image_input2.click()
-})
+//     reader.readAsDataURL(file)
 
-image_input2.addEventListener('change', function() {
+//     }
+// })
 
-    // console.log(this.files[0])
-    const file2 = this.files[0]
+// btn2 = document.querySelector('.mobilebtn')
+// image_input2 = document.querySelector('#id_background_image_mobile')
+// preview_image2 = document.querySelector('#mobileimage')
+// preview_image2.style.backgroundImage = `url(/media/usersbackgroundimages/${mobileimage.split("/")[3]})`
 
-    if (file2) {
-        const reader2 = new FileReader();
-        reader2.onload = function () {
-            const result2 = reader2.result
-            preview_image2.style.backgroundImage = `url(${reader2.result})`
-        }
+// btn2.addEventListener('click', function (e) {
+//     e.preventDefault()
+//     image_input2.click()
+// })
 
-    reader2.readAsDataURL(file2)
-    }
-})
+// image_input2.addEventListener('change', function() {
+
+//     // console.log(this.files[0])
+//     const file2 = this.files[0]
+
+//     if (file2) {
+//         const reader2 = new FileReader();
+//         reader2.onload = function () {
+//             const result2 = reader2.result
+//             preview_image2.style.backgroundImage = `url(${reader2.result})`
+//         }
+
+//     reader2.readAsDataURL(file2)
+//     }
+// })
 
 //Logic 5
 if (use_background_image == true) {

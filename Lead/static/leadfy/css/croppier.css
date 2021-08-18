@@ -1,4 +1,4 @@
-.modal {
+.modal, .modal2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,11 +14,11 @@
     display: none;
 }
 
-.democontainer {
+.democontainer, .democontainer2 {
     height: 200px;
     width: 200px;
 }
 
-#cropbutton {
+#cropbutton, #cropbutton2 {
     margin-top: 60px;
 }

@@ -9,6 +9,8 @@ sitemaps = {
 
 urlpatterns = [
     path('', home, name="home"),
+    path('mobile/upload/', mobileimage, name="mobileimage"),
+    path('desktop/upload/', desktopimage, name="desktopimage"),
     path('preferences/', preferences, name="preferences"),
     path('settings/', settings, name="settings"),
     path('advanced/', advanced, name="advanced"),

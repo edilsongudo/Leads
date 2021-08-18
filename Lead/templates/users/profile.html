@@ -31,7 +31,7 @@
         {{ i_form|crispy }}
         {{ p_form|crispy }}
         {{ u_form|crispy }}
-        <button class="cta cta1" id="submitbtn" type="submit">Update</button>
+        <button class="cta cta1" id="submitbutton" type="submit">Update</button>
         <a href="{% url 'settings' %}" class="cta cta1">Return</a>
     </form>
 {% endblock %}
@@ -39,87 +39,6 @@
 {% block js %}
     <script src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="{% static 'leadfy/Croppie-2.6.4/croppie.js' %}"></script>
-
-    <script type="text/javascript">
-        var basic = $('.demo').croppie({
-            viewport: {
-                width: 200,
-                height: 200,
-                type: 'circle'
-            },
-
-        });
-    </script>
-
-    <script type="text/javascript">
-        btn = document.querySelector('.clearbtnstyle')
-        image_input = document.querySelector('#id_image')
-        preview_image = document.querySelector('#round')
-
-        btn.addEventListener('click', function () {
-            image_input.click()
-        })
-
-        image_input.addEventListener('change', function() {
-
-            const file = this.files[0]
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function () {
-                    const result = reader.result
-
-                    basic.croppie('bind', {
-                        url: result,
-                    });
-                    // preview_image.style.backgroundImage = `url(${reader.result})`
-                }
-
-            reader.readAsDataURL(file)
-            document.querySelector('.modal').style.display = 'flex'
-
-            document.querySelector('#cropbutton').addEventListener('click', function() {
-
-                basic.croppie('result', {type: 'blob', size: 'viewport'}).then(function(response) {
-                    preview_image.style.backgroundImage = `url(${URL.createObjectURL(response, {oneTimeOnly: true})})`
-                    document.querySelector('.modal').style.display = 'none'
-
-                    var blob = response
-                    var csrf = document.getElementsByName('csrfmiddlewaretoken')
-                    var form = document.querySelectorAll('form')[1]
-                    var fd = new FormData();
-                    fd.append('csrfmiddlewaretoken', csrf[0].value)
-                    fd.append('cropped', blob, 'image.png');
-
-                    $.ajaxSetup({async: false});
-                    $('#submitbtn').click(function() {
-                        $.ajax({
-                            type: 'POST',
-                            async: false,
-                            url: '/profile/upload/',
-                            enctype: 'multipart/form-data',
-                            data: fd,
-                            success: function(response){
-                                console.log('success', response)
-                            },
-                            error: function(error){
-                                console.log('error', error)
-                            },
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                        })
-                    })
-
-                });
-
-            })
-
-            }
-        })
-    </script>
-
-    <script type="text/javascript">
-
-    </script>
+    <script src="{% static 'leadfy/js/cropperutils2.js' %}"></script>
+    <script src="{% static 'users/js/profile.js' %}"></script>
 {% endblock %}
