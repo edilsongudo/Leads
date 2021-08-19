@@ -1,79 +1,86 @@
-body {
+from django.conf import settings
+import os
+
+
+def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size, border_radius, link_text_color, link_background_color):
+  css = f"""
+body {{
   margin: 0;
   padding: 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-image: linear-gradient(90deg, {color1}, {color2});
   min-height: 100vh;
-  color: white;
+  color: {str(body_font_color)};
   font-family: sans-serif;
-  font-size: 1.5rem;
-}
+  font-size: {str(primary_font_size)};
+}}
 
 /*TODO - Style Overflow*/
-.overflow {
+.overflow {{
   padding: 10px;
   max-width: 640px;
   margin: 0 auto;
   margin-bottom: 100px;
-}
+}}
 
-.bio {
+.bio {{
   text-align: center;
   margin-bottom: 20px;
-}
+}}
 
-a {
+a {{
   color: white;
   text-decoration: none;
-}
+}}
 
-a:hover {
+a:hover {{
   color: #eecda3;
-}
+}}
 
-.skip {
+.skip {{
   font-size: 30px;
   padding: 5px;
-}
+}}
 
-.skip i {
+.skip i {{
   color: white;
-}
+}}
 
-.toinvisible {
+.toinvisible {{
   opacity: 0;
-}
+}}
 
-.hidden {
+.hidden {{
   background: transparent;
   border: none;
-}
+}}
 
-.skip i:hover {
+.skip i:hover {{
   color: #fff;
-}
+}}
 
-.skip-text {
+.skip-text {{
   font-size: 0.8rem;
-}
+}}
 
-.content {
+.content {{
   overflow-y: auto;
   max-height: 100vh;
-}
+}}
 
-.formcontainer {
+.formcontainer {{
   max-width: 760px;
   margin: 0 auto;
-}
+}}
 
-.subcontent {
+.subcontent {{
   max-width: 75%;
   margin: 0 auto;
-}
+}}
 
-.image-border {
+.image-border {{
   padding: 0;
   background-image: transparent;
   height: 105px;
@@ -83,9 +90,9 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}}
 
-.round {
+.round {{
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -93,75 +100,76 @@ a:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
+}}
 
-.center {
+.center {{
   text-align: center;
-}
+}}
 
-.name {
-  font-size: 4rem;
-}
+.name {{
+  font-size: {name_font_size}px;
+}}
 
-.cta {
+.cta {{
   border-radius: 50px;
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
-}
+}}
 
-.cta1 {
+.cta1 {{
   border: solid 2px white;
   color: black;
   background: white;
-}
+}}
 
-.cta1:hover {
+.cta1:hover {{
   background:  transparent;
   transition: 0.3s;
-}
+}}
 
-.form-group input {
+.form-group input {{
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.85);
   border-radius: 50px;
   padding: 25px;
-}
+}}
 
 
-@media only screen and (max-width: 800px) {
-  .content, .formcontainer {
+@media only screen and (max-width: 800px) {{
+  .content, .formcontainer {{
     max-width: 98%;
-  }
-}
+  }}
+}}
 
 
-.page-link {
-  border: 1px solid white;
-  border-radius: 8px;
+.page-link {{
+  border: 1px solid {link_background_color};
+  border-radius: {str(border_radius)}px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
-}
+  color: {link_text_color};
+  background-color: {link_background_color};
+}}
 
-.page-link:hover {
+.page-link:hover {{
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-}
+}}
 
-.page-link .fa-pencil-alt {
+.page-link .fa-pencil-alt {{
   position: absolute;
   right: 30px;
-}
+}}
 
-.page-link .fa-grip-lines {
+.page-link .fa-grip-lines {{
   position: absolute;
   left: 30px;
   font-size: 0.75rem;
@@ -172,31 +180,31 @@ a:hover {
   justify-content: center;
   position: absolute;
   left: 0;
-}
+}}
 
-.socials {
+.socials {{
   width: 50%;
   margin: 25px auto;
   font-size: 32px;
   text-align: center;
   margin-bottom: 50px;
-}
+}}
 
-.edit {
+.edit {{
   display: block;
-}
+}}
 
-.space-between {
+.space-between {{
   display: flex;
   justify-content: space-between;
-}
+}}
 
 
 
 
 
 
-.footer {
+.footer {{
     width: 100vw;
     position: absolute;
     position: fixed;
@@ -211,34 +219,41 @@ a:hover {
     padding: 10px;
     display: flex;
     z-index: 1000;
-}
+}}
 
-.footer img {
+.footer img {{
     height: 24px;
     width: 24px;
     margin: 0;
     transition: all 0.4s;
-}
+}}
 
-.footer img:hover {
+.footer img:hover {{
     height: 60px;
     width: 60px;
-}
+}}
 
-.footer-active {
-}
+.footer-active {{
+}}
 
-@media only screen and (min-width: 600px) {
-  .footer {
+@media only screen and (min-width: 600px) {{
+  .footer {{
     top: 0;
     height: 100vh;
     width: 65px;
     flex-direction: column;
-  }
-}
+  }}
+}}
 
 
-.previewlinkedit {
+.previewlinkedit {{
   overflow-y: auto;
   font-size: 0.75rem
-}
+}}
+
+"""
+
+  with open(f'media/{username}.css', 'w') as f:
+    f.write(css)
+
+    return 'Css Written'

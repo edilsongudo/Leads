@@ -92,7 +92,7 @@ def lead(request, short_url):
 
 def landing(request, username):
     user = get_object_or_404(get_user_model(), username=username)
-    links = Link.objects.filter(user=user)
+    links = Link.objects.filter(user=user).order_by('order')
     context = context_dict(user=user, links=links)
     response = render(request, 'leadfy/landing.html', context=context)
     set_http_referer(request, response=response)
@@ -101,8 +101,19 @@ def landing(request, username):
 def landing_as_author_pv(request, username):
     user = get_object_or_404(get_user_model(), username=username)
 
+    if request.is_ajax():
+        data = json.loads(request.body)
+        order = data['data']
+
+        i = 1
+        for short_url in order:
+            link = Link.objects.get(short_url=short_url)
+            link.order = i
+            link.save()
+            i += 1
+
     if request.user == user:
-        links = Link.objects.filter(user=user)
+        links = Link.objects.filter(user=user).order_by('order')
         context = context_dict(user=user, links=links)
         response = render(request, 'leadfy/landing_as_author_pv.html', context=context)
         return response
@@ -168,7 +179,7 @@ def preferences(request):
 @login_required
 def createlink(request):
     fields = '__all__'
-    exclude = ['user', 'view_count']
+    exclude = ['user', 'view_count', 'order']
     if request.user.subscription.plan == 'Free':
         exclude.append('short_url')
     widgets = {
@@ -184,6 +195,8 @@ def createlink(request):
         form = CustomForm(request.POST)
         if form.is_valid():
             form.instance.user = request.user
+            min_order = Link.objects.filter(user=request.user).order_by('order').first().order
+            form.instance.order = min_order - 1
             form.save()
             return redirect('landing_as_author_pv', username=request.user.username)
     context = context_dict(user=request.user, form=form)
@@ -195,7 +208,7 @@ def editlink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     # form = LinkCreateForm(instance=link)
     fields = '__all__'
-    exclude = ['user', 'view_count', 'short_url', ]
+    exclude = ['user', 'view_count', 'short_url', 'order']
     widgets = {
         'title': TextInput(attrs={'placeholder': 'Link Title'}),
         'short_url': TextInput(attrs={'placeholder': 'Link short URL', 'disabled': 'disabled'}),
@@ -298,3 +311,25 @@ def mobileimage(request):
     preference.background_image_mobile = request.FILES.get('cropped')
     preference.save()
     return JsonResponse({'success': 'success'})
+
+
+@login_required
+def socials(request):
+    fields = '__all__'
+    exclude = ['user']
+    widgets = {
+        'instagram': TextInput(attrs={'placeholder': 'https://www.instagram.com/username'}),
+        'facebook': TextInput(attrs={'placeholder': 'https://www.facebook.com/username'}),
+        'youtube': TextInput(attrs={'placeholder': 'https://<channel link here>'}),
+    }
+    CustomForm = modelform_factory(model=Social, widgets=widgets, fields=fields, exclude=exclude)
+    form = CustomForm(instance=request.user.social)
+    if request.method == 'POST':
+        form = CustomForm(request.POST, instance=request.user.social)
+        if form.is_valid():
+            form.save()
+            return redirect('landing_as_author_pv', username=request.user.username)
+    context = context_dict(user=request.user, form=form)
+    return render(request, 'leadfy/socials.html', context)
+    # else:
+    #     return HttpResponseForbidden()

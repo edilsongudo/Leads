@@ -32,6 +32,8 @@ class Link(models.Model):
         max_length=200, null=True, blank=False)
     view_count = models.IntegerField(
         default=0)
+    order = models.IntegerField(
+        default=1)
 
     def __str__(self):
         return f'{self.short_url}'
@@ -106,3 +108,23 @@ class Advanced(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Advanced Preferences'
+
+
+class Social(models.Model):
+    user = models.OneToOneField(
+        get_user_model(), on_delete=models.CASCADE, null=True)
+    instagram = models.URLField(
+        max_length=200, null=True, blank=True)
+    facebook = models.URLField(
+        max_length=200, null=True, blank=True)
+    tiktok = models.URLField(
+        max_length=200, null=True, blank=True)
+    youtube = models.URLField(
+        max_length=200, null=True, blank=True)
+    twitter = models.URLField(
+        max_length=200, null=True, blank=True)
+    spotify = models.URLField(
+        max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username}'

@@ -1,7 +1,7 @@
 import uuid
 from django.contrib.gis.geoip2 import GeoIP2
 from urllib.parse import urlparse
-
+from .writecss import writecss
 
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
@@ -24,6 +24,9 @@ def context_dict(user, **kwargs):
         use_background_image = "true"
     else:
         use_background_image = "false"
+
+    print(writecss(user.username, color1, color2, body_font_color, primary_font_size, name_font_size,
+                   border_radius, link_text_color, link_background_color))
 
     data = {
         'user': user,

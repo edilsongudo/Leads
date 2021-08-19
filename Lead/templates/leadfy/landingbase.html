@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="/media/{{ user.username }}.css">
         {% block head %}
         {% endblock %}
         <style type="text/css">
@@ -62,6 +62,7 @@
         </div>
         {% block content %}
         {% endblock %}
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     </body>
 <!--     <script type="text/javascript">
         var color1 = "{{ color1 }}"

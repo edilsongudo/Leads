@@ -11,6 +11,16 @@
                 color: #fff;
             }
         {% endif %}
+
+        .page-link:hover {
+            border: 1.5px solid {{ link_text_color  }};
+            background: {{ link_background_color }};
+            color: {{ link_text_color  }}
+        }
+
+        .page-link i {
+            color: {{ link_text_color  }};
+        }
     </style>
 {% endblock %}
 
@@ -33,15 +43,24 @@
                     </div>
                 </div>
             <div class="bio">{{ user.profile.bio }}</div>
-                <div class="space-between">
-                    <a href="{% url 'user-landing' user.username %}"><i class="fas fa-eye"></i> Preview</a>
-                    <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
-                </div>
-            {% for link in links %}
-                <a href="{% url 'link-edit' link.short_url %}" class="page-link link">{{ link.title }}
-                    <i class="fas fa-pencil-alt"></i>
-                </a>
-            {% endfor %}
+            <div class="space-between">
+                <a href="{% url 'user-landing' user.username %}"><i class="fas fa-eye"></i> Preview</a>
+                <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
+            </div>
+            <div id="links">
+                {% for link in links %}
+                    <a data-id="{{ link.short_url }}" href="{% url 'link-edit' link.short_url %}" class="page-link link">{{ link.title }}
+                        <i class="fas fa-grip-lines"></i>
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                {% endfor %}
+            </div>
+            <!-- <div class="socials">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-tiktok"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-spotify"></i>
+            </div> -->
         </div>
     </div>
 
@@ -61,6 +80,10 @@
             <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
         </div>
     </div>
+
+    <script src="{% static 'leadfy/js/jquery.js' %}"></script>
+    <script src="{% static 'leadfy/js/Sortable.js' %}"></script>
+    <script src="{% static 'leadfy/js/landingasauthorpv.js' %}"></script>
 {% endblock %}
 
 

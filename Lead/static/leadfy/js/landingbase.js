@@ -1,3 +1,14 @@
+try {
+    const links = document.querySelector('#links')
+    Sortable.create(links)
+} catch(e) {
+    // statements
+    console.log(e);
+}
+
+
+
+
 // if (use_background_image == true) {
 
 //     //function to handle responsive images loading

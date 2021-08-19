@@ -3,26 +3,18 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Edit Link</title>
+    <title>Social Links Edit</title>
 {% endblock %}
 
 {% block content %}
     <div class="formcontainer">
-        <h1>Edit Link</h1>
-
-        <div class="previewlinkedit">
-            <i class="fas fa-eye"></i>
-            <a href="/p/{{ link.short_url }}">
-                {{ request.META.HTTP_HOST }}/p/{{ link.short_url }}
-            </a>
-        </div>
+        <h1>Your Social Links</h1>
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <div class="form-group">
                 <button class="cta cta1" type="submit">Save</button>
-                <a  href="{% url 'link-delete' link.short_url %}" class="cta cta1" type="submit">Delete</a>
             </div>
         </form>
     </div>

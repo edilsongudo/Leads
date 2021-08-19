@@ -1,5 +1,16 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load static %}
+
+{% block head %}
+    <style type="text/css">
+        .page-link:hover {
+            border: 1.5px solid {{ link_background_color  }};
+            background: transparent;
+            color: {{ link_background_color  }};
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <div class="content">
         <div class="overflow">
@@ -24,6 +35,26 @@
                     <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}</a>
                 {% endif %}
             {% endfor %}
+            <div class="socials">
+                {% if user.social.instagram != None %}
+                    <a href="{{ user.social.instagram }}"><i class="fab fa-instagram"></i></a>
+                {% endif %}
+                {% if user.social.facebook != None %}
+                    <a href="{{ user.social.facebook }}"><i class="fab fa-facebook"></i></a>
+                {% endif %}
+                {% if user.social.tiktok != None %}
+                    <a href="{{ user.social.tiktok }}"><i class="fab fa-tiktok"></i></a>
+                {% endif %}
+                {% if user.social.spotify != None %}
+                    <a href="{{ user.social.spotify }}"><i class="fab fa-spotify"></i></a>
+                {% endif %}
+                {% if user.social.twitter != None %}
+                    <a href="{{ user.social.twitter }}"><i class="fab fa-twitter"></i></a>
+                {% endif %}
+                {% if user.social.youtube != None %}
+                    <a href="{{ user.social.youtube }}"><i class="fab fa-youtube"></i></a>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
