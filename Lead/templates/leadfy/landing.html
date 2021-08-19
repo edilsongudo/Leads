@@ -35,6 +35,11 @@
                     <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}</a>
                 {% endif %}
             {% endfor %}
+            {% if user.advanced.show_subscribe_button_in_links_page == True %}
+                <a href="{% url 'subscribe' user.username %}" class="page-link link">{{ user.advanced.call_to_action_button_text }}
+                    <i class="fas fa-envelope"></i>
+                </a>
+            {% endif %}
             <div class="socials">
                 {% if user.social.instagram != None %}
                     <a href="{{ user.social.instagram }}"><i class="fab fa-instagram"></i></a>

@@ -6,7 +6,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 import os
 
-
 class LeadModel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=False)
     email = models.EmailField(null=True, blank=False)
@@ -30,6 +29,7 @@ class Link(models.Model):
     short_url = models.SlugField(default=generate_ref_code, null=True, unique=True)
     link = models.URLField(
         max_length=200, null=True, blank=False)
+    use_this_link_to_ask_visitors_to_subscribe = models.BooleanField(default=True)
     view_count = models.IntegerField(
         default=0)
     order = models.IntegerField(
@@ -93,6 +93,7 @@ class Preferences(models.Model):
         max_length=100,  default="#000000")
     link_text_color = models.CharField(
         max_length=100,  default="#ffffff")
+    custom_css_file = models.FileField(upload_to='customstylesheets', null=True, blank=True)
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'
@@ -100,8 +101,9 @@ class Preferences(models.Model):
 
 class Advanced(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    ask_visitors_to_subscribe = models.BooleanField(default=False)
-    call_to_action = models.CharField(max_length=150, default="Before you go please, would you like to subscribe to my email list? Hint: You can skip this step if you wish.")
+    show_subscribe_button_in_links_page = models.BooleanField(default=False)
+    ask_visitors_to_subscribe_when_they_click_in_a_link = models.BooleanField(default=False)
+    call_to_action = models.CharField(max_length=150, default="Would you like to subscribe to my email list? Hint: You can skip this step if you wish.")
     call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
     seconds_to_wait_before_asking_user_to_subscribe_again = models.IntegerField(
         default=3600, validators=[MinValueValidator(0), MaxValueValidator(324000)])

@@ -1,0 +1,12 @@
+{% extends 'leadfy/landingbase.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="content">
+		<div class="overflow">
+			<h1>Thank You</h1>
+			<p>Thank you for subscribing to email list :)</p>
+			<a href="{% url 'user-landing' user.username %}" class="cta cta1">Home</a>
+		</div>
+	</div>
+{% endblock %}

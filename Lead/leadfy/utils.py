@@ -25,8 +25,9 @@ def context_dict(user, **kwargs):
     else:
         use_background_image = "false"
 
-    print(writecss(user.username, color1, color2, body_font_color, primary_font_size, name_font_size,
-                   border_radius, link_text_color, link_background_color))
+    writecss(user.username, color1, color2, body_font_color, primary_font_size, name_font_size,
+                   border_radius, link_text_color, link_background_color, font, use_background_image,
+                   brightness_css_factor, desktopimage, mobileimage)
 
     data = {
         'user': user,
@@ -96,11 +97,13 @@ def get_zoom(distance):
         return 2
 
 
-def set_http_referer(request, response):
-    referer = request.META.get('HTTP_REFERER')
-    if not 'referer' in request.COOKIES:
-        max_age = 86400 * 14
-        response.set_cookie('referer', referer, max_age=max_age)
+def set_http_referer(request, response, username):
+    if not f'{username}_referer' in request.COOKIES:
+        referer = request.META.get('HTTP_REFERER')
+        max_age = 86400
+        response.set_cookie(f'{username}_referer', referer, max_age=max_age)
+    else:
+        referer = request.COOKIES.get(f'{username}_referer')
     return referer
 
 

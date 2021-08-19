@@ -2,8 +2,16 @@ from django.conf import settings
 import os
 
 
-def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size, border_radius, link_text_color, link_background_color):
+def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size,
+             border_radius, link_text_color, link_background_color, font, use_background_image,
+             brightness_css_factor, desktopimage, mobileimage):
   css = f"""
+
+@font-face {{
+    font-family: 'customfont';
+    src:  url(/media/fonts/{font})
+}}
+
 body {{
   margin: 0;
   padding: 0;
@@ -13,7 +21,7 @@ body {{
   background-image: linear-gradient(90deg, {color1}, {color2});
   min-height: 100vh;
   color: {str(body_font_color)};
-  font-family: sans-serif;
+  font-family: 'customfont', sans-serif;
   font-size: {str(primary_font_size)};
 }}
 
@@ -253,7 +261,26 @@ a:hover {{
 
 """
 
-  with open(f'media/{username}.css', 'w') as f:
+  if use_background_image == 'true':
+    css += f"""
+  body {{
+      color: #fff;
+      background-image: linear-gradient(90deg, rgba(0,0,0,{brightness_css_factor}), rgba(0,0,0,{brightness_css_factor}) ), url({desktopimage});
+  }}
+  @media only screen and (max-width: 800px) {{
+    body {{
+      background-image: linear-gradient(90deg, rgba(0,0,0,{brightness_css_factor}), rgba(0,0,0,{brightness_css_factor}) ), url({mobileimage});
+    }}
+  }}
+  """
+
+  if not os.path.isdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets')):
+    os.mkdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets'))
+
+  PATH = os.path.join(
+      settings.MEDIA_ROOT, f'customstylesheets/{username}.css')
+
+  with open(PATH, 'w') as f:
     f.write(css)
 
-    return 'Css Written'
+  return 'Css Written'

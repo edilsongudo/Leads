@@ -55,32 +55,35 @@ def lead(request, short_url):
         response = redirect(link.link)
         form = CustomForm(data=request.POST)
         form.instance.lead_from = user
-        form.instance.referer = set_http_referer(request, response)
-        form.instance.referer_main_domain = urlparse(set_http_referer(request, response)).netloc
+        form.instance.referer = set_http_referer(request, response, user.username)
+        form.instance.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
         form.instance.location = get_location(request)
         if form.is_valid():
             form.save()
             return response
 
-    if user.advanced.ask_visitors_to_subscribe == False:
+    if user.advanced.ask_visitors_to_subscribe_when_they_click_in_a_link == False:
+        return redirect(link.link)
+
+    if link.use_this_link_to_ask_visitors_to_subscribe == False:
         return redirect(link.link)
 
     context = context_dict(user=user, link=link, form=form)
     response = render(request, 'leadfy/emailcapture.html', context=context)
 
-    set_http_referer(request, response=response)
+    set_http_referer(request, response, user.username)
     def save_statistics():
         link.view_count += 1
         link.save()
         new_visit = PageVisit(page=link)
-        new_visit.referer = set_http_referer(request, response=response)
-        new_visit.referer_main_domain = urlparse(set_http_referer(request, response=response)).netloc
+        new_visit.referer = set_http_referer(request, response, user.username)
+        new_visit.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
         new_visit.location = get_location(request)
         new_visit.save()
 
-    if not 'tried_to_capture_email' in request.COOKIES:
+    if not user.username in request.COOKIES:
         max_age = user.advanced.seconds_to_wait_before_asking_user_to_subscribe_again
-        response.set_cookie('tried_to_capture_email', '', max_age=max_age)
+        response.set_cookie(user.username, '', max_age=max_age)
         if not short_url in request.COOKIES:
             response.set_cookie(short_url, short_url)
             save_statistics()
@@ -95,7 +98,7 @@ def landing(request, username):
     links = Link.objects.filter(user=user).order_by('order')
     context = context_dict(user=user, links=links)
     response = render(request, 'leadfy/landing.html', context=context)
-    set_http_referer(request, response=response)
+    set_http_referer(request, response, user.username)
     return response
 
 def landing_as_author_pv(request, username):
@@ -333,3 +336,36 @@ def socials(request):
     return render(request, 'leadfy/socials.html', context)
     # else:
     #     return HttpResponseForbidden()
+
+
+
+def subscribe(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    fields = (['name', 'email'])
+    widgets = {
+        'name': TextInput(attrs={'placeholder': 'Name'}),
+        'email': EmailInput(attrs={'placeholder': 'Email'})
+    }
+    CustomForm = modelform_factory(model=LeadModel, fields=fields, widgets=widgets)
+    form = CustomForm()
+
+    response = redirect('thankyou', username=username)
+
+    if request.method == 'POST':
+        form = CustomForm(data=request.POST)
+        form.instance.lead_from = user
+        form.instance.referer = set_http_referer(request, response, username)
+        #I AM NOT SURE IF SHOULD SET HTTP REFERER AT THIS VIEW, I HAVE TO TAKE A LOOK AT THIS CODE IN ANOTHER TIME!
+        form.instance.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
+        form.instance.location = get_location(request)
+        if form.is_valid():
+            form.save()
+            return response
+
+    context = context_dict(user=user, form=form)
+    return render(request, 'leadfy/emailcapture.html', context=context)
+
+def thankyou(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    context = context_dict(user=user)
+    return render(request, 'leadfy/thankyou.html', context)
