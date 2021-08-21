@@ -141,3 +141,13 @@ class Social(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+
+
+class Integrations(models.Model):
+    user = models.OneToOneField(
+        get_user_model(), on_delete=models.CASCADE, null=True)
+    facebook_pixel_id = models.CharField(
+        max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username}'
