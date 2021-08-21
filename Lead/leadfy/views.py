@@ -332,12 +332,12 @@ def mobileimage(request):
 def socials(request):
     fields = '__all__'
     exclude = ['user']
-    widgets = {
-        'instagram': TextInput(attrs={'placeholder': 'https://www.instagram.com/username'}),
-        'facebook': TextInput(attrs={'placeholder': 'https://www.facebook.com/username'}),
-        'youtube': TextInput(attrs={'placeholder': 'https://<channel link here>'}),
-    }
-    CustomForm = modelform_factory(model=Social, widgets=widgets, fields=fields, exclude=exclude)
+    # widgets = {
+    #     'instagram': TextInput(attrs={'placeholder': 'https://www.instagram.com/username'}),
+    #     'facebook': TextInput(attrs={'placeholder': 'https://www.facebook.com/username'}),
+    #     'youtube': TextInput(attrs={'placeholder': 'https://<channel link here>'}),
+    # }
+    CustomForm = modelform_factory(model=Social, fields=fields, exclude=exclude)
     form = CustomForm(instance=request.user.social)
     if request.method == 'POST':
         form = CustomForm(request.POST, instance=request.user.social)
@@ -367,11 +367,11 @@ def subscribe(request, username):
         form = CustomForm(data=request.POST)
         form.instance.lead_from = user
         form.instance.referer = set_http_referer(request, response, username)
-        #I AM NOT SURE IF SHOULD SET HTTP REFERER AT THIS VIEW, I HAVE TO TAKE A LOOK AT THIS CODE IN ANOTHER TIME!
         form.instance.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
         form.instance.location = get_location(request)
         if form.is_valid():
             form.save()
+            response.set_cookie(f'{user.username}_captured', '', max_age=86400 * 365)
             return response
 
     context = context_dict(user=user, form=form)

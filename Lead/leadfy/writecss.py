@@ -207,6 +207,17 @@ a:hover {{
   left: 0;
 }}
 
+#copyinput {{
+  opacity: 0;
+}}
+
+.copy {{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: {body_font_color};
+}}
+
 .socials {{
   width: 50%;
   margin: 25px auto;
@@ -273,7 +284,10 @@ a:hover {{
 
 .previewlinkedit {{
   overflow-y: auto;
-  font-size: 0.75rem
+}}
+
+.previewlinkedit a {{
+  color: {body_font_color};
 }}
 
 """
