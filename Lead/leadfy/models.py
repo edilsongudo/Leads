@@ -69,11 +69,11 @@ class Preferences(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
     color1 = models.CharField(
-        max_length=100, default="#9B23FA")
+        max_length=100, default="rgba(220.04, 179.365, 255, 1)")
     color2 = models.CharField(
-        max_length=100,  default="#8AFBD8")
+        max_length=100,  default="rgba(161.738, 241.425, 240.989, 1)")
     body_font_color = models.CharField(
-        max_length=100,  default="rgb(255, 255, 255)")
+        max_length=100,  default="rgba(255, 255, 255, 1)")
     background_image_desktop = models.ImageField(
         upload_to='usersbackgroundimages', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
     background_image_mobile = models.ImageField(
@@ -82,17 +82,17 @@ class Preferences(models.Model):
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
     font_family = models.CharField(
-        max_length=100, null=True, default="arial.ttf", choices=myfonts)
+        max_length=100, null=True, default="Juliagar.otf", choices=myfonts)
     primary_font_size = models.IntegerField(
         default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
     name_font_size = models.IntegerField(
         default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
     border_radius = models.IntegerField(
-        default=10, validators=[MinValueValidator(0), MaxValueValidator(50)])
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(
-        max_length=100,  default="#000000")
+        max_length=100,  default="rgba(0, 0, 0, 1)")
     link_text_color = models.CharField(
-        max_length=100,  default="#ffffff")
+        max_length=100,  default="rgba(255, 255, 255, 1)")
     custom_css_file = models.FileField(upload_to='customstylesheets', null=True, blank=True)
 
     def __str__(self):

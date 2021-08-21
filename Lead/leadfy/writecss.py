@@ -2,9 +2,26 @@ from django.conf import settings
 import os
 
 
-def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size,
-             border_radius, link_text_color, link_background_color, font, use_background_image,
-             brightness_css_factor, desktopimage, mobileimage):
+# def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size,
+#              border_radius, link_text_color, link_background_color, font, use_background_image,
+#              brightness_css_factor, desktopimage, mobileimage):
+def writecss(user):
+  color1 = user.preferences.color1
+  color2 = user.preferences.color2
+  body_font_color = user.preferences.body_font_color
+  font = user.preferences.font_family
+  use_background_image = user.preferences.use_background_image
+  mobileimage = user.preferences.background_image_mobile.url
+  desktopimage = user.preferences.background_image_desktop.url
+  background_image_brightness = user.preferences.background_image_brightness
+  brightness_css_factor = background_image_brightness / 100
+  primary_font_size = user.preferences.primary_font_size
+  name_font_size = user.preferences.name_font_size
+  border_radius = user.preferences.border_radius
+  link_background_color = user.preferences.link_background_color
+  link_text_color = user.preferences.link_text_color
+  font_family = user.preferences.font_family
+
   css = f"""
 
 @font-face {{
@@ -278,7 +295,7 @@ a:hover {{
     os.mkdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets'))
 
   PATH = os.path.join(
-      settings.MEDIA_ROOT, f'customstylesheets/{username}.css')
+      settings.MEDIA_ROOT, f'customstylesheets/{user.username}.css')
 
   with open(PATH, 'w') as f:
     f.write(css)

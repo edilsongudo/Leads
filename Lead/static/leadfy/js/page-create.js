@@ -10,6 +10,7 @@ const pickr = Pickr.create({
         hue: true,
 
         interaction: {
+            input: true,
             save: true
         }
     }
@@ -26,6 +27,7 @@ const pickr2 = Pickr.create({
         hue: true,
 
         interaction: {
+            input: true,
             save: true
         }
     }
@@ -43,6 +45,7 @@ const pickr3 = Pickr.create({
         opacity: true,
 
         interaction: {
+            input: true,
             save: true
         }
     }

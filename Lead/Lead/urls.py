@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 # from allauth.account.views import SignupView, LoginView, LogoutView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('justbelievealwaysinyourself7/', admin.site.urls),
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
              template_name='users/password_reset.html'

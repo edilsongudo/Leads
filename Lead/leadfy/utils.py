@@ -2,6 +2,9 @@ import uuid
 from django.contrib.gis.geoip2 import GeoIP2
 from urllib.parse import urlparse
 from .writecss import writecss
+import os
+from django.conf import settings
+
 
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
@@ -25,9 +28,10 @@ def context_dict(user, **kwargs):
     else:
         use_background_image = "false"
 
-    writecss(user.username, color1, color2, body_font_color, primary_font_size, name_font_size,
-                   border_radius, link_text_color, link_background_color, font, use_background_image,
-                   brightness_css_factor, desktopimage, mobileimage)
+    #CSS File creation is handled by a signal. This is just to guarantee that
+    #the file will be created in case it does not exists
+    if not os.path.isfile(os.path.join(settings.MEDIA_ROOT, f'customstylesheets/{user.username}.css')):
+        writecss(user)
 
     data = {
         'user': user,

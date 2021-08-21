@@ -35,7 +35,7 @@
                     <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}</a>
                 {% endif %}
             {% endfor %}
-            {% if user.advanced.show_subscribe_button_in_links_page == True %}
+            {% if user.advanced.show_subscribe_button_in_links_page == True and show_subscribe_button == True %}
                 <a href="{% url 'subscribe' user.username %}" class="page-link link">{{ user.advanced.call_to_action_button_text }}
                     <i class="fas fa-envelope"></i>
                 </a>

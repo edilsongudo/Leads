@@ -60,12 +60,16 @@ def lead(request, short_url):
         form.instance.location = get_location(request)
         if form.is_valid():
             form.save()
+            response.set_cookie(f'{user.username}_captured', '', max_age=86400 * 365)
             return response
 
     if user.advanced.ask_visitors_to_subscribe_when_they_click_in_a_link == False:
         return redirect(link.link)
 
     if link.use_this_link_to_ask_visitors_to_subscribe == False:
+        return redirect(link.link)
+
+    if f'{user.username}_captured' in request.COOKIES:
         return redirect(link.link)
 
     context = context_dict(user=user, link=link, form=form)
@@ -96,7 +100,12 @@ def lead(request, short_url):
 def landing(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     links = Link.objects.filter(user=user).order_by('order')
-    context = context_dict(user=user, links=links)
+
+    show_subscribe_button = True
+    if f'{user.username}_captured' in request.COOKIES:
+        show_subscribe_button = False
+
+    context = context_dict(user=user, links=links, show_subscribe_button=show_subscribe_button)
     response = render(request, 'leadfy/landing.html', context=context)
     set_http_referer(request, response, user.username)
     return response
@@ -198,7 +207,10 @@ def createlink(request):
         form = CustomForm(request.POST)
         if form.is_valid():
             form.instance.user = request.user
-            min_order = Link.objects.filter(user=request.user).order_by('order').first().order
+            try:
+                min_order = Link.objects.filter(user=request.user).order_by('order').first().order
+            except: #There is not any link yet. This is the first one.
+                min_order = 1
             form.instance.order = min_order - 1
             form.save()
             return redirect('landing_as_author_pv', username=request.user.username)
