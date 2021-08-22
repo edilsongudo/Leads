@@ -172,6 +172,11 @@ def preferences(request):
             preference.link_background_color = request.POST['link_background_color']
             # preference.link_text_color = request.POST['link_text_color']
             preference.link_text_color = contrast_color(make_tuple(request.POST['link_background_color'].replace('rgba', '')))
+            alpha = make_tuple(request.POST['link_background_color'].replace('rgba', ''))[3]
+            if int(alpha) <= 0.25:
+                preference.link_border_color = "rgba(255, 255, 255, 1)"
+            else:
+                preference.link_border_color = request.POST['link_background_color']
             preference.primary_font_size = int(request.POST['primary_font_size'])
             preference.name_font_size = int(request.POST['name_font_size'])
             preference.background_image_brightness = int(request.POST['brightness'])

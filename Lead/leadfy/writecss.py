@@ -19,6 +19,7 @@ def writecss(user):
   name_font_size = user.preferences.name_font_size
   border_radius = user.preferences.border_radius
   link_background_color = user.preferences.link_background_color
+  link_border_color = user.preferences.link_border_color
   link_text_color = user.preferences.link_text_color
   font_family = user.preferences.font_family
 
@@ -171,7 +172,7 @@ a:hover {{
 
 
 .page-link {{
-  border: 1px solid {link_background_color};
+  border: 1px solid {link_border_color};
   border-radius: {str(border_radius)}px;
   padding: 20px;
   text-align: center;

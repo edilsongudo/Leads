@@ -20,6 +20,7 @@ def context_dict(user, **kwargs):
     name_font_size = user.preferences.name_font_size
     border_radius = user.preferences.border_radius
     link_background_color = user.preferences.link_background_color
+    link_border_color = user.preferences.link_border_color
     link_text_color = user.preferences.link_text_color
     font_family = user.preferences.font_family
 
@@ -28,8 +29,8 @@ def context_dict(user, **kwargs):
     else:
         use_background_image = "false"
 
-    #CSS File creation is handled by a signal. This is just to guarantee that
-    #the file will be created in case it does not exists
+    # CSS File creation is handled by a signal. This is just to guarantee that
+    # the file will be created in case it does not exists
     if not os.path.isfile(os.path.join(settings.MEDIA_ROOT, f'customstylesheets/{user.username}.css')):
         writecss(user)
 
@@ -48,6 +49,7 @@ def context_dict(user, **kwargs):
         'name_font_size': name_font_size,
         'border_radius': border_radius,
         'link_background_color': link_background_color,
+        'link_border_color': link_border_color,
         'link_text_color': link_text_color,
         'font_family': font_family
     }

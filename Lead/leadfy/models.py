@@ -91,6 +91,8 @@ class Preferences(models.Model):
         default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(
         max_length=100,  default="rgba(0, 0, 0, 1)")
+    link_border_color = models.CharField(
+        max_length=100,  default="rgba(0, 0, 0, 1)")
     link_text_color = models.CharField(
         max_length=100,  default="rgba(255, 255, 255, 1)")
     custom_css_file = models.FileField(upload_to='customstylesheets', null=True, blank=True)
