@@ -343,12 +343,26 @@ def socials(request):
         form = CustomForm(request.POST, instance=request.user.social)
         if form.is_valid():
             form.save()
-            return redirect('landing_as_author_pv', username=request.user.username)
+            return redirect('settings')
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/socials.html', context)
-    # else:
-    #     return HttpResponseForbidden()
 
+@login_required
+def integrations(request):
+    fields = '__all__'
+    exclude = ['user']
+    widgets = {
+        'facebook_pixel_id': TextInput(attrs={'placeholder': 'Facebook Pixel ID'}),
+    }
+    CustomForm = modelform_factory(model=Integrations, widgets=widgets, fields=fields, exclude=exclude)
+    form = CustomForm(instance=request.user.integrations)
+    if request.method == 'POST':
+        form = CustomForm(request.POST, instance=request.user.social)
+        if form.is_valid():
+            form.save()
+            return redirect('settings')
+    context = context_dict(user=request.user, form=form)
+    return render(request, 'leadfy/integrations.html', context)
 
 
 def subscribe(request, username):

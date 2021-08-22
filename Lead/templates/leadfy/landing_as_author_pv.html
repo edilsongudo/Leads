@@ -44,7 +44,7 @@
                 </div>
             <div class="bio">{{ user.profile.bio }}</div>
             <div class="space-between">
-                <a href="{% url 'user-landing' user.username %}"><i class="fas fa-eye"></i> Preview</a>
+                <a href="{% url 'user-landing' user.username %}" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Preview</a>
                 <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
             </div>
             <div id="links">
@@ -63,8 +63,6 @@
             </div> -->
         </div>
     </div>
-
-
     <!-- Nav -->
     <div class="footer flex">
         <div class="sidebar-link footer-active">
@@ -80,7 +78,6 @@
             <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
         </div>
     </div>
-
     <script src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="{% static 'leadfy/js/Sortable.js' %}"></script>
     <script src="{% static 'leadfy/js/landingasauthorpv.js' %}"></script>

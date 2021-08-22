@@ -33,8 +33,6 @@
     <div class="content">
             <!-- Preferences -->
         <div id="preferences">
-            <button id="togglepreviewbtn"><i class="fas fa-eye"></i></button>
-
 
             <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -147,37 +145,7 @@
                 <!-- <input type="text" name="link_text_color" id="link_text_color" class="invisible" value="{{ link_text_color }}"> -->
             </form>
         </div>
-
-        <div style="height: 100px;">
-
-        </div>
-
-        <!-- Preview -->
-        <div id="previewlanding">
-            <button id="togglepreferencesbtn"><i class="fas fa-eye"></i></button>
-            <div class="overflow">
-                <div class="skip toinvisible">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="skip">
-                        <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
-                    </form>
-                </div>
-                <div class="center">
-                    <div class="subcontent">
-                        <div class="image-border">
-                            <img class="round" src="{{ user.profile.image.url }}">
-                        </div>
-                        <h1 class="name" id="name">{{ user.username }}</h1>
-                    </div>
-                </div>
-                {% for link in links %}
-                    <a href="/{{ link.short_url }}" class="page-link link">{{ link.title }}
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-
+        <div style="height: 100px;"></div>
     </div>
 
     <!-- Nav -->

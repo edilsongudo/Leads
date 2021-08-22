@@ -12,6 +12,7 @@ urlpatterns = [
     path('<str:username>/subscribe', subscribe, name="subscribe"),
     path('<str:username>/thankyou/', thankyou, name="thankyou"),
     path('socials/', socials, name="socials"),
+    path('integrations/', integrations, name="integrations"),
     path('mobile/upload/', mobileimage, name="mobileimage"),
     path('desktop/upload/', desktopimage, name="desktopimage"),
     path('preferences/', preferences, name="preferences"),

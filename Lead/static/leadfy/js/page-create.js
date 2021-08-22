@@ -213,13 +213,4 @@ if (use_background_image == true) {
 }
 
 
-//Logic 6
-document.querySelector('#togglepreviewbtn').addEventListener('click', function() {
-    document.querySelector('#previewlanding').style.display = 'block'
-    document.querySelector('#preferences').style.display = 'none'
-})
 
-document.querySelector('#togglepreferencesbtn').addEventListener('click', function() {
-    document.querySelector('#previewlanding').style.display = 'none'
-    document.querySelector('#preferences').style.display = 'block'
-})
