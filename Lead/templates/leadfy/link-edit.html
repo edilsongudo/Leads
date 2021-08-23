@@ -4,19 +4,18 @@
 
 {% block head %}
     <title>Edit Link</title>
+    <style type="text/css">
+        #div_id_title label, #div_id_link label, #div_id_short_url label {
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
     <div class="formcontainer">
         <input id="copyinput" type="" name="" value="{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}">
-        <h1>Edit Link</h1>
-        <div class="previewlinkedit">
-            <a href="/p/{{ link.short_url }}">
-                {{ request.META.HTTP_HOST }}/p/{{ link.short_url }}
-                <i class="fas fa-eye"></i>
-            </a>
-            <button class="copy"><i class="fas fa-copy"></i></button>
-        </div>
+        <h3>Edit Link</h3>
+        <div class="previewlinkedit"><a href="/p/{{ link.short_url }}">{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}</a></div>
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -43,12 +42,16 @@
         </div>
     </div>
     <script type="text/javascript">
-        document.querySelector('.copy').addEventListener('click', function () {
-            var text = document.querySelector('#copyinput').select()
-            document.execCommand('Copy')
-            // navigator.clipboard.writeText("{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}")
-            alert('Link "{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}" copied to clipboard')
-        })
+        try {
+            document.querySelector('.copy').addEventListener('click', function () {
+                var text = document.querySelector('#copyinput').select()
+                document.execCommand('Copy')
+                // navigator.clipboard.writeText("{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}")
+                alert('Link "{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}" copied to clipboard')
+            })
+        } catch(e) {
+            console.log(e);
+        }
     </script>
 
     <script type="text/javascript">

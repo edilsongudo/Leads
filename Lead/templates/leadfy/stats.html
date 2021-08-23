@@ -1,0 +1,78 @@
+{% extends 'leadfy/landingbase.html' %}
+{% load static %}
+
+{% block head %}
+    <style type="text/css">
+        i, a {
+            color: {{ body_font_color }};
+        }
+        {% if use_background_image == "true" %}
+            i, a {
+                color: #fff;
+            }
+        {% endif %}
+
+        .page-link:hover {
+            border: 1.5px solid {{ link_border_color }};
+            background: {{ link_background_color }};
+            color: {{ link_text_color  }}
+        }
+
+        .page-link i {
+            color: {{ link_text_color  }};
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="overflow">
+            <div class="skip toinvisible">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="skip">
+                    <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
+                </form>
+            </div>
+                <div class="center">
+                    <div class="subcontent">
+                        <div class="image-border">
+                            <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
+                        </div>
+                        <h1 class="name" id="name">{{ user.profile.name }}'s Landing Page Views: {{ user.view_count }}</h1>
+                    </div>
+                </div>
+            <div class="bio">{{ user.profile.bio }}</div>
+            <div class="space-between">
+                <!-- <a href="{% url 'user-landing' user.username %}" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Preview</a>
+                <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a> -->
+            </div>
+            <div id="links">
+                {% for link in links %}
+                    <a data-id="{{ link.short_url }}" href="{% url 'link-edit' link.short_url %}" class="page-link link">
+                        {{ link.title }}
+                        <i class="fas fa-eye"></i>{{ link.view_count }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/bluehome.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
+        </div>
+    </div>
+{% endblock %}
+
+
+

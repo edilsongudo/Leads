@@ -15,6 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DeleteView
 from django.urls import reverse
 from ast import literal_eval as make_tuple
+from django.db.models import Count
 
 def home(request):
     if request.user.is_authenticated:
@@ -57,7 +58,8 @@ def lead(request, short_url):
         form.instance.lead_from = user
         form.instance.referer = set_http_referer(request, response, user.username)
         form.instance.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
-        form.instance.location = get_location(request)
+        form.instance.location = get_location(request)['country_name']
+        form.instance.location_code = get_location(request)['country_code']
         if form.is_valid():
             form.save()
             response.set_cookie(f'{user.username}_captured', '', max_age=86400 * 365)
@@ -82,7 +84,8 @@ def lead(request, short_url):
         new_visit = PageVisit(page=link)
         new_visit.referer = set_http_referer(request, response, user.username)
         new_visit.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
-        new_visit.location = get_location(request)
+        new_visit.location = get_location(request)['country_name']
+        new_visit.location_code = get_location(request)['country_code']
         new_visit.save()
 
     if not user.username in request.COOKIES:
@@ -107,8 +110,29 @@ def landing(request, username):
 
     context = context_dict(user=user, links=links, show_subscribe_button=show_subscribe_button)
     response = render(request, 'leadfy/landing.html', context=context)
+
+    if not f'{user.username}_land' in request.COOKIES:
+        response.set_cookie(f'{user.username}_land', '', max_age=86400 * 365)
+        user.view_count += 1
+        user.save()
+
     set_http_referer(request, response, user.username)
     return response
+
+
+def stats(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    if user == request.user:
+        links = Link.objects.filter(user=user).order_by('-view_count')
+        allpagevisitsorderedbylocation = PageVisit.objects.values_list('location_code').annotate(truck_count=Count('location_code')).order_by('-truck_count')
+        # print(allpagevisitsorderedbylocation)
+        allpagevisitsorderedbyrefferer = PageVisit.objects.values_list('referer_main_domain').annotate(truck_count=Count('referer_main_domain')).order_by('-truck_count')
+        # print(allpagevisitsorderedbyrefferer)
+        context = context_dict(user=user, links=links)
+        response = render(request, 'leadfy/stats.html', context=context)
+        return response
+    else:
+        return HttpResponseForbidden()
 
 def landing_as_author_pv(request, username):
     user = get_object_or_404(get_user_model(), username=username)
@@ -387,7 +411,8 @@ def subscribe(request, username):
         form.instance.lead_from = user
         form.instance.referer = set_http_referer(request, response, username)
         form.instance.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
-        form.instance.location = get_location(request)
+        form.instance.location = get_location(request)['country_name']
+        form.instance.location_code = get_location(request)['country_code']
         if form.is_valid():
             form.save()
             response.set_cookie(f'{user.username}_captured', '', max_age=86400 * 365)

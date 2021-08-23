@@ -7,7 +7,8 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    bio = models.TextField(blank=True)
+    view_count = models.IntegerField(
+        default=0)
 
 
 class Profile(models.Model):

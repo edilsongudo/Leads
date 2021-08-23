@@ -106,10 +106,13 @@ def get_zoom(distance):
 def set_http_referer(request, response, username):
     if not f'{username}_referer' in request.COOKIES:
         referer = request.META.get('HTTP_REFERER')
-        max_age = 86400
-        response.set_cookie(f'{username}_referer', referer, max_age=max_age)
+        max_age = 60 * 5
+        if referer is not None:
+            response.set_cookie(f'{username}_referer',
+                                referer, max_age=max_age)
     else:
         referer = request.COOKIES.get(f'{username}_referer')
+    print('REFERER: ', referer)
     return referer
 
 
@@ -126,7 +129,8 @@ def get_location(request):
     try:
         ip = get_ip(request)
         country, city, lat, lon = get_geo(ip)
-        return country
+        print(country, city)
+        return {'country_name': country['country_name'], 'country_code': country['country_code']}
     except Exception as e:
         print(e)
         return ''

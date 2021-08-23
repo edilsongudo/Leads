@@ -291,6 +291,41 @@ a:hover {{
   color: {body_font_color};
 }}
 
+input[type="checkbox"] {{
+margin: 0;
+padding: 0;
+  position: relative;
+  width: 80px;
+  height: 40px;
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 50px;
+  transition: .5s;
+
+}}
+
+input:checked[type="checkbox"] {{
+  background: #03a9f4;
+}}
+
+input[type="checkbox"]:before {{
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  top: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0, .2);
+  transition: .5s;
+}}
+
+input:checked[type="checkbox"]:before {{
+  left:40px;
+}}
+
 """
 
   if use_background_image == 'true':

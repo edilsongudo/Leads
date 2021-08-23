@@ -13,5 +13,5 @@ class UserAdmin(auth_admin.UserAdmin):
     add_form = UserCreationForm
     model = get_user_model()
     fieldsets = auth_admin.UserAdmin.fieldsets + (
-        ("Informações Pessoais", {"fields": ("bio",)}),
+        ("Informações Pessoais", {"fields": ("view_count",)}),
     )

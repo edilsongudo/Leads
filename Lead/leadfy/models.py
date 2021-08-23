@@ -16,19 +16,20 @@ class LeadModel(models.Model):
     referer_main_domain = models.CharField(
         max_length=200, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
+    location_code = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.email
 
 
 class Link(models.Model):
-    show_link = models.BooleanField(default=True)
+    short_url = models.SlugField(default=generate_ref_code, null=True, unique=True)
     title = models.CharField(max_length=30, null=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True)
-    short_url = models.SlugField(default=generate_ref_code, null=True, unique=True)
     link = models.URLField(
         max_length=200, null=True, blank=False)
+    show_link = models.BooleanField(default=True)
     use_this_link_to_ask_visitors_to_subscribe = models.BooleanField(default=True)
     view_count = models.IntegerField(
         default=0)
@@ -52,6 +53,7 @@ class PageVisit(models.Model):
     referer_main_domain = models.CharField(
         max_length=200, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
+    location_code = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f'/{self.page.short_url} at {self.time}'

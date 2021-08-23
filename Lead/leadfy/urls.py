@@ -27,6 +27,7 @@ urlpatterns = [
     path('<str:username>/', landing, name="user-landing"),
     path('<str:username>/edit', landing_as_author_pv,
          name="landing_as_author_pv"),
+    path('<str:username>/stats/', stats, name="stats"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
 ]
 
