@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 from .writecss import writecss
 import os
 from django.conf import settings
-
+import datetime
 
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
@@ -170,3 +170,39 @@ def contrast_color(color):
         font_color = 'rgba(255, 255, 255, 1)'
 
     return font_color
+
+
+
+
+def get_days(day1, day2, model, request):
+    delta = day2 - day1
+    list_of_days = []
+    list_of_days2 = []
+    for i in range(delta.days + 1):
+        day = day1 + datetime.timedelta(days=i)
+        pages_visits = model.objects.filter(
+            page__user=request.user, time__date=day).count()
+        list_of_days.append(pages_visits)
+        list_of_days2.append(f'{day.strftime("%d/%m")}')
+    return {'list_of_days': list_of_days, 'list_of_days2': list_of_days2}
+
+
+def number_of_clicks(date1, date2, model, request):
+    number_of_clicks = model.objects.filter(
+        page__user=request.user, time__date__gte=date1, time__date__lte=date2).count()
+    return number_of_clicks
+
+def number_of_leads(date1, date2, model, request):
+    number_of_leads = model.objects.filter(lead_from=request.user, date_submited__date__gte=date1, date_submited__date__lte=date2).count()
+    return number_of_leads
+
+
+def hours(date1, date2, model, request):
+    hours = []
+    labels = []
+    for i in range(0, 24):
+        pages_visits = model.objects.filter(
+            page__user=request.user, time__date__gte=date1, time__date__lte=date2, time__hour=i)
+        hours.append(len(pages_visits))
+        labels.append(i)
+    return {'hours': hours, 'labels': labels}

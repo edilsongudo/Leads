@@ -20,6 +20,27 @@ from django_pandas.io import read_frame
 import folium
 import pandas as pd
 
+
+
+@login_required
+def dashboard(request, days):
+    day2 = datetime.date.today()
+    day1 = day2 - datetime.timedelta(days=int(days))
+
+    if request.is_ajax():
+        if days == '0':
+            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'clicks_per_hours': hours(day1, day2, PageVisit, request)['hours'], 'labels': hours(day1, day2, PageVisit, request)['labels'], 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+        elif days == '7':
+            labels = get_days(day1, day2, PageVisit, request)['list_of_days2']
+            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+        elif days == '30':
+            labels = get_days(day1, day2, PageVisit, request)['list_of_days2']
+            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+
+    return render(request, 'leadfy/dashboard.html')
+
+
+
 def home(request):
     if request.user.is_authenticated:
         return redirect('landing_as_author_pv', username=request.user.username)
@@ -295,58 +316,6 @@ def deletelink(request, short_url):
         return redirect('landing_as_author_pv', username=request.user.username)
     context = context_dict(user=request.user, link=link)
     return render(request, 'leadfy/link_confirm_delete.html', context)
-
-
-@login_required
-def dashboard(request, days):
-    day2 = datetime.date.today()
-    day1 = day2 - datetime.timedelta(days=int(days))
-
-    def get_days(date1, date2):
-        delta = day2 - day1
-        list_of_days = []
-        list_of_days2 = []
-        for i in range(delta.days + 1):
-            day = day1 + datetime.timedelta(days=i)
-            pages_visits = PageVisit.objects.filter(
-                page__user=request.user, time__date=day).count()
-            list_of_days.append(pages_visits)
-            list_of_days2.append(f'{day.strftime("%d/%m")}')
-        return {'list_of_days': list_of_days, 'list_of_days2': list_of_days2}
-
-
-    def number_of_clicks(date1, date2):
-        number_of_clicks = PageVisit.objects.filter(
-            page__user=request.user, time__date__gte=date1, time__date__lte=date2).count()
-        return number_of_clicks
-
-    def number_of_leads(date1, date2):
-        number_of_leads = LeadModel.objects.filter(lead_from=request.user, date_submited__date__gte=date1, date_submited__date__lte=date2).count()
-        return number_of_leads
-
-
-    def hours(date1, date2):
-        hours = []
-        labels = []
-        for i in range(0, 24):
-            pages_visits = PageVisit.objects.filter(
-                page__user=request.user, time__date__gte=date1, time__date__lte=date2, time__hour=i)
-            hours.append(len(pages_visits))
-            labels.append(i)
-        return {'hours': hours, 'labels': labels}
-
-
-    if request.is_ajax():
-        if days == '0':
-            return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': hours(day1, day2)['hours'], 'labels': hours(day1, day2)['labels'], 'number_of_leads': number_of_leads(day1, day2)})
-        elif days == '7':
-            labels = get_days(day1, day2)['list_of_days2']
-            return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': get_days(day1, day2)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2)})
-        elif days == '30':
-            labels = get_days(day1, day2)['list_of_days2']
-            return JsonResponse({'page_views': number_of_clicks(day1, day2), 'clicks_per_hours': get_days(day1, day2)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2)})
-
-    return render(request, 'leadfy/dashboard.html')
 
 
 def error_404_view(request, exception):
