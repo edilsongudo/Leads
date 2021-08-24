@@ -133,7 +133,7 @@ def get_location(request):
         return {'country_name': country['country_name'], 'country_code': country['country_code']}
     except Exception as e:
         print(e)
-        return ''
+        return {'country_name': '', 'country_code': ''}
 
 
 def contrast_gradient(color, color2):

@@ -16,6 +16,9 @@ from django.views.generic import DeleteView
 from django.urls import reverse
 from ast import literal_eval as make_tuple
 from django.db.models import Count
+from django_pandas.io import read_frame
+import folium
+import pandas as pd
 
 def home(request):
     if request.user.is_authenticated:
@@ -124,11 +127,21 @@ def stats(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     if user == request.user:
         links = Link.objects.filter(user=user).order_by('-view_count')
-        allpagevisitsorderedbylocation = PageVisit.objects.values_list('location_code').annotate(truck_count=Count('location_code')).order_by('-truck_count')
-        # print(allpagevisitsorderedbylocation)
+
+        allpagevisitsorderedbylocation = PageVisit.objects.values_list('location', 'location_code').annotate(truck_count=Count('location')).order_by('-truck_count')
         allpagevisitsorderedbyrefferer = PageVisit.objects.values_list('referer_main_domain').annotate(truck_count=Count('referer_main_domain')).order_by('-truck_count')
-        # print(allpagevisitsorderedbyrefferer)
-        context = context_dict(user=user, links=links)
+        df =  pd.DataFrame(allpagevisitsorderedbylocation, columns=['location', 'location_code', 'truck_count'])
+        print(df)
+
+        state_geo = 'custom.geo (1).json'
+        m = folium.Map(location=[0, 0], zoom_start=1)
+        folium.Choropleth(geo_data=state_geo, name='Choropleth', data=df, columns=['location', 'truck_count'], key_on="feature.properties.sovereignt", fill_color="YlGn", fill_opacity=0.7,
+                          line_opacity=0.2, legend_name="Links Visits").add_to(m)
+        folium.LayerControl().add_to(m)
+
+        m = m._repr_html_()
+
+        context = context_dict(user=user, links=links, m=m)
         response = render(request, 'leadfy/stats.html', context=context)
         return response
     else:

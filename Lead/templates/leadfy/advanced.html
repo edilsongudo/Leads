@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="content">
-        <h1>Advanced Settings</h1>
+        <h4>Advanced Settings</h4>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}

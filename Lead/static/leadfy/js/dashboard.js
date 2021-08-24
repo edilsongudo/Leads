@@ -35,7 +35,7 @@ function getCookie(name) {
                   labels: response.labels,
                   datasets: [
                   {
-                    label: 'Page Views',
+                    label: 'Link Views',
                     fill: true,
                     lineTension: 0.1,
                     backgroundColor: '#A6A6F0',
@@ -77,8 +77,21 @@ function getCookie(name) {
                     config
                   );
 
-
-
+                  var piechart = new Chart(
+                    document.getElementById('piechart'), {
+                        type: 'radar',
+                        data: {
+                            labels: ['instagram', 'facebook', 'linkedin', 'twitter', 'google', 'tiktok'],
+                            datasets: [
+                                {
+                                    label: 'Points',
+                                    borderColor: '#A6A6F0',
+                                    borderWidth: 2,
+                                    data: [24, 3, 12, 20, 1000, 3000]
+                                }
+                            ]
+                        }
+                    })
 
             }
                 })

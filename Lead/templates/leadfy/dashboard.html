@@ -23,7 +23,7 @@
                     <span class="card-title">Analytics</span>
                 </div>
                 <div class="card-days">
-                    <a class="card-day" href="0" id="0">
+                    <a class="card-day active" href="0" id="0">
                         Today
                     </a>
                     <a class="card-day" href="7" id="7">
@@ -51,7 +51,7 @@
                     <div class="card-stats">
                         <div class="card-stat">
                             <h3 id="page_views_count"></h3>
-                            <span class="nonbold">Page views</span>
+                            <span class="nonbold">Link Individual Views</span>
                         </div>
                     </div>
                 </a>
@@ -61,37 +61,27 @@
                     <div class="card-stats">
                         <div class="card-stat">
                             <h3 id="number_of_leads"></h3>
-                            <span class="nonbold">Leads</span>
+                            <span class="nonbold">Signups</span>
                         </div>
                     </div>
                 </a>
 
             </div>
 
-            <a class="section2 card mostclickedlinks">
-                <p class="">Other Stats</p>
-                <div class="other-stats-stats">
-                    <p>
-                        <div class="flex-space-between">
-                            <div><i class="fas fa-link"></i><span class="mostclickedlinks-link">Best Source</span></div>
-                            Instagram
-                        </div>
-                    </p>
-                    <p>
-                        <div class="flex-space-between">
-                            <div><i class="fas fa-link"></i><span class="mostclickedlinks-link">Main Location</span></div>
-                            New York
-                        </div>
-                    </p>
+            <section class="section2 card">
+                <div>
+                    <canvas id="myChart" style="max-height: 200px;"></canvas>
                 </div>
-            </a>
+            </section>
 
             <section class="section2 card">
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
-
+                <div>
+                    <canvas id="piechart" style="max-height: 300px;"></canvas>
+                </div>
             </section>
+
+            <section style="height: 100px;"></section>
+
         </div>
     </div>
     <!-- end of content div -->

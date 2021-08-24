@@ -190,7 +190,7 @@ a:hover {{
   background-repeat: no-repeat;
 }}
 
-.page-link .fa-pencil-alt {{
+.page-link .fa-pencil-alt, .page-link .linkviews {{
   position: absolute;
   right: 30px;
 }}
@@ -256,6 +256,7 @@ a:hover {{
     padding: 10px;
     display: flex;
     z-index: 1000;
+    box-shadow: 1px 1px 1px 1px grey;
 }}
 
 .footer img {{
@@ -273,7 +274,7 @@ a:hover {{
 .footer-active {{
 }}
 
-@media only screen and (min-width: 600px) {{
+@media only screen and (min-width: 800px) {{
   .footer {{
     top: 0;
     height: 100vh;

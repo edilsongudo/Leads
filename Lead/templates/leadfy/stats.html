@@ -39,7 +39,7 @@
                         <div class="image-border">
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                         </div>
-                        <h1 class="name" id="name">{{ user.profile.name }}'s Landing Page Views: {{ user.view_count }}</h1>
+                        <h1 class="name" id="name">Profile Views: {{ user.view_count }}</h1>
                     </div>
                 </div>
             <div class="bio">{{ user.profile.bio }}</div>
@@ -48,12 +48,17 @@
                 <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a> -->
             </div>
             <div id="links">
+                <h4>Links Views</h4>
                 {% for link in links %}
                     <a data-id="{{ link.short_url }}" href="{% url 'link-edit' link.short_url %}" class="page-link link">
                         {{ link.title }}
-                        <i class="fas fa-eye"></i>{{ link.view_count }}
+                        <div class="linkviews"><i class="fas fa-eye"></i>{{ link.view_count }}</div>
                     </a>
                 {% endfor %}
+            </div>
+            <div style="max-width: 300px; max-height: 150px; margin: 0 auto; margin-bottom: 100px;">
+                <h4>Locations</h4>
+                {{ m|safe }}
             </div>
         </div>
     </div>
