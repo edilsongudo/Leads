@@ -27,15 +27,18 @@ def dashboard(request, days):
     day2 = datetime.date.today()
     day1 = day2 - datetime.timedelta(days=int(days))
 
+    channels = get_referers(day1, day2, PageVisit, request)['channels']
+    visits = get_referers(day1, day2, PageVisit, request)['visits']
+
     if request.is_ajax():
         if days == '0':
-            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'clicks_per_hours': hours(day1, day2, PageVisit, request)['hours'], 'labels': hours(day1, day2, PageVisit, request)['labels'], 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'channels': channels, 'visits': visits, 'clicks_per_hours': hours(day1, day2, PageVisit, request)['hours'], 'labels': hours(day1, day2, PageVisit, request)['labels'], 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
         elif days == '7':
             labels = get_days(day1, day2, PageVisit, request)['list_of_days2']
-            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'channels': channels, 'visits': visits, 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
         elif days == '30':
             labels = get_days(day1, day2, PageVisit, request)['list_of_days2']
-            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'channels': channels, 'visits': visits, 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
 
     return render(request, 'leadfy/dashboard.html')
 

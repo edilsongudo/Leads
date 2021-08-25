@@ -26,6 +26,7 @@ function getCookie(name) {
             data: data,
             type: 'post',
             success: function(response) {
+                console.log(response)
                 var p = document.getElementById('page_views_count')
                 var l = document.getElementById('number_of_leads')
                 p.innerHTML = response.page_views
@@ -81,13 +82,13 @@ function getCookie(name) {
                     document.getElementById('piechart'), {
                         type: 'radar',
                         data: {
-                            labels: ['instagram', 'facebook', 'linkedin', 'twitter', 'google', 'tiktok'],
+                            labels: response.channels,
                             datasets: [
                                 {
-                                    label: 'Points',
+                                    label: 'Visits',
                                     borderColor: '#A6A6F0',
                                     borderWidth: 2,
-                                    data: [24, 3, 12, 20, 1000, 3000]
+                                    data: response.visits
                                 }
                             ]
                         }
@@ -106,6 +107,6 @@ var pageURL = window.location.href
 var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1)
 
 var card_day = document.getElementById(lastURLSegment)
-card_day.classList.add('footer-active')
+card_day.classList.add('active')
 console.log(card_day)
 

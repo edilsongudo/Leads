@@ -5,6 +5,7 @@ from .writecss import writecss
 import os
 from django.conf import settings
 import datetime
+from django.db.models import Count
 
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
@@ -206,3 +207,16 @@ def hours(date1, date2, model, request):
         hours.append(len(pages_visits))
         labels.append(i)
     return {'hours': hours, 'labels': labels}
+
+
+def get_referers(day1, day2, model, request):
+    allpagevisitsorderedbyrefferer = model.objects.filter(page__user=request.user, time__date__gte=day1, time__date__lte=day2)
+    allpagevisitsorderedbyrefferer = allpagevisitsorderedbyrefferer.values_list('referer_main_domain').annotate(truck_count=Count('referer_main_domain')).order_by('-truck_count')
+    allvisits = list(allpagevisitsorderedbyrefferer)
+    channels = []
+    visits = []
+    for value in allvisits:
+        channels.append(value[0])
+        visits.append(value[1])
+
+    return {'channels': channels, 'visits': visits}

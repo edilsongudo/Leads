@@ -119,27 +119,27 @@ class Advanced(models.Model):
 class Social(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
-    instagram = models.CharField(
+    instagram = models.URLField(
         max_length=200, null=True, blank=True)
-    facebook = models.CharField(
+    facebook = models.URLField(
         max_length=200, null=True, blank=True)
-    tiktok = models.CharField(
+    tiktok = models.URLField(
         max_length=200, null=True, blank=True)
-    youtube = models.CharField(
+    youtube = models.URLField(
         max_length=200, null=True, blank=True)
-    twitter = models.CharField(
+    twitter = models.URLField(
         max_length=200, null=True, blank=True)
-    spotify = models.CharField(
+    spotify = models.URLField(
         max_length=200, null=True, blank=True)
-    pinterest = models.CharField(
+    pinterest = models.URLField(
         max_length=200, null=True, blank=True)
-    whatsapp = models.CharField(
+    whatsapp = models.URLField(
         max_length=200, null=True, blank=True)
-    linkedin = models.CharField(
+    linkedin = models.URLField(
         max_length=200, null=True, blank=True)
-    snapchat = models.CharField(
+    snapchat = models.URLField(
         max_length=200, null=True, blank=True)
-    telegram = models.CharField(
+    telegram = models.URLField(
         max_length=200, null=True, blank=True)
 
 
