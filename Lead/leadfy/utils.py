@@ -6,6 +6,8 @@ import os
 from django.conf import settings
 import datetime
 from django.db.models import Count
+import folium
+import pandas as pd
 
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
@@ -220,3 +222,22 @@ def get_referers(day1, day2, model, request):
         visits.append(value[1])
 
     return {'channels': channels, 'visits': visits}
+
+
+def get_map(day1, day2, model, request):
+    allpagevisitsorderedbylocation = model.objects.filter(page__user=request.user, time__date__gte=day1, time__date__lte=day2)
+
+    allpagevisitsorderedbylocation = allpagevisitsorderedbylocation.values_list('location', 'location_code').annotate(truck_count=Count('location')).order_by('-truck_count')
+
+    df =  pd.DataFrame(allpagevisitsorderedbylocation, columns=['location', 'location_code', 'truck_count'])
+    print(df)
+
+    state_geo = 'custom.geo (1).json'
+    m = folium.Map(location=[0, 0], zoom_start=0)
+    folium.Choropleth(geo_data=state_geo, name='Choropleth', data=df, columns=['location', 'truck_count'], key_on="feature.properties.sovereignt", fill_color="YlGn", fill_opacity=0.7,
+                      line_opacity=0.2, legend_name="Links Visits").add_to(m)
+    folium.LayerControl().add_to(m)
+
+    m = m._repr_html_()
+
+    return m
