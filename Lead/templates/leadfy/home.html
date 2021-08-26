@@ -1,4 +1,5 @@
 {% extends "leadfy/index.html" %}
+{% load static %}
 
     {% block meta %}
         <meta name="description" content="">
@@ -17,14 +18,15 @@
             <div class="section-content">
                 <div class="title-with-paragraph">
                     <h1 class="big-title">Capture Leads with your links</h1>
-                    <p class="paragraph">Easily grab users emails before sending them to your links.</p>
+                    <p class="paragraph">Easily grab visitors emails before redirecting them to your links.</p>
                     <br>
                     <br>
-                    <a class="cta cta2" href="{% url 'home' %}">START FREE</a>
+                    <a class="cta cta2" href="{% url 'account_signup' %}">SIGN UP IN 30 SECONDS</a>
                     <br>
                     <br>
                     <br>
                 </div>
+                <img class="mockup-image" src="{% static 'leadfy/img/mockup1.png' %}">
             </div>
 
         </section>
@@ -35,27 +37,15 @@
                 <div class="features">
                     <div class="feature" data-anime="right">
                         <i class="fas fa-check"></i>
-                        <p class="paragraph">Our focus is on permanent communication with our costumer and constantly improving our processes to achieve the best results.</p>
+                        <p class="paragraph">Create a beautiful page with all your favorite links.</p>
                     </div>
                     <div class="feature" data-anime="left">
                         <i class="fas fa-check"></i>
-                        <p class="paragraph">We understand that we need to pick the best solution accordingly to your present and future needs and that software is a living entity and needs to scale as your business grows.</p>
+                        <p class="paragraph">Customize your page to fit your brand.</p>
                     </div>
                     <div class="feature" data-anime="right">
                         <i class="fas fa-check"></i>
-                        <p class="paragraph">We are proud of giving amazing support, not just for big companies but focus on small businesses and individuals too.</p>
-                    </div>
-                    <div class="feature" data-anime="left">
-                        <i class="fas fa-check"></i>
-                        <p class="paragraph">We understand that businesses need traffic and websites need to be optimized to rank high in search engines.</p>
-                    </div>
-                    <div class="feature" data-anime="right">
-                        <i class="fas fa-check"></i>
-                        <p class="paragraph">We understand the importance of quality content in a website, not just for SEO optimization but for converting clients and improving results. We have teams of talented content writers and digital marketers that work along with our developer teams to deliver better solutions.</p>
-                    </div>
-                    <div class="feature" data-anime="left">
-                        <i class="fas fa-check"></i>
-                        <p class="paragraph">We know the importance of cybersecurity. With that in mind we make our softwares as solid as we can.</p>
+                        <p class="paragraph">You get one link you can share anywhere.</p>
                     </div>
                 </div>
             </div>
@@ -64,10 +54,10 @@
         <section class="section forth-section">
             <div class="section-content">
                 <div class="section-content2" data-anime="left">
-                    <h2>About Us</h2>
+                    <h2>Track link performance with the built-in analytics for free.</h2>
                     <p>
-                        Shine it a multidisciplinary software house with driven collaborates that like to work togheter to always bring the best product possible.
-                        Our goal is to ignite the results of our clients with the power of tech and let our spark in IT.
+                        Keep track of how many times your biolinkypage gets visited,
+                        how many linkclicks you have as well as the progression over time of each of your links
                     </p>
                 </div>
             </div>
@@ -78,19 +68,19 @@
                 <div class="section-content2" data-anime="right">
                     <img alt="tools" src="../../static/leadfy/img/PNG/Objects/tools.png">
                     <p>
-                        We like to create things with good functionalities. But what we enjoy even more is creating those things with a beautiful UI, that users like to see.
+                        Give your page your own face.
                     </p>
                     <br>
 
                     <img alt="phone" src="../../static/leadfy/img/PNG/Objects/phone.png">
                     <p>
-                        As our costumer you’ll be always in touch with us with updates provided and questions answered during all stages of development.
+                        Your page will look good in every device.
                     </p>
                     <br>
 
                     <img alt="rocket" src="../../static/leadfy/img/PNG/Objects/rocket.png">
                     <p>
-                        Our mission is to empower people and customers to achieve the best results.
+                        Combine all your favorite links in one place
                     </p>
                     <br>
 
@@ -102,19 +92,9 @@
         <section class="section sixth-section">
             <div class="section-content">
                 <div class="section-content2" data-anime>
-                    <h2>Are you a passionate developer?</h2>
-                    <p>We are more than happy to receive your application!</p>
-                    <a class="cta cta3" href="{% url 'home' %}">APPLY</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section third-section">
-            <div class="section-content">
-                <div class="section-content2" data-anime>
-                    <h3>A wide variety of technologies</h3>
-                    <p><span id="stacks">Python</span></p>
-                    <a class="cta cta2" href="{% url 'home' %}">TALK TO US</a>
+                    <h2>Get started now!</h2>
+                    <p>Share your loved links now with the world.</p>
+                    <a class="cta cta3" href="{% url 'account_signup' %}">START FREE</a>
                 </div>
             </div>
         </section>

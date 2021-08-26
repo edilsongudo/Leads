@@ -234,7 +234,8 @@ def get_map(day1, day2, model, request):
 
     state_geo = 'custom.geo (1).json'
     m = folium.Map(location=[0, 0], zoom_start=0)
-    folium.Choropleth(geo_data=state_geo, name='Choropleth', data=df, columns=['location', 'truck_count'], key_on="feature.properties.sovereignt", fill_color="YlGn", fill_opacity=0.7,
+    folium.Choropleth(geo_data=state_geo, name='Choropleth', data=df,
+        columns=['location', 'truck_count'], key_on="feature.properties.sovereignt", fill_color="YlGn", fill_opacity=0.5,
                       line_opacity=0.2, legend_name="Links Visits").add_to(m)
     folium.LayerControl().add_to(m)
 

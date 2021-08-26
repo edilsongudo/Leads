@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'AmaticSC-Bold';
+    src:  url('../fonts/AmaticSC-Bold.ttf')
+}
+
 :root {
   --color1: #c3cfe2;
   --color2: #c3cfe2;

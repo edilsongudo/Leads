@@ -1,3 +1,9 @@
+:root {
+  --color1: #7793ED;
+  --color2: #A5B6EC;
+  --color3: #5B70B4;
+}
+
 @font-face {
   font-family: "Circular";
   src: url("../fonts/lineto-circular-black.woff") format("woff");
@@ -27,11 +33,13 @@ body {
   height: auto;
   font-family: "Circular", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
-  color: #5B70B4;
+  color: var(--color3);
   background-image: url(../img/PNG/Backgrounds/bg2.png);
 }
 
-
+.mockup-image {
+  max-height: 100vh;
+}
 
 .features {
   display: flex;
@@ -69,7 +77,6 @@ ul {
 }
 
 .first-section {
-  background: url(../img/PNG/Examples/bg8-2.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
@@ -78,10 +85,12 @@ ul {
 
 .first-section .section-content {
   margin-top: 10%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .second-section {
-  background-image: linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: linear-gradient(90deg, var(--color1), var(--color2));
   color: white;
   display: flex;
   align-items: center;
@@ -95,7 +104,7 @@ ul {
   text-align: center;
   min-height: 50vh;
   color: #fff;
-  background-image: url("../img/PNG/Characters/women handup.png"), linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: url("../img/PNG/Characters/women handup.png"), linear-gradient(90deg, var(--color1), var(--color2));
   background-size: contain;
   background-position: left;
 }
@@ -105,7 +114,7 @@ ul {
 }
 
 .sixth-section {
-  background-image: url("../img/PNG/Characters/man with map.png"), linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: url("../img/PNG/Characters/man with map.png"), linear-gradient(90deg, var(--color1), var(--color2));
   color: white;
   background-size: contain;
   background-position: right;
@@ -154,15 +163,15 @@ ul {
 }
 
 .cta1 {
-  border: 2px solid #7793ED;
+  border: 2px solid var(--color1);
   background: transparent;
-  box-shadow: 1px 1px 1px  #A5B6EC;
-  color: #7793ED;
+  box-shadow: 1px 1px 1px  var(--color2);
+  color: var(--color1);
 }
 
 .cta1:hover {
   border: none;
-  background-image: linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: linear-gradient(90deg, var(--color1), var(--color2));
   color: white;
   transition: 0.3s;
 }
@@ -170,12 +179,12 @@ ul {
 
 .cta2 {
   border: none;
-  background-image: linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: linear-gradient(90deg, var(--color1), var(--color2));
   color: white;
 }
 
 .cta2:hover {
-  border: 2px solid #7793ED;
+  border: 2px solid var(--color1);
   background: transparent;
   box-shadow: 1px 1px 1px  #A5B6EC;
   color: #7793ED;
@@ -190,7 +199,7 @@ ul {
 
 .cta3:hover {
   background: #fff;
-  color: #7793ED;
+  color: var(--color1);
 }
 
 
@@ -240,7 +249,7 @@ ul {
 
 
 footer {
-  background-image: linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: linear-gradient(90deg, var(--color1), var(--color2));
   font-size: 16px;
   font-weight: normal;
   text-align: center;
@@ -333,7 +342,7 @@ footer i {
 }
 
 .job-card {
-  background-image: linear-gradient(90deg, #7793ED, #A5B6EC);
+  background-image: linear-gradient(90deg, var(--color1), var(--color2));
   padding: 30px;
   border-radius: 6px;
   color: white;

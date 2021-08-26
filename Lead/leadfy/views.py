@@ -17,7 +17,8 @@ from django.urls import reverse
 from ast import literal_eval as make_tuple
 from django.db.models import Count
 from django_pandas.io import read_frame
-
+import plotly.express as px
+import plotly.io as pio
 
 
 @login_required
@@ -30,15 +31,44 @@ def dashboard(request, days):
 
     if request.is_ajax():
         if days == '0':
-            return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'channels': channels, 'visits': visits, 'clicks_per_hours': hours(day1, day2, PageVisit, request)['hours'], 'labels': hours(day1, day2, PageVisit, request)['labels'], 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+            return JsonResponse(
+                {'page_views': number_of_clicks(day1, day2, PageVisit, request),
+                'channels': channels,
+                'visits': visits,
+                'clicks_per_hours': hours(day1, day2, PageVisit, request)['hours'],
+                'labels': hours(day1, day2, PageVisit, request)['labels'],
+                'number_of_leads': number_of_leads(day1, day2, LeadModel, request)}
+                )
+
         elif days == '7':
             labels = get_days(day1, day2, PageVisit, request)['list_of_days2']
             return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'channels': channels, 'visits': visits, 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
+
         elif days == '30':
             labels = get_days(day1, day2, PageVisit, request)['list_of_days2']
             return JsonResponse({'page_views': number_of_clicks(day1, day2, PageVisit, request), 'channels': channels, 'visits': visits, 'clicks_per_hours': get_days(day1, day2, PageVisit, request)['list_of_days'], 'labels': labels, 'number_of_leads': number_of_leads(day1, day2, LeadModel, request)})
 
     m = get_map(day1, day2, PageVisit, request)
+
+    data = {
+        'id': ['Mozambique', 'Brazil', 'Portugal', 'Argentina'],
+        'country_code': ['Mozambique', 'Brazil', 'Portugal', 'Argentina'],
+        'visits': [80, 128, 4, 100]
+    }
+
+    df = pd.DataFrame(data)
+    df.set_index('country_code', inplace=True)
+    print(df)
+
+    state_geo = json.load(open('custom.geo (1).json', 'r'))
+
+    for feature in state_geo['features']:
+        feature['id'] = feature['properties']['sovereignt']
+
+    m = px.choropleth(df, locations="id",
+                      geojson=state_geo, color="visits")
+    # m.show()
+    m = m.to_html()
 
     return render(request, 'leadfy/dashboard.html', {'m': m})
 
