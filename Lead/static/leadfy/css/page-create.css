@@ -108,6 +108,7 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
+  margin-bottom: 100px;
 }
 
 .cta1 {
@@ -341,6 +342,7 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
 
 .settingscontainer {
   color: black;
+  margin-bottom: 100px;
 }
 
 .setting {
