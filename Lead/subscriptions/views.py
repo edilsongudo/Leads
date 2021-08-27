@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 @login_required
 def subscribe(request):
     if request.user.subscription.plan == 'Free':
-        return render(request, 'subscriptions/index.html')
+        return render(request, 'subscriptions/subscribe.html')
     else:
         return HttpResponseForbidden()
 

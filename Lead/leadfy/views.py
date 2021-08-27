@@ -23,6 +23,8 @@ import plotly.io as pio
 
 @login_required
 def dashboard(request, days):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
     day2 = datetime.date.today()
     day1 = day2 - datetime.timedelta(days=int(days))
 
@@ -50,25 +52,25 @@ def dashboard(request, days):
 
     m = get_map(day1, day2, PageVisit, request)
 
-    data = {
-        'id': ['Mozambique', 'Brazil', 'Portugal', 'Argentina'],
-        'country_code': ['Mozambique', 'Brazil', 'Portugal', 'Argentina'],
-        'visits': [80, 128, 4, 100]
-    }
+    # data = {
+    #     'id': ['Mozambique', 'Brazil', 'Portugal', 'Argentina'],
+    #     'country_code': ['Mozambique', 'Brazil', 'Portugal', 'Argentina'],
+    #     'visits': [80, 128, 4, 100]
+    # }
 
-    df = pd.DataFrame(data)
-    df.set_index('country_code', inplace=True)
-    print(df)
+    # df = pd.DataFrame(data)
+    # df.set_index('country_code', inplace=True)
+    # print(df)
 
-    state_geo = json.load(open('custom.geo (1).json', 'r'))
+    # state_geo = json.load(open('custom.geo (1).json', 'r'))
 
-    for feature in state_geo['features']:
-        feature['id'] = feature['properties']['sovereignt']
+    # for feature in state_geo['features']:
+    #     feature['id'] = feature['properties']['sovereignt']
 
-    m = px.choropleth(df, locations="id",
-                      geojson=state_geo, color="visits")
-    # m.show()
-    m = m.to_html()
+    # m = px.choropleth(df, locations="id",
+    #                   geojson=state_geo, color="visits")
+    # # m.show()
+    # m = m.to_html()
 
     return render(request, 'leadfy/dashboard.html', {'m': m})
 
@@ -143,6 +145,8 @@ def lead(request, short_url):
         new_visit.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
         new_visit.location = get_location(request)['country_name']
         new_visit.location_code = get_location(request)['country_code']
+        new_visit.device_type = get_user_agent(request)['device_type']
+        new_visit.os_type = get_user_agent(request)['os_type']
         new_visit.save()
 
     if not user.username in request.COOKIES:
@@ -178,6 +182,8 @@ def landing(request, username):
 
 
 def stats(request, username):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
     user = get_object_or_404(get_user_model(), username=username)
     if user == request.user:
         links = Link.objects.filter(user=user).order_by('-view_count')
@@ -360,6 +366,8 @@ def mobileimage(request):
 
 @login_required
 def socials(request):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
     fields = '__all__'
     exclude = ['user']
     # widgets = {
@@ -379,6 +387,8 @@ def socials(request):
 
 @login_required
 def integrations(request):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
     fields = '__all__'
     exclude = ['user']
     widgets = {

@@ -242,3 +242,34 @@ def get_map(day1, day2, model, request):
     m = m._repr_html_()
 
     return m
+
+
+
+def get_user_agent(request):
+    device_type = ''
+    browser_type = ''
+    browser_version = ''
+    os_type = ''
+    os_version = ''
+
+    if request.user_agent.is_mobile:
+        device_type = "Mobile"
+    if request.user_agent.is_tablet:
+        device_type = "Tablet"
+    if request.user_agent.is_pc:
+        device_type = "PC"
+
+    browser_type = request.user_agent.browser.family
+    browser_version = request.user_agent.browser.version_string
+    os_type = request.user_agent.os.family
+    os_version = request.user_agent.os.version_string
+
+    context = {
+        "device_type": device_type,
+        "browser_type": browser_type,
+        "browser_version": browser_version,
+        "os_type":os_type,
+        "os_version":os_version
+    }
+
+    return context

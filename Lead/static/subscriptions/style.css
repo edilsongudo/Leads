@@ -1,18 +1,48 @@
+:root {
+  --color1: #9251c5;
+  --color2: #b18eea;
+  --color3: #fff;
+  --color4: rgba(255, 255, 255, 0.7);
+}
+
 body {
     font-family: sans-serif;
     text-align: center;
+    color: var(--color3);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #c3cfe2;
 }
 
 .container {
-    width: 100%;
+    width: 400px;
     margin: 0 auto;
-    text-align: center;
 }
+
+.subscribebutton {
+    border-radius: 10px;
+    background: var(--color3);
+    border: 2px solid var(--color3);
+    color: var(--color1);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.subscribebutton:hover {
+    background: transparent;
+    color: var(--color3);
+}
+
 
 .pricing-table {
     margin: 0 auto;
-    color: #fff;
-    background: linear-gradient(90deg, #A5B6EC, #A5B6EC);
+    margin-bottom: 100px;
+    border: 1px solid var(--color3);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,16 +51,21 @@ body {
     padding-right: 30px;
     padding-top: 30px;
     border-radius: 10px;
+    background-image: linear-gradient(90deg, var(--color1), var(--color2));
 }
 
 .feature {
-    display: flex;
-    justify-content: space-between;
     padding: 10px;
+    width: 100%;
+    display: flex;
 }
 
 .feature i {
     margin-right: 10px;
+    background: var(--color3);
+    color: var(--color1);
+    padding: 5px;
+    border-radius: 50px;
 }
 
 .price-container {
@@ -38,15 +73,68 @@ body {
 }
 
 .price-value {
-    font-size: 6rem;
+    font-size: 2rem;
 }
 
 .price-periodicy {
-    font-size: 3rem;
-    margin-top: 3rem;
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
 #paypal-button-container {
     margin-top: 30px;
     width: 110%;
 }
+
+
+@media only screen and (max-width: 450px) {
+  .container {
+    width: 97%;
+  }
+}
+
+
+.footer {
+    width: 100vw;
+    position: absolute;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 1);
+    display:  flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    padding: 10px;
+    display: flex;
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px grey;
+}
+
+.footer img {
+    height: 24px;
+    width: 24px;
+    margin: 0;
+    transition: all 0.4s;
+}
+
+.footer img:hover {
+    height: 60px;
+    width: 60px;
+}
+
+.footer-active {
+}
+
+@media only screen and (min-width: 600px) {
+  .footer {
+    top: 0;
+    height: 100vh;
+    width: 65px;
+    flex-direction: column;
+  }
+}
+

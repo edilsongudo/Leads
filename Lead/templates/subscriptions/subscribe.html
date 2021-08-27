@@ -14,22 +14,23 @@
 
     <div class="container">
         <div class="pricing-table">
-            <div><h1>Premium</h1></div>
+            <div><h2>TRY PREMIUM</h2></div>
             <div class="price-container">
-                <div class="price-value">4$</div>
+                <div class="price-value">6 USD</div>
                 <div class="price-periodicy">/month</div>
             </div>
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <div>See Clicks Locations</div>
-            </div>
-            <div class="feature"><i class="fas fa-check"></i>See Clicks Refferal Channels</div>
+            <p>Improve your marketing strategy with the help of insightful statistics.</p>
+            <div class="feature"><i class="fas fa-check"></i>Create custom URLs For Your Links</div>
+            <div class="feature"><i class="fas fa-check"></i>Individual Clicks</div>
+            <div class="feature"><i class="fas fa-check"></i>Clicks Refferal Channels</div>
+            <div class="feature"><i class="fas fa-check"></i>Clicks Locations</div>
+            <div class="feature"><i class="fas fa-check"></i>Visitors Device Info</div>
             <div class="feature"><i class="fas fa-check"></i>Facebook Pixel Integration</div>
-            <div class="feature"><i class="fas fa-check"></i>Mailchimp Integration</div>
-            <div class="feature"><i class="fas fa-check"></i>Export Data</div>
+            <div class="feature"><i class="fas fa-check"></i>Export Statistics</div>
             <div class="feature"><i class="fas fa-check"></i>Charts to Visualize Data</div>
-            <div class="feature"><i class="fas fa-check"></i>Advanced Settings</div>
+            <div class="feature"><i class="fas fa-check"></i>Social Media Links</div>
             <div id="paypal-button-container"></div>
+            <!-- \ -->
         </div>
     </div>
     <script>
@@ -44,9 +45,26 @@
                 onApprove: function(data, actions) {
                     window.open('/premium/activate/' + data.subscriptionID, '_self')
                     alert('You have successfully created subscription ' + data.subscriptionID);
-                }
+                },
+
+                style: {color: 'silver'}
 
             }).render('#paypal-button-container');
     </script>
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/blackhome.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/bluegear.png' %}"></a>
+        </div>
+    </div>
 </body>
 </html>

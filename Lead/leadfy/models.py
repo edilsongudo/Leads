@@ -54,6 +54,8 @@ class PageVisit(models.Model):
         max_length=200, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
     location_code = models.CharField(max_length=100, null=True, blank=True)
+    device_type = models.CharField(max_length=100, null=True, blank=True)
+    os_type = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f'/{self.page.short_url} at {self.time}'
