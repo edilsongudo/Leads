@@ -6,16 +6,16 @@ from .paypal import *
 from .utils import *
 from datetime import datetime
 from django.http import HttpResponse, HttpResponseForbidden
+from django.conf import settings
 
 
 @login_required
 def subscribe(request):
+    PAYPAL_PLAN_ID = settings.PAYPAL_PLAN_ID
     if request.user.subscription.plan == 'Free':
-        return render(request, 'subscriptions/subscribe.html')
+        return render(request, 'subscriptions/subscribe.html', {'plan_id': PAYPAL_PLAN_ID})
     else:
         return HttpResponseForbidden()
-
-# BE CAREFUL DO NOT ALLOW USERS USE A FAKE PAYPAL ID
 
 
 @login_required

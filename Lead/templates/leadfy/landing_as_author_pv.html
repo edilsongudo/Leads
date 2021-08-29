@@ -62,6 +62,10 @@
                     </a>
                 {% endfor %}
             </div>
+                <a href="{% url 'subscribebutton' %}" class="page-link link">{{ user.subscribebutton.call_to_action_button_text }}
+                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
             <!-- <div class="socials">
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-tiktok"></i>

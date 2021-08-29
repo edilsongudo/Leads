@@ -17,6 +17,7 @@ urlpatterns = [
     path('desktop/upload/', desktopimage, name="desktopimage"),
     path('preferences/', preferences, name="preferences"),
     path('settings/', settings, name="settings"),
+    path('subscribebutton-edit/', subscribebutton, name="subscribebutton"),
     path('advanced/', advanced, name="advanced"),
     path('leads/', leads, name="leads"),
     path('dashboard/<str:days>', dashboard, name="dashboard"),

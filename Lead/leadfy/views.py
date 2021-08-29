@@ -124,8 +124,8 @@ def lead(request, short_url):
             response.set_cookie(f'{user.username}_captured', '', max_age=86400 * 365)
             return response
 
-    if user.advanced.ask_visitors_to_subscribe_when_they_click_in_a_link == False:
-        return redirect(link.link)
+    # if user.advanced.ask_visitors_to_subscribe_when_they_click_in_a_link == False:
+    #     return redirect(link.link)
 
     if link.use_this_link_to_ask_visitors_to_subscribe == False:
         return redirect(link.link)
@@ -232,6 +232,17 @@ def advanced(request):
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/advanced.html', context)
 
+@login_required
+def subscribebutton(request):
+    form = SubscribeButtonForm(instance=request.user.subscribebutton)
+    if request.method == 'POST':
+        form = SubscribeButtonForm(request.POST, instance=request.user.subscribebutton)
+        if form.is_valid():
+            form.save()
+            return redirect('landing_as_author_pv', username=request.user.username)
+    context = context_dict(user=request.user, form=form)
+    return render(request, 'leadfy/subscribebutton.html', context)
+
 
 @login_required
 def preferences(request):
@@ -261,7 +272,7 @@ def preferences(request):
             else:
                 preference.link_border_color = request.POST['link_background_color']
             preference.primary_font_size = int(request.POST['primary_font_size'])
-            preference.name_font_size = int(request.POST['name_font_size'])
+            preference.name_font_size = int(request.POST['primary_font_size']) # int(request.POST['name_font_size'])
             preference.background_image_brightness = int(request.POST['brightness'])
             preference.border_radius = int(request.POST['border_radius'])
             preference.save()

@@ -9,8 +9,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="/media/customstylesheets/{{ user.username }}.css">
-        {% block head %}
-        {% endblock %}
         <style type="text/css">
 
             @font-face {
@@ -48,6 +46,8 @@
             {% endif %}
 
         </style>
+        {% block head %}
+        {% endblock %}
     </head>
     <body>
         <div class="container">

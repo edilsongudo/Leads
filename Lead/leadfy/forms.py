@@ -34,3 +34,11 @@ class AdvancedForm(forms.ModelForm):
         model = Advanced
         fields = '__all__'
         exclude = ['user']
+
+
+class SubscribeButtonForm(forms.ModelForm):
+
+    class Meta:
+        model = SubscribeButton
+        fields = '__all__'
+        exclude = ['user']

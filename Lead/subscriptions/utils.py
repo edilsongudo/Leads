@@ -1,11 +1,12 @@
 from .paypal import *
 from django.conf import settings
+from .paypal import get_access_token
 from .models import Subscription
 
 
 def activate_subscription(user, SubID):
     details = get_subscription_details(
-        settings.PAYPAL_ACCESS_TOKEN, SubID)
+        get_access_token(), SubID)
     status = details['status']
     outstanding_amt = float(
         details['billing_info']['outstanding_balance']['value'])
@@ -20,7 +21,7 @@ def activate_subscription(user, SubID):
 
 def downgrade_subscription(user):
     details = get_subscription_details(
-        settings.PAYPAL_ACCESS_TOKEN, user.subscription.paypal_subscription_id)
+        get_access_token(), user.subscription.paypal_subscription_id)
     status = details['status']
     outstanding_amt = float(
         details['billing_info']['outstanding_balance']['value'])

@@ -161,10 +161,11 @@ EMAIL_HOST_PASSWORD = config['email']['EMAIL_HOST_PASSWORD']
 PAYPAL_ACCOUNT = config['paypal']['ACCOUNT']
 PAYPAL_CID = config['paypal']['CID']
 PAYPAL_SECRET = config['paypal']['SECRET']
-PAYPAL_ACCESS_TOKEN = config['paypal']['ACCESS_TOKEN']
 PAYPAL_PRODUCT_ID = config['paypal']['PRODUCT_ID']
 PAYPAL_PLAN_ID = config['paypal']['PLAN_ID']
 
+PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
+PAYPAL_TEST = True #CHANGE THIS TO FALSE IN PRODUCTION
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
@@ -188,6 +189,3 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-
-PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
-PAYPAL_TEST = True

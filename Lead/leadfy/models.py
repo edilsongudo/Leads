@@ -30,7 +30,7 @@ class Link(models.Model):
     link = models.URLField(
         max_length=200, null=True, blank=False)
     show_link = models.BooleanField(default=True)
-    use_this_link_to_ask_visitors_to_subscribe = models.BooleanField(default=True)
+    use_this_link_to_ask_visitors_to_subscribe = models.BooleanField(default=False)
     view_count = models.IntegerField(
         default=0)
     order = models.IntegerField(
@@ -107,12 +107,19 @@ class Preferences(models.Model):
 
 class Advanced(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    show_subscribe_button_in_links_page = models.BooleanField(default=False)
-    ask_visitors_to_subscribe_when_they_click_in_a_link = models.BooleanField(default=False)
-    call_to_action = models.CharField(max_length=150, default="Would you like to subscribe to my email list? Hint: You can skip this step if you wish.")
-    call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
     seconds_to_wait_before_asking_user_to_subscribe_again = models.IntegerField(
         default=3600, validators=[MinValueValidator(0), MaxValueValidator(324000)])
+    # ask_visitors_to_subscribe_when_they_click_in_a_link = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.user.username} Advanced Preferences'
+
+
+class SubscribeButton(models.Model):
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    call_to_action = models.CharField(max_length=150, default="Would you like to subscribe to my email list?")
+    call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
+    show = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.user.username} Advanced Preferences'
