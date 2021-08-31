@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 import os
+from PIL import Image
+
 
 class LeadModel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=False)
@@ -103,6 +105,21 @@ class Preferences(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'
+
+    def save(self, *args, **kwargs):
+        super(Preferences, self).save(*args, **kwargs)
+
+        desktop_img = Image.open(self.background_image_desktop.path)
+        if desktop_img.width > 1280:
+            output_size = (1280, 640)
+            desktop_img.thumbnail(output_size)
+            desktop_img.save(self.background_image_desktop.path)
+
+        mobile_img = Image.open(self.background_image_mobile.path)
+        if mobile_img.height > 1280:
+            output_size = (640, 1280)
+            mobile_img.thumbnail(output_size)
+            mobile_img.save(self.background_image_mobile.path)
 
 
 class Advanced(models.Model):

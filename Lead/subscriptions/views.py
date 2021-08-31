@@ -5,7 +5,7 @@ from django.conf import settings
 from .paypal import *
 from .utils import *
 from datetime import datetime
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 from django.conf import settings
 
 
@@ -27,3 +27,9 @@ def activate(request, subID):
 @login_required
 def deactivate(request, subID):
     return render(request, 'subscriptions/deactivate.html')
+
+
+@login_required
+def manage_subs(request):
+    # manage_subscriptions()
+    return JsonResponse({'Success': 'Success'})

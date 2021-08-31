@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    'django_cleanup.apps.CleanupConfig',
+    # 'django_unused_media',
 ]
 
 MIDDLEWARE = [
@@ -165,7 +167,7 @@ PAYPAL_PRODUCT_ID = config['paypal']['PRODUCT_ID']
 PAYPAL_PLAN_ID = config['paypal']['PLAN_ID']
 
 PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
-PAYPAL_TEST = True #CHANGE THIS TO FALSE IN PRODUCTION
+PAYPAL_TEST = True  # CHANGE THIS TO FALSE IN PRODUCTION
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
