@@ -388,3 +388,7 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
 .title {
   margin-top: 40px;
 }
+
+.thankyou {
+  text-align: center;
+}

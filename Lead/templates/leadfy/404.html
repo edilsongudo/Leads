@@ -1,20 +1,29 @@
-{% extends 'leadfy/index.html' %}
-
-{% block meta %}
-    <meta name="description" content="404 - Not Found">
-    <meta name="robots" content="noindex">
-{% endblock %}
-
-{% block title %}
-    <title>This page does not exist</title>
-{% endblock %}
-
-{% block content %}
-
-    <div style="max-width: 70%; margin: 0 auto; text-align: center; font-weight: 400">
-        <h1>404</h1>
-        <p>This page does not exist</p>
-        <a class="cta cta1" href="{% url 'home' %}">Home</a>
-    </div>
-
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>404 Error Page | CodingNepal</title>
+      <link rel="stylesheet" href="{% static 'leadfy/404.css' %}">
+   </head>
+   <body>
+      <div id="error-page">
+         <div class="content">
+            <h2 class="header" data-text="404">
+               404
+            </h2>
+            <h4 data-text="Opps! Page not found">
+               Opps! Page not found
+            </h4>
+            <p>
+               Sorry, the page you're looking for doesn't exist. If you think something is broken, report a problem.
+            </p>
+            <div class="btns">
+               <a href="{% url 'home' %}">return home</a>
+               <!-- <a href="https://www.codingnepalweb.com/">report problem</a> -->
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

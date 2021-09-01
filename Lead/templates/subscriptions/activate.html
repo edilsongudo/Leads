@@ -1,14 +1,19 @@
-{% extends 'leadfy/landingbase.html' %}
+{% extends 'leadfy/link-base.html' %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 	<div class="content">
 		<div class="overflow">
 			<div class="thankyou">
-				<h1>Thank You</h1>
-				<p>Thank you for using our platform and subscribing to our premium plan.
-				We are very happy to have you as a costumer!</p>
-				<a href="{% url 'user-landing' user.username %}" class="cta cta1">Home</a>
+				<h1>You are a premium user now</h1>
+				<p>
+				We are very happy!
+				<br>
+				Your account now has access to all features available in this application :) We hope you enjoy them.
+				<br>
+				Thank you for using our platform and subscribing to our premium plan.
+				</p>
+				<a href="{% url 'landing_as_author_pv' user.username %}" class="cta cta1">Home</a>
 			</div>
 		</div>
 	</div>
