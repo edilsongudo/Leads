@@ -8,6 +8,11 @@
     src:  url('../fonts/CeraProMedium.woff2')
 }
 
+@font-face {
+    font-family: 'Juliagar';
+    src:  url('../fonts/Juliagar.otf')
+}
+
 body {
     background: rgb(251, 249, 251);
     font-family: 'CeraProBold', sans-serif;

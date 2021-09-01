@@ -3,6 +3,11 @@
     src:  url('../fonts/AmaticSC-Bold.ttf')
 }
 
+@font-face {
+    font-family: 'Juliagar';
+    src:  url('../fonts/Juliagar.otf')
+}
+
 :root {
   --color1: #c3cfe2;
   --color2: #c3cfe2;
@@ -16,7 +21,7 @@ body {
   background-repeat: no-repeat;
   color: var(--color3);
   min-height: 100vh;
-  font-family: 'AmaticSC-Bold', sans-serif;
+  font-family: 'Juliagar', sans-serif;
 }
 
 .invisible {
