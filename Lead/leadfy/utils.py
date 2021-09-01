@@ -26,6 +26,7 @@ def context_dict(user, **kwargs):
     link_border_color = user.preferences.link_border_color
     link_text_color = user.preferences.link_text_color
     font_family = user.preferences.font_family
+    lastmodified = user.preferences.lastmodified
 
     if use_background_image:
         use_background_image = "true"
@@ -54,7 +55,8 @@ def context_dict(user, **kwargs):
         'link_background_color': link_background_color,
         'link_border_color': link_border_color,
         'link_text_color': link_text_color,
-        'font_family': font_family
+        'font_family': font_family,
+        'lastmodified': lastmodified
     }
 
     for k, v in kwargs.items():

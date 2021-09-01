@@ -48,7 +48,7 @@ function submitdata(response, url) {
 
 
 
-function handle_file_crop(basic, btn, image_input, preview_image, uploadURL, container, cropbutton) {
+function handle_file_crop(basic, btn, image_input, preview_image, uploadURL, container, cropbutton, size) {
     btn.addEventListener('click', function (e) {
         e.preventDefault()
         image_input.click()
@@ -74,7 +74,7 @@ function handle_file_crop(basic, btn, image_input, preview_image, uploadURL, con
 
         document.querySelector(cropbutton).addEventListener('click', function() {
 
-            basic.croppie('result', {type: 'blob', size: 'original'}).then(function(response) {
+            basic.croppie('result', {type: 'blob', size: size}).then(function(response) {
                 preview_image.style.backgroundImage = `url(${URL.createObjectURL(response, {oneTimeOnly: true})})`
                 document.querySelector(container).style.display = 'none'
 

@@ -101,7 +101,7 @@ class Preferences(models.Model):
         max_length=100,  default="rgba(0, 0, 0, 1)")
     link_text_color = models.CharField(
         max_length=100,  default="rgba(255, 255, 255, 1)")
-    custom_css_file = models.FileField(upload_to='customstylesheets', null=True, blank=True)
+    lastmodified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return f'{self.user.username} Landing Page Preferences'
@@ -111,13 +111,13 @@ class Preferences(models.Model):
 
         desktop_img = Image.open(self.background_image_desktop.path)
         if desktop_img.width > 1280:
-            output_size = (1280, 640)
+            output_size = (1280, 720)
             desktop_img.thumbnail(output_size)
             desktop_img.save(self.background_image_desktop.path)
 
         mobile_img = Image.open(self.background_image_mobile.path)
         if mobile_img.height > 1280:
-            output_size = (640, 1280)
+            output_size = (720, 1280)
             mobile_img.thumbnail(output_size)
             mobile_img.save(self.background_image_mobile.path)
 

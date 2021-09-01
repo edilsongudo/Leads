@@ -11,7 +11,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(125.282, 93.078, 149.816, 1), rgba(125, 93, 150, 1));
+  background-image: linear-gradient(90deg, rgba(125.282, 93.078, 149.816, 1), rgba(194.158, 171.598, 211.784, 1));
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
@@ -149,7 +149,7 @@ a:hover {
 
 .page-link {
   border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 28px;
+  border-radius: 27px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
