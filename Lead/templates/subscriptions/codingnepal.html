@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upgrade Account</title>
+  <link rel="stylesheet" href="{% static 'subscriptions/codingnepal.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <script src="https://www.paypal.com/sdk/js?client-id=AfOSCHffwel5_IJUTZyAYV4fv4suQ6JT7g-4MJihCCNtY6ssO90uytF7PIwgO8zSW25HV_Y8-5oR7-do&vault=true&intent=subscription"></script>
+
+  <div class="wrapper">
+    <div class="card-area">
+      <div class="cards">
+        <div class="row">
+          <div class="price-details">
+            <span class="price">6</span>
+            <p>Premium</p>
+          </div>
+          <ul class="features">
+            <li><i class="fas fa-check"></i><span>Custom URLs</span></li>
+            <li><i class="fas fa-check"></i><span>Individual Clicks</span></li>
+            <li><i class="fas fa-check"></i><span>Refferal Channels</span></li>
+            <li><i class="fas fa-check"></i><span>Clicks Locations</span></li>
+            <li><i class="fas fa-check"></i><span>Visitors Device</span></li>
+            <li><i class="fas fa-check"></i><span>Facebook Pixel</span></li>
+            <li><i class="fas fa-check"></i><span>Social Links</span></li>
+            <li><i class="fas fa-check"></i><span>Export Stats</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- <button>Choose plan</button> -->
+    <div id="paypal-button-container"></div>
+  </div>
+
+  <!-- Nav -->
+  <div class="footer flex">
+      <div class="sidebar-link footer-active">
+          <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/blackhome.png' %}"></a>
+      </div>
+      <div class="sidebar-link footer-active">
+          <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+      </div>
+      <div class="sidebar-link">
+          <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
+      </div>
+      <div class="sidebar-link">
+          <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/bluegear.png' %}"></a>
+      </div>
+  </div>
+
+
+  <script>
+      paypal.Buttons(
+          {
+              createSubscription: function (data, actions) {
+                  return actions.subscription.create({
+                      'plan_id': '{{ plan_id }}'
+                  });
+              },
+
+              onApprove: function(data, actions) {
+                  window.open('/premium/activate/' + data.subscriptionID, '_self')
+                  alert('You have successfully created subscription ' + data.subscriptionID);
+              },
+
+              style: {color: 'blue', shape: 'pill'}
+
+          }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

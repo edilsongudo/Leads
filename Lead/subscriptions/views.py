@@ -13,7 +13,7 @@ from django.conf import settings
 def subscribe(request):
     PAYPAL_PLAN_ID = settings.PAYPAL_PLAN_ID
     if request.user.subscription.plan == 'Free':
-        return render(request, 'subscriptions/subscribe.html', {'plan_id': PAYPAL_PLAN_ID})
+        return render(request, 'subscriptions/codingnepal.html', {'plan_id': PAYPAL_PLAN_ID})
     else:
         return HttpResponseForbidden()
 
