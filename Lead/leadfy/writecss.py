@@ -328,6 +328,10 @@ input:checked[type="checkbox"]:before {{
   left:40px;
 }}
 
+.thankyou {{
+  text-align: center;
+}}
+
 """
 
   if use_background_image == 'true':

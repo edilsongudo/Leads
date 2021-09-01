@@ -8,6 +8,7 @@
             <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
                 <button class="cta cta1" type="submit">Yes, Logout</button>
+                <a href="{% url 'settings' %}" class="cta cta1">Return</a>
             </form>
         </small>
     </div>

@@ -140,7 +140,7 @@ useimageorcolor.addEventListener('change', function () {
         document.querySelector('.imagesinputs').style.display = 'none'
     } else {
         document.querySelector('#brightness_container').style.opacity = 1
-        document.querySelector('#brightness_container').style.display = 'flex'
+        document.querySelector('#brightness_container').style.display = 'block'
         document.querySelector('.colorsdivs1').style.opacity = 0
         document.querySelector('.colorsdivs1').style.display = 'none'
         document.querySelector('#colorsdiv1label').style.display = 'none'

@@ -4,9 +4,12 @@
 {% block content %}
 	<div class="content">
 		<div class="overflow">
-			<h1>Thank You</h1>
-			<p>Thank you for subscribing to email list :)</p>
-			<a href="{% url 'user-landing' user.username %}" class="cta cta1">Home</a>
+			<div class="thankyou">
+				<h1>Thank You</h1>
+				<p>Thank you for subscribing to email my list :)</p>
+				<a href="{% url 'user-landing' user.username %}" class="cta cta1">Home</a>
+			</div>
+
 		</div>
 	</div>
 {% endblock %}

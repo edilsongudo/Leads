@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Subscribe</title>
-</head>
-<body>
-    <p>Your account has been succesfully activated.</p>
-</body>
-</html>
+{% extends 'leadfy/landingbase.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="content">
+		<div class="overflow">
+			<div class="thankyou">
+				<h1>Thank You</h1>
+				<p>Thank you for using our platform and subscribing to our premium plan.
+				We are very happy to have you as a costumer!</p>
+				<a href="{% url 'user-landing' user.username %}" class="cta cta1">Home</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

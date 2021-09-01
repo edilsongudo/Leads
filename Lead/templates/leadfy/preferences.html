@@ -38,13 +38,14 @@
             {% csrf_token %}
 
             <div class="bgtypechoose">
-                <h5>Background</h5>
-                    <label form="bgtypeequalsimage">Use Image</label>
+                <h5>Background Type</h5>
+                    <label form="bgtypeequalsimage">Images</label>
                     <input type="radio" name="use_background_image" value="true" id="bgtypeequalsimage">
-                    <label form="bgtypeequalscolor">Use Colors</label>
+                    <label form="bgtypeequalscolor">Colors</label>
                     <input type="radio" name="use_background_image" value="false" id="bgtypeequalscolor">
             </div>
 
+        <h5>Font Family</h5>
           <div class="select-box">
             <div class="options-container">
                 {% for font in fonts %}
@@ -59,8 +60,9 @@
             </div>
           </div>
 
+                <h5>Font Size</h5>
                 <div class="range-input">
-                <div class="inputlabel"">Text</div>
+                <div class="inputlabel"">px</div>
                   <input name="primary_font_size" type="range" min="12" max="24" value="{{ primary_font_size }}" step="1"/>
                   <div class="value">
                     <div>{{ primary_font_size }}</div>
@@ -75,21 +77,27 @@
                   </div>
                 </div> -->
 
+                <h5>Buttons Corners</h5>
                 <div class="range-input">
-                <div class="inputlabel"">Corners</div>
+                <div class="inputlabel"">Radius</div>
                   <input name="border_radius" type="range" min="0" max="50" value="{{ border_radius }}" step="1"/>
                   <div class="value">
                     <div>{{ border_radius }}</div>
                   </div>
                 </div>
 
-                <div class="range-input" id="brightness_container">
-                <div class="inputlabel"">Dim</div>
-                  <input name="brightness" id="brightness" type="range" min="0" max="75" value="{{ brightness }}" step="1"/>
-                  <div class="value">
-                    <div>{{ brightness }}</div>
-                  </div>
+                <div id="brightness_container">
+                    <h5>Reduce Brightness</h5>
+                    <div class="range-input">
+                    <div class="inputlabel"">%</div>
+                      <input name="brightness" id="brightness" type="range" min="0" max="75" value="{{ brightness }}" step="1"/>
+                      <div class="value">
+                        <div>{{ brightness }}</div>
+                      </div>
+                    </div>
                 </div>
+
+
 
                 <div class="colorsdivcontainer">
                     <div>

@@ -125,6 +125,8 @@ body {
 .cta1:hover {
   background:  transparent;
   transition: 0.3s;
+  text-decoration: none;
+  color: black;
 }
 
 input[type=text], input[type=url], input[type=email], input[type=password], input[type=search], input[type=tel], input[type=text] {
