@@ -105,6 +105,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE':  config['database']['ENGINE'],
+#         'NAME': config['database']['NAME'],
+#         'USER': config['database']['USER'],
+#         'PASSWORD': config['database']['PASSWORD'],
+#         'HOST': config['database']['HOST'],
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -156,7 +166,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'edilson4football@gmail.com'
+EMAIL_HOST_USER = config['email']['EMAIL_HOST']
 EMAIL_HOST_PASSWORD = config['email']['EMAIL_HOST_PASSWORD']
 
 
@@ -166,7 +176,7 @@ PAYPAL_SECRET = config['paypal']['SECRET']
 PAYPAL_PRODUCT_ID = config['paypal']['PRODUCT_ID']
 PAYPAL_PLAN_ID = config['paypal']['PLAN_ID']
 
-PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
+# PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
 PAYPAL_TEST = True  # CHANGE THIS TO FALSE IN PRODUCTION
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
