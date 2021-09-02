@@ -31,5 +31,5 @@ def deactivate(request, subID):
 
 @login_required
 def manage_subs(request):
-    # manage_subscriptions()
+    manage_subscriptions()
     return JsonResponse({'Success': 'Success'})

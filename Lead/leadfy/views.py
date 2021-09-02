@@ -83,7 +83,7 @@ def home(request):
         return render(request, 'leadfy/home.html')
 
 @login_required
-def leads(request):
+def exportleads(request):
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
     writer.writerow(['Name', 'Email', 'Date', 'Referrer', 'Refferer Main Domain', 'Location'])
@@ -96,6 +96,20 @@ def leads(request):
 
     return response
 
+
+@login_required
+def exportlinks(request):
+    response = HttpResponse(content_type="text/csv")
+    writer = csv.writer(response)
+    writer.writerow(['Link_short_url', 'time', 'Referrer', 'Refferer Main Domain', 'Location', 'Device', 'OS'])
+
+    visits = PageVisit.objects.filter(page__user=request.user)
+    for visit in visits.values_list('page__title', 'time', 'referer', 'referer_main_domain', 'location', 'device_type', 'os_type'):
+        writer.writerow(visit)
+
+    response['Content-Disposition'] = 'attachment; filename="IndividualVisits.csv"'
+
+    return response
 
 
 def lead(request, short_url):
@@ -220,6 +234,9 @@ def settings(request):
     response = render(request, 'leadfy/settings.html')
     return response
 
+def export(request):
+    response = render(request, 'leadfy/export.html')
+    return response
 
 @login_required
 def advanced(request):

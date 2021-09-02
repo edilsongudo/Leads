@@ -1,0 +1,49 @@
+{% extends 'leadfy/link-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Settings</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content settingscontainer">
+        <div class="title">
+            <h4>Account</h4>
+        </div>
+        <div class="settings">
+            <div class="setting">
+                <a href="{% url 'exportleads' %}" class="setting-content">
+                    <img src="{% static 'leadfy/img/mailbox.png' %}">
+                    Download Subscribers CSV File
+                </a>
+            </div>
+            {% if request.user.subscription.plan == 'Premium' %}
+                <div class="setting">
+                    <a href="{% url 'exportlinks' %}" class="setting-content">
+                        <img src="{% static 'leadfy/img/mailbox.png' %}">
+                        Download Link Visits CSV File
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/blackhome.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/bluegear.png' %}"></a>
+        </div>
+    </div>
+{% endblock %}
+
+
+
