@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url(/media/fonts/Juliagar.otf)
+    src:  url("/media/fonts/Juliagar.otf")
 }
 
 body {

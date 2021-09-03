@@ -98,7 +98,7 @@ rangeInputs.forEach(function(rangeInput) {
 //Logic 2
 let options = document.querySelectorAll('.font')
 options.forEach(function(elem) {
-    new_font = new FontFace(elem.parentElement.children[0].value.split('.')[0], `url(/media/fonts/${elem.parentElement.children[0].value})`)
+    new_font = new FontFace(elem.parentElement.children[0].value.split('.')[0], `url("/media/fonts/${elem.parentElement.children[0].value}")`)
     new_font.load().then(function(loaded_face) {
         document.fonts.add(loaded_face)
         elem.style.fontFamily = elem.parentElement.children[0].value.split('.')[0]

@@ -169,15 +169,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config['email']['EMAIL_HOST']
 EMAIL_HOST_PASSWORD = config['email']['EMAIL_HOST_PASSWORD']
 
-
-PAYPAL_ACCOUNT = config['paypal']['ACCOUNT']
-PAYPAL_CID = config['paypal']['CID']
-PAYPAL_SECRET = config['paypal']['SECRET']
-PAYPAL_PRODUCT_ID = config['paypal']['PRODUCT_ID']
-PAYPAL_PLAN_ID = config['paypal']['PLAN_ID']
+PAYPAL_ENV = 'sandbox'
+PAYPAL_CID = config[PAYPAL_ENV]['CID']
+PAYPAL_SECRET = config[PAYPAL_ENV]['SECRET']
+PAYPAL_PRODUCT_ID = config[PAYPAL_ENV]['PRODUCT_ID']
+PAYPAL_PLAN_ID = config[PAYPAL_ENV]['PLAN_ID']
 
 # PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
-PAYPAL_TEST = True  # CHANGE THIS TO FALSE IN PRODUCTION
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 

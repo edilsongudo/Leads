@@ -27,7 +27,7 @@ def writecss(user):
 
 @font-face {{
     font-family: 'customfont';
-    src:  url(/media/fonts/{font})
+    src:  url("/media/fonts/{font}")
 }}
 
 body {{

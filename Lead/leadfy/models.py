@@ -26,7 +26,7 @@ class LeadModel(models.Model):
 
 class Link(models.Model):
     short_url = models.SlugField(default=generate_ref_code, null=True, unique=True)
-    title = models.CharField(max_length=30, null=True)
+    title = models.CharField(max_length=20, null=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True)
     link = models.URLField(
@@ -75,9 +75,9 @@ class Preferences(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
     color1 = models.CharField(
-        max_length=100, default="rgba(220.04, 179.365, 255, 1)")
+        max_length=100, default="rgba(180.468, 151.605, 207.461, 1)")
     color2 = models.CharField(
-        max_length=100,  default="rgba(161.738, 241.425, 240.989, 1)")
+        max_length=100,  default="rgba(252.309, 234.818, 179.729, 1)")
     body_font_color = models.CharField(
         max_length=100,  default="rgba(255, 255, 255, 1)")
     background_image_desktop = models.ImageField(
