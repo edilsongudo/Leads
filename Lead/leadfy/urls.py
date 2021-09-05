@@ -22,6 +22,7 @@ urlpatterns = [
     path('advanced/', advanced, name="advanced"),
     path('exportleads/', exportleads, name="exportleads"),
     path('exportlinks/', exportlinks, name="exportlinks"),
+    path('exportlink/<str:short_url>/', exportlink, name="exportlink"),
     path('dashboard/<str:days>', dashboard, name="dashboard"),
     path('link/create/', createlink, name="link-create"),
     path('link/<str:short_url>/edit/', editlink, name="link-edit"),

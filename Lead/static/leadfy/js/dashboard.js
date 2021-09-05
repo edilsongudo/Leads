@@ -36,7 +36,7 @@ function getCookie(name) {
                   labels: response.labels,
                   datasets: [
                   {
-                    label: 'Link Views',
+                    label: 'Unique Link Views',
                     fill: true,
                     lineTension: 0.1,
                     backgroundColor: '#A6A6F0',

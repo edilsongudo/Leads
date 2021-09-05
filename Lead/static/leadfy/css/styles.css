@@ -1,28 +1,8 @@
 :root {
-  --color1: #7793ED;
-  --color2: #A5B6EC;
-  --color3: #5B70B4;
-}
-
-@font-face {
-  font-family: "Circular";
-  src: url("../fonts/lineto-circular-black.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Circular";
-  src: url("../fonts/lineto-circular-pro-bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Circular";
-  src: url("../fonts/lineto-circular-pro-book.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
+  --color1: rgba(231.036, 203.154, 255, 1);
+  --color2: rgba(188.625, 255, 254.637, 1);
+  --color3: #000;
+  --color4: #000;
 }
 
 html,
@@ -34,11 +14,6 @@ body {
   font-family: "Circular", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
   color: var(--color3);
-  background-image: url(../img/PNG/Backgrounds/bg2.png);
-}
-
-.mockup-image {
-  max-height: 100vh;
 }
 
 .features {
@@ -81,17 +56,18 @@ ul {
   background-size: contain;
   background-position: right;
   min-height: 100vh;
+  background-image: url(../img/mockup2.png);
 }
 
 .first-section .section-content {
-  margin-top: 10%;
+  margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
 }
 
 .second-section {
   background-image: linear-gradient(90deg, var(--color1), var(--color2));
-  color: white;
+  color: var(--color4);
   display: flex;
   align-items: center;
   min-height: 50vh;
@@ -103,7 +79,7 @@ ul {
   align-items: center;
   text-align: center;
   min-height: 50vh;
-  color: #fff;
+  color: var(--color4);
   background-image: url("../img/mockupanalytics.png"), linear-gradient(90deg, var(--color1), var(--color2));
   background-size: contain;
   background-position: left;
@@ -115,7 +91,7 @@ ul {
 
 .sixth-section {
   background-image: url("../img/PNG/Characters/man with map.png"), linear-gradient(90deg, var(--color1), var(--color2));
-  color: white;
+  color: var(--color4);
   background-size: contain;
   background-position: right;
 }
@@ -172,7 +148,7 @@ ul {
 .cta1:hover {
   border: none;
   background-image: linear-gradient(90deg, var(--color1), var(--color2));
-  color: white;
+  color: var(--color4);
   transition: 0.3s;
 }
 
@@ -180,14 +156,14 @@ ul {
 .cta2 {
   border: none;
   background-image: linear-gradient(90deg, var(--color1), var(--color2));
-  color: white;
+  color: var(--color4);
 }
 
 .cta2:hover {
   border: 2px solid var(--color1);
   background: transparent;
-  box-shadow: 1px 1px 1px  #A5B6EC;
-  color: #7793ED;
+  box-shadow: 1px 1px 1px  var(--color1);
+  color: var(--color3);
 }
 
 
@@ -243,6 +219,11 @@ ul {
 
   .feature {
     max-width: 90%;
+  }
+
+  .first-section {
+    background-size: 100px;
+    background-position: center bottom;
   }
 
 }

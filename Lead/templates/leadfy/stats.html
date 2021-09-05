@@ -26,6 +26,7 @@
 
 {% block content %}
     <div class="content">
+        <h3>Total Unique Views</h3>
         <div class="overflow">
             <div class="skip toinvisible">
                 <form method="POST">
@@ -39,7 +40,7 @@
                         <div class="image-border">
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                         </div>
-                        <h1 class="name" id="name">Profile Views: {{ user.view_count }}</h1>
+                        <h1 class="name" id="name">Bio: <i class="fas fa-eye"></i>{{ user.view_count }}</h1>
                     </div>
                 </div>
             <div class="bio">{{ user.profile.bio }}</div>
@@ -48,9 +49,9 @@
                 <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a> -->
             </div>
             <div id="links">
-                <h4>Links Views</h4>
+                <h4>Links</h4>
                 {% for link in links %}
-                    <a data-id="{{ link.short_url }}" href="{% url 'link-edit' link.short_url %}" class="page-link link">
+                    <a data-id="{{ link.short_url }}" href="{% url 'exportlink' link.short_url %}" class="page-link link">
                         {{ link.title }}
                         <div class="linkviews"><i class="fas fa-eye"></i>{{ link.view_count }}</div>
                     </a>
@@ -61,10 +62,10 @@
     <!-- Nav -->
     <div class="footer flex">
         <div class="sidebar-link footer-active">
-            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/bluehome.png' %}"></a>
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/blackhome.png' %}"></a>
         </div>
         <div class="sidebar-link footer-active">
-            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/bluechart.png' %}"></a>
         </div>
         <div class="sidebar-link">
             <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>

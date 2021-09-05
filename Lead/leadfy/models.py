@@ -94,13 +94,13 @@ class Preferences(models.Model):
     name_font_size = models.IntegerField(
         default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
     border_radius = models.IntegerField(
-        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
+        default=10, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(
-        max_length=100,  default="rgba(0, 0, 0, 1)")
-    link_border_color = models.CharField(
-        max_length=100,  default="rgba(0, 0, 0, 1)")
-    link_text_color = models.CharField(
         max_length=100,  default="rgba(255, 255, 255, 1)")
+    link_border_color = models.CharField(
+        max_length=100,  default="rgba(255, 255, 255, 1)")
+    link_text_color = models.CharField(
+        max_length=100,  default="rgba(0, 0, 0, 1)")
     lastmodified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):

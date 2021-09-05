@@ -112,6 +112,21 @@ def exportlinks(request):
     return response
 
 
+@login_required
+def exportlink(request, short_url):
+    response = HttpResponse(content_type="text/csv")
+    writer = csv.writer(response)
+    writer.writerow(['time', 'Referrer', 'Refferer Main Domain', 'Location', 'Device', 'OS'])
+
+    visits = PageVisit.objects.filter(page__short_url=short_url)
+    for visit in visits.values_list('time', 'referer', 'referer_main_domain', 'location', 'device_type', 'os_type'):
+        writer.writerow(visit)
+
+    response['Content-Disposition'] = f'attachment; filename="{short_url}-visits.csv"'
+
+    return response
+
+
 def lead(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     user = link.user
