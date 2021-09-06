@@ -84,6 +84,9 @@ def home(request):
 
 @login_required
 def exportleads(request):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
+
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
     writer.writerow(['Name', 'Email', 'Date', 'Referrer', 'Refferer Main Domain', 'Location'])
@@ -99,6 +102,9 @@ def exportleads(request):
 
 @login_required
 def exportlinks(request):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
+
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
     writer.writerow(['Link_short_url', 'time', 'Referrer', 'Refferer Main Domain', 'Location', 'Device', 'OS'])
@@ -114,6 +120,9 @@ def exportlinks(request):
 
 @login_required
 def exportlink(request, short_url):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
+
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
     writer.writerow(['time', 'Referrer', 'Refferer Main Domain', 'Location', 'Device', 'OS'])
@@ -211,8 +220,7 @@ def landing(request, username):
 
 
 def stats(request, username):
-    if request.user.subscription.plan == 'Free':
-        return redirect('subscribe')
+
     user = get_object_or_404(get_user_model(), username=username)
     if user == request.user:
         links = Link.objects.filter(user=user).order_by('-view_count')
