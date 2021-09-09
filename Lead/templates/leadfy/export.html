@@ -18,14 +18,12 @@
                     Download Subscribers CSV File
                 </a>
             </div>
-            {% if request.user.subscription.plan == 'Premium' %}
-                <div class="setting">
-                    <a href="{% url 'exportlinks' %}" class="setting-content">
-                        <img src="{% static 'leadfy/img/mailbox.png' %}">
-                        Download Link Visits CSV File
-                    </a>
-                </div>
-            {% endif %}
+            <div class="setting">
+                <a href="{% url 'exportlinks' %}" class="setting-content">
+                    <img src="{% static 'leadfy/img/mailbox.png' %}">
+                    Download Links Visits Stats
+                </a>
+            </div>
         </div>
     </div>
     <!-- Nav -->

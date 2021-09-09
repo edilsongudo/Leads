@@ -11,7 +11,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(158.846, 80.97, 180.659, 1), rgba(250.831, 255, 151.959, 1));
+  background-image: linear-gradient(90deg, rgba(158.846, 80.97, 180.659, 1), rgba(204.073, 159.433, 216.664, 1));
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;

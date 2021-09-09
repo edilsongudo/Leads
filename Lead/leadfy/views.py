@@ -84,8 +84,8 @@ def home(request):
 
 @login_required
 def exportleads(request):
-    if request.user.subscription.plan == 'Free':
-        return redirect('subscribe')
+    # if request.user.subscription.plan == 'Free':
+    #     return redirect('subscribe')
 
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
@@ -263,6 +263,9 @@ def export(request):
 
 @login_required
 def advanced(request):
+    if request.user.subscription.plan == 'Free':
+        return redirect('subscribe')
+
     form = AdvancedForm(instance=request.user.advanced)
     if request.method == 'POST':
         form = AdvancedForm(request.POST, instance=request.user.advanced)

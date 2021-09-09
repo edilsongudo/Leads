@@ -27,11 +27,11 @@
 {% block content %}
     <div class="content">
 
-        <div style="text-align: right;">
+<!--         <div style="text-align: right;">
             <a style="padding: 5px; font-size: 2rem" href="{% url 'stats' user.username %}">
                 <i class="fas fa-chart-line"></i>
             </a>
-        </div>
+        </div> -->
 
         <div class="overflow">
             <div class="skip toinvisible">
@@ -46,12 +46,12 @@
                         <div class="image-border">
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                         </div>
-                        <h1 class="name" id="name">{{ user.profile.name }}</h1>
+                        <a style="text-decoration: underline;" href="http://{{ request.get_host }}/{{ user.username }}" class="name" id="name">{{ request.get_host }}/{{ user.username }}</a>
                     </div>
                 </div>
-            <div class="bio">{{ user.profile.bio }}</div>
+            <!-- <div class="bio">{{ user.profile.bio }}</div> -->
             <div class="space-between">
-                <a href="{% url 'user-landing' user.username %}" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> Preview</a>
+                <a href="{% url 'stats' user.username %}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chart-line"></i> Stats</a>
                 <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
             </div>
             <div id="links">

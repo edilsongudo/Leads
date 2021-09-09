@@ -137,6 +137,8 @@ class SubscribeButton(models.Model):
     call_to_action = models.CharField(max_length=150, default="Would you like to subscribe to my email list?")
     call_to_action_button_text = models.CharField(max_length=20, default="Subscribe")
     show = models.BooleanField(default=True)
+    # view_count = models.IntegerField(
+    #     default=0)
 
     def __str__(self):
         return f'{self.user.username} Advanced Preferences'
