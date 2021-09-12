@@ -162,41 +162,44 @@ def lead(request, short_url):
             response.set_cookie(f'{user.username}_captured', '', max_age=86400 * 365)
             return response
 
-    # if user.advanced.ask_visitors_to_subscribe_when_they_click_in_a_link == False:
-    #     return redirect(link.link)
-
-    if link.use_this_link_to_ask_visitors_to_subscribe == False:
-        return redirect(link.link)
-
-    if f'{user.username}_captured' in request.COOKIES:
-        return redirect(link.link)
-
     context = context_dict(user=user, link=link, form=form)
-    response = render(request, 'leadfy/emailcapture.html', context=context)
 
-    set_http_referer(request, response, user.username)
-    def save_statistics():
-        link.view_count += 1
-        link.save()
-        new_visit = PageVisit(page=link)
-        new_visit.referer = set_http_referer(request, response, user.username)
-        new_visit.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
-        new_visit.location = get_location(request)['country_name']
-        new_visit.location_code = get_location(request)['country_code']
-        new_visit.device_type = get_user_agent(request)['device_type']
-        new_visit.os_type = get_user_agent(request)['os_type']
-        new_visit.save()
+    def save_statistics(response):
+        set_http_referer(request, response, user.username)
 
-    if not user.username in request.COOKIES:
-        max_age = user.advanced.seconds_to_wait_before_asking_user_to_subscribe_again
-        response.set_cookie(user.username, '', max_age=max_age)
+        if not user.username in request.COOKIES:
+            max_age = user.advanced.seconds_to_wait_before_asking_user_to_subscribe_again
+            response.set_cookie(user.username, '', max_age=max_age)
+
         if not short_url in request.COOKIES:
             response.set_cookie(short_url, short_url)
-            save_statistics()
+            link.view_count += 1
+            link.save()
+            new_visit = PageVisit(page=link)
+            new_visit.referer = set_http_referer(request, response, user.username)
+            new_visit.referer_main_domain = urlparse(set_http_referer(request, response, user.username)).netloc
+            new_visit.location = get_location(request)['country_name']
+            new_visit.location_code = get_location(request)['country_code']
+            new_visit.device_type = get_user_agent(request)['device_type']
+            new_visit.os_type = get_user_agent(request)['os_type']
+            new_visit.save()
         return response
-    else:
-        save_statistics()
-        return redirect(link.link)
+
+    response = render(request, 'leadfy/emailcapture.html', context=context)
+    if link.use_this_link_to_ask_visitors_to_subscribe == False:
+        response = redirect(link.link)
+
+    if f'{user.username}_captured' in request.COOKIES:
+        response = redirect(link.link)
+
+    # if short_url in request.COOKIES:
+    #     response = redirect(link.link)
+
+    if user.username in request.COOKIES:
+        response = redirect(link.link)
+
+    return save_statistics(response)
+
 
 
 def landing(request, username):

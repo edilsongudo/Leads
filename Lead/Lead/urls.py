@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('justbelievealwaysinyourself7/', admin.site.urls),
+    path('footballisawesome/', admin.site.urls),
     path('ckeditor', include('ckeditor_uploader.urls')),
     path("accounts/", include("allauth.urls")),
     path('premium/', include('subscriptions.urls')),
