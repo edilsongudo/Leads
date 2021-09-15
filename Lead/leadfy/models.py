@@ -6,6 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 import os
 from PIL import Image
+from django_resized import ResizedImageField
 
 
 class LeadModel(models.Model):
@@ -80,10 +81,10 @@ class Preferences(models.Model):
         max_length=100,  default="rgba(252.309, 234.818, 179.729, 1)")
     body_font_color = models.CharField(
         max_length=100,  default="rgba(255, 255, 255, 1)")
-    background_image_desktop = models.ImageField(
-        upload_to='usersbackgroundimages', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
-    background_image_mobile = models.ImageField(
-        upload_to='usersbackgroundimages', default="usersbackgroundimages/defaultmobilebackgroundimage.jpg", null=True)
+    background_image_desktop = ResizedImageField(
+        upload_to='usersbackgroundimages', size=[1280, 720], force_format='JPEG', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
+    background_image_mobile = ResizedImageField(
+        upload_to='usersbackgroundimages', size=[720, 1280], force_format='JPEG', default="usersbackgroundimages/defaultmobilebackgroundimage.jpg", null=True)
     background_image_brightness = models.IntegerField(
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
@@ -109,17 +110,19 @@ class Preferences(models.Model):
     def save(self, *args, **kwargs):
         super(Preferences, self).save(*args, **kwargs)
 
-        desktop_img = Image.open(self.background_image_desktop.path)
-        if desktop_img.width > 1280:
-            output_size = (1280, 720)
-            desktop_img.thumbnail(output_size)
-            desktop_img.save(self.background_image_desktop.path)
+        # desktop_img = Image.open(self.background_image_desktop.path)
+        # if desktop_img.width > 1280:
+        #     output_size = (1280, 720)
+        #     desktop_img.thumbnail(output_size)
+        #     desktop_img = desktop_img.convert('RGB')
+        #     desktop_img.save(self.background_image_desktop.path.replace('.png', '.jpg'), quality=30)
 
-        mobile_img = Image.open(self.background_image_mobile.path)
-        if mobile_img.height > 1280:
-            output_size = (720, 1280)
-            mobile_img.thumbnail(output_size)
-            mobile_img.save(self.background_image_mobile.path)
+        # mobile_img = Image.open(self.background_image_mobile.path)
+        # if mobile_img.height > 1280:
+        #     output_size = (720, 1280)
+        #     mobile_img.thumbnail(output_size)
+        #     mobile_img = mobile_img.convert('RGB')
+        #     mobile_img.save(self.background_image_mobile.path.replace('.png', '.jpg'), quality=30)
 
 
 class Advanced(models.Model):
