@@ -225,3 +225,4 @@ def plans_details(access_token, plan_id):
 
 # print(get_access_token())
 # pp.pprint(plans_details(get_access_token(), settings.PAYPAL_PLAN_ID))
+# pp.pprint(create_plan(get_access_token(), config[settings.PAYPAL_ENV]['product_id']))

@@ -82,9 +82,9 @@ class Preferences(models.Model):
     body_font_color = models.CharField(
         max_length=100,  default="rgba(255, 255, 255, 1)")
     background_image_desktop = ResizedImageField(
-        upload_to='usersbackgroundimages', size=[1280, 720], force_format='JPEG', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
+        upload_to='usersbackgroundimages', size=[1920, 1080], force_format='JPEG', default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg", null=True)
     background_image_mobile = ResizedImageField(
-        upload_to='usersbackgroundimages', size=[720, 1280], force_format='JPEG', default="usersbackgroundimages/defaultmobilebackgroundimage.jpg", null=True)
+        upload_to='usersbackgroundimages', size=[1080, 1920], force_format='JPEG', default="usersbackgroundimages/defaultmobilebackgroundimage.jpg", null=True)
     background_image_brightness = models.IntegerField(
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
