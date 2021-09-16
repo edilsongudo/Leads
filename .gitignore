@@ -2,7 +2,7 @@
 *.log
 *.pot
 *.pyc
-*.mmdb
 *.ini
 __pycache__
 db.sqlite3
+geoip/

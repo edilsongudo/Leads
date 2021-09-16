@@ -62,7 +62,7 @@ def dashboard(request, days):
     # df.set_index('country_code', inplace=True)
     # print(df)
 
-    # state_geo = json.load(open('custom.geo (1).json', 'r'))
+    # state_geo = json.load(open('geoip/custom.geo (1).json', 'r'))
 
     # for feature in state_geo['features']:
     #     feature['id'] = feature['properties']['sovereignt']

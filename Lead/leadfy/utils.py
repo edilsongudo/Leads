@@ -234,7 +234,7 @@ def get_map(day1, day2, model, request):
     df =  pd.DataFrame(allpagevisitsorderedbylocation, columns=['location', 'location_code', 'truck_count'])
     print(df)
 
-    state_geo = 'custom.geo (1).json'
+    state_geo = 'geoip/custom.geo (1).json'
     m = folium.Map(location=[0, 0], zoom_start=0)
     folium.Choropleth(geo_data=state_geo, name='Choropleth', data=df,
         columns=['location', 'truck_count'], key_on="feature.properties.sovereignt", fill_color="YlGn", fill_opacity=0.5,
