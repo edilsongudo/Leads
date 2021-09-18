@@ -9,6 +9,7 @@ from django.db.models import Count
 import folium
 import pandas as pd
 
+
 def context_dict(user, **kwargs):
     color1 = user.preferences.color1
     color2 = user.preferences.color2
@@ -35,7 +36,10 @@ def context_dict(user, **kwargs):
 
     # CSS File creation is handled by a signal. This is just to guarantee that
     # the file will be created in case it does not exists
-    if not os.path.isfile(os.path.join(settings.MEDIA_ROOT, f'customstylesheets/{user.username}.css')):
+    if not os.path.isfile(
+        os.path.join(
+            settings.MEDIA_ROOT,
+            f'customstylesheets/{user.username}.css')):
         writecss(user)
 
     data = {
@@ -135,7 +139,9 @@ def get_location(request):
         ip = get_ip(request)
         country, city, lat, lon = get_geo(ip)
         print(country, city)
-        return {'country_name': country['country_name'], 'country_code': country['country_code']}
+        return {
+            'country_name': country['country_name'],
+            'country_code': country['country_code']}
     except Exception as e:
         print(e)
         return {'country_name': '', 'country_code': ''}
@@ -177,8 +183,6 @@ def contrast_color(color):
     return font_color
 
 
-
-
 def get_days(day1, day2, model, request):
     delta = day2 - day1
     list_of_days = []
@@ -194,11 +198,17 @@ def get_days(day1, day2, model, request):
 
 def number_of_clicks(date1, date2, model, request):
     number_of_clicks = model.objects.filter(
-        page__user=request.user, time__date__gte=date1, time__date__lte=date2).count()
+        page__user=request.user,
+        time__date__gte=date1,
+        time__date__lte=date2).count()
     return number_of_clicks
 
+
 def number_of_leads(date1, date2, model, request):
-    number_of_leads = model.objects.filter(lead_from=request.user, date_submited__date__gte=date1, date_submited__date__lte=date2).count()
+    number_of_leads = model.objects.filter(
+        lead_from=request.user,
+        date_submited__date__gte=date1,
+        date_submited__date__lte=date2).count()
     return number_of_leads
 
 
@@ -207,15 +217,20 @@ def hours(date1, date2, model, request):
     labels = []
     for i in range(0, 24):
         pages_visits = model.objects.filter(
-            page__user=request.user, time__date__gte=date1, time__date__lte=date2, time__hour=i)
+            page__user=request.user,
+            time__date__gte=date1,
+            time__date__lte=date2,
+            time__hour=i)
         hours.append(len(pages_visits))
         labels.append(i)
     return {'hours': hours, 'labels': labels}
 
 
 def get_referers(day1, day2, model, request):
-    allpagevisitsorderedbyrefferer = model.objects.filter(page__user=request.user, time__date__gte=day1, time__date__lte=day2)
-    allpagevisitsorderedbyrefferer = allpagevisitsorderedbyrefferer.values_list('referer_main_domain').annotate(truck_count=Count('referer_main_domain')).order_by('-truck_count')
+    allpagevisitsorderedbyrefferer = model.objects.filter(
+        page__user=request.user, time__date__gte=day1, time__date__lte=day2)
+    allpagevisitsorderedbyrefferer = allpagevisitsorderedbyrefferer.values_list(
+        'referer_main_domain').annotate(truck_count=Count('referer_main_domain')).order_by('-truck_count')
     allvisits = list(allpagevisitsorderedbyrefferer)
     channels = []
     visits = []
@@ -227,24 +242,40 @@ def get_referers(day1, day2, model, request):
 
 
 def get_map(day1, day2, model, request):
-    allpagevisitsorderedbylocation = model.objects.filter(page__user=request.user, time__date__gte=day1, time__date__lte=day2)
+    allpagevisitsorderedbylocation = model.objects.filter(
+        page__user=request.user, time__date__gte=day1, time__date__lte=day2)
 
-    allpagevisitsorderedbylocation = allpagevisitsorderedbylocation.values_list('location', 'location_code').annotate(truck_count=Count('location')).order_by('-truck_count')
+    allpagevisitsorderedbylocation = allpagevisitsorderedbylocation.values_list(
+        'location', 'location_code').annotate(
+        truck_count=Count('location')).order_by('-truck_count')
 
-    df =  pd.DataFrame(allpagevisitsorderedbylocation, columns=['location', 'location_code', 'truck_count'])
+    df = pd.DataFrame(
+        allpagevisitsorderedbylocation,
+        columns=[
+            'location',
+            'location_code',
+            'truck_count'])
     print(df)
 
     state_geo = 'geoip/custom.geo (1).json'
     m = folium.Map(location=[0, 0], zoom_start=0)
-    folium.Choropleth(geo_data=state_geo, name='Choropleth', data=df,
-        columns=['location', 'truck_count'], key_on="feature.properties.sovereignt", fill_color="YlGn", fill_opacity=0.5,
-                      line_opacity=0.2, legend_name="Links Visits").add_to(m)
+    folium.Choropleth(
+        geo_data=state_geo,
+        name='Choropleth',
+        data=df,
+        columns=[
+            'location',
+            'truck_count'],
+        key_on="feature.properties.sovereignt",
+        fill_color="YlGn",
+        fill_opacity=0.5,
+        line_opacity=0.2,
+        legend_name="Links Visits").add_to(m)
     folium.LayerControl().add_to(m)
 
     m = m._repr_html_()
 
     return m
-
 
 
 def get_user_agent(request):
@@ -270,8 +301,8 @@ def get_user_agent(request):
         "device_type": device_type,
         "browser_type": browser_type,
         "browser_version": browser_version,
-        "os_type":os_type,
-        "os_version":os_version
+        "os_type": os_type,
+        "os_version": os_version
     }
 
     return context

@@ -1,9 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-
 from django.contrib.auth import views as auth_views
-
-# ckuploader
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -15,6 +12,6 @@ urlpatterns = [
     path('premium/', include('subscriptions.urls')),
     path('profile/', include('users.urls')),
     path('', include('leadfy.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # ckuploader
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'leadfy.views.error_404_view'

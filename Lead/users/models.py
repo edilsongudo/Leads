@@ -14,10 +14,17 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     image = ResizedImageField(
-        default='default.jpg', size=[300, 300], force_format='JPEG', upload_to='profile_pics')
+        default='default.jpg',
+        size=[
+            300,
+            300],
+        force_format='JPEG',
+        upload_to='profile_pics')
     name = models.CharField(max_length=30, default="")
     bio = models.CharField(
-        max_length=200, default="Hello, here you can see some of my favorite links", blank=True)
+        max_length=200,
+        default="Hello, here you can see some of my favorite links",
+        blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -26,10 +33,3 @@ class Profile(models.Model):
         if self.name == "":
             self.name = self.user.username
         super(Profile, self).save(*args, **kwargs)
-
-        # img = Image.open(self.image.path)
-
-        # if img.height > 100 or img.width > 100:
-        #     output_size = (100, 100)
-        #     img.thumbnail(output_size)
-        #     img.save(self.image.path, quality=30)

@@ -18,6 +18,7 @@ config.read('config.ini')
 
 pp = pprint.PrettyPrinter(indent=1)
 
+
 def get_access_token():
 
     now = timezone.now()
@@ -40,13 +41,16 @@ def get_access_token():
         expire_date = now + timedelta(seconds=expires_in)
         expire_date_string = expire_date.strftime('%d-%b-%Y %H:%M:%S')
 
-        config.set(settings.PAYPAL_ENV, 'PAYPAL_ACCESS_TOKEN_EXPIRE_DATE', expire_date_string)
+        config.set(
+            settings.PAYPAL_ENV,
+            'PAYPAL_ACCESS_TOKEN_EXPIRE_DATE',
+            expire_date_string)
         config.set(settings.PAYPAL_ENV, 'access_token', access_token)
         with open('config.ini', 'w') as f:
             config.write(f)
         return access_token
 
-    #GET ACCESS TOKEN IF DOES NOT EXIST
+    # GET ACCESS TOKEN IF DOES NOT EXIST
     access_token = config[settings.PAYPAL_ENV]['access_token']
     token_expire_date = config[settings.PAYPAL_ENV]['PAYPAL_ACCESS_TOKEN_EXPIRE_DATE']
     if token_expire_date == '' or access_token == '':
@@ -54,7 +58,8 @@ def get_access_token():
 
     access_token = config[settings.PAYPAL_ENV]['access_token']
     token_expire_date = config[settings.PAYPAL_ENV]['PAYPAL_ACCESS_TOKEN_EXPIRE_DATE']
-    token_expire_date = datetime.strptime(token_expire_date, '%d-%b-%Y %H:%M:%S')
+    token_expire_date = datetime.strptime(
+        token_expire_date, '%d-%b-%Y %H:%M:%S')
 
     if now > token_expire_date:
         access_token = get_token()
@@ -64,8 +69,13 @@ def get_access_token():
     return access_token
 
 
-def create_product(access_token, product_name='Links Service', description='Links Service', product_type='SERVICE',
-                   category='SOFTWARE', product_name_id=None):
+def create_product(
+        access_token,
+        product_name='Links Service',
+        description='Links Service',
+        product_type='SERVICE',
+        category='SOFTWARE',
+        product_name_id=None):
     h = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {access_token}',
@@ -86,9 +96,20 @@ def create_product(access_token, product_name='Links Service', description='Link
     return response
 
 
-def create_plan(access_token, product_id, name='Premium Plan', description='Premium Plan',
-                frequency='MONTH', price=6, tenure='REGULAR', sequence=1, total_cycles=0,
-                auto_billing=True, setup_fee=0, setup_fee_failure_action='CONTINUE', payment_failure_threshold=3):
+def create_plan(
+        access_token,
+        product_id,
+        name='Premium Plan',
+        description='Premium Plan',
+        frequency='MONTH',
+        price=6,
+        tenure='REGULAR',
+        sequence=1,
+        total_cycles=0,
+        auto_billing=True,
+        setup_fee=0,
+        setup_fee_failure_action='CONTINUE',
+        payment_failure_threshold=3):
 
     url = f'https://{PAYPAL_BASE_ENDPOINT}.paypal.com/v1/billing/plans'
 
