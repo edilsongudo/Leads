@@ -209,6 +209,11 @@ a:hover {{
   left: 0;
 }}
 
+#linkicon {{
+  position: absolute;
+  right: 10%;
+}}
+
 #copyinput {{
   opacity: 0;
 }}

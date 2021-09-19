@@ -309,14 +309,15 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
     bottom: 0;
     left: 0;
     background: rgba(255, 255, 255, 1);
-    display:  flex;
     text-align: center;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     height: 65px;
     padding: 10px;
     display: flex;
     z-index: 1000;
+    box-shadow: 1px 1px 1px 1px grey;
 }
 
 .footer img {
@@ -334,7 +335,7 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
 .footer-active {
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   .footer {
     top: 0;
     height: 100vh;

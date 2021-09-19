@@ -32,12 +32,35 @@
             <div class="bio">{{ user.profile.bio }}</div>
             {% for link in links %}
                 {% if link.show_link %}
-                    <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}</a>
+                    <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}
+                        {% if "facebook.com" in link.link|lower or "fb.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-facebook"></i>
+                        {% elif "instagram.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-instagram"></i>
+                        {% elif "youtube.com" in link.link|lower or "youtu.be" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-youtube"></i>
+                        {% elif "tiktok.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-tiktok"></i>
+                        {% elif "spotify.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-spotify"></i>
+                        {% elif "pin.it" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-pinterest"></i>
+                        {% elif "whatsapp.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-whatsapp"></i>
+                        {% elif "twitter.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-twitter"></i>
+                        {% elif "linkedin.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-linkedin"></i>
+                        {% elif "snapchat.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-snapchat"></i>
+                        {% endif %}
+
+                    </a>
                 {% endif %}
             {% endfor %}
             {% if user.subscribebutton.show == True and show_subscribe_button == True %}
                 <a href="{% url 'subscribe' user.username %}" class="page-link link">{{ user.subscribebutton.call_to_action_button_text }}
-                    <i class="fas fa-envelope"></i>
+                    <i id="linkicon" class="fas fa-envelope"></i>
                 </a>
             {% endif %}
             <div class="socials">

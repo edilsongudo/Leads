@@ -494,11 +494,11 @@ def editlink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     # form = LinkCreateForm(instance=link)
     fields = '__all__'
-    exclude = ['user', 'view_count', 'short_url', 'order']
+    exclude = ['user', 'view_count', 'link', 'short_url', 'order']
     widgets = {
         'title': TextInput(attrs={'placeholder': 'Link Title'}),
         'short_url': TextInput(attrs={'placeholder': 'Link short URL', 'disabled': 'disabled'}),
-        'link': TextInput(attrs={'placeholder': 'Link Destionation URL'}),
+        # 'link': TextInput(attrs={'placeholder': 'Link Destionation URL', 'disabled': 'disabled'}),
     }
     CustomForm = modelform_factory(
         model=Link,
