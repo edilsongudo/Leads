@@ -15,7 +15,7 @@ body {
   min-height: 100vh;
   color: rgba(0,0,0,1);
   font-family: 'customfont', sans-serif;
-  font-size: 16;
+  font-size: 20;
 }
 
 /*TODO - Style Overflow*/
@@ -108,7 +108,7 @@ a:hover {
 }
 
 .name {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .cta {

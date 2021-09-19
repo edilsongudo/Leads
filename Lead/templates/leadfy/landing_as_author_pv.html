@@ -46,12 +46,13 @@
                         <div class="image-border">
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                         </div>
-                        <a style="text-decoration: underline;" href="http://{{ request.get_host }}/{{ user.username }}" class="name" id="name">{{ request.get_host }}/{{ user.username }}</a>
+                        <div>Your Page:</div>
+                        <a style="text-decoration: underline;" href="http://{{ request.get_host }}/{{ user.username }}" target="_blank" rel="noopener noreferrer" class="name" id="name">{{ request.get_host }}/{{ user.username }}</a>
                     </div>
                 </div>
             <!-- <div class="bio">{{ user.profile.bio }}</div> -->
             <div class="space-between">
-                <a href="{% url 'stats' user.username %}" target="_blank" rel="noopener noreferrer"><i class="fas fa-chart-line"></i> Stats</a>
+                <a href="{% url 'stats' user.username %}"><i class="fas fa-chart-line"></i> Stats</a>
                 <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
             </div>
             <div id="links">

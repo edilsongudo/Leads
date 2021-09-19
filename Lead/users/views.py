@@ -42,7 +42,7 @@ def profile(request):
 @login_required
 def profileimage(request):
     profile = Profile.objects.get(user=request.user)
-    print('REQUEST RECEIVED')
+    print('REQUEST RECEIVED: ', request.FILES.get('cropped'))
     profile.image = request.FILES.get('cropped')
     profile.save()
     return JsonResponse({'success': 'success'})

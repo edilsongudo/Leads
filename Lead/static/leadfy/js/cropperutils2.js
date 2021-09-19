@@ -20,12 +20,12 @@ function initcropper2 (width, height, type) {
     return basic2
 }
 
-function submitdata(response, url) {
+function submitdata(response, url, filename) {
     var csrf = document.getElementsByName('csrfmiddlewaretoken')
     var form = document.querySelectorAll('form')[1]
     var fd = new FormData();
     fd.append('csrfmiddlewaretoken', csrf[0].value)
-    fd.append('cropped', response, 'image.png');
+    fd.append('cropped', response, `${filename}.jpg`);
 
     $.ajaxSetup({async: false});
         $.ajax({
@@ -57,6 +57,7 @@ function handle_file_crop(basic, btn, image_input, preview_image, uploadURL, con
     image_input.addEventListener('change', function() {
 
         const file = this.files[0]
+        let filename = file.name.split('.')[0]
 
         if (file) {
             const reader = new FileReader();
@@ -74,12 +75,12 @@ function handle_file_crop(basic, btn, image_input, preview_image, uploadURL, con
 
         document.querySelector(cropbutton).addEventListener('click', function() {
 
-            basic.croppie('result', {type: 'blob', size: size}).then(function(response) {
+            basic.croppie('result', {type: 'blob', size: size, format: 'jpeg'}).then(function(response) {
                 preview_image.style.backgroundImage = `url(${URL.createObjectURL(response, {oneTimeOnly: true})})`
                 document.querySelector(container).style.display = 'none'
 
                 $('#submitbutton').click(function() {
-                    submitdata(response, uploadURL)
+                    submitdata(response, uploadURL, filename)
                 })
 
             });
