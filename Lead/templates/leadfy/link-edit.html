@@ -4,19 +4,20 @@
 
 {% block head %}
     <title>Edit Link</title>
-    <style type="text/css">
+<!--     <style type="text/css">
         #div_id_title label, #div_id_link label, #div_id_short_url label {
             display: none;
         }
-    </style>
+    </style> -->
 {% endblock %}
 
 {% block content %}
     <div class="formcontainer">
-        <input id="copyinput" type="" name="" value="{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}">
         <h3>Edit Link</h3>
-        <div class="previewlinkedit"><a href="/p/{{ link.short_url }}">{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}</a></div>
-
+        <label for="copyinput">Link</label>
+        <input class="textinput textInput form-control" id="copyinput" type="" name="" value="{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}" disabled>
+        <label for="copyinput2">Redirects to:</label>
+        <input class="textinput textInput form-control" id="copyinput2" type="" name="" value="{{ link.link }}" disabled>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}

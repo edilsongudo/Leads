@@ -122,7 +122,7 @@ a:hover {{
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  border: 1px solid white;
+  /*border: 1px solid white;*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -162,6 +162,24 @@ a:hover {{
   background: rgba(255, 255, 255, 0.85);
   border-radius: 50px;
   padding: 25px;
+}}
+
+#copyinput, #copyinput2 {{
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  padding: 25px;
+  opacity: 1;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}}
+
+.copy {{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: {body_font_color};
 }}
 
 
@@ -214,16 +232,6 @@ a:hover {{
   right: 10%;
 }}
 
-#copyinput {{
-  opacity: 0;
-}}
-
-.copy {{
-  background: transparent;
-  border: none;
-  outline: none;
-  color: {body_font_color};
-}}
 
 .socials {{
   width: 50%;
@@ -296,6 +304,7 @@ a:hover {{
 
 .previewlinkedit a {{
   color: {body_font_color};
+  text-decoration: underline;
 }}
 
 input[type="checkbox"] {{
