@@ -25,6 +25,7 @@ function submitdata(response, url, filename) {
     var form = document.querySelectorAll('form')[1]
     var fd = new FormData();
     fd.append('csrfmiddlewaretoken', csrf[0].value)
+
     fd.append('cropped', response, `${filename}.jpg`);
 
     $.ajaxSetup({async: false});
@@ -61,7 +62,7 @@ function handle_file_crop(basic, btn, image_input, preview_image, uploadURL, con
 
         if (file) {
             const reader = new FileReader();
-            reader.onload = function () {
+            reader.onload = function (e) {
                 const result = reader.result
 
                 basic.croppie('bind', {

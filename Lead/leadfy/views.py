@@ -320,21 +320,23 @@ def landing(request, username):
     set_http_referer(request, response, user.username)
     return response
 
-
+@login_required
 def stats(request, username):
 
     user = get_object_or_404(get_user_model(), username=username)
+    domain = request.META['HTTP_HOST'].replace('www.', '')
     if user == request.user:
         links = Link.objects.filter(user=user).order_by('-view_count')
-        context = context_dict(user=user, links=links)
+        context = context_dict(user=user, links=links, domain=domain)
         response = render(request, 'leadfy/stats.html', context=context)
         return response
     else:
         return HttpResponseForbidden()
 
-
+@login_required
 def landing_as_author_pv(request, username):
     user = get_object_or_404(get_user_model(), username=username)
+    domain = request.META['HTTP_HOST'].replace('www.', '')
 
     if request.is_ajax():
         data = json.loads(request.body)
@@ -349,7 +351,7 @@ def landing_as_author_pv(request, username):
 
     if request.user == user:
         links = Link.objects.filter(user=user).order_by('order')
-        context = context_dict(user=user, links=links)
+        context = context_dict(user=user, links=links, domain=domain)
         response = render(
             request,
             'leadfy/landing_as_author_pv.html',
@@ -359,11 +361,13 @@ def landing_as_author_pv(request, username):
         return HttpResponseForbidden()
 
 
+@login_required
 def settings(request):
     response = render(request, 'leadfy/settings.html')
     return response
 
 
+@login_required
 def export(request):
     response = render(request, 'leadfy/export.html')
     return response
@@ -492,6 +496,7 @@ def createlink(request):
 @login_required
 def editlink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
+    domain = request.META['HTTP_HOST'].replace('www.', '')
     # form = LinkCreateForm(instance=link)
     fields = '__all__'
     exclude = ['user', 'view_count', 'link', 'short_url', 'order']
@@ -516,12 +521,12 @@ def editlink(request, short_url):
                 return redirect(
                     'landing_as_author_pv',
                     username=request.user.username)
-        context = context_dict(user=request.user, form=form, link=link)
+        context = context_dict(user=request.user, form=form, link=link, domain=domain)
         return render(request, 'leadfy/link-edit.html', context)
     else:
         return HttpResponseForbidden()
 
-
+@login_required
 def deletelink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     if request.method == 'POST':
@@ -539,6 +544,7 @@ def error_404_view(request, exception):
 def desktopimage(request):
     preference = Preferences.objects.get(user=request.user)
     print('REQUEST RECEIVED', request.FILES.get('cropped'))
+    print(dir(request.FILES.get('cropped')))
     preference.background_image_desktop = request.FILES.get('cropped')
     preference.save()
     return JsonResponse({'success': 'success'})
@@ -548,6 +554,7 @@ def desktopimage(request):
 def mobileimage(request):
     preference = Preferences.objects.get(user=request.user)
     print('REQUEST RECEIVED', request.FILES.get('cropped'))
+    print(dir(request.FILES.get('cropped')))
     preference.background_image_mobile = request.FILES.get('cropped')
     preference.save()
     return JsonResponse({'success': 'success'})

@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url("/media/fonts/Juliagar.otf")
+    src:  url("/media/fonts/No Virus.otf")
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   min-height: 100vh;
   color: rgba(0,0,0,1);
   font-family: 'customfont', sans-serif;
-  font-size: 20;
+  font-size: 24;
 }
 
 /*TODO - Style Overflow*/
@@ -108,7 +108,7 @@ a:hover {
 }
 
 .name {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .cta {

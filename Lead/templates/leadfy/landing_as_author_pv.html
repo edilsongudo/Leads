@@ -47,7 +47,7 @@
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                         </div>
                         <div>Your Page:</div>
-                        <a style="text-decoration: underline;" href="http://{{ request.get_host }}/{{ user.username }}" target="_blank" rel="noopener noreferrer" class="name" id="name">{{ request.get_host }}/{{ user.username }}</a>
+                        <a style="text-decoration: underline;" href="http://{{ domain }}/{{ user.username }}" target="_blank" rel="noopener noreferrer" class="name" id="name">{{ request.get_host }}/{{ user.username }}</a>
                     </div>
                 </div>
             <!-- <div class="bio">{{ user.profile.bio }}</div> -->

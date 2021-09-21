@@ -15,7 +15,7 @@
     <div class="formcontainer">
         <h3>Edit Link</h3>
         <label for="copyinput">Link</label>
-        <input class="textinput textInput form-control" id="copyinput" type="" name="" value="{{ request.META.HTTP_HOST }}/p/{{ link.short_url }}" disabled>
+        <input class="textinput textInput form-control" id="copyinput" type="" name="" value="{{ domain }}/p/{{ link.short_url }}" disabled>
         <label for="copyinput2">Redirects to:</label>
         <input class="textinput textInput form-control" id="copyinput2" type="" name="" value="{{ link.link }}" disabled>
         <form method="POST" enctype="multipart/form-data">
