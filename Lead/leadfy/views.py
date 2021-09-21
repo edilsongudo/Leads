@@ -529,11 +529,14 @@ def editlink(request, short_url):
 @login_required
 def deletelink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
-    if request.method == 'POST':
-        link.delete()
-        return redirect('landing_as_author_pv', username=request.user.username)
-    context = context_dict(user=request.user, link=link)
-    return render(request, 'leadfy/link_confirm_delete.html', context)
+    if request.user == link.user:
+        if request.method == 'POST':
+            link.delete()
+            return redirect('landing_as_author_pv', username=request.user.username)
+        context = context_dict(user=request.user, link=link)
+        return render(request, 'leadfy/link_confirm_delete.html', context)
+    else:
+        return HttpResponseForbidden()
 
 
 def error_404_view(request, exception):
