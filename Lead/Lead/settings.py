@@ -180,7 +180,7 @@ PAYPAL_PLAN_ID = config[PAYPAL_ENV]['PLAN_ID']
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
 
 # Django-allauth
 
