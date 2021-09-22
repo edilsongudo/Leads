@@ -5,6 +5,7 @@ from django.forms.models import modelform_factory
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.http import (
     HttpResponse, HttpResponseForbidden,
     FileResponse, JsonResponse)
@@ -331,7 +332,7 @@ def stats(request, username):
         response = render(request, 'leadfy/stats.html', context=context)
         return response
     else:
-        return HttpResponseForbidden()
+        raise PermissionDenied()
 
 @login_required
 def landing_as_author_pv(request, username):
@@ -358,7 +359,7 @@ def landing_as_author_pv(request, username):
             context=context)
         return response
     else:
-        return HttpResponseForbidden()
+        raise PermissionDenied()
 
 
 @login_required
@@ -524,7 +525,7 @@ def editlink(request, short_url):
         context = context_dict(user=request.user, form=form, link=link, domain=domain)
         return render(request, 'leadfy/link-edit.html', context)
     else:
-        return HttpResponseForbidden()
+        raise PermissionDenied()
 
 @login_required
 def deletelink(request, short_url):
@@ -536,11 +537,7 @@ def deletelink(request, short_url):
         context = context_dict(user=request.user, link=link)
         return render(request, 'leadfy/link_confirm_delete.html', context)
     else:
-        return HttpResponseForbidden()
-
-
-def error_404_view(request, exception):
-    return render(request, 'leadfy/404.html')
+        raise PermissionDenied()
 
 
 @login_required
@@ -648,3 +645,19 @@ def thankyou(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     context = context_dict(user=user)
     return render(request, 'leadfy/thankyou.html', context)
+
+
+def error_404_view(request, *args, **argv):
+    response = render(request, 'leadfy/404.html')
+    response.status_code = 404
+    return response
+
+def error_403_view(request, *args, **argv):
+    response = render(request, 'leadfy/403.html')
+    response.status_code = 403
+    return response
+
+def error_500_view(request, *args, **argv):
+    response = render(request, 'leadfy/500.html')
+    response.status_code = 500
+    return response

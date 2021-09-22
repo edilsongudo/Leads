@@ -15,3 +15,5 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'leadfy.views.error_404_view'
+handler403 = 'leadfy.views.error_403_view'
+handler500 = 'leadfy.views.error_500_view'

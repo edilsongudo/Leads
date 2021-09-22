@@ -1,6 +1,9 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load crispy_forms_tags %}
 
+{% block title %}
+    <title>{{ user.username }} Subscribe</title>
+{% endblock %}
 {% block head %}
 	<style type="text/css">
 		label {
