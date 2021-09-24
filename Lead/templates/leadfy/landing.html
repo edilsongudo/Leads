@@ -1,6 +1,32 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load static %}
 
+{% block title %}
+    <meta name="description" content="SelfLink. Unleash the power of your links."/>
+    <meta property="og:title" content="{{ user.username }} | SelfLink"/>
+    <meta property="og:description" content="SelfLink. Unleash the power of your links."/>
+    <meta property="og:url" content="https://{{ domain }}/{{ user.username }}"/>
+    <meta property="og:image" content="{{ user.profile.image.url }}"/>
+    <meta property="og:image:secure_url" content="{{ user.profile.image.url }}"/>
+    <meta name="twitter:title" content="{{ user.username }} | SelfLink"/>
+    <meta name="twitter:description" content="SelfLink. Unleash the power of your links."/>
+    <meta name="twitter:image" content="{{ user.profile.image.url }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <link rel="canonical" href="https://{{ domain }}/{{ user.username }}"/>
+    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <meta property="og:image:height" content="600"/>
+    <meta property="og:image:type" content="image/jpg"/>
+    <meta property="og:image:width" content="600"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:site_name" content="SelfLink"/>
+    <meta property="og:type" content="profile"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:domain" content="SelfLink"/>
+    <meta name="theme-color" content="#ffffff"/>
+    <title>{{ user.username }}</title>
+{% endblock %}
+
 {% block head %}
     <style type="text/css">
         .page-link:hover {
@@ -53,8 +79,15 @@
                             <i id="linkicon" class="fab fa-linkedin"></i>
                         {% elif "snapchat.com" in link.link|lower %}
                             <i id="linkicon" class="fab fa-snapchat"></i>
+                        {% elif "github.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-github"></i>
+                        {% elif "discord.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-discord"></i>
+                        {% elif "twitch.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-twitch"></i>
+                        {% elif "skype.com" in link.link|lower %}
+                            <i id="linkicon" class="fab fa-skype"></i>
                         {% endif %}
-
                     </a>
                 {% endif %}
             {% endfor %}
@@ -96,6 +129,18 @@
                 {% endif %}
                 {% if user.social.telegram != None %}
                     <a href="{{ user.social.telegram }}"><i class="fab fa-telegram"></i></a>
+                {% endif %}
+                {% if user.social.github != None %}
+                    <a href="{{ user.social.github }}"><i class="fab fa-github"></i></a>
+                {% endif %}
+                {% if user.social.twitch != None %}
+                    <a href="{{ user.social.twitch }}"><i class="fab fa-twitch"></i></a>
+                {% endif %}
+                {% if user.social.discord != None %}
+                    <a href="{{ user.social.discord }}"><i class="fab fa-discord"></i></a>
+                {% endif %}
+                {% if user.social.skype != None %}
+                    <a href="{{ user.social.skype }}"><i class="fab fa-skype"></i></a>
                 {% endif %}
             </div>
         </div>

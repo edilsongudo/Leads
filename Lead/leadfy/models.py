@@ -177,6 +177,14 @@ class Social(models.Model):
         max_length=200, null=True, blank=True)
     telegram = models.URLField(
         max_length=200, null=True, blank=True)
+    github = models.URLField(
+        max_length=200, null=True, blank=True)
+    twitch = models.URLField(
+        max_length=200, null=True, blank=True)
+    discord = models.URLField(
+        max_length=200, null=True, blank=True)
+    skype = models.URLField(
+        max_length=200, null=True, blank=True)
 
     def __str__(self):
         return f'{self.user.username}'

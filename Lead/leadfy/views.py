@@ -302,6 +302,7 @@ def lead(request, short_url):
 def landing(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     links = Link.objects.filter(user=user).order_by('order')
+    domain = request.META['HTTP_HOST'].replace('www.', '')
 
     show_subscribe_button = True
     if f'{user.username}_captured' in request.COOKIES:
@@ -310,7 +311,7 @@ def landing(request, username):
     context = context_dict(
         user=user,
         links=links,
-        show_subscribe_button=show_subscribe_button)
+        show_subscribe_button=show_subscribe_button, domain=domain)
     response = render(request, 'leadfy/landing.html', context=context)
 
     if f'{user.username}_land' not in request.COOKIES:
