@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['site']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Get local ip address to be able to run the app in local network using runserver 0.0.0.0:8000
@@ -182,9 +182,6 @@ PAYPAL_PLAN_ID = config[PAYPAL_ENV]['PLAN_ID']
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
-
 # Django-allauth
 
 AUTH_USER_MODEL = "users.User"
@@ -194,9 +191,13 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    SITE_ID = 1
+else:
+    STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
+    SITE_ID = 2
 
-
-SITE_ID = 1
 LOGIN_REDIRECT_URL = "home"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
