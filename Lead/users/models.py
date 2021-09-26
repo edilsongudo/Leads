@@ -13,12 +13,8 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    image = ResizedImageField(
+    image = models.ImageField(
         default='default.jpg',
-        size=[
-            300,
-            300],
-        force_format='JPEG',
         upload_to='profile_pics')
     name = models.CharField(max_length=30, default="")
     bio = models.CharField(

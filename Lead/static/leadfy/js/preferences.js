@@ -3,7 +3,7 @@ preview_image.style.backgroundImage = `url(/media/usersbackgroundimages/${deskto
 var basic = initcropper(256, 144, 'square')
 var btn = document.querySelector('.desktopbtn')
 var image_input = document.querySelector('#id_background_image_desktop')
-handle_file_crop(basic, btn, image_input, preview_image, '/desktop/upload/', '.modal', '#cropbutton', {'width': 1920, 'height': 1080})
+handle_file_crop(basic, btn, image_input, preview_image, '/desktop/upload/', '.modal', '#cropbutton', {'width': 1920, 'height': 1080}, 'jpeg', 0.3)
 
 
 var preview_image2 = document.querySelector('#mobileimage')
@@ -11,5 +11,5 @@ preview_image2.style.backgroundImage = `url(/media/usersbackgroundimages/${mobil
 var basic2 = initcropper2(144, 256, 'square')
 var btn2 = document.querySelector('.mobilebtn')
 var image_input2 = document.querySelector('#id_background_image_mobile')
-handle_file_crop(basic2, btn2, image_input2, preview_image2, '/mobile/upload/', '.modal2', '#cropbutton2', {'width': 1080, 'height': 1920})
+handle_file_crop(basic2, btn2, image_input2, preview_image2, '/mobile/upload/', '.modal2', '#cropbutton2', {'width': 1080, 'height': 1920}, 'jpeg', 0.3)
 

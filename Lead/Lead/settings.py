@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['site']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 # Get local ip address to be able to run the app in local network using runserver 0.0.0.0:8000
@@ -91,6 +91,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'leadfy.context_processors.domain',
             ],
         },
     },
@@ -178,11 +179,7 @@ PAYPAL_SECRET = config[PAYPAL_ENV]['SECRET']
 PAYPAL_PRODUCT_ID = config[PAYPAL_ENV]['PRODUCT_ID']
 PAYPAL_PLAN_ID = config[PAYPAL_ENV]['PLAN_ID']
 
-# PAYPAL_RECEIVER_EMAIL = 'sb-uuk4B6880486@business.example.com'
-
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
-
-# Django-allauth
 
 AUTH_USER_MODEL = "users.User"
 
@@ -190,13 +187,6 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-    SITE_ID = 1
-else:
-    STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
-    SITE_ID = 2
 
 LOGIN_REDIRECT_URL = "home"
 ACCOUNT_SESSION_REMEMBER = True
@@ -206,13 +196,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_PRESERVE_USERNAME_CASING = False
-
-DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
-DJANGORESIZED_DEFAULT_QUALITY = 30
-DJANGORESIZED_DEFAULT_KEEP_META = True
-DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
-DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': '.jpg'}
-DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 ADMINS = [('Admin', EMAIL_HOST_USER)]
 
@@ -227,3 +211,13 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    SITE_ID = 1
+else:
+    STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
+    SITE_ID = 2
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'

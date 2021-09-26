@@ -2,8 +2,9 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block title %}{{ link.title }} - Edit{% endblock %}
+
 {% block head %}
-    <title>Edit Link</title>
 <!--     <style type="text/css">
         #div_id_title label, #div_id_link label, #div_id_short_url label {
             display: none;

@@ -52,6 +52,24 @@ class Link(models.Model):
     #         super(Link, self).save(*args, **kwargs)
 
 
+# class TrackCode(models.Model):
+#     code = models.CharField(max_length=100, null=True, blank=True)
+#     title = models.CharField(max_length=100, null=True, blank=True)
+#     description models.CharField(max_length=100, null=True, blank=True)
+
+
+# class SiteVisit(models.Model):
+#     track_code = models.ForeignKey(TrackCode, on_delete=models.CASCADE, null=True, blank=True)
+#     time = models.DateTimeField(default=timezone.now)
+#     referer = models.CharField(max_length=200, null=True, blank=True)
+#     referer_main_domain = models.CharField(
+#         max_length=200, null=True, blank=True)
+#     location = models.CharField(max_length=100, null=True, blank=True)
+#     location_code = models.CharField(max_length=100, null=True, blank=True)
+#     device_type = models.CharField(max_length=100, null=True, blank=True)
+#     os_type = models.CharField(max_length=100, null=True, blank=True)
+
+
 class PageVisit(models.Model):
     page = models.ForeignKey(
         Link, on_delete=models.CASCADE, null=True)
@@ -85,20 +103,12 @@ class Preferences(models.Model):
         max_length=100, default="rgba(252.309, 234.818, 179.729, 1)")
     body_font_color = models.CharField(
         max_length=100, default="rgba(255, 255, 255, 1)")
-    background_image_desktop = ResizedImageField(
+    background_image_desktop = models.ImageField(
         upload_to='usersbackgroundimages',
-        size=[
-            1920,
-            1080],
-        force_format='JPEG',
         default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
         null=True)
-    background_image_mobile = ResizedImageField(
+    background_image_mobile = models.ImageField(
         upload_to='usersbackgroundimages',
-        size=[
-            1080,
-            1920],
-        force_format='JPEG',
         default="usersbackgroundimages/defaultmobilebackgroundimage.jpg",
         null=True)
     background_image_brightness = models.IntegerField(

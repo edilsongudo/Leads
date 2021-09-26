@@ -1,7 +1,9 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load static %}
 
-{% block title %}
+{% block title %}{{ user.profile.name }}{% endblock %}
+
+{% block meta %}
     <meta name="description" content="SelfLink. Unleash the power of your links."/>
     <meta property="og:title" content="{{ user.username }} | SelfLink"/>
     <meta property="og:description" content="SelfLink. Unleash the power of your links."/>
@@ -24,7 +26,6 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:domain" content="SelfLink"/>
     <meta name="theme-color" content="#ffffff"/>
-    <title>{{ user.username }}</title>
 {% endblock %}
 
 {% block head %}

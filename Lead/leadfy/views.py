@@ -134,7 +134,6 @@ def dashboard(request, days):
 
     return render(request, 'leadfy/dashboard.html', {'m': m})
 
-
 def home(request):
     if request.user.is_authenticated:
         return redirect('landing_as_author_pv', username=request.user.username)
@@ -302,7 +301,6 @@ def lead(request, short_url):
 def landing(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     links = Link.objects.filter(user=user).order_by('order')
-    domain = request.META['HTTP_HOST'].replace('www.', '')
 
     show_subscribe_button = True
     if f'{user.username}_captured' in request.COOKIES:
@@ -311,7 +309,7 @@ def landing(request, username):
     context = context_dict(
         user=user,
         links=links,
-        show_subscribe_button=show_subscribe_button, domain=domain)
+        show_subscribe_button=show_subscribe_button)
     response = render(request, 'leadfy/landing.html', context=context)
 
     if f'{user.username}_land' not in request.COOKIES:
@@ -326,19 +324,18 @@ def landing(request, username):
 def stats(request, username):
 
     user = get_object_or_404(get_user_model(), username=username)
-    domain = request.META['HTTP_HOST'].replace('www.', '')
     if user == request.user:
         links = Link.objects.filter(user=user).order_by('-view_count')
-        context = context_dict(user=user, links=links, domain=domain)
+        context = context_dict(user=user, links=links)
         response = render(request, 'leadfy/stats.html', context=context)
         return response
     else:
         raise PermissionDenied()
 
+
 @login_required
 def landing_as_author_pv(request, username):
     user = get_object_or_404(get_user_model(), username=username)
-    domain = request.META['HTTP_HOST'].replace('www.', '')
 
     if request.is_ajax():
         data = json.loads(request.body)
@@ -353,7 +350,7 @@ def landing_as_author_pv(request, username):
 
     if request.user == user:
         links = Link.objects.filter(user=user).order_by('order')
-        context = context_dict(user=user, links=links, domain=domain)
+        context = context_dict(user=user, links=links)
         response = render(
             request,
             'leadfy/landing_as_author_pv.html',
@@ -498,7 +495,6 @@ def createlink(request):
 @login_required
 def editlink(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
-    domain = request.META['HTTP_HOST'].replace('www.', '')
     # form = LinkCreateForm(instance=link)
     fields = '__all__'
     exclude = ['user', 'view_count', 'link', 'short_url', 'order']
@@ -523,7 +519,7 @@ def editlink(request, short_url):
                 return redirect(
                     'landing_as_author_pv',
                     username=request.user.username)
-        context = context_dict(user=request.user, form=form, link=link, domain=domain)
+        context = context_dict(user=request.user, form=form, link=link)
         return render(request, 'leadfy/link-edit.html', context)
     else:
         raise PermissionDenied()
@@ -540,25 +536,6 @@ def deletelink(request, short_url):
     else:
         raise PermissionDenied()
 
-
-@login_required
-def desktopimage(request):
-    preference = Preferences.objects.get(user=request.user)
-    print('REQUEST RECEIVED', request.FILES.get('cropped'))
-    print(dir(request.FILES.get('cropped')))
-    preference.background_image_desktop = request.FILES.get('cropped')
-    preference.save()
-    return JsonResponse({'success': 'success'})
-
-
-@login_required
-def mobileimage(request):
-    preference = Preferences.objects.get(user=request.user)
-    print('REQUEST RECEIVED', request.FILES.get('cropped'))
-    print(dir(request.FILES.get('cropped')))
-    preference.background_image_mobile = request.FILES.get('cropped')
-    preference.save()
-    return JsonResponse({'success': 'success'})
 
 
 @login_required
@@ -646,6 +623,26 @@ def thankyou(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     context = context_dict(user=user)
     return render(request, 'leadfy/thankyou.html', context)
+
+
+@login_required
+def desktopimage(request):
+    preference = Preferences.objects.get(user=request.user)
+    print('REQUEST RECEIVED', request.FILES.get('cropped'))
+    print(dir(request.FILES.get('cropped')))
+    preference.background_image_desktop = request.FILES.get('cropped')
+    preference.save()
+    return JsonResponse({'success': 'success'})
+
+
+@login_required
+def mobileimage(request):
+    preference = Preferences.objects.get(user=request.user)
+    print('REQUEST RECEIVED', request.FILES.get('cropped'))
+    print(dir(request.FILES.get('cropped')))
+    preference.background_image_mobile = request.FILES.get('cropped')
+    preference.save()
+    return JsonResponse({'success': 'success'})
 
 
 def error_404_view(request, *args, **argv):

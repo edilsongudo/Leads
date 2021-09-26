@@ -1,8 +1,6 @@
 {% extends "leadfy/landingbase.html" %}
 {% load static %}
-{% block title %}
-    <title>Delete Link Confirm</title>
-{% endblock %}
+{% block title %}{{ link.title }} - Confirm Delete{% endblock %}
 {% block content %}
     <div class="formcontainer">
         <form method="POST">
@@ -10,7 +8,7 @@
             <h2>Are you sure you want to permantely delete this link?</h2>
             <p>Note: If you delete this link, it will no longer be accessible in the internet, and you may lose of statistics about it.</p>
             <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-            <a class="btn btn-outline-secondary" href="{% url 'landing_as_author_pv' request.user.username %}">Cancel</a>
+            <a class="btn btn-outline-secondary" href="{% url 'link-edit' link.short_url %}">Cancel</a>
         </form>
     </div>
     <script type="text/javascript">
