@@ -1,6 +1,7 @@
 {% extends 'leadfy/landingbase.html' %}
 {% load crispy_forms_tags %}
-
+{% block title %}{{ user.profile.name }} | Thank You{% endblock %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
 	<div class="content">
 		<div class="overflow">

@@ -10,12 +10,21 @@
   <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/page-create.css' %}">
 </head>
 <body>
-    <div class="skip toinvisible">
+    <!-- <div class="skip toinvisible">
         <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="skip">
             <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
         </form>
+    </div> -->
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}
     </div>
     <div class="content">
         {% block content %}

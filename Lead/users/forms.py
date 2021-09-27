@@ -20,17 +20,32 @@ class UserCreationForm(auth_forms.UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    # email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        # fields = ['username', 'email']
+        fields = ['username']
+
+        labels = {
+            'username': 'URL: selflink.link/'
+        }
 
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'bio']
+
+        labels = {
+            'name': 'Display Name'
+        }
+
+        widgets = {
+            'bio': forms.Textarea(attrs={
+                'rows': 5
+            })
+        }
 
 
 class ProfileImageForm(forms.ModelForm):

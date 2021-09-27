@@ -1,6 +1,9 @@
 {% extends "leadfy/landingbase.html" %}
 {% load static %}
 {% block title %}{{ link.title }} - Confirm Delete{% endblock %}
+{% block meta %}
+    <meta name="robots" content="noindex">
+{% endblock %}
 {% block content %}
     <div class="formcontainer">
         <form method="POST">

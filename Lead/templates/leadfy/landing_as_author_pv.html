@@ -2,6 +2,10 @@
 {% load static %}
 
 {% block title %}{{ user.profile.name }} - Home{% endblock %}
+{% block meta %}
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex">
+{% endblock %}
 {% block head %}
     <style type="text/css">
         i, a {

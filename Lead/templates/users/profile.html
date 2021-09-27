@@ -29,8 +29,9 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ i_form|crispy }}
-        {{ p_form|crispy }}
+        <!-- <div>Note: If you change your username eventually visitors that go {{ domain }}/youroldusername will not be able to find your page.</div> -->
         {{ u_form|crispy }}
+        {{ p_form|crispy }}
         <button class="cta cta1" id="submitbutton" type="submit">Update</button>
         <a href="{% url 'settings' %}" class="cta cta1">Return</a>
     </form>

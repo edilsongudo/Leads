@@ -22,6 +22,8 @@ from django.db.models import Count
 from django_pandas.io import read_frame
 import plotly.express as px
 import plotly.io as pio
+from django.utils.decorators import decorator_from_middleware
+from .custom_middleware import SimpleMiddleWare
 
 
 @login_required
@@ -222,7 +224,7 @@ def exportlink(request, short_url):
 
     return response
 
-
+@decorator_from_middleware(SimpleMiddleWare)
 def lead(request, short_url):
     link = get_object_or_404(Link, short_url=short_url)
     user = link.user

@@ -14,6 +14,7 @@ import os
 import json
 import socket
 from configparser import ConfigParser
+from django.contrib.messages import constants as messages
 
 config = ConfigParser()
 config.read('config.ini')
@@ -29,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['site']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Get local ip address to be able to run the app in local network using runserver 0.0.0.0:8000
@@ -165,7 +166,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # LOGIN_REDIRECT_URL = 'home'
 # LOGIN_URL = 'login'
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -197,6 +197,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
 
 ADMINS = [('Admin', EMAIL_HOST_USER)]
 
@@ -206,18 +208,26 @@ SOCIALACCOUNT_PROVIDERS = {
             'profile',
             'email',
         ],
-        'AUTH_PARAMS':{
+        'AUTH_PARAMS': {
             'access_type': 'online',
         }
     }
 }
 
+MESSAGE_TAGS = {messages.ERROR: 'danger'}
+
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
     SITE_ID = 1
+    # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 else:
     STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
+
     SITE_ID = 2
+
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+    SECURE_SSL_REDIRECT = True
+    SECURE_REFERRER_POLICY = "strict-origin"
+

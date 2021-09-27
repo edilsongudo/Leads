@@ -5,7 +5,7 @@
 {% block title %}
     Settings
 {% endblock %}
-
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
     <div class="content settingscontainer">
         <div class="title">
@@ -54,6 +54,12 @@
                 <a href="{% url 'account_change_password' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/password-lock.png' %}">
                     Change Password
+                </a>
+            </div>
+            <div class="setting">
+                <a href="{% url 'account_email' %}" class="setting-content">
+                    <img src="{% static 'leadfy/img/password-lock.png' %}">
+                    Email Addresses
                 </a>
             </div>
         </div>
