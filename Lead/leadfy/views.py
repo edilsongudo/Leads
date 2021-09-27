@@ -468,11 +468,17 @@ def createlink(request):
         'short_url': TextInput(attrs={'placeholder': 'Link short URL'}),
         'link': TextInput(attrs={'placeholder': 'Link Destionation URL'}),
     }
+
+    labels = {
+        'short_url': 'selflink.link/to/'
+    }
+
     CustomForm = modelform_factory(
         model=Link,
         fields=fields,
         widgets=widgets,
-        exclude=exclude)
+        exclude=exclude,
+        labels=labels)
     form = CustomForm()
     # form = LinkCreateForm()
     if request.method == 'POST':

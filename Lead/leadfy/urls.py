@@ -29,7 +29,7 @@ urlpatterns = [
     path('link/create/', createlink, name="link-create"),
     path('link/<str:short_url>/edit/', editlink, name="link-edit"),
     path('link/<str:short_url>/delete/', deletelink, name="link-delete"),
-    path('p/<str:short_url>', lead, name="lead"),
+    path('to/<str:short_url>', lead, name="lead"),
     path('<str:username>/', landing, name="user-landing"),
     path('<str:username>/edit', landing_as_author_pv,
          name="landing_as_author_pv"),

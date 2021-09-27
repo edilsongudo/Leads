@@ -346,6 +346,12 @@ input:checked[type="checkbox"]:before {{
   text-align: center;
 }}
 
+textarea#id_call_to_action {{
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
+}}
+
 """
 
   if use_background_image == 'true':

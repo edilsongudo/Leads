@@ -28,7 +28,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username']
 
         labels = {
-            'username': 'URL: selflink.link/'
+            'username': 'selflink.link/'
         }
 
 

@@ -9,6 +9,10 @@ class LinkCreateForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['user', 'view_count', 'description']
 
+        labels = {
+            'short_url': 'selflink.link/to/'
+        }
+
 class LinkEditForm(forms.ModelForm):
 
     class Meta:
@@ -42,3 +46,9 @@ class SubscribeButtonForm(forms.ModelForm):
         model = SubscribeButton
         fields = '__all__'
         exclude = ['user']
+
+        widgets = {
+            'call_to_action': forms.Textarea(attrs={
+                'rows': 5
+            })
+        }
