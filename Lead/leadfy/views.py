@@ -1,6 +1,7 @@
 from .utils import *
 from .forms import *
 from .models import *
+from django.contrib import messages
 from django.forms.models import modelform_factory
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect, get_object_or_404
@@ -494,8 +495,8 @@ def createlink(request):
             form.instance.order = min_order - 1
             form.save()
             return redirect(
-                'landing_as_author_pv',
-                username=request.user.username)
+                'link-edit',
+                short_url=form.instance.short_url)
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/link-create.html', context)
 

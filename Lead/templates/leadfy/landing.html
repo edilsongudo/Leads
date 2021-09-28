@@ -4,28 +4,25 @@
 {% block title %}{{ user.profile.name }}{% endblock %}
 
 {% block meta %}
-    <meta name="description" content="SelfLink. Unleash the power of your links."/>
-    <meta property="og:title" content="{{ user.username }} | SelfLink"/>
-    <meta property="og:description" content="SelfLink. Unleash the power of your links."/>
-    <meta property="og:url" content="https://{{ domain }}/{{ user.username }}"/>
-    <meta property="og:image" content="{{ user.profile.image.url }}"/>
-    <meta property="og:image:secure_url" content="{{ user.profile.image.url }}"/>
-    <meta name="twitter:title" content="{{ user.username }} | SelfLink"/>
-    <meta name="twitter:description" content="SelfLink. Unleash the power of your links."/>
-    <meta name="twitter:image" content="{{ user.profile.image.url }}"/>
-    <meta name="twitter:card" content="summary_large_image"/>
-    <link rel="canonical" href="https://{{ domain }}/{{ user.username }}"/>
-    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-    <meta property="og:image:height" content="600"/>
-    <meta property="og:image:type" content="image/jpg"/>
-    <meta property="og:image:width" content="600"/>
-    <meta property="og:locale" content="en_US"/>
-    <meta property="og:site_name" content="SelfLink"/>
-    <meta property="og:type" content="profile"/>
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:domain" content="SelfLink"/>
-    <meta name="theme-color" content="#ffffff"/>
+        <meta name="description" content="SelfLink. Unleash the power of your links."/>
+        <meta property="og:title" content="{{ user.username }} | SelfLink"/>
+        <meta property="og:description" content="SelfLink. Unleash the power of your links."/>
+        <meta property="og:url" content="https://{{ domain }}/{{ user.username }}"/>
+        <meta property="og:image" content="https://{{ domain }}{{ user.profile.image.url }}"/>
+        <meta property="og:image:secure_url" content="https://{{ domain }}{{ user.profile.image.url }}"/>
+        <meta name="twitter:title" content="{{ user.username }} | SelfLink"/>
+        <meta name="twitter:description" content="SelfLink. Unleash the power of your links."/>
+        <meta name="twitter:image" content="https://{{ domain }}{{ user.profile.image.url }}"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <link rel="canonical" href="https://{{ domain }}/{{ user.username }}"/>
+        <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:site_name" content="SelfLink"/>
+        <meta property="og:type" content="profile"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:domain" content="SelfLink"/>
+        <meta name="theme-color" content="#ffffff"/>
 {% endblock %}
 
 {% block head %}
