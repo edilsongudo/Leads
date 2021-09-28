@@ -46,10 +46,11 @@ class Link(models.Model):
     def __str__(self):
         return f'{self.short_url}'
 
-    # def save(self, *args, **kwargs):
-    #     if not self.netloc:
-    #         self.netloc = generate_netloc(self.link)
-    #         super(Link, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        # if not self.netloc:
+        #     self.netloc = generate_netloc(self.link)
+        self.short_url = self.short_url.lower()
+        super(Link, self).save(*args, **kwargs)
 
 
 # class TrackCode(models.Model):

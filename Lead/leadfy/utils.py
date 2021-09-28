@@ -70,7 +70,7 @@ def context_dict(user, **kwargs):
 
 
 def generate_ref_code():
-    code = str(uuid.uuid4()).replace('-', '')[:5]
+    code = str(uuid.uuid4()).replace('-', '')[:5].lower()
     return code
 
 

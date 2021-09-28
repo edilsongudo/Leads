@@ -56,7 +56,7 @@ ul {
   background-size: contain;
   background-position: right;
   min-height: 100vh;
-  background-image: url(../img/mockup2.png);
+  background-image: url(../img/mockup.png);
 }
 
 .first-section .section-content {
@@ -80,7 +80,7 @@ ul {
   text-align: center;
   min-height: 50vh;
   color: var(--color4);
-  background-image: url("../img/mockupanalytics.png"), linear-gradient(90deg, var(--color1), var(--color2));
+  background-image: url("../img/mockupstats.png"), linear-gradient(90deg, var(--color1), var(--color2));
   background-size: contain;
   background-position: left;
 }
