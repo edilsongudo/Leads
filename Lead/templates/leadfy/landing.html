@@ -32,6 +32,14 @@
             background: transparent;
             color: {{ link_background_color  }};
         }
+
+        .watermark {
+            font-size: 0.75rem;
+        }
+
+        .brandname {
+            text-decoration: underline;
+        }
     </style>
 {% endblock %}
 
@@ -56,7 +64,8 @@
             <div class="bio">{{ user.profile.bio }}</div>
             {% for link in links %}
                 {% if link.show_link %}
-                    <a href="{% url 'lead' link.short_url %}" class="page-link link">{{ link.title }}
+                    <a href="{% url 'lead' link.short_url %}" class="page-link link" target="_blank">
+                        {{ link.title }}
                         {% if "facebook.com" in link.link|lower or "fb.com" in link.link|lower %}
                             <i id="linkicon" class="fab fa-facebook"></i>
                         {% elif "instagram.com" in link.link|lower %}
@@ -139,6 +148,18 @@
                 {% endif %}
                 {% if user.social.skype != None %}
                     <a href="{{ user.social.skype }}"><i class="fab fa-skype"></i></a>
+                {% endif %}
+                {% if user.social.email != None %}
+                    <a href="mailto:{{ user.social.email }}"><i class="fas fa-envelope"></i></a>
+                {% endif %}
+                {% if user.subscription.plan == 'Free' %}
+                    <div class="watermark">
+                        <a href="{% url 'home' %}">
+                            Created with
+                            <!--<i class="fas fa-heart"></i> with-->
+                            <span class="brandname">SelfLink</span>
+                        </a>
+                    </div>
                 {% endif %}
             </div>
         </div>

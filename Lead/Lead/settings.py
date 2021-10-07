@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import json
 import socket
+import platform
+import requests
 from configparser import ConfigParser
 from django.contrib.messages import constants as messages
 
@@ -30,7 +32,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['site']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+# Dinamic Debug
+DEBUG_PLATFORMS = ['Kevin-PC']
+platform = platform.uname().node
+if platform in DEBUG_PLATFORMS:
+    DEBUG = True
 
 
 # Get local ip address to be able to run the app in local network using runserver 0.0.0.0:8000
@@ -220,7 +228,6 @@ MESSAGE_TAGS = {messages.ERROR: 'danger'}
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
     SITE_ID = 1
-    # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 else:
     STATIC_ROOT = '/home/cristiangrey/leads/Lead/static'
@@ -232,3 +239,8 @@ else:
     SECURE_SSL_REDIRECT = True
     SECURE_REFERRER_POLICY = "strict-origin"
 
+try:
+    _ = requests.head('http://google.com', timeout=5)
+except requests.ConnectionError:
+    if platform in DEBUG_PLATFORMS:
+        EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

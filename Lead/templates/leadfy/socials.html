@@ -9,7 +9,11 @@
 {% block content %}
     <div class="content">
         <h4>Your Social Links</h4>
-
+        <p>Filling the fields will add social icons to end of your bio page.
+        <br>
+        Do not forget to include "https://www." in the beggining of each URL.
+        <br>
+        Example: "https://www.instagram.com/yourusername"</p>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}

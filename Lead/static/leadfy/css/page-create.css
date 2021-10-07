@@ -128,7 +128,7 @@ body {
   color: black;
 }
 
-input[type=text], input[type=url], input[type=email], input[type=password], input[type=search], input[type=tel], input[type=text] {
+input[type=text], input[type=url], input[type=email], input[type=password], input[type=search], input[type=tel], input[type=number] {
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.85);
   border-radius: 50px;

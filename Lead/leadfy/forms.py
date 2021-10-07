@@ -39,6 +39,13 @@ class AdvancedForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['user']
 
+        help_message = '''If Zero, visitors always will be asked to subscribe everytime
+         they click a link with with "ask visitors to subscribe" turned On'''
+
+        help_texts = {
+            'seconds_to_wait_before_asking_user_to_subscribe_again': help_message
+        }
+
 
 class SubscribeButtonForm(forms.ModelForm):
 
@@ -46,6 +53,10 @@ class SubscribeButtonForm(forms.ModelForm):
         model = SubscribeButton
         fields = '__all__'
         exclude = ['user']
+
+        help_texts = {
+            'show': '''Whether to show this button or not in your bio page'''
+        }
 
         widgets = {
             'call_to_action': forms.Textarea(attrs={

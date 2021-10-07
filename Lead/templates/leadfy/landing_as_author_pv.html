@@ -3,7 +3,6 @@
 
 {% block title %}{{ user.profile.name }} - Home{% endblock %}
 {% block meta %}
-    <meta name="referrer" content="no-referrer">
     <meta name="robots" content="noindex">
 {% endblock %}
 {% block head %}
@@ -61,7 +60,7 @@
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
                         </div>
                         <div>Link:</div>
-                        <a style="text-decoration: underline;" href="http://{{ domain }}/{{ user.username }}" target="_blank" rel="noopener noreferrer" class="name" id="name">{{ domain }}/{{ user.username }}</a>
+                        <a style="text-decoration: underline;" href="http://{{ domain }}/{{ user.username }}" target="_blank" class="name" id="name">{{ domain }}/{{ user.username }}</a>
                     </div>
                 </div>
             <!-- <div class="bio">{{ user.profile.bio }}</div> -->

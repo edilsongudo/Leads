@@ -38,7 +38,7 @@ class Link(models.Model):
     show_link = models.BooleanField(default=True)
     use_this_link_to_ask_visitors_to_subscribe = models.BooleanField(
         default=False)
-    view_count = models.IntegerField(
+    view_count = models.PositiveIntegerField(
         default=0)
     order = models.IntegerField(
         default=1)
@@ -99,9 +99,9 @@ class Preferences(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
     color1 = models.CharField(
-        max_length=100, default="rgba(180.468, 151.605, 207.461, 1)")
+        max_length=100, default="rgba(130.517, 189.457, 212.85, 1)")
     color2 = models.CharField(
-        max_length=100, default="rgba(252.309, 234.818, 179.729, 1)")
+        max_length=100, default="rgba(151.462, 111.687, 143.872, 1)")
     body_font_color = models.CharField(
         max_length=100, default="rgba(255, 255, 255, 1)")
     background_image_desktop = models.ImageField(
@@ -116,13 +116,13 @@ class Preferences(models.Model):
         default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)
     font_family = models.CharField(
-        max_length=100, null=True, default="Juliagar.otf", choices=myfonts)
-    primary_font_size = models.IntegerField(
+        max_length=100, null=True, default="Karla-VariableFont_wght.ttf", choices=myfonts)
+    primary_font_size = models.PositiveIntegerField(
         default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    name_font_size = models.IntegerField(
+    name_font_size = models.PositiveIntegerField(
         default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    border_radius = models.IntegerField(
-        default=10, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    border_radius = models.PositiveIntegerField(
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
     link_background_color = models.CharField(
         max_length=100, default="rgba(255, 255, 255, 1)")
     link_border_color = models.CharField(
@@ -140,7 +140,7 @@ class Preferences(models.Model):
 
 class Advanced(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    seconds_to_wait_before_asking_user_to_subscribe_again = models.IntegerField(
+    seconds_to_wait_before_asking_user_to_subscribe_again = models.PositiveIntegerField(
         default=3600, validators=[MinValueValidator(0), MaxValueValidator(324000)])
     # ask_visitors_to_subscribe_when_they_click_in_a_link = models.BooleanField(default=True)
 
@@ -195,6 +195,8 @@ class Social(models.Model):
     discord = models.URLField(
         max_length=200, null=True, blank=True)
     skype = models.URLField(
+        max_length=200, null=True, blank=True)
+    email = models.EmailField(
         max_length=200, null=True, blank=True)
 
     def __str__(self):

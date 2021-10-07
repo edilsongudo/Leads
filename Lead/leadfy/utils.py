@@ -114,14 +114,18 @@ def get_zoom(distance):
 
 def set_http_referer(request, response, username):
     if not f'{username}_referer' in request.COOKIES:
-        referer = request.META.get('HTTP_REFERER')
         max_age = 60 * 5
+
+        # it is important to set HTTP_REFERER TO EMPTY STRING
+        # if its equal to None to avoid urllibe.urlparse returning EMPTY BYTES
+        referer = request.META.get('HTTP_REFERER', "")
 
         referer_netloc = generate_netloc(referer)
         host = request.get_host()
-        condition = referer_netloc == host
+        if referer_netloc == referer_netloc:
+            referer = ""
 
-        if referer is not None and not condition:
+        if referer != "":
             response.set_cookie(f'{username}_referer',
                                 referer, max_age=max_age)
     else:

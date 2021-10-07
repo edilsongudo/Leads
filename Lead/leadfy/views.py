@@ -13,6 +13,7 @@ from django.http import (
 import json
 import csv
 import datetime
+from django.utils import timezone
 from django.forms import TextInput, EmailInput
 from urllib.parse import urlparse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -164,7 +165,10 @@ def exportleads(request):
             'location'):
         writer.writerow(lead)
 
-    response['Content-Disposition'] = 'attachment; filename="Leads.csv"'
+    now = timezone.now()
+    now = datetime.datetime.strftime(now, '%d-%m-%Y %H %M %S')
+    filename = f'attachment; filename="Leads.csv {now}"'
+    response['Content-Disposition'] = filename
 
     return response
 
@@ -190,7 +194,9 @@ def exportlinks(request):
             'os_type'):
         writer.writerow(visit)
 
-    filename = 'attachment; filename="IndividualVisits.csv"'
+    now = timezone.now()
+    now = datetime.datetime.strftime(now, '%d-%m-%Y %H %M %S')
+    filename = f'attachment; filename="IndividualVisits {now}.csv"'
     response['Content-Disposition'] = filename
 
     return response
@@ -220,7 +226,9 @@ def exportlink(request, short_url):
             'os_type'):
         writer.writerow(visit)
 
-    filename = f'attachment; filename="{short_url}-visits.csv"'
+    now = timezone.now()
+    now = datetime.datetime.strftime(now, '%d-%m-%Y %H %M %S')
+    filename = f'attachment; filename="{short_url} visits {now}.csv"'
     response['Content-Disposition'] = filename
 
     return response
@@ -474,12 +482,20 @@ def createlink(request):
         'short_url': 'selflink.link/to/'
     }
 
+    help_texts = {
+        'use_this_link_to_ask_visitors_to_subscribe': '''Whether to ask visitors
+        to subscribe or not when they click this link''',
+        'show_link': '''Whether to show or hide this link from your bio page.
+        Note: Link will still be accessible outside your page'''
+    }
+
     CustomForm = modelform_factory(
         model=Link,
         fields=fields,
         widgets=widgets,
         exclude=exclude,
-        labels=labels)
+        labels=labels,
+        help_texts=help_texts)
     form = CustomForm()
     # form = LinkCreateForm()
     if request.method == 'POST':
@@ -512,11 +528,20 @@ def editlink(request, short_url):
         'short_url': TextInput(attrs={'placeholder': 'Link short URL', 'disabled': 'disabled'}),
         # 'link': TextInput(attrs={'placeholder': 'Link Destionation URL', 'disabled': 'disabled'}),
     }
+
+    help_texts = {
+        'use_this_link_to_ask_visitors_to_subscribe': '''Whether to ask visitors
+        to subscribe or not when they click this link''',
+        'show_link': '''Whether to show or hide this link from your bio page.
+        Note: Link will still be accessible outside your page'''
+    }
+
     CustomForm = modelform_factory(
         model=Link,
         fields=fields,
         widgets=widgets,
-        exclude=exclude)
+        exclude=exclude,
+        help_texts=help_texts)
     form = CustomForm(instance=link)
     if request.user == link.user:
         if request.method == 'POST':
@@ -632,6 +657,9 @@ def thankyou(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     context = context_dict(user=user)
     return render(request, 'leadfy/thankyou.html', context)
+
+def pitch(request):
+    return render(request, 'leadfy/pitch.html')
 
 
 @login_required

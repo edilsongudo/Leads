@@ -34,5 +34,6 @@ urlpatterns = [
     path('<str:username>/edit', landing_as_author_pv,
          name="landing_as_author_pv"),
     path('<str:username>/stats/', stats, name="stats"),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('pitch/read/', pitch, name="pitch"),
 ]
