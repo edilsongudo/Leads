@@ -72,7 +72,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django_cleanup.apps.CleanupConfig',
     # 'django_unused_media',
-    'request',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +83,7 @@ MIDDLEWARE = [
     'request.middleware.RequestMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Lead.urls'

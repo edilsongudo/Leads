@@ -659,7 +659,8 @@ def thankyou(request, username):
     return render(request, 'leadfy/thankyou.html', context)
 
 def pitch(request):
-    return render(request, 'leadfy/pitch.html')
+    content = Pitch.objects.first()
+    return render(request, 'leadfy/pitch.html', {'content': content})
 
 
 @login_required

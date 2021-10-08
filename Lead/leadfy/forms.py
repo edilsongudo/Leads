@@ -63,3 +63,10 @@ class SubscribeButtonForm(forms.ModelForm):
                 'rows': 5
             })
         }
+
+
+class PitchForm(forms.ModelForm):
+
+    class Meta:
+        model = Pitch
+        fields = '__all__'

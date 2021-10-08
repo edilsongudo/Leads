@@ -7,6 +7,7 @@ from django.conf import settings
 import os
 from PIL import Image
 from django_resized import ResizedImageField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class LeadModel(models.Model):
@@ -211,3 +212,7 @@ class Integrations(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+
+
+class Pitch(models.Model):
+    content = RichTextUploadingField(blank=False, null=False)
