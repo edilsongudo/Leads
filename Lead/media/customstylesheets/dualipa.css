@@ -166,6 +166,7 @@ a:hover {
 
 
 .page-link {
+  word-wrap: break-word;
   border: 1px solid rgba(0, 0, 0, 1);
   border-radius: 50px;
   padding: 20px;
@@ -178,7 +179,7 @@ a:hover {
   background-color: rgba(0, 0, 0, 1);
 }
 
-.page-link:hover {
+.page-link:active {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;

@@ -191,6 +191,7 @@ a:hover {{
 
 
 .page-link {{
+  word-wrap: break-word;
   border: 1px solid {link_border_color};
   border-radius: {str(border_radius)}px;
   padding: 20px;

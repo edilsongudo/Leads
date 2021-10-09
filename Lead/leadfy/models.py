@@ -31,7 +31,7 @@ class Link(models.Model):
         default=generate_ref_code,
         null=True,
         unique=True)
-    title = models.CharField(max_length=20, null=True)
+    title = models.CharField(max_length=100, null=True)
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True)
     link = models.URLField(
@@ -155,7 +155,7 @@ class SubscribeButton(models.Model):
         max_length=150,
         default="Would you like to subscribe to my email list?")
     call_to_action_button_text = models.CharField(
-        max_length=20, default="Subscribe")
+        max_length=50, default="Subscribe")
     show = models.BooleanField(default=True)
     # view_count = models.IntegerField(
     #     default=0)
