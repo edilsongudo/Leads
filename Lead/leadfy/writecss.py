@@ -204,10 +204,15 @@ a:hover {{
   background-color: {link_background_color};
 }}
 
+.link-title {{
+  max-width: 80%;
+}}
+
 .page-link:hover {{
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
+  border-color: {link_text_color};
 }}
 
 .page-link .fa-pencil-alt, .page-link .linkviews {{

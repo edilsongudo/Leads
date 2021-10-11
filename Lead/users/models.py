@@ -13,6 +13,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    first_time_login = models.BooleanField(default=False)
     image = models.ImageField(
         default='default.jpg',
         upload_to='profile_pics')

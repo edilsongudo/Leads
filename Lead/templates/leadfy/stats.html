@@ -14,10 +14,13 @@
             }
         {% endif %}
 
+        .page-link i {
+            color: {{ link_text_color  }}
+        }
+
         .page-link:hover {
             color: {{ link_background_color  }}
         }
-
 
     </style>
 {% endblock %}
@@ -48,7 +51,7 @@
             <div id="links">
                 {% for link in links %}
                     <a data-id="{{ link.short_url }}" href="{% url 'exportlink' link.short_url %}" class="page-link link">
-                        {{ link.title }}
+                        <div class="link-title">{{ link.title }}</div>
                         <div class="linkviews">
                             <i class="fas fa-eye"></i> {{ link.view_count }}
                         </div>

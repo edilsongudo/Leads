@@ -140,6 +140,10 @@ def dashboard(request, days):
 
 def home(request):
     if request.user.is_authenticated:
+        if not request.user.profile.first_time_login:
+            request.user.profile.first_time_login = True
+            request.user.profile.save()
+            return redirect('profile')
         return redirect('landing_as_author_pv', username=request.user.username)
     else:
         return render(request, 'leadfy/home.html')
@@ -163,6 +167,10 @@ def exportleads(request):
         'referer',
         'referer_main_domain',
             'location'):
+        lead = list(lead)
+        time = lead[2]
+        time = datetime.datetime.strftime(time, '%d-%m-%Y')
+        lead[2] = time
         writer.writerow(lead)
 
     now = timezone.now()
@@ -192,6 +200,10 @@ def exportlinks(request):
         'location',
         'device_type',
             'os_type'):
+        visit = list(visit)
+        time = visit[1]
+        time = datetime.datetime.strftime(time, '%d-%m-%Y %H:%M:%S')
+        visit[1] = time
         writer.writerow(visit)
 
     now = timezone.now()
@@ -224,6 +236,10 @@ def exportlink(request, short_url):
         'location',
         'device_type',
             'os_type'):
+        visit = list(visit)
+        time = visit[0]
+        time = datetime.datetime.strftime(time, '%d-%m-%Y %H:%M:%S')
+        visit[0] = time
         writer.writerow(visit)
 
     now = timezone.now()

@@ -70,7 +70,8 @@
             </div>
             <div id="links">
                 {% for link in links %}
-                    <a data-id="{{ link.short_url }}" href="{% url 'link-edit' link.short_url %}" class="page-link link">{{ link.title }}
+                    <a data-id="{{ link.short_url }}" href="{% url 'link-edit' link.short_url %}" class="page-link link">
+                        <div class="link-title">{{ link.title }}</div>
                         <i class="fas fa-grip-lines"></i>
                         <i class="fas fa-pencil-alt"></i>
                     </a>

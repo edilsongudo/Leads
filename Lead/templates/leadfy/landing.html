@@ -65,7 +65,7 @@
             {% for link in links %}
                 {% if link.show_link %}
                     <a href="{% url 'lead' link.short_url %}" class="page-link link" target="_blank">
-                        {{ link.title }}
+                        <div class="link-title">{{ link.title }}</div>
                         {% if "facebook.com" in link.link|lower or "fb.com" in link.link|lower %}
                             <i id="linkicon" class="fab fa-facebook"></i>
                         {% elif "instagram.com" in link.link|lower %}

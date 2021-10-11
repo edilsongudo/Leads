@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url("/media/fonts/Karla-VariableFont_wght.ttf")
+    src:  url("/media/fonts/Juliagar.otf")
 }
 
 body {
@@ -11,9 +11,9 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(238.678, 196.775, 229.659, 1), rgba(228.197, 160.002, 227.208, 1));
+  background-image: linear-gradient(90deg, rgba(223.106, 207.381, 255, 1), rgba(219.238, 207, 255, 1));
   min-height: 100vh;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0,0,0,1);
   font-family: 'customfont', sans-serif;
   font-size: 16;
 }
@@ -154,7 +154,7 @@ a:hover {
   background: transparent;
   border: none;
   outline: none;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0,0,0,1);
 }
 
 
@@ -167,19 +167,23 @@ a:hover {
 
 .page-link {
   word-wrap: break-word;
-  border: 1px solid rgba(0, 0, 0, 1);
-  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 19px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(0, 0, 0, 1);
+  color: rgba(0,0,0,1);
+  background-color: rgba(255, 255, 255, 1);
 }
 
-.page-link:active {
+.link-title {
+  max-width: 80%;
+}
+
+.page-link:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
@@ -279,7 +283,7 @@ a:hover {
 }
 
 .previewlinkedit a {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0,0,0,1);
   text-decoration: underline;
 }
 
