@@ -10,6 +10,99 @@ from django_resized import ResizedImageField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
+fonts_folder = os.path.join(settings.MEDIA_ROOT, 'fonts')
+fonts = os.listdir(fonts_folder)
+myfonts = []
+for font in fonts:
+    if font.split('.')[-1] in ('otf', 'ttf'):
+        myfonts.append([font, font])
+
+
+class Preferences(models.Model):
+    user = models.OneToOneField(
+        get_user_model(), on_delete=models.CASCADE, null=True)
+    template = models.CharField(
+        max_length=50, default="custom")
+    color1 = models.CharField(
+        max_length=100, default="rgba(130.517, 189.457, 212.85, 1)")
+    color2 = models.CharField(
+        max_length=100, default="rgba(151.462, 111.687, 143.872, 1)")
+    body_font_color = models.CharField(
+        max_length=100, default="rgba(255, 255, 255, 1)")
+    background_image_desktop = models.ImageField(
+        upload_to='usersbackgroundimages',
+        default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
+        null=True)
+    background_image_mobile = models.ImageField(
+        upload_to='usersbackgroundimages',
+        default="usersbackgroundimages/defaultmobilebackgroundimage.jpg",
+        null=True)
+    background_image_brightness = models.IntegerField(
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    use_background_image = models.BooleanField(default=False)
+    font_family = models.CharField(
+        max_length=100, null=True, default="Karla-VariableFont_wght.ttf", choices=myfonts)
+    primary_font_size = models.PositiveIntegerField(
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    name_font_size = models.PositiveIntegerField(
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    border_radius = models.PositiveIntegerField(
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    link_background_color = models.CharField(
+        max_length=100, default="rgba(255, 255, 255, 1)")
+    link_border_color = models.CharField(
+        max_length=100, default="rgba(255, 255, 255, 1)")
+    link_text_color = models.CharField(
+        max_length=100, default="rgba(0, 0, 0, 1)")
+    lastmodified = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username} Landing Page Preferences'
+
+    def save(self, *args, **kwargs):
+        super(Preferences, self).save(*args, **kwargs)
+
+
+class Template(models.Model):
+    name = models.CharField(max_length=50)
+    thumbnail = models.ImageField(upload_to="template_thumbnails")
+    color1 = models.CharField(
+        max_length=100, default="rgba(130.517, 189.457, 212.85, 1)")
+    color2 = models.CharField(
+        max_length=100, default="rgba(151.462, 111.687, 143.872, 1)")
+    body_font_color = models.CharField(
+        max_length=100, default="rgba(255, 255, 255, 1)")
+    background_image_desktop = models.ImageField(
+        upload_to='usersbackgroundimages',
+        default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
+        null=True)
+    background_image_mobile = models.ImageField(
+        upload_to='usersbackgroundimages',
+        default="usersbackgroundimages/defaultmobilebackgroundimage.jpg",
+        null=True)
+    background_image_brightness = models.IntegerField(
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    use_background_image = models.BooleanField(default=False)
+    font_family = models.CharField(
+        max_length=100, null=True, default="Karla-VariableFont_wght.ttf", choices=myfonts)
+    primary_font_size = models.PositiveIntegerField(
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    name_font_size = models.PositiveIntegerField(
+        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    border_radius = models.PositiveIntegerField(
+        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    link_background_color = models.CharField(
+        max_length=100, default="rgba(255, 255, 255, 1)")
+    link_border_color = models.CharField(
+        max_length=100, default="rgba(255, 255, 255, 1)")
+    link_text_color = models.CharField(
+        max_length=100, default="rgba(0, 0, 0, 1)")
+    lastmodified = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
 class LeadModel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=False)
     email = models.EmailField(null=True, blank=False)
@@ -86,57 +179,6 @@ class PageVisit(models.Model):
 
     def __str__(self):
         return f'/{self.page.short_url} at {self.time}'
-
-
-fonts_folder = os.path.join(settings.MEDIA_ROOT, 'fonts')
-fonts = os.listdir(fonts_folder)
-myfonts = []
-for font in fonts:
-    if font.split('.')[-1] in ('otf', 'ttf'):
-        myfonts.append([font, font])
-
-
-class Preferences(models.Model):
-    user = models.OneToOneField(
-        get_user_model(), on_delete=models.CASCADE, null=True)
-    color1 = models.CharField(
-        max_length=100, default="rgba(130.517, 189.457, 212.85, 1)")
-    color2 = models.CharField(
-        max_length=100, default="rgba(151.462, 111.687, 143.872, 1)")
-    body_font_color = models.CharField(
-        max_length=100, default="rgba(255, 255, 255, 1)")
-    background_image_desktop = models.ImageField(
-        upload_to='usersbackgroundimages',
-        default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
-        null=True)
-    background_image_mobile = models.ImageField(
-        upload_to='usersbackgroundimages',
-        default="usersbackgroundimages/defaultmobilebackgroundimage.jpg",
-        null=True)
-    background_image_brightness = models.IntegerField(
-        default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    use_background_image = models.BooleanField(default=False)
-    font_family = models.CharField(
-        max_length=100, null=True, default="Karla-VariableFont_wght.ttf", choices=myfonts)
-    primary_font_size = models.PositiveIntegerField(
-        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    name_font_size = models.PositiveIntegerField(
-        default=16, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    border_radius = models.PositiveIntegerField(
-        default=50, validators=[MinValueValidator(0), MaxValueValidator(50)])
-    link_background_color = models.CharField(
-        max_length=100, default="rgba(255, 255, 255, 1)")
-    link_border_color = models.CharField(
-        max_length=100, default="rgba(255, 255, 255, 1)")
-    link_text_color = models.CharField(
-        max_length=100, default="rgba(0, 0, 0, 1)")
-    lastmodified = models.DateTimeField(auto_now=True, null=True)
-
-    def __str__(self):
-        return f'{self.user.username} Landing Page Preferences'
-
-    def save(self, *args, **kwargs):
-        super(Preferences, self).save(*args, **kwargs)
 
 
 class Advanced(models.Model):
@@ -216,3 +258,6 @@ class Integrations(models.Model):
 
 class Pitch(models.Model):
     content = RichTextUploadingField(blank=False, null=False)
+
+
+

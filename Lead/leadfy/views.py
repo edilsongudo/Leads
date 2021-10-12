@@ -29,6 +29,18 @@ from .custom_middleware import SimpleMiddleWare
 
 
 @login_required
+def choose_template(request):
+    if request.method == 'POST':
+        if request.is_ajax:
+            data = json.loads(request.body)
+            print(data)
+            request.user.preferences.template = data['template']
+            request.user.preferences.save()
+    templates = Template.objects.all()
+    return render(request, 'leadfy/choose_template.html', {'templates': templates})
+
+
+@login_required
 def dashboard(request, days):
     if request.user.subscription.plan == 'Free':
         return redirect('subscribe')
@@ -156,21 +168,20 @@ def exportleads(request):
 
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
-    writer.writerow(['Name', 'Email', 'Date', 'Referrer',
-                    'Refferer Main Domain', 'Location'])
+    writer.writerow(['Name', 'Email', 'Referrer',
+                    'Location', 'Date'])
 
     leads = LeadModel.objects.filter(lead_from=request.user)
     for lead in leads.values_list(
         'name',
         'email',
-        'date_submited',
-        'referer',
         'referer_main_domain',
-            'location'):
+        'location',
+        'date_submited'):
         lead = list(lead)
-        time = lead[2]
+        time = lead[-1]
         time = datetime.datetime.strftime(time, '%d-%m-%Y')
-        lead[2] = time
+        lead[-1] = time
         writer.writerow(lead)
 
     now = timezone.now()
@@ -188,22 +199,21 @@ def exportlinks(request):
 
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
-    writer.writerow(['Link_short_url', 'time', 'Referrer',
-                    'Refferer Main Domain', 'Location', 'Device', 'OS'])
+    writer.writerow(['Link', 'Referrer',
+                    'Location', 'Device', 'OS', 'time'])
 
     visits = PageVisit.objects.filter(page__user=request.user)
     for visit in visits.values_list(
         'page__title',
-        'time',
-        'referer',
         'referer_main_domain',
         'location',
         'device_type',
-            'os_type'):
+        'os_type',
+        'time'):
         visit = list(visit)
-        time = visit[1]
+        time = visit[-1]
         time = datetime.datetime.strftime(time, '%d-%m-%Y %H:%M:%S')
-        visit[1] = time
+        visit[-1] = time
         writer.writerow(visit)
 
     now = timezone.now()
@@ -221,25 +231,23 @@ def exportlink(request, short_url):
 
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
-    writer.writerow(['time',
-                     'Referrer',
-                     'Refferer Main Domain',
+    writer.writerow(['Referrer',
                      'Location',
                      'Device',
-                     'OS'])
+                     'OS',
+                     'time'])
 
     visits = PageVisit.objects.filter(page__short_url=short_url)
     for visit in visits.values_list(
-        'time',
-        'referer',
         'referer_main_domain',
         'location',
         'device_type',
-            'os_type'):
+        'os_type',
+        'time'):
         visit = list(visit)
-        time = visit[0]
+        time = visit[-1]
         time = datetime.datetime.strftime(time, '%d-%m-%Y %H:%M:%S')
-        visit[0] = time
+        visit[-1] = time
         writer.writerow(visit)
 
     now = timezone.now()
@@ -441,6 +449,7 @@ def preferences(request):
             request.FILES,
             instance=request.user.preferences)
         if form.is_valid():
+            preference.template = 'custom'
             if request.POST['use_background_image'] == 'true':
                 preference.use_background_image = True
             else:
@@ -673,6 +682,7 @@ def thankyou(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     context = context_dict(user=user)
     return render(request, 'leadfy/thankyou.html', context)
+
 
 def pitch(request):
     content = Pitch.objects.first()

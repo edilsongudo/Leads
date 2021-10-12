@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url("/media/fonts/Juliagar.otf")
+    src:  url("/media/fonts/Karla-VariableFont_wght.ttf")
 }
 
 body {
@@ -11,9 +11,9 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(223.106, 207.381, 255, 1), rgba(219.238, 207, 255, 1));
+  background-image: linear-gradient(90deg, rgba(130.517, 189.457, 212.85, 1), rgba(151.462, 111.687, 143.872, 1));
   min-height: 100vh;
-  color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
   font-size: 16;
 }
@@ -154,7 +154,7 @@ a:hover {
   background: transparent;
   border: none;
   outline: none;
-  color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
 }
 
 
@@ -168,14 +168,14 @@ a:hover {
 .page-link {
   word-wrap: break-word;
   border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 19px;
+  border-radius: 50px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0,0,0,1);
+  color: rgba(0, 0, 0, 1);
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -187,6 +187,7 @@ a:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
+  border-color: rgba(0, 0, 0, 1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
@@ -283,7 +284,7 @@ a:hover {
 }
 
 .previewlinkedit a {
-  color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
   text-decoration: underline;
 }
 

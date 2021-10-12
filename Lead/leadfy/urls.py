@@ -18,6 +18,7 @@ urlpatterns = [
     path('mobile/upload/', mobileimage, name="mobileimage"),
     path('desktop/upload/', desktopimage, name="desktopimage"),
     path('preferences/', preferences, name="preferences"),
+    path('choose_template/', choose_template, name="choose_template"),
     path('settings/', settings, name="settings"),
     path('export/', export, name="export"),
     path('subscribebutton-edit/', subscribebutton, name="subscribebutton"),

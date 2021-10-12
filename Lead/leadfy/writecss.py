@@ -1,27 +1,50 @@
 from django.conf import settings
 import os
-
+from django.apps import apps
 
 # def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size,
 #              border_radius, link_text_color, link_background_color, font, use_background_image,
 #              brightness_css_factor, desktopimage, mobileimage):
 def writecss(user):
-  color1 = user.preferences.color1
-  color2 = user.preferences.color2
-  body_font_color = user.preferences.body_font_color
-  font = user.preferences.font_family
-  use_background_image = user.preferences.use_background_image
-  mobileimage = user.preferences.background_image_mobile.url
-  desktopimage = user.preferences.background_image_desktop.url
-  background_image_brightness = user.preferences.background_image_brightness
-  brightness_css_factor = background_image_brightness / 100
-  primary_font_size = user.preferences.primary_font_size
-  name_font_size = user.preferences.name_font_size
-  border_radius = user.preferences.border_radius
-  link_background_color = user.preferences.link_background_color
-  link_border_color = user.preferences.link_border_color
-  link_text_color = user.preferences.link_text_color
-  font_family = user.preferences.font_family
+  template = user.preferences.template
+
+  if template == 'custom':
+    color1 = user.preferences.color1
+    color2 = user.preferences.color2
+    body_font_color = user.preferences.body_font_color
+    font = user.preferences.font_family
+    use_background_image = user.preferences.use_background_image
+    mobileimage = user.preferences.background_image_mobile.url
+    desktopimage = user.preferences.background_image_desktop.url
+    background_image_brightness = user.preferences.background_image_brightness
+    brightness_css_factor = background_image_brightness / 100
+    primary_font_size = user.preferences.primary_font_size
+    name_font_size = user.preferences.name_font_size
+    border_radius = user.preferences.border_radius
+    link_background_color = user.preferences.link_background_color
+    link_border_color = user.preferences.link_border_color
+    link_text_color = user.preferences.link_text_color
+    font_family = user.preferences.font_family
+  else:
+    Template = apps.get_model('leadfy.Template')
+    template_choosen = Template.objects.get(id=template)
+    print('-------', template_choosen)
+    color1 = template_choosen.color1
+    color2 = template_choosen.color2
+    body_font_color = template_choosen.body_font_color
+    font = template_choosen.font_family
+    use_background_image = template_choosen.use_background_image
+    mobileimage = template_choosen.background_image_mobile.url
+    desktopimage = template_choosen.background_image_desktop.url
+    background_image_brightness = template_choosen.background_image_brightness
+    brightness_css_factor = background_image_brightness / 100
+    primary_font_size = template_choosen.primary_font_size
+    name_font_size = template_choosen.name_font_size
+    border_radius = template_choosen.border_radius
+    link_background_color = template_choosen.link_background_color
+    link_border_color = template_choosen.link_border_color
+    link_text_color = template_choosen.link_text_color
+    font_family = template_choosen.font_family
 
   css = f"""
 
