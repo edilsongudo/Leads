@@ -11,9 +11,9 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(244.071, 215.633, 249.534, 1), rgba(226.7, 197.667, 221.16, 1));
+  background-image: linear-gradient(90deg, rgba(208.04, 161.563, 216.968, 1), rgba(226.7, 197.667, 221.16, 1));
   min-height: 100vh;
-  color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
   font-size: 16;
 }
@@ -154,7 +154,7 @@ a:hover {
   background: transparent;
   border: none;
   outline: none;
-  color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
 }
 
 
@@ -284,7 +284,7 @@ a:hover {
 }
 
 .previewlinkedit a {
-  color: rgba(0,0,0,1);
+  color: rgba(255, 255, 255, 1);
   text-decoration: underline;
 }
 

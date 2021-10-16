@@ -6,6 +6,15 @@
 {% block meta %}<meta name="robots" content="noindex">{% endblock %}
 {% block content %}
     <div class="formcontainer">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="container">
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
         <h1>Create Link</h1>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}

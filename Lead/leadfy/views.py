@@ -25,6 +25,7 @@ from django_pandas.io import read_frame
 import plotly.express as px
 import plotly.io as pio
 from django.utils.decorators import decorator_from_middleware
+from django.db import IntegrityError
 from .custom_middleware import SimpleMiddleWare
 
 
@@ -259,7 +260,7 @@ def exportlink(request, short_url):
 
 @decorator_from_middleware(SimpleMiddleWare)
 def lead(request, short_url):
-    link = get_object_or_404(Link, short_url=short_url)
+    link = get_object_or_404(Link, short_url__iexact=short_url)
     user = link.user
 
     fields = (['name', 'email'])
@@ -334,7 +335,7 @@ def lead(request, short_url):
 
 
 def landing(request, username):
-    user = get_object_or_404(get_user_model(), username=username)
+    user = get_object_or_404(get_user_model(), username__iexact=username)
     links = Link.objects.filter(user=user).order_by('order')
 
     show_subscribe_button = True
@@ -525,6 +526,7 @@ def createlink(request):
     # form = LinkCreateForm()
     if request.method == 'POST':
         # form = LinkCreateForm(request.POST)
+
         form = CustomForm(request.POST)
         if form.is_valid():
             form.instance.user = request.user
@@ -533,8 +535,15 @@ def createlink(request):
                     user=request.user).order_by('order').first().order
             except BaseException:  # There is not any link yet. This is the first one.
                 min_order = 1
-            form.instance.order = min_order - 1
-            form.save()
+                form.instance.order = min_order - 1
+
+            try:
+                form.save()
+            except IntegrityError as e:
+                messages.error(request, f'Link with slug "{form.instance.short_url}" already exists')
+                context = context_dict(user=request.user, form=form)
+                return render(request, 'leadfy/link-create.html', context)
+
             return redirect(
                 'link-edit',
                 short_url=form.instance.short_url)
@@ -644,7 +653,7 @@ def integrations(request):
 
 
 def subscribe(request, username):
-    user = get_object_or_404(get_user_model(), username=username)
+    user = get_object_or_404(get_user_model(), username__iexact=username)
     fields = (['name', 'email'])
     widgets = {
         'name': TextInput(attrs={'placeholder': 'Name'}),
