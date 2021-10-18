@@ -6,10 +6,13 @@ from .models import Profile
 
 @receiver(post_save, sender=get_user_model())
 def create_profile(sender, instance, created, **kwargs):
-    if created:
+    if created and not kwargs.get('raw', False):
         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=get_user_model())
 def save_profile(sender, instance, created, **kwargs):
-    instance.profile.save()
+    try:
+        instance.profile.save()
+    except Exception as e:
+        print(e)

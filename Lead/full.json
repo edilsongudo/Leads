@@ -1,0 +1,1591 @@
+[
+{
+    "model": "sites.site",
+    "fields": {
+        "domain": "127.0.0.1:8000",
+        "name": "127.0.0.1:8000"
+    }
+},
+{
+    "model": "sites.site",
+    "fields": {
+        "domain": "selflink.link",
+        "name": "SelfLink"
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$180000$eu3QAVllmpfh$CpC2d/mU7wZaD0p5/3ZMZp1mtO7Uqh4jmFIWpsHP2mA=",
+        "last_login": "2021-10-17T17:02:08.547Z",
+        "is_superuser": true,
+        "username": "dualipa",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-08-10T18:50:19Z",
+        "email": "edilson4football@gmail.com",
+        "view_count": 37,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$180000$WuPEOZUb6bu5$LolTgUx8DvHh0f7yNozlwuolrUdwMKBNep9XdGrNyrI=",
+        "last_login": "2021-10-17T11:25:00.241Z",
+        "is_superuser": false,
+        "username": "cristiano",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-10-09T15:38:00.877Z",
+        "email": "edilsongudo@gmail.com",
+        "view_count": 51,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$180000$SBdywbreFWhG$ksrWUzzgqLiXS88vWoNOsiixmT1kiNadYpZ1vuRWrOY=",
+        "last_login": "2021-10-11T12:22:25.091Z",
+        "is_superuser": false,
+        "username": "larissagudo",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-10-11T12:22:01.424Z",
+        "email": "larissagudo@gmail.com",
+        "view_count": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "first_time_login": true,
+        "image": "profile_pics/Gm06laC1_400x400.jpg",
+        "name": "Dua Lipa",
+        "bio": ""
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 56,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "first_time_login": true,
+        "image": "profile_pics/Hamza_Khan__on_Twitter_oBgHFBO.jpg",
+        "name": "Cristiano",
+        "bio": "Hello, here you can see some of my favorite links"
+    }
+},
+{
+    "model": "users.profile",
+    "pk": 57,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "first_time_login": true,
+        "image": "profile_pics/pexels-fabio-scaletta-2806202.jpg",
+        "name": "larissagudo",
+        "bio": "Hello, here you can see some of my favorite links"
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 1,
+    "fields": {
+        "name": "Ariana",
+        "email": "marina@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-11T17:52:06.419Z",
+        "referer": "http://127.0.0.1:8000/4455b/",
+        "referer_main_domain": "127.0.0.1:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 2,
+    "fields": {
+        "name": "Cristiano",
+        "email": "cristiangudo111@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-11T18:34:09.457Z",
+        "referer": "http://192.168.43.143:8000/4455b/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 3,
+    "fields": {
+        "name": "Cristiano",
+        "email": "cristiangudo111@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-11T18:35:11.030Z",
+        "referer": "http://192.168.43.143:8000/4455b/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 4,
+    "fields": {
+        "name": "Thiago Finch",
+        "email": "finch@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-11T18:39:33.048Z",
+        "referer": "http://192.168.43.143:8000/4455b/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 9,
+    "fields": {
+        "name": "Andreia",
+        "email": "andy@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-19T20:19:06.674Z",
+        "referer": "http://127.0.0.1:8000/gio/edit",
+        "referer_main_domain": "127.0.0.1:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 10,
+    "fields": {
+        "name": "Gareth",
+        "email": "gareth@gmai.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-21T08:11:56.584Z",
+        "referer": "http://127.0.0.1:8000/gio/edit",
+        "referer_main_domain": "127.0.0.1:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 11,
+    "fields": {
+        "name": "Gareth",
+        "email": "gareth@gmai.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-21T08:13:13.412Z",
+        "referer": "http://127.0.0.1:8000/gio/edit",
+        "referer_main_domain": "127.0.0.1:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 15,
+    "fields": {
+        "name": "Cristiano",
+        "email": "cristiano@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-21T10:59:02.002Z",
+        "referer": "None",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 16,
+    "fields": {
+        "name": "edilson gudo",
+        "email": "silvia@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T13:49:28.835Z",
+        "referer": "http://127.0.0.1:8000/gio/",
+        "referer_main_domain": "127.0.0.1:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 17,
+    "fields": {
+        "name": "edilson gudo",
+        "email": "silvia@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T13:50:33.497Z",
+        "referer": "http://127.0.0.1:8000/gio/",
+        "referer_main_domain": "127.0.0.1:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 18,
+    "fields": {
+        "name": "Dua Lipa",
+        "email": "edilson4football@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T14:01:53.749Z",
+        "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
+        "referer_main_domain": "3bab-197-235-53-73.ngrok.io",
+        "location": "{'country_code': 'MZ', 'country_name': 'Mozambique'}",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 19,
+    "fields": {
+        "name": "Edilson",
+        "email": "edilsongudo@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T14:05:36.024Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 20,
+    "fields": {
+        "name": "Cristiano",
+        "email": "cristiano@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T14:07:02.376Z",
+        "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
+        "referer_main_domain": "3bab-197-235-53-73.ngrok.io",
+        "location": "Mozambique",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 21,
+    "fields": {
+        "name": "Luna",
+        "email": "luna@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T14:10:08.003Z",
+        "referer": "https://l.instagram.com/",
+        "referer_main_domain": "l.instagram.com",
+        "location": "Mozambique",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 22,
+    "fields": {
+        "name": "Edilson Elias",
+        "email": "edilsongudo@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T14:59:08.160Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 23,
+    "fields": {
+        "name": "Mystery tour",
+        "email": "larissa@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T15:00:13.653Z",
+        "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
+        "referer_main_domain": "3bab-197-235-53-73.ngrok.io",
+        "location": "Mozambique",
+        "location_code": null
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 24,
+    "fields": {
+        "name": "Mystery tour",
+        "email": "edilsongudo@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T15:07:23.506Z",
+        "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
+        "referer_main_domain": "3bab-197-235-53-73.ngrok.io",
+        "location": "Mozambique",
+        "location_code": "MZ"
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 25,
+    "fields": {
+        "name": "Cristiano",
+        "email": "edilson4football@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-23T19:06:50.337Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": ""
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 26,
+    "fields": {
+        "name": "Edilson Elias",
+        "email": "primeiromilionario@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-08-29T10:47:02.862Z",
+        "referer": "http://192.168.43.143:8000/gio/subscribe",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": ""
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 33,
+    "fields": {
+        "name": "Edilson",
+        "email": "primeiromilionario@gmail.com",
+        "lead_from": [
+            "dualipa"
+        ],
+        "date_submited": "2021-09-18T16:31:19.926Z",
+        "referer": "http://192.168.43.143:8000/jay/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": ""
+    }
+},
+{
+    "model": "leadfy.leadmodel",
+    "pk": 34,
+    "fields": {
+        "name": "Francisco Andr\u00e9",
+        "email": "franciscomaculuve002@gmail.com",
+        "lead_from": [
+            "cristiano"
+        ],
+        "date_submited": "2021-10-15T10:11:15.704Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ"
+    }
+},
+{
+    "model": "leadfy.link",
+    "pk": 2,
+    "fields": {
+        "short_url": "loveagain",
+        "title": "Love Again",
+        "user": [
+            "dualipa"
+        ],
+        "link": "https://youtu.be/BC19kwABFwc",
+        "show_link": true,
+        "use_this_link_to_ask_visitors_to_subscribe": false,
+        "view_count": 72,
+        "order": 2
+    }
+},
+{
+    "model": "leadfy.link",
+    "pk": 3,
+    "fields": {
+        "short_url": "lastdance",
+        "title": "Last Dance",
+        "user": [
+            "dualipa"
+        ],
+        "link": "https://youtu.be/lwZqbQL4H4Q",
+        "show_link": true,
+        "use_this_link_to_ask_visitors_to_subscribe": true,
+        "view_count": 52,
+        "order": 1
+    }
+},
+{
+    "model": "leadfy.link",
+    "pk": 5,
+    "fields": {
+        "short_url": "1f31f",
+        "title": "My Website",
+        "user": [
+            "cristiano"
+        ],
+        "link": "http://cristianoronaldo.com",
+        "show_link": true,
+        "use_this_link_to_ask_visitors_to_subscribe": false,
+        "view_count": 8,
+        "order": 1
+    }
+},
+{
+    "model": "leadfy.link",
+    "pk": 6,
+    "fields": {
+        "short_url": "86917",
+        "title": "Watch my 750 goals",
+        "user": [
+            "cristiano"
+        ],
+        "link": "https://youtu.be/cNfIS8UtE20",
+        "show_link": true,
+        "use_this_link_to_ask_visitors_to_subscribe": false,
+        "view_count": 7,
+        "order": 2
+    }
+},
+{
+    "model": "leadfy.link",
+    "pk": 8,
+    "fields": {
+        "short_url": "1ca4c",
+        "title": "demo",
+        "user": [
+            "larissagudo"
+        ],
+        "link": null,
+        "show_link": false,
+        "use_this_link_to_ask_visitors_to_subscribe": false,
+        "view_count": 0,
+        "order": 1
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 139,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-23T15:07:16Z",
+        "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
+        "referer_main_domain": "ngrok.io",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 140,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-23T19:06:43Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "Portugal",
+        "location_code": "PRT",
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 141,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-23T19:35:36Z",
+        "referer": null,
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 142,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-24T08:24:06Z",
+        "referer": null,
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "Brazil",
+        "location_code": "BR",
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 143,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-25T07:32:13Z",
+        "referer": null,
+        "referer_main_domain": "google.com",
+        "location": null,
+        "location_code": null,
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 147,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-25T07:37:15Z",
+        "referer": null,
+        "referer_main_domain": "google.com",
+        "location": null,
+        "location_code": null,
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 149,
+    "fields": {
+        "page": 3,
+        "time": "2021-08-26T13:48:49.802Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": null,
+        "os_type": null
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 153,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-06T12:01:20.127Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 154,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-06T12:01:37.116Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 168,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-09T16:11:36.439Z",
+        "referer": "http://192.168.43.143:8000/gio/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 169,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-09T16:12:19.214Z",
+        "referer": "http://192.168.43.143:8000/gio/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 183,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-12T08:49:06.809Z",
+        "referer": "http://192.168.43.143:8000/gio/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 184,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-16T13:41:01.746Z",
+        "referer": "http://192.168.43.143:8000/gio/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 186,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-18T14:41:02.994Z",
+        "referer": "http://192.168.43.143:8000/gio/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 189,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-18T16:11:04.715Z",
+        "referer": "http://192.168.43.143:8000/jay/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 190,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-19T11:20:11.168Z",
+        "referer": "http://192.168.43.143:8000/jay/edit",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 192,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-21T16:57:06.371Z",
+        "referer": "http://192.168.43.143:8000/jay/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 193,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-21T16:58:40.080Z",
+        "referer": "http://192.168.43.143:8000/jay/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 194,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-21T16:58:55.774Z",
+        "referer": "http://192.168.43.143:8000/jay/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 195,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-21T16:59:19.096Z",
+        "referer": "http://192.168.43.143:8000/jay/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 196,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-23T19:03:05.163Z",
+        "referer": "http://192.168.43.143:8000/jay/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 198,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-26T10:20:01.910Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 199,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-26T10:57:07.236Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 200,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-27T14:26:41.297Z",
+        "referer": null,
+        "referer_main_domain": "b''",
+        "location": "",
+        "location_code": "",
+        "device_type": "PC",
+        "os_type": "Windows"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 201,
+    "fields": {
+        "page": 3,
+        "time": "2021-09-27T14:53:04.676Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 203,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-28T13:35:26.053Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 207,
+    "fields": {
+        "page": 2,
+        "time": "2021-09-28T13:42:17.838Z",
+        "referer": "http://192.168.43.143:8000/gio/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 212,
+    "fields": {
+        "page": 2,
+        "time": "2021-10-06T18:44:40.902Z",
+        "referer": "http://192.168.43.143:8000/dualipa/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 213,
+    "fields": {
+        "page": 3,
+        "time": "2021-10-06T19:06:10.494Z",
+        "referer": "http://192.168.43.143:8000/dualipa/",
+        "referer_main_domain": "192.168.43.143:8000",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 214,
+    "fields": {
+        "page": 2,
+        "time": "2021-10-06T19:12:56.625Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 216,
+    "fields": {
+        "page": 2,
+        "time": "2021-10-09T14:33:58.125Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "United States",
+        "location_code": "US",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 219,
+    "fields": {
+        "page": 3,
+        "time": "2021-10-09T14:42:20.921Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 220,
+    "fields": {
+        "page": 2,
+        "time": "2021-10-09T15:03:15.072Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "PC",
+        "os_type": "Windows"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 221,
+    "fields": {
+        "page": 2,
+        "time": "2021-10-09T15:36:18.064Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 222,
+    "fields": {
+        "page": 3,
+        "time": "2021-10-09T15:36:28.554Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 223,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-09T15:48:44.399Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 225,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-09T16:03:15.259Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 226,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-10T19:27:43.635Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 227,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-10T19:29:43.792Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 228,
+    "fields": {
+        "page": 3,
+        "time": "2021-10-11T12:11:36.699Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 229,
+    "fields": {
+        "page": 2,
+        "time": "2021-10-12T19:56:34.253Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 230,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-13T18:21:24.884Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 231,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-13T18:21:26.418Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 232,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-13T18:21:34.798Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 233,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-14T10:09:21.468Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 234,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-14T10:09:44.575Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 235,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-15T10:10:00.552Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 236,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-15T10:11:32.179Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 237,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-15T18:10:05.213Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 238,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-17T12:47:13.224Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 239,
+    "fields": {
+        "page": 6,
+        "time": "2021-10-17T15:16:29.514Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 240,
+    "fields": {
+        "page": 5,
+        "time": "2021-10-17T16:24:16.735Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "Mozambique",
+        "location_code": "MZ",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.preferences",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "color1": "rgba(243.17, 225.226, 239.308, 1)",
+        "color2": "rgba(245.042, 194.106, 244.303, 1)",
+        "body_font_color": "rgba(0,0,0,1)",
+        "background_image_desktop": "usersbackgroundimages/nintchdbpict000329057192_6dNEorV.jpg",
+        "background_image_mobile": "usersbackgroundimages/nintchdbpict000329057192_LZf7yoj.jpg",
+        "background_image_brightness": 50,
+        "use_background_image": false,
+        "font_family": "Karla-VariableFont_wght.ttf",
+        "primary_font_size": 16,
+        "name_font_size": 16,
+        "border_radius": 50,
+        "link_background_color": "rgba(0, 0, 0, 1)",
+        "link_border_color": "rgba(0, 0, 0, 1)",
+        "link_text_color": "rgba(255, 255, 255, 1)",
+        "lastmodified": "2021-10-11T12:20:16.702Z"
+    }
+},
+{
+    "model": "leadfy.preferences",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "color1": "rgba(136.948, 174.509, 231.941, 1)",
+        "color2": "rgba(134.394, 217.639, 233.064, 1)",
+        "body_font_color": "rgba(255, 255, 255, 1)",
+        "background_image_desktop": "usersbackgroundimages/Hamza_Khan__on_Twitter_l8DknHJ.jpg",
+        "background_image_mobile": "usersbackgroundimages/Hamza_Khan__on_Twitter_yZsDQCC.jpg",
+        "background_image_brightness": 50,
+        "use_background_image": false,
+        "font_family": "Juliagar.otf",
+        "primary_font_size": 18,
+        "name_font_size": 18,
+        "border_radius": 10,
+        "link_background_color": "rgba(0, 0, 0, 1)",
+        "link_border_color": "rgba(0, 0, 0, 1)",
+        "link_text_color": "rgba(255, 255, 255, 1)",
+        "lastmodified": "2021-10-17T19:16:05.027Z"
+    }
+},
+{
+    "model": "leadfy.preferences",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "color1": "rgba(190.683, 208.428, 215.471, 1)",
+        "color2": "rgba(191.169, 234.554, 239.124, 1)",
+        "body_font_color": "rgba(0,0,0,1)",
+        "background_image_desktop": "usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
+        "background_image_mobile": "usersbackgroundimages/defaultmobilebackgroundimage.jpg",
+        "background_image_brightness": 0,
+        "use_background_image": true,
+        "font_family": "Juliagar.otf",
+        "primary_font_size": 16,
+        "name_font_size": 16,
+        "border_radius": 50,
+        "link_background_color": "rgba(0, 0, 0, 1)",
+        "link_border_color": "rgba(0, 0, 0, 1)",
+        "link_text_color": "rgba(255, 255, 255, 1)",
+        "lastmodified": "2021-10-12T13:00:00.611Z"
+    }
+},
+{
+    "model": "leadfy.advanced",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "seconds_to_wait_before_asking_user_to_subscribe_again": 0
+    }
+},
+{
+    "model": "leadfy.advanced",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "seconds_to_wait_before_asking_user_to_subscribe_again": 3600
+    }
+},
+{
+    "model": "leadfy.advanced",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "seconds_to_wait_before_asking_user_to_subscribe_again": 3600
+    }
+},
+{
+    "model": "leadfy.subscribebutton",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "call_to_action": "Voce gostaria de increver-se na minha lista de emails?",
+        "call_to_action_button_text": "Newsletter",
+        "show": false
+    }
+},
+{
+    "model": "leadfy.subscribebutton",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "call_to_action": "Would you like to subscribe to my email list?",
+        "call_to_action_button_text": "Subscribe",
+        "show": true
+    }
+},
+{
+    "model": "leadfy.subscribebutton",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "call_to_action": "Would you like to subscribe to my email list?",
+        "call_to_action_button_text": "Subscribe",
+        "show": true
+    }
+},
+{
+    "model": "leadfy.social",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "instagram": null,
+        "facebook": null,
+        "tiktok": null,
+        "youtube": null,
+        "twitter": null,
+        "spotify": null,
+        "pinterest": null,
+        "whatsapp": null,
+        "linkedin": null,
+        "snapchat": null,
+        "telegram": null,
+        "github": null,
+        "twitch": null,
+        "discord": null,
+        "skype": null,
+        "email": null
+    }
+},
+{
+    "model": "leadfy.social",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "instagram": null,
+        "facebook": null,
+        "tiktok": null,
+        "youtube": null,
+        "twitter": null,
+        "spotify": null,
+        "pinterest": null,
+        "whatsapp": null,
+        "linkedin": null,
+        "snapchat": null,
+        "telegram": null,
+        "github": null,
+        "twitch": null,
+        "discord": null,
+        "skype": null,
+        "email": null
+    }
+},
+{
+    "model": "leadfy.social",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "instagram": null,
+        "facebook": null,
+        "tiktok": null,
+        "youtube": null,
+        "twitter": null,
+        "spotify": null,
+        "pinterest": null,
+        "whatsapp": null,
+        "linkedin": null,
+        "snapchat": null,
+        "telegram": null,
+        "github": null,
+        "twitch": null,
+        "discord": null,
+        "skype": null,
+        "email": null
+    }
+},
+{
+    "model": "leadfy.integrations",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "facebook_pixel_id": null
+    }
+},
+{
+    "model": "leadfy.integrations",
+    "pk": 22,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "facebook_pixel_id": null
+    }
+},
+{
+    "model": "leadfy.integrations",
+    "pk": 23,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "facebook_pixel_id": null
+    }
+},
+{
+    "model": "leadfy.pitch",
+    "pk": 1,
+    "fields": {
+        "content": "<p>A SOFTWARE COMPANY RAISING $2.500 TO INVEST IN MARKETING</p>\r\n\r\n<p><img alt=\"\" src=\"/media/uploads/2021/10/08/img_20211008_183904_266.jpg\" style=\"height:300px; width:400px\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Links play a significant role in our lives as almost every people share one with someone daily.&nbsp;</p>\r\n\r\n<p>The problems are:<br />\r\n- We can not know if others clicked on our links.<br />\r\n- Sometimes we would like to have some way contact our links visitors in future as they probably would be interested in our future offers.&nbsp;<br />\r\n- We would need to know from where visitors are coming and their location.<br />\r\n- Some Social Media apps like Instagram only allow users to share one link in their bio.<br />\r\n- Some links are too long or not very appealing.</p>\r\n\r\n<p>SelfLink helps users solve all these problems.</p>\r\n\r\n<p>SelfLink is an app that allows users to create customizable web pages where people can share their favorite links with their audience.<br />\r\nIt is also a link redirector that helps users grab visitors&#39; emails. All done while providing statistics.</p>\r\n\r\n<p><img alt=\"\" src=\"/media/uploads/2021/10/08/screenshot_20210927-230738_gallery.jpg\" style=\"height:633px; width:300px\" /></p>\r\n\r\n<p>Users can create a bio link page that allows them to share multiple links. They can customize their page with custom gradients, selecting background images, fonts, sizes, and much more.</p>\r\n\r\n<p>They can hide their links from their page and still share them anywhere.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt=\"\" src=\"/media/uploads/2021/10/08/screenshot_20210928-132259_gallery.jpg\" style=\"height:633px; width:300px\" /></p>\r\n\r\n<p>SelfLink possesses a dashboard that provides statistics such as:&nbsp;<br />\r\n- Link Visitors location (with a world map)<br />\r\n- Referral channels<br />\r\n- Amount of unique clicks for each link<br />\r\n- Visitors device information&nbsp;<br />\r\n- Ability to export different types of information to the corresponding CSV files.<br />\r\n- Subscribers&#39; contacts with all the above stats.&nbsp;</p>\r\n\r\n<p>The market for services like this is growing with the increase of people who use social media. However &quot;competitors&quot; exist, the market is still relatively unexplored. A similar service had close to 10 million users in 2021 but a small percentage of the billions of people that actively use social media apps every month.&nbsp;</p>\r\n\r\n<p>SelfLink is the only bio link platform that can help users generate leads from every link they create. The settings and customization freedom that SelfLink gives to free users are unique.</p>\r\n\r\n<p>Our goal is to reach at least $1.000.000 in Annual Recurring Revenue in 4 years.<br />\r\nWe are looking for $2.500 in exchange for 5% of the business. We have all done so the investment will be in marketing.</p>\r\n\r\n<p>You can see a demo of the finished product by visiting <a href=\"http://selflink.link/cristiano\">https://selflink.link/cristiano</a></p>\r\n\r\n<p>We want to schedule a call with you so you can get to know more about the business.<br />\r\nThank you.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>"
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "plan": "Premium",
+        "paypal_subscription_id": "I-PYW5MHXTV1RR"
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 55,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "plan": "Premium",
+        "paypal_subscription_id": "anything"
+    }
+},
+{
+    "model": "subscriptions.subscription",
+    "pk": 56,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "plan": "Free",
+        "paypal_subscription_id": null
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 38,
+    "fields": {
+        "user": [
+            "dualipa"
+        ],
+        "email": "edilson4football@gmail.com",
+        "verified": true,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 45,
+    "fields": {
+        "user": [
+            "cristiano"
+        ],
+        "email": "edilsongudo@gmail.com",
+        "verified": true,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 46,
+    "fields": {
+        "user": [
+            "larissagudo"
+        ],
+        "email": "larissagudo@gmail.com",
+        "verified": true,
+        "primary": true
+    }
+},
+{
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+        "provider": "google",
+        "name": "google-auth",
+        "client_id": "19341666484-iaa03g2rcdvdqu1p5ltr4tnjc4q9hr1j.apps.googleusercontent.com",
+        "secret": "sIcCFfNqEMZM64NEzwSmOZKU",
+        "key": "",
+        "sites": [
+            [
+                "127.0.0.1:8000"
+            ],
+            [
+                "selflink.link"
+            ]
+        ]
+    }
+}
+]

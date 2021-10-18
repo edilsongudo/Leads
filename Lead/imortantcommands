@@ -1,0 +1,2 @@
+# Backups all models
+python manage.py dumpdata --indent=4 --natural-foreign --natural-primary -e contenttypes -e admin.logentry -e sessions -e auth.Permission > full.json

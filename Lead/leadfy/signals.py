@@ -8,7 +8,7 @@ from .utils import generate_ref_code
 
 @receiver(post_save, sender=get_user_model())
 def create_Preferences(sender, instance, created, **kwargs):
-    if created:
+    if created and not kwargs.get('raw', False):
         Preferences.objects.create(user=instance)
         Advanced.objects.create(user=instance)
         Social.objects.create(user=instance)
@@ -20,11 +20,14 @@ def create_Preferences(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=get_user_model())
 def save_Preferences(sender, instance, created, **kwargs):
-    instance.preferences.save()
-    instance.advanced.save()
-    instance.subscribebutton.save()
-    instance.social.save()
-    instance.integrations.save()
+    try:
+        instance.preferences.save()
+        instance.advanced.save()
+        instance.subscribebutton.save()
+        instance.social.save()
+        instance.integrations.save()
+    except Exception as e:
+        print(e)
 
 
 @receiver(post_save, sender=Preferences)

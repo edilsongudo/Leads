@@ -182,7 +182,7 @@ class PageVisit(models.Model):
 
 
 class Advanced(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
     seconds_to_wait_before_asking_user_to_subscribe_again = models.PositiveIntegerField(
         default=3600, validators=[MinValueValidator(0), MaxValueValidator(324000)])
     # ask_visitors_to_subscribe_when_they_click_in_a_link = models.BooleanField(default=True)
@@ -192,7 +192,7 @@ class Advanced(models.Model):
 
 
 class SubscribeButton(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
     call_to_action = models.CharField(
         max_length=150,
         default="Would you like to subscribe to my email list?")

@@ -6,10 +6,13 @@ from .models import Subscription
 
 @receiver(post_save, sender=get_user_model())
 def create_Preferences(sender, instance, created, **kwargs):
-    if created:
+    if created and not kwargs.get('raw', False):
         Subscription.objects.create(user=instance)
 
 
 @receiver(post_save, sender=get_user_model())
 def save_Preferences(sender, instance, created, **kwargs):
-    instance.subscription.save()
+    try:
+        instance.subscription.save()
+    except Exception as e:
+        print(e)
