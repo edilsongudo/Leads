@@ -20,14 +20,12 @@ def create_Preferences(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=get_user_model())
 def save_Preferences(sender, instance, created, **kwargs):
-    try:
+    if not kwargs.get('raw', False):
         instance.preferences.save()
         instance.advanced.save()
         instance.subscribebutton.save()
         instance.social.save()
         instance.integrations.save()
-    except Exception as e:
-        print(e)
 
 
 @receiver(post_save, sender=Preferences)

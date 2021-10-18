@@ -12,7 +12,5 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=get_user_model())
 def save_profile(sender, instance, created, **kwargs):
-    try:
+    if not kwargs.get('raw', False):
         instance.profile.save()
-    except Exception as e:
-        print(e)

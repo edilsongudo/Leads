@@ -6,3 +6,5 @@ class LeadfyConfig(AppConfig):
 
     def ready(self):
         import leadfy.signals
+        from jobs import updater
+        updater.start()

@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     'allauth.socialaccount.providers.google',
     'django_cleanup.apps.CleanupConfig',
-    'dbbackup',
+    # 'dbbackup',
     # 'django_unused_media',
 ]
 
@@ -225,8 +225,8 @@ SOCIALACCOUNT_PROVIDERS = {
 
 MESSAGE_TAGS = {messages.ERROR: 'danger'}
 
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, 'backups')}
+# DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, 'backups')}
 
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
