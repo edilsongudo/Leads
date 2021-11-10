@@ -1,3 +1,4 @@
+APScheduler==3.8.0
 colorthief==0.2.1
 Django==3.0
 django-admin-view-permission==1.9
@@ -5,9 +6,7 @@ django-allauth==0.45.0
 django-ckeditor==6.0.0
 django-cleanup==5.2.0
 django-crispy-forms==1.11.0
-django-croppie==1.3
 django-pandas==0.6.4
-django-request
 django-resized==0.3.11
 django-unused-media==0.2.2
 django-user-agents==0.4.0

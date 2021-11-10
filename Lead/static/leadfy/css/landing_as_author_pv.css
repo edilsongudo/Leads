@@ -1,24 +1,38 @@
-
-
 @font-face {
-    font-family: 'customfont';
-    src:  url("/media/fonts/aAlwaysSmile.otf")
+    font-family: 'CeraProMedium';
+    src:  url('../fonts/CeraProMedium.woff2')
+}
+
+:root {
+  --color1: white;
+  --color2: white;
+  --color3: grey;
+  --color4: rgba(255, 255, 255, 0.7);
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  background-image: linear-gradient(0deg, var(--color1), var(--color2));
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-image: linear-gradient(90deg, rgba(223.833, 199.163, 233.812, 1), rgba(214.916, 210.743, 255, 1));
+  color: var(--color3);
   min-height: 100vh;
-  color: rgba(0,0,0,1);
-  font-family: 'customfont', sans-serif;
-  font-size: 16;
+  font-family: 'CeraProMedium', sans-serif;
 }
 
-/*TODO - Style Overflow*/
+#userpage {
+  overflow-wrap: break-word;
+  margin: 20px;
+  padding: 20px;
+  color: white;
+  background: rgb(48, 112, 212);
+  border-radius: 10px;
+}
+
+#userpage a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .overflow {
   padding: 10px;
   max-width: 640px;
@@ -26,44 +40,18 @@ body {
   margin-bottom: 100px;
 }
 
-.bio {
+/*.bio {
   text-align: center;
   margin-bottom: 20px;
-}
+}*/
 
 a {
-  color: white;
+  color: grey;
   text-decoration: none;
 }
 
 a:hover {
   color: #eecda3;
-}
-
-.skip {
-  font-size: 30px;
-  padding: 5px;
-}
-
-.skip i {
-  color: white;
-}
-
-.toinvisible {
-  opacity: 0;
-}
-
-.hidden {
-  background: transparent;
-  border: none;
-}
-
-.skip i:hover {
-  color: #fff;
-}
-
-.skip-text {
-  font-size: 0.8rem;
 }
 
 .content {
@@ -107,67 +95,14 @@ a:hover {
   text-align: center;
 }
 
-.name {
-  font-size: 16px;
-}
-
-.cta {
-  border-radius: 50px;
-  padding-right: 50px;
-  padding-left: 50px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-weight: bold;
-  margin-bottom: 100px;
-}
-
-.cta1 {
-  border: solid 2px white;
-  color: black;
-  background: white;
-}
-
-.cta1:hover {
-  background:  transparent;
-  transition: 0.3s;
-}
-
-.form-group input {
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 50px;
-  padding: 25px;
-}
-
-#copyinput, #copyinput2 {
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50px;
-  padding: 25px;
-  opacity: 1;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.copy {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: rgba(0,0,0,1);
-}
-
-
 @media only screen and (max-width: 800px) {
   .content, .formcontainer {
     max-width: 98%;
   }
 }
 
-
 .page-link {
   word-wrap: break-word;
-  border: 1px solid rgba(0, 0, 0, 1);
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -175,8 +110,11 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(0, 0, 0, 1);
+  color: grey;
+  background-color: #fff;
+  border: 3px solid rgba(213, 221, 236, 0.4);
+  box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
+
 }
 
 .link-title {
@@ -187,7 +125,6 @@ a:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-  border-color: rgba(255, 255, 255, 1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
@@ -284,52 +221,6 @@ a:hover {
 }
 
 .previewlinkedit a {
-  color: rgba(0,0,0,1);
+  color: {body_font_color};
   text-decoration: underline;
 }
-
-input[type="checkbox"] {
-margin: 0;
-padding: 0;
-  position: relative;
-  width: 80px;
-  height: 40px;
-  -webkit-appearance: none;
-  background: #c6c6c6;
-  outline: none;
-  border-radius: 50px;
-  transition: .5s;
-
-}
-
-input:checked[type="checkbox"] {
-  background: #03a9f4;
-}
-
-input[type="checkbox"]:before {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  top: 0;
-  left: 0;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0, .2);
-  transition: .5s;
-}
-
-input:checked[type="checkbox"]:before {
-  left:40px;
-}
-
-.thankyou {
-  text-align: center;
-}
-
-textarea#id_call_to_action {
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 25px;
-}
-

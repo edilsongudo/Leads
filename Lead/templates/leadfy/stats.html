@@ -1,46 +1,28 @@
-{% extends 'leadfy/landingbase.html' %}
 {% load static %}
-
-{% block title %}{{ user.profile.name }} - Stats{% endblock %}
-{% block meta %}<meta name="robots" content="noindex">{% endblock %}
-{% block head %}
-    <style type="text/css">
-        i, a {
-            color: {{ body_font_color }};
-        }
-        {% if use_background_image == "true" %}
-            i, a {
-                color: #fff;
-            }
-        {% endif %}
-
-        .page-link i {
-            color: {{ link_text_color  }}
-        }
-
-        .page-link:hover {
-            color: {{ link_background_color  }}
-        }
-
-    </style>
-{% endblock %}
-
-{% block content %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'leadfy/google_analytics.html' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/landing_as_author_pv.css' %}">
+    <title>SelfLink | {{ request.user.username }} Link Clicks</title>
+</head>
+<body>
     <div class="content">
         <div class="overflow">
-            <div class="skip toinvisible">
-                <form method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="skip">
-                    <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
-                </form>
-            </div>
                 <div class="center">
                     <div class="subcontent">
-                        <div class="image-border">
+<!--                         <div class="image-border">
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
+                        </div> -->
+                        <div style="overflow-wrap: break-word;">
+                            <p class="name" id="name">{{ domain }}/{{ user.username }} <i class="fas fa-eye"></i> {{ user.view_count }}</p>
                         </div>
-                        <h1 class="name" id="name">{{ domain }}/{{ user.username }} <i class="fas fa-eye"></i> {{ user.view_count }}</h1>
                     </div>
                 </div>
             <div class="bio"><!-- {{ user.profile.bio }} --></div>
@@ -75,7 +57,8 @@
             <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
         </div>
     </div>
-{% endblock %}
+</body>
+</html>
 
 
 

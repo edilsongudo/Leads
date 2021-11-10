@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url("/media/fonts/Juliagar.otf")
+    src:  url("/media/fonts/Karla-VariableFont_wght.ttf")
 }
 
 body {
@@ -11,7 +11,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(180.468, 151.605, 207.461, 1), rgba(252.309, 234.818, 179.729, 1));
+  background-image: linear-gradient(90deg, rgba(130.517, 189.457, 212.85, 1), rgba(151.462, 111.687, 143.872, 1));
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
@@ -166,8 +166,9 @@ a:hover {
 
 
 .page-link {
+  word-wrap: break-word;
   border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 10px;
+  border-radius: 50px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
@@ -178,10 +179,15 @@ a:hover {
   background-color: rgba(255, 255, 255, 1);
 }
 
+.link-title {
+  max-width: 80%;
+}
+
 .page-link:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
+  border-color: rgba(0, 0, 0, 1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
@@ -319,5 +325,11 @@ input:checked[type="checkbox"]:before {
 
 .thankyou {
   text-align: center;
+}
+
+textarea#id_call_to_action {
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
 }
 

@@ -14,8 +14,8 @@ Sortable.create(links, {
 
 function submitorder(dataname, datavalue, url) {
     dict = {data: datavalue}
-    var csrf = document.getElementsByName('csrfmiddlewaretoken')
-    var csrfToken = csrf[0].value
+    var csrfToken = getCookie('csrftoken')
+    console.log(csrfToken)
     var json = JSON.stringify(dict)
     console.log(json)
 

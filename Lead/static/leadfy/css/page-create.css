@@ -8,9 +8,14 @@
     src:  url('../fonts/Juliagar.otf')
 }
 
+@font-face {
+    font-family: 'CeraProMedium';
+    src:  url('../fonts/CeraProMedium.woff2')
+}
+
 :root {
-  --color1: #c3cfe2;
-  --color2: #c3cfe2;
+  --color1: white;
+  --color2: white;
   --color3: grey;
   --color4: rgba(255, 255, 255, 0.7);
 }
@@ -21,7 +26,7 @@ body {
   background-repeat: no-repeat;
   color: var(--color3);
   min-height: 100vh;
-  font-family: 'Juliagar', sans-serif;
+  font-family: 'CeraProMedium', sans-serif;
 }
 
 .invisible {
@@ -33,6 +38,11 @@ body {
 
 .content {
   max-width: 640px;
+  margin: 0 auto;
+}
+
+.formcontainer {
+  max-width: 760px;
   margin: 0 auto;
 }
 
@@ -107,38 +117,42 @@ body {
 
 
 .cta {
-  border-radius: 50px;
+  border-radius: 10px;
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
+  margin-bottom: 60px;
 }
 
 .cta1 {
-  border: solid 2px white;
-  color: black;
-  background: white;
+  border: solid 2px rgb(48, 112, 212);
+  color: white;
+  background: rgb(48, 112, 212);
 }
 
 .cta1:hover {
   background:  transparent;
   transition: 0.3s;
   text-decoration: none;
-  color: black;
+  color: rgb(48, 112, 212);
 }
 
 input[type=text], input[type=url], input[type=email], input[type=password], input[type=search], input[type=tel], input[type=number] {
-  border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.85);
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 25px;
+  border: 3px solid rgba(213, 221, 236, 0.4);
+  box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
 }
 
 textarea#id_bio {
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.85);
-  border-radius: 25px;
+  border-radius: 10px;
+  border: 3px solid rgba(213, 221, 236, 0.4);
+  box-shadow: rgba(213, 221, 236, 0.4) 0px 20px 20px 0px;
 }
 
 /*input[type=color], input[type=color]:focus {
@@ -352,6 +366,11 @@ textarea#id_bio {
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .content, .formcontainer {
+    max-width: 95%;
+  }
+}
 
 
 .settingscontainer {
@@ -362,14 +381,14 @@ textarea#id_bio {
 .setting {
   display: flex;
   align-items: center;
-  color: black;
-  font-family: 'Juliagar', sans-serif;
+  color: grey;
+  font-family: 'CeraProMedium', sans-serif;
 }
 
 
 .setting a {
   cursor: pointer;
-  color: #000;
+  color: grey;
   width: 100%;
 }
 
@@ -402,4 +421,41 @@ textarea#id_bio {
 
 .space {
   margin-top: 100px;
+}
+
+
+
+input[type="checkbox"] {
+margin: 0;
+padding: 0;
+  position: relative;
+  width: 80px;
+  height: 40px;
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 50px;
+  transition: .5s;
+
+}
+
+input:checked[type="checkbox"] {
+  background: #03a9f4;
+}
+
+input[type="checkbox"]:before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  top: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0, .2);
+  transition: .5s;
+}
+
+input:checked[type="checkbox"]:before {
+  left:40px;
 }

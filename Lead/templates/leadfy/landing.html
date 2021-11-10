@@ -26,7 +26,44 @@
 {% endblock %}
 
 {% block head %}
+    <link rel="stylesheet" type="text/css" href="/media/customstylesheets/{{ user.username }}.css?{{ lastmodified }}">
     <style type="text/css">
+
+        @font-face {
+            font-family: 'customfont';
+            src:  url(/media/fonts/{{ font }})
+        }
+
+        body {
+            font-family: 'customfont', sans-serif;
+            font-size: {{ primary_font_size }}px;
+            color: {{ body_font_color }};
+            background-image: linear-gradient(90deg, {{ color1 }}, {{color2 }})
+        }
+
+        .page-link {
+            word-wrap: break-word;
+            border: 1.5px solid {{ link_border_color }};
+            color: {{ link_text_color }};
+            border-radius: {{ border_radius }}px;
+        }
+
+        #name {
+            font-size: {{ name_font_size }}px;
+        }
+
+        {% if use_background_image == "true" %}
+            body {
+                color: #fff;
+                background-image: linear-gradient(90deg, rgba(0,0,0,{{ brightness_css_factor }}), rgba(0,0,0,{{ brightness_css_factor }}) ), url({{ desktopimage }});
+            }
+            @media only screen and (max-width: 800px) {
+              body {
+                background-image: linear-gradient(90deg, rgba(0,0,0,{{ brightness_css_factor }}), rgba(0,0,0,{{ brightness_css_factor }}) ), url({{ mobileimage }});
+              }
+            }
+        {% endif %}
+
         .page-link:hover {
             border: 1.5px solid {{ link_border_color  }};
             background: transparent;

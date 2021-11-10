@@ -8,6 +8,11 @@
     src:  url('../fonts/Juliagar.otf')
 }
 
+@font-face {
+    font-family: 'CeraProMedium';
+    src:  url('../fonts/CeraProMedium.woff2')
+}
+
 :root {
   --color1: #c3cfe2;
   --color2: #c3cfe2;

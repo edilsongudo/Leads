@@ -14,8 +14,8 @@ def create_Preferences(sender, instance, created, **kwargs):
         Social.objects.create(user=instance)
         Integrations.objects.create(user=instance)
         SubscribeButton.objects.create(user=instance)
-        Link.objects.create(short_url=generate_ref_code(),
-                            title='demo', user=instance, show_link=False)
+        # Link.objects.create(short_url=generate_ref_code(),
+        #                     title='demo', user=instance, show_link=False)
 
 
 @receiver(post_save, sender=get_user_model())

@@ -1,43 +1,23 @@
-{% extends 'leadfy/landingbase.html' %}
 {% load static %}
-
-{% block title %}{{ user.profile.name }} - Home{% endblock %}
-{% block meta %}
-    <meta name="robots" content="noindex">
-{% endblock %}
-{% block head %}
-    <style type="text/css">
-        i, a {
-            color: {{ body_font_color }};
-        }
-        {% if use_background_image == "true" %}
-            i, a {
-                color: #fff;
-            }
-        {% endif %}
-
-        .page-link:hover {
-            border: 1.5px solid {{ link_border_color }};
-            background: {{ link_background_color }};
-            color: {{ link_text_color  }}
-        }
-
-        .page-link i {
-            color: {{ link_text_color  }};
-        }
-    </style>
-{% endblock %}
-
-{% block content %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'leadfy/google_analytics.html' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/landing_as_author_pv.css' %}">
+    <title>SelfLink | {{ request.user.username }} Home</title>
+</head>
+<body>
     <div class="content">
 
-<!--         <div style="text-align: right;">
-            <a style="padding: 5px; font-size: 2rem" href="{% url 'stats' user.username %}">
-                <i class="fas fa-chart-line"></i>
-            </a>
-        </div> -->
-
         <div class="overflow">
+
+            <h3>Welcome Back {{ request.user.username }}</h3>
+
             {% if messages %}
                 {% for message in messages %}
                     <div class="container">
@@ -47,25 +27,21 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <div class="skip toinvisible">
-                <form method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="skip">
-                    <button type="submit" class="hidden"><i class="fas fa-times"></i></button>
-                </form>
-            </div>
+
                 <div class="center">
                     <div class="subcontent">
-                        <div class="image-border">
+                        <!-- <div class="image-border">
                             <div class="round" style="background-image: url({{ user.profile.image.url }});"></div>
+                        </div> -->
+                        <div id="userpage">
+                            Copy this Link:
+                            <a href="http://{{ domain }}/{{ user.username }}" target="_blank" class="name" id="name">{{ domain }}/{{ user.username }}</a>
                         </div>
-                        <div>Link:</div>
-                        <a style="text-decoration: underline;" href="http://{{ domain }}/{{ user.username }}" target="_blank" class="name" id="name">{{ domain }}/{{ user.username }}</a>
                     </div>
                 </div>
             <!-- <div class="bio">{{ user.profile.bio }}</div> -->
             <div class="space-between">
-                <a href="{% url 'stats' user.username %}"><i class="fas fa-chart-line"></i> Views</a>
+                <a href="{% url 'stats' user.username %}"><i class="fas fa-chart-line"></i> Statistics</a>
                 <a href="{% url 'link-create' %}"><i class="fas fa-plus"></i> New</a>
             </div>
             <div id="links">
@@ -104,10 +80,9 @@
             <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
         </div>
     </div>
+    <script src="{% static 'leadfy/js/getcsrf.js' %}"></script>
     <script src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="{% static 'leadfy/js/Sortable.js' %}"></script>
     <script src="{% static 'leadfy/js/landingasauthorpv.js' %}"></script>
-{% endblock %}
-
-
-
+</body>
+</html>

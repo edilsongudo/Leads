@@ -1,4 +1,4 @@
-{% extends 'leadfy/landingbase.html' %}
+{% extends 'leadfy/link-base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -16,9 +16,9 @@
     <div class="formcontainer">
         <h3>Edit Link</h3>
         <label for="copyinput">Link</label>
-        <input class="textinput textInput form-control" id="copyinput" type="" name="" value="{{ domain }}/to/{{ link.short_url }}" disabled>
+        <input class="textinput textInput form-control" id="copyinput" type="text" name="" value="{{ domain }}/to/{{ link.short_url }}" disabled>
         <label for="copyinput2">Redirects to:</label>
-        <input class="textinput textInput form-control" id="copyinput2" type="" name="" value="{{ link.link }}" disabled>
+        <input class="textinput textInput form-control" id="copyinput2" type="text" name="" value="{{ link.link }}" disabled>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
