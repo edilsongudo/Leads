@@ -481,7 +481,7 @@ def preferences(request):
             preference.border_radius = int(request.POST['border_radius'])
             preference.save()
             return redirect(
-                'landing_as_author_pv',
+                'user-landing',
                 username=request.user.username)
 
     fonts = []

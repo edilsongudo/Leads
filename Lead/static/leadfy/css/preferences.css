@@ -322,7 +322,8 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
     padding: 10px;
     display: flex;
     z-index: 1000;
-    box-shadow: 1px 1px 1px 1px grey;
+    /*border: 3px solid rgba(213, 221, 236, 0.4);*/
+    box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px
 }
 
 .footer img {

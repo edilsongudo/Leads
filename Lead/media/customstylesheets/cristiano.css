@@ -11,9 +11,9 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(136.948, 174.509, 231.941, 1), rgba(134.394, 217.639, 233.064, 1));
+  background-image: linear-gradient(90deg, rgba(171.607, 208.336, 226.7, 1), rgba(182.877, 230.866, 235.684, 1));
   min-height: 100vh;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0,0,0,1);
   font-family: 'customfont', sans-serif;
   font-size: 18;
 }
@@ -154,7 +154,7 @@ a:hover {
   background: transparent;
   border: none;
   outline: none;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0,0,0,1);
 }
 
 
@@ -167,16 +167,16 @@ a:hover {
 
 .page-link {
   word-wrap: break-word;
-  border: 1px solid rgba(0, 0, 0, 1);
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 48px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(0, 0, 0, 1);
+  color: rgba(0,0,0,1);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .link-title {
@@ -187,7 +187,7 @@ a:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-  border-color: rgba(255, 255, 255, 1);
+  border-color: rgba(0,0,0,1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
@@ -284,7 +284,7 @@ a:hover {
 }
 
 .previewlinkedit a {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(0,0,0,1);
   text-decoration: underline;
 }
 

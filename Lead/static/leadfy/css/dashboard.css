@@ -144,7 +144,8 @@ a:hover {
     padding: 10px;
     display: flex;
     z-index: 1000;
-    box-shadow: 0.5px 0.5px 0.5px 0.5px grey;
+    /*border: 3px solid rgba(213, 221, 236, 0.4);*/
+    box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px
 }
 
 .footer img {

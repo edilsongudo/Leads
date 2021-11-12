@@ -1,3 +1,12 @@
+.pro {
+  background: linear-gradient(45deg, orange, yellow);
+  border-radius: 5px;
+  padding: 1px;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 @font-face {
     font-family: 'CeraProMedium';
     src:  url('../fonts/CeraProMedium.woff2')
@@ -31,6 +40,16 @@ body {
 #userpage a {
   color: #fff;
   text-decoration: underline;
+}
+
+#userpage:hover {
+  background: transparent;
+  color: rgb(48, 112, 212);
+  border: 3px solid rgb(48, 112, 212);
+}
+
+#userpage:hover a {
+  color: rgb(48, 112, 212);
 }
 
 .overflow {
@@ -125,11 +144,27 @@ a:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
+  color: #eecda3;
+}
+
+.page-link:hover .fa-pencil-alt {
+  transition: 0.5s;
+  transform: rotate(45deg);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
   position: absolute;
   right: 30px;
+}
+
+.exportlink {
+  display: flex;
+  align-items: center;
+}
+
+.page-link .exportlink {
+  position: absolute;
+  left: 30px;
 }
 
 .page-link .fa-grip-lines {
@@ -149,7 +184,6 @@ a:hover {
   position: absolute;
   right: 10%;
 }
-
 
 .socials {
   width: 50%;
@@ -188,7 +222,8 @@ a:hover {
     padding: 10px;
     display: flex;
     z-index: 1000;
-    box-shadow: 1px 1px 1px 1px grey;
+    /*border: 3px solid rgba(213, 221, 236, 0.4);*/
+    box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px
 }
 
 .footer img {

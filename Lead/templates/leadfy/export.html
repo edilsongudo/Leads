@@ -22,6 +22,7 @@
                 <a href="{% url 'exportlinks' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/mailbox.png' %}">
                     Download Links Visits Stats
+                    {% if user.subscription.plan == 'Free' %}<div class="pro">Pro</div>{% endif %}
                 </a>
             </div>
         </div>

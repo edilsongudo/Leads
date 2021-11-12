@@ -24,13 +24,13 @@
                     <span class="card-title">Analytics</span>
                 </div>
                 <div class="card-days">
-                    <a class="card-day" href="0" id="0">
+                    <a class="card-day" href="{% url 'dashboard' days=0 %}" id="0">
                         Today
                     </a>
-                    <a class="card-day" href="7" id="7">
+                    <a class="card-day" href="{% url 'dashboard' days=7 %}" id="7">
                         7 days
                     </a>
-                    <a class="card-day" href="30" id="30">
+                    <a class="card-day" href="{% url 'dashboard' days=30 %}" id="30">
                         30 days
                     </a>
                 </div>

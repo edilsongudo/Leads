@@ -198,7 +198,7 @@ class SubscribeButton(models.Model):
         default="Would you like to subscribe to my email list?")
     call_to_action_button_text = models.CharField(
         max_length=50, default="Subscribe")
-    show = models.BooleanField(default=True)
+    show = models.BooleanField(default=False)
     # view_count = models.IntegerField(
     #     default=0)
 
