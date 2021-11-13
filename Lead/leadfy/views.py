@@ -495,14 +495,53 @@ def preferences(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def create_template(request):
-    form = TemplateForm()
 
     if request.method == 'POST':
-        form = TemplateForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('preferences')
-    return render(request, 'leadfy/create_template.html', {'form': form})
+
+        color1 = make_tuple(request.POST['color1'].replace('rgba', ''))
+        color2 = make_tuple(request.POST['color2'].replace('rgba', ''))
+        body_font_color = contrast_gradient(color1, color2)
+
+        alpha = make_tuple(
+            request.POST['link_background_color'].replace(
+                'rgba', ''))[3]
+        if int(alpha) <= 0.25:
+            link_border_color = "rgba(255, 255, 255, 1)"
+        else:
+            link_border_color = request.POST['link_background_color']
+
+        if request.POST['use_background_image'] == 'true':
+            use_background_image = True
+        else:
+            use_background_image = False
+
+        template = Template.objects.create(
+            name=request.POST['name'],
+            color1=request.POST['color1'],
+            color2=request.POST['color2'],
+            body_font_color=contrast_gradient(color1, color2),
+            font_family=request.POST['font'],
+            link_background_color=request.POST['link_background_color'],
+            link_text_color = contrast_color(make_tuple(
+                            request.POST['link_background_color'].replace('rgba', ''))),
+            border_radius=int(request.POST['border_radius']),
+            primary_font_size = int(
+                            request.POST['primary_font_size']),
+            link_border_color=link_border_color,
+            use_background_image=use_background_image
+        )
+
+        return redirect('preferences')
+
+    fonts = []
+    for font in myfonts:
+        fonts.append(font[0])
+
+    User = get_user_model()
+    user = User.objects.first()
+    links = Link.objects.filter(user=user)
+    context = context_dict(user=user, fonts=fonts, links=links)
+    return render(request, 'leadfy/createtemplate.html', context=context)
 
 
 @login_required

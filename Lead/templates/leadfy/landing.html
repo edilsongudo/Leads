@@ -189,7 +189,7 @@
                 {% if user.social.email != None %}
                     <a href="mailto:{{ user.social.email }}"><i class="fas fa-envelope"></i></a>
                 {% endif %}
-                {% if user.subscription.plan == 'Free' %}
+                {% if user.advanced.show_watermark == True %}
                     <div class="watermark">
                         <a href="{% url 'home' %}">
                             Created with

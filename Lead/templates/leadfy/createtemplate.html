@@ -1,0 +1,212 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'leadfy/google_analytics.html' %}
+    <title>SelfLink | Create Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/preferences.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/nano.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/customselect.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/croppier.css' %}">
+    <link rel="stylesheet" href="{% static 'leadfy/Croppie-2.6.4/croppie.css' %}" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>-->
+</head>
+<body>
+    <div class="modal">
+        <div class="democontainer">
+            <div class="demo"></div>
+        </div>
+        <button class="cta cta1" id="cropbutton">Crop</button>
+    </div>
+
+    <div class="modal2">
+        <div class="democontainer2">
+            <div class="demo2"></div>
+        </div>
+        <button class="cta cta1" id="cropbutton2">Crop</button>
+    </div>
+
+    <div class="content">
+            <!-- Preferences -->
+        <div id="preferences">
+
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="bgtypechoose">
+                <h5>Background Type</h5>
+                    <label form="bgtypeequalsimage">Images</label>
+                    <input type="radio" name="use_background_image" value="true" id="bgtypeequalsimage">
+                    <label form="bgtypeequalscolor">Colors</label>
+                    <input type="radio" name="use_background_image" value="false" id="bgtypeequalscolor">
+            </div>
+
+        <h5>Name</h5>
+        <input class="textinput textInput form-control" type="text" name="name" value="Name"/>
+
+        <h5>Font Family</h5>
+          <div class="select-box">
+            <div class="options-container">
+                {% for font in fonts %}
+                  <div class="option">
+                    <input type="radio" value="{{ font }}"" class="radio" id="{{ font }}"/>
+                    <label class="font" for="{{ font }}">{{ font }}</label>
+                  </div>
+                {% endfor %}
+            </div>
+            <div class="selected">
+              {{ font_family }}
+            </div>
+          </div>
+
+                <h5>Font Size</h5>
+                <div class="range-input">
+                <div class="inputlabel"">px</div>
+                  <input name="primary_font_size" type="range" min="12" max="24" value="{{ primary_font_size }}" step="1"/>
+                  <div class="value">
+                    <div>{{ primary_font_size }}</div>
+                  </div>
+                </div>
+
+                <!-- <div class="range-input">
+                <div class="inputlabel"">Name</div>
+                  <input name="name_font_size" type="range" min="16" max="32" value="{{ name_font_size }}" step="1"/>
+                  <div class="value">
+                    <div>{{ name_font_size }}</div>
+                  </div>
+                </div> -->
+
+                <h5>Buttons Corners</h5>
+                <div class="range-input">
+                <div class="inputlabel"">Radius</div>
+                  <input name="border_radius" type="range" min="0" max="50" value="{{ border_radius }}" step="1"/>
+                  <div class="value">
+                    <div>{{ border_radius }}</div>
+                  </div>
+                </div>
+
+                <div id="brightness_container">
+                    <h5>Reduce Brightness</h5>
+                    <div class="range-input">
+                    <div class="inputlabel"">%</div>
+                      <input name="brightness" id="brightness" type="range" min="0" max="75" value="{{ brightness }}" step="1"/>
+                      <div class="value">
+                        <div>{{ brightness }}</div>
+                      </div>
+                    </div>
+                </div>
+
+
+
+                <div class="colorsdivcontainer">
+                    <div>
+                        <span id="colorsdiv1label">Background</span>
+                        <div class="colorsdivs1">
+                            <div class="colorsdiv">
+                                <span id="primarycolor" class="color-picker"></span>
+                            </div>
+                            <div class="colorsdiv">
+                                <span id="secondarycolor" class="color-picker2"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        Buttons
+                        <div class="colorsdivs2">
+                            <div class="colorsdiv">
+                                <span id="linkcolor" class="color-picker3"></span>
+                            </div>
+                            <!-- <div class="colorsdiv">
+                                <span id="linktextcolor" class="color-picker4"></span>
+                            </div>
+ -->                        </div>
+                    </div>
+                </div>
+
+                <div class="imagesinputs">
+                    <div>
+                        Mobile
+                        <div class="image-border">
+                            <div class="vertical" id="mobileimage"></div>
+                            <button class="clearbtnstyle mobilebtn"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div>
+                        Desktop
+                        <div class="image-border">
+                            <div class="horizontal" id="desktopimage"></div>
+                            <button class="clearbtnstyle desktopbtn"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- {{ form|crispy }} -->
+
+                <button class="cta cta1" id="submitbutton" type="submit">Create</button>
+                <input type="text" name="font" id="font_input" class="invisible" value="{{ font_family }}">
+                <input type="text" name="color1" id="color1" class="invisible" value="{{ color1 }}">
+                <input type="text" name="color2" id="color2" class="invisible" value="{{ color2 }}">
+                <input type="text" name="link_background_color" id="link_background_color" class="invisible" value="{{ link_background_color }}">
+                <!-- <input type="text" name="link_text_color" id="link_text_color" class="invisible" value="{{ link_text_color }}"> -->
+            </form>
+        </div>
+        <div style="height: 100px;"></div>
+    </div>
+
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/blackhome.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/bluebrush.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
+        </div>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script> -->
+    <script src="{% static 'leadfy/js/pickr.min.js' %}"></script>
+    <script src="{% static 'leadfy/js/pickr.es5.min.js' %}"></script>
+
+    <script src="{% static 'leadfy/js/jquery.js' %}"></script>
+    <script src="{% static 'leadfy/Croppie-2.6.4/croppie.js' %}"></script>
+    <script src="{% static 'leadfy/js/cropperutils2.js' %}"></script>
+
+    <script type="text/javascript">
+        var color1 = "{{ color1 }}"
+        var color2 = "{{ color2 }}"
+        var color3 = "{{ link_background_color }}"
+        var color4 = "{{ link_text_color }}"
+        var font_family = "{{ font_family }}"
+        var use_background_image = {{ use_background_image }}
+
+        var brightness = {{ brightness }} / 100
+        var mobileimage = "{{ mobileimage }}"
+        var desktopimage = "{{ desktopimage }}"
+        var primary_font_size = "{{ primary_font_size }}"
+        var name_font_size = "{{ name_font_size }}"
+        var border_radius = "{{ border_radius }}"
+        var link_text_color = "{{ link_text_color }}"
+        var link_background_color = "{{ link_background_color }}"
+        var font = "{{ font }}"
+    </script>
+
+    <script src="{% static 'leadfy/js/page-create.js' %}"></script>
+    <script src="{% static 'leadfy/js/preferences.js' %}"></script>
+    <!-- <script src="{% static 'leadfy/js/landingbase.js' %}"></script> -->
+</body>
+</html>

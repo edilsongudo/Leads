@@ -24,9 +24,9 @@ class Preferences(models.Model):
     template = models.CharField(
         max_length=50, default="custom")
     color1 = models.CharField(
-        max_length=100, default="rgba(130.517, 189.457, 212.85, 1)")
+        max_length=100, default="rgba(0, 0, 0, 1)")
     color2 = models.CharField(
-        max_length=100, default="rgba(151.462, 111.687, 143.872, 1)")
+        max_length=100, default="rgba(90, 90, 90, 1)")
     body_font_color = models.CharField(
         max_length=100, default="rgba(255, 255, 255, 1)")
     background_image_desktop = models.ImageField(
@@ -57,7 +57,7 @@ class Preferences(models.Model):
     lastmodified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return f'{self.user.username} Landing Page Preferences'
+        return f'{self.user.username}'
 
     def save(self, *args, **kwargs):
         super(Preferences, self).save(*args, **kwargs)
@@ -138,7 +138,7 @@ class Link(models.Model):
         default=1)
 
     def __str__(self):
-        return f'{self.short_url}'
+        return f'{self.title}'
 
     def save(self, *args, **kwargs):
         # if not self.netloc:
@@ -178,17 +178,19 @@ class PageVisit(models.Model):
     os_type = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return f'/{self.page.short_url} at {self.time}'
+        return f'{self.page.title}'
 
 
 class Advanced(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
     seconds_to_wait_before_asking_user_to_subscribe_again = models.PositiveIntegerField(
         default=3600, validators=[MinValueValidator(0), MaxValueValidator(324000)])
+    show_watermark = models.BooleanField(default=True)
     # ask_visitors_to_subscribe_when_they_click_in_a_link = models.BooleanField(default=True)
 
+
     def __str__(self):
-        return f'{self.user.username} Advanced Preferences'
+        return f'{self.user.username}'
 
 
 class SubscribeButton(models.Model):
@@ -203,7 +205,7 @@ class SubscribeButton(models.Model):
     #     default=0)
 
     def __str__(self):
-        return f'{self.user.username} Advanced Preferences'
+        return f'{self.user.username}'
 
 
 class Social(models.Model):

@@ -37,13 +37,17 @@ class AdvancedForm(forms.ModelForm):
     class Meta:
         model = Advanced
         fields = '__all__'
-        exclude = ['user']
+        exclude = ['SubscribeButtonForm', 'user']
 
-        help_message = '''If Zero, visitors always will be asked to subscribe everytime
+        help_message1 = '''If Zero, visitors always will be asked to subscribe everytime
          they click a link with with "ask visitors to subscribe" turned On'''
 
+        help_message2 = '''Show or Hide Selflink's Watermark at your page
+        '''
+
         help_texts = {
-            'seconds_to_wait_before_asking_user_to_subscribe_again': help_message
+            'seconds_to_wait_before_asking_user_to_subscribe_again': help_message1,
+            'show_watermark': help_message2
         }
 
 
