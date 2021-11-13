@@ -11,7 +11,7 @@
         .formcontent {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-evenly;
         }
 
         label {
@@ -20,11 +20,12 @@
             text-align: center;
         }
 
-        label img, #create_custom_template {
-            height: 200px;
-            width: 150px;
+        label img, #create_custom_template, .labelelem {
+            height: 150px;
+            width: 100px;
+            object-fit: cover;
             border-radius: 8px;
-            border: 3px solid rgba(213, 221, 236, 0.4);
+            border: 3px solid rgba(213, 221, 236, 1);
             box-shadow: rgba(213, 221, 236, 0.4) 10px 10px 10px 10px;
         }
 
@@ -34,7 +35,7 @@
             pointer-events: none;
         }
 
-        input[type="radio"]:checked+label img {
+        input[type="radio"]:checked+label img, input[type="radio"]:checked+label div{
             border-color: lightgreen;
         }
 
@@ -44,7 +45,7 @@
             justify-content: center;
             color: rgba(213, 221, 236, 0.4);
             background: rgba(255, 255, 255, 0.5);
-            font-size: 5rem;
+            font-size: 3rem;
             text-align: center;
             text-decoration: none;
         }
@@ -65,12 +66,18 @@
             <div class="formcontent">
                 <div class="customtemplatecontainer">
                     <label for="create_custom_template"><div>Custom</div></label>
-                    <a id="create_custom_template" href="{% url 'preferences' %}"><i class="fas fa-paint-brush"></i></a>
+                    <a id="create_custom_template" href="{% url 'custom_template' %}"><i class="fas fa-paint-brush"></i></a>
                 </div>
                 {% for t in templates %}
                     <input type="radio" name="template" id="{{ t.id }}" value="{{ t.id }}"
                     {% if request.user.preferences.template == t.id|stringformat:"i" %}checked{% endif %}>
-                    <label for="{{ t.id }}"><div>{{ t.name }}</div><img src="{{ t.thumbnail.url }}"></label>
+                    <label for="{{ t.id }}"><div>{{ t.name }}</div>
+                        <div class="labelelem" style="background-image: linear-gradient(45deg, {{ t.color1 }}, {{ t.color2 }} );">
+                            {% if t.use_background_image == True %}
+                                <img src="{{ t.thumbnail.url }}">
+                            {% endif %}
+                        </div>
+                    </label>
                 {% endfor %}
             </div>
         </form>
@@ -93,7 +100,7 @@
     </div>
 
     <script type="text/javascript" src="{% static 'leadfy/js/getcsrf.js' %}"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script type="text/javascript">
         let form = document.querySelector('form')
         const csrfToken = getCookie('csrftoken');

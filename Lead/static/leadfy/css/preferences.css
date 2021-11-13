@@ -1,3 +1,8 @@
+.range-input, inputlabel {
+  border: 3px solid rgba(213, 221, 236, 0.4);
+  box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
+}
+
 @font-face {
     font-family: 'AmaticSC-Bold';
     src:  url('../fonts/AmaticSC-Bold.ttf')
@@ -14,8 +19,8 @@
 }
 
 :root {
-  --color1: #c3cfe2;
-  --color2: #c3cfe2;
+  --color1: #fff;
+  --color2: #fff;
   --color3: grey;
   --color4: rgba(255, 255, 255, 0.7);
 }
@@ -26,7 +31,7 @@ body {
   background-repeat: no-repeat;
   color: var(--color3);
   min-height: 100vh;
-  font-family: 'Juliagar', sans-serif;
+  font-family: 'CeraProMedium', sans-serif;
 }
 
 .invisible {
@@ -112,23 +117,26 @@ body {
 
 
 .cta {
-  border-radius: 50px;
+  border-radius: 10px;
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
   font-weight: bold;
+  margin-bottom: 60px;
 }
 
 .cta1 {
-  border: solid 2px white;
-  color: black;
-  background: white;
+  border: solid 2px rgb(48, 112, 212);
+  color: white;
+  background: rgb(48, 112, 212);
 }
 
 .cta1:hover {
   background:  transparent;
   transition: 0.3s;
+  text-decoration: none;
+  color: rgb(48, 112, 212);
 }
 
 input[type=text], input[type=url], input[type=email], input[type=password], input[type=search], input[type=tel], input[type=text] {
@@ -221,6 +229,8 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
 
 .inputlabel {
   width: 15%;
+  overflow-wrap: break-word;
+  font-size: 0.75;
 }
 
 #div_id_image, #div_id_background_image_mobile, #div_id_background_image_desktop {

@@ -2,6 +2,9 @@
   display: flex;
   width: 400px;
   flex-direction: column;
+  border: 3px solid rgba(213, 221, 236, 0.4);
+  border-radius: 10px;
+  box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
 }
 
 .select-box .options-container {

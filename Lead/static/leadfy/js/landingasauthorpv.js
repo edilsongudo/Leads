@@ -30,3 +30,16 @@ function submitorder(dataname, datavalue, url) {
         }
     })
 }
+
+const button = document.querySelector('#copybtn')
+const inputelem = document.querySelector('#copyinput')
+button.addEventListener('click', function () {
+    inputelem.select()
+    document.execCommand('Copy')
+    button.innerText = 'Link Copied'
+    button.style.backgroundColor = 'rgba(48, 112, 212, 0.4)'
+    button.style.color = "white"
+})
+
+
+

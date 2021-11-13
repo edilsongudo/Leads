@@ -138,6 +138,7 @@ body {
   padding-bottom: 15px;
   font-weight: bold;
   margin-bottom: 60px;
+  cursor: pointer;
 }
 
 .cta1 {
@@ -161,7 +162,7 @@ input[type=text], input[type=url], input[type=email], input[type=password], inpu
   box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
 }
 
-textarea#id_bio {
+textarea#id_bio, textarea#id_call_to_action {
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.85);
   border-radius: 10px;

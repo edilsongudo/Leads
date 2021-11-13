@@ -1,0 +1,57 @@
+{% extends 'leadfy/link-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create New Template{% endblock %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+    <div class="formcontainer">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="container">
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h1>Create Template</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="cta cta1" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <!-- Nav -->
+    <div class="footer flex">
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'landing_as_author_pv' user.username %}"><img src="{% static 'leadfy/img/bluehome.png' %}"></a>
+        </div>
+        <div class="sidebar-link footer-active">
+            <a href="{% url 'dashboard' 0 %}"><img src="{% static 'leadfy/img/blackchart.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'preferences' %}"><img src="{% static 'leadfy/img/brush.png' %}"></a>
+        </div>
+        <div class="sidebar-link">
+            <a href="{% url 'settings' %}"><img src="{% static 'leadfy/img/blackgear.png' %}"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var color1 = "{{ color1 }}"
+        var color2 = "{{ color2 }}"
+        var brightness = {{ brightness }} / 100
+        var use_background_image = {{ use_background_image }}
+        var mobileimage = "{{ mobileimage }}"
+        var desktopimage = "{{ desktopimage }}"
+        var primary_font_size = "{{ primary_font_size }}"
+        var name_font_size = "{{ name_font_size }}"
+        var border_radius = "{{ border_radius }}"
+        var link_text_color = "{{ link_text_color }}"
+        var link_background_color = "{{ link_background_color }}"
+        var font = "{{ font }}"
+    </script>
+    <script src="{% static 'leadfy/js/landingbase.js' %}"></script>
+{% endblock %}

@@ -59,7 +59,7 @@ body {{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, {color1}, {color2});
+  background-image: linear-gradient(135deg, {color1}, {color2});
   min-height: 100vh;
   color: {str(body_font_color)};
   font-family: 'customfont', sans-serif;

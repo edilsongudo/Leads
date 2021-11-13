@@ -65,6 +65,20 @@ class SubscribeButtonForm(forms.ModelForm):
         }
 
 
+class TemplateForm(forms.ModelForm):
+
+    class Meta:
+        model = Template
+        fields = '__all__'
+        exclude = ['name_font_size', 'lastmodified', 'primary_font_size',
+                   'background_image_brightness']
+
+        widgets = {
+            'color1': TextInput(attrs={'type': 'color'}),
+            'color2': TextInput(attrs={'type': 'color'}),
+            'link_background_color': TextInput(attrs={'type': 'color'})
+        }
+
 class PitchForm(forms.ModelForm):
 
     class Meta:

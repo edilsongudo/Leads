@@ -26,6 +26,7 @@ import plotly.express as px
 import plotly.io as pio
 from django.utils.decorators import decorator_from_middleware
 from django.db import IntegrityError
+from django.contrib.auth.decorators import user_passes_test
 from .custom_middleware import SimpleMiddleWare
 
 
@@ -492,12 +493,25 @@ def preferences(request):
     return render(request, 'leadfy/preferences.html', context=context)
 
 
+@user_passes_test(lambda u: u.is_superuser)
+def create_template(request):
+    form = TemplateForm()
+
+    if request.method == 'POST':
+        form = TemplateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('preferences')
+    return render(request, 'leadfy/create_template.html', {'form': form})
+
+
 @login_required
 def createlink(request):
     fields = '__all__'
     exclude = ['user', 'view_count', 'order']
     if request.user.subscription.plan == 'Free':
         exclude.append('short_url')
+
     widgets = {
         'title': TextInput(attrs={'placeholder': 'Link Title'}),
         'short_url': TextInput(attrs={'placeholder': 'Link short URL'}),
@@ -717,6 +731,9 @@ def mobileimage(request):
     preference.save()
     return JsonResponse({'success': 'success'})
 
+
+def servepitchdeck(request):
+    return FileResponse(open(os.path.join('media', f"documents/SelfLink's Pitch.pdf"), 'rb'))
 
 def error_404_view(request, *args, **argv):
     response = render(request, 'leadfy/404.html')

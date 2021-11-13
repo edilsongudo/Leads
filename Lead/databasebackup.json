@@ -26,14 +26,14 @@
         "password": "pbkdf2_sha256$180000$eu3QAVllmpfh$CpC2d/mU7wZaD0p5/3ZMZp1mtO7Uqh4jmFIWpsHP2mA=",
         "last_login": "2021-11-11T18:26:36.075Z",
         "is_superuser": true,
-        "username": "dualipa",
+        "username": "Shareit",
         "first_name": "",
         "last_name": "",
         "is_staff": true,
         "is_active": true,
         "date_joined": "2021-08-10T18:50:19Z",
         "email": "edilson4football@gmail.com",
-        "view_count": 38,
+        "view_count": 42,
         "groups": [],
         "user_permissions": []
     }
@@ -42,16 +42,16 @@
     "model": "users.user",
     "fields": {
         "password": "pbkdf2_sha256$180000$WuPEOZUb6bu5$LolTgUx8DvHh0f7yNozlwuolrUdwMKBNep9XdGrNyrI=",
-        "last_login": "2021-11-11T07:44:29Z",
-        "is_superuser": true,
-        "username": "cristiano",
+        "last_login": "2021-11-13T08:30:35.295Z",
+        "is_superuser": false,
+        "username": "montano",
         "first_name": "",
         "last_name": "",
-        "is_staff": true,
+        "is_staff": false,
         "is_active": true,
         "date_joined": "2021-10-09T15:38:00Z",
         "email": "edilsongudo@gmail.com",
-        "view_count": 53,
+        "view_count": 58,
         "groups": [],
         "user_permissions": []
     }
@@ -61,12 +61,12 @@
     "pk": 1,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "first_time_login": true,
-        "image": "profile_pics/kisspng-emoji-happiness-smile-computer-icons-alt-attribute-puke-5b216b75c0dc30.jpg",
-        "name": "Dua Lipa",
-        "bio": ""
+        "image": "profile_pics/Pngtreecartoon_share_link_icon_download_4713518.jpg",
+        "name": "Share",
+        "bio": "Hi. Welcome to our page. \r\nYou can click on the links below and go to site where you can download our sharing app. You'll be able to share musics, photos, links, and many more\r\n\r\nBye\r\nXoxo \ud83d\ude18"
     }
 },
 {
@@ -74,10 +74,10 @@
     "pk": 56,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "first_time_login": true,
-        "image": "profile_pics/64983-emoticon-sunglasses-smiley-iphone-go-emoji.jpg",
+        "image": "profile_pics/FB_IMG_16252169241236340.jpg",
         "name": "Cristiano",
         "bio": "Hello, here you can see some of my favorite links"
     }
@@ -87,24 +87,24 @@
     "pk": 1,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "template": "custom",
-        "color1": "rgba(130.517, 189.457, 212.85, 1)",
-        "color2": "rgba(151.462, 111.687, 143.872, 1)",
+        "color1": "rgba(243.307, 0, 255, 1)",
+        "color2": "rgba(0, 170.174, 255, 1)",
         "body_font_color": "rgba(255, 255, 255, 1)",
-        "background_image_desktop": "usersbackgroundimages/nintchdbpict000329057192_6dNEorV.jpg",
-        "background_image_mobile": "usersbackgroundimages/nintchdbpict000329057192_LZf7yoj.jpg",
-        "background_image_brightness": 50,
-        "use_background_image": true,
-        "font_family": "Karla-VariableFont_wght.ttf",
-        "primary_font_size": 16,
-        "name_font_size": 16,
-        "border_radius": 50,
-        "link_background_color": "rgba(255, 255, 255, 1)",
+        "background_image_desktop": "usersbackgroundimages/20210815_135852_9TkBFCt.jpg",
+        "background_image_mobile": "usersbackgroundimages/20210815_135852_Uck8PwA.jpg",
+        "background_image_brightness": 75,
+        "use_background_image": false,
+        "font_family": "No Virus.otf",
+        "primary_font_size": 18,
+        "name_font_size": 18,
+        "border_radius": 30,
+        "link_background_color": "rgba(255, 222.314, 0, 0.23)",
         "link_border_color": "rgba(255, 255, 255, 1)",
         "link_text_color": "rgba(0,0,0,1)",
-        "lastmodified": "2021-11-12T12:12:00.038Z"
+        "lastmodified": "2021-11-13T08:30:00.616Z"
     }
 },
 {
@@ -112,47 +112,93 @@
     "pk": 2,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
-        "template": "custom",
-        "color1": "rgba(171.607, 208.336, 226.7, 1)",
-        "color2": "rgba(182.877, 230.866, 235.684, 1)",
-        "body_font_color": "rgba(0,0,0,1)",
+        "template": "14",
+        "color1": "rgba(15.497, 115.883, 255, 1)",
+        "color2": "rgba(10.858, 102.109, 97.19, 1)",
+        "body_font_color": "rgba(255, 255, 255, 1)",
         "background_image_desktop": "usersbackgroundimages/Hamza_Khan__on_Twitter_l8DknHJ.jpg",
         "background_image_mobile": "usersbackgroundimages/Hamza_Khan__on_Twitter_yZsDQCC.jpg",
         "background_image_brightness": 50,
         "use_background_image": false,
-        "font_family": "Juliagar.otf",
-        "primary_font_size": 18,
-        "name_font_size": 18,
+        "font_family": "aAlwaysSmile.otf",
+        "primary_font_size": 16,
+        "name_font_size": 16,
         "border_radius": 48,
-        "link_background_color": "rgba(255, 255, 255, 1)",
+        "link_background_color": "rgba(0, 0, 0, 0.69)",
         "link_border_color": "rgba(255, 255, 255, 1)",
-        "link_text_color": "rgba(0,0,0,1)",
-        "lastmodified": "2021-11-11T17:55:48.595Z"
+        "link_text_color": "rgba(255, 255, 255, 1)",
+        "lastmodified": "2021-11-13T09:22:08.755Z"
     }
 },
 {
     "model": "leadfy.template",
-    "pk": 1,
+    "pk": 12,
     "fields": {
-        "name": "Blossom",
-        "thumbnail": "template_thumbnails/FB_IMG_16363938516299082.jpg",
+        "name": "Happy Night",
+        "thumbnail": "template_thumbnails/blue-scenery-background-material-design-png_131504_nidoseA.jpg",
+        "color1": "rgba(130.517, 189.457, 212.85, 1)",
+        "color2": "rgba(151.462, 111.687, 143.872, 1)",
+        "body_font_color": "rgba(255, 255, 255, 1)",
+        "background_image_desktop": "templatesbackgroundimages/blue-scenery-background-material-design-png_131504.jpg",
+        "background_image_mobile": "templatesbackgroundimages/blue-scenery-background-material-design-png_131504_yRCJ4az.jpg",
+        "background_image_brightness": 0,
+        "use_background_image": true,
+        "font_family": "Juliagar.otf",
+        "primary_font_size": 25,
+        "name_font_size": 25,
+        "border_radius": 50,
+        "link_background_color": "rgba(255, 255, 255, 1)",
+        "link_border_color": "rgba(255, 255, 255, 1)",
+        "link_text_color": "rgba(0, 0, 0, 1)",
+        "lastmodified": "2021-11-13T07:30:42.720Z"
+    }
+},
+{
+    "model": "leadfy.template",
+    "pk": 13,
+    "fields": {
+        "name": "Green Summer",
+        "thumbnail": "template_thumbnails/v514-adj-10-abstractbg_1.jpg",
         "color1": "rgba(130.517, 189.457, 212.85, 1)",
         "color2": "rgba(151.462, 111.687, 143.872, 1)",
         "body_font_color": "rgba(255, 255, 255, 1)",
         "background_image_desktop": "usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
         "background_image_mobile": "usersbackgroundimages/defaultmobilebackgroundimage.jpg",
-        "background_image_brightness": 50,
-        "use_background_image": false,
-        "font_family": "Karla-VariableFont_wght.ttf",
+        "background_image_brightness": 0,
+        "use_background_image": true,
+        "font_family": "Juliagar.otf",
         "primary_font_size": 16,
         "name_font_size": 16,
         "border_radius": 50,
         "link_background_color": "rgba(255, 255, 255, 1)",
         "link_border_color": "rgba(255, 255, 255, 1)",
         "link_text_color": "rgba(0, 0, 0, 1)",
-        "lastmodified": "2021-11-12T12:09:52.633Z"
+        "lastmodified": "2021-11-13T07:38:02.201Z"
+    }
+},
+{
+    "model": "leadfy.template",
+    "pk": 14,
+    "fields": {
+        "name": "Good Evening",
+        "thumbnail": "template_thumbnails/eeb0915222d2f86d739d09a621a96d1a.jpg",
+        "color1": "rgba(130.517, 189.457, 212.85, 1)",
+        "color2": "rgba(151.462, 111.687, 143.872, 1)",
+        "body_font_color": "rgba(255, 255, 255, 1)",
+        "background_image_desktop": "templatesbackgroundimages/eeb0915222d2f86d739d09a621a96d1a.jpg",
+        "background_image_mobile": "templatesbackgroundimages/eeb0915222d2f86d739d09a621a96d1a_iOjr4yy.jpg",
+        "background_image_brightness": 0,
+        "use_background_image": true,
+        "font_family": "Juliagar.otf",
+        "primary_font_size": 16,
+        "name_font_size": 16,
+        "border_radius": 50,
+        "link_background_color": "rgba(255, 255, 255, 1)",
+        "link_border_color": "rgba(255, 255, 255, 1)",
+        "link_text_color": "rgba(0, 0, 0, 1)",
+        "lastmodified": "2021-11-13T07:40:10.901Z"
     }
 },
 {
@@ -162,7 +208,7 @@
         "name": "Ariana",
         "email": "marina@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-11T17:52:06.419Z",
         "referer": "http://127.0.0.1:8000/4455b/",
@@ -178,7 +224,7 @@
         "name": "Cristiano",
         "email": "cristiangudo111@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-11T18:34:09.457Z",
         "referer": "http://192.168.43.143:8000/4455b/",
@@ -194,7 +240,7 @@
         "name": "Cristiano",
         "email": "cristiangudo111@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-11T18:35:11.030Z",
         "referer": "http://192.168.43.143:8000/4455b/",
@@ -210,7 +256,7 @@
         "name": "Thiago Finch",
         "email": "finch@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-11T18:39:33.048Z",
         "referer": "http://192.168.43.143:8000/4455b/",
@@ -226,7 +272,7 @@
         "name": "Andreia",
         "email": "andy@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-19T20:19:06.674Z",
         "referer": "http://127.0.0.1:8000/gio/edit",
@@ -242,7 +288,7 @@
         "name": "Gareth",
         "email": "gareth@gmai.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-21T08:11:56.584Z",
         "referer": "http://127.0.0.1:8000/gio/edit",
@@ -258,7 +304,7 @@
         "name": "Gareth",
         "email": "gareth@gmai.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-21T08:13:13.412Z",
         "referer": "http://127.0.0.1:8000/gio/edit",
@@ -274,7 +320,7 @@
         "name": "Cristiano",
         "email": "cristiano@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-21T10:59:02.002Z",
         "referer": "None",
@@ -290,7 +336,7 @@
         "name": "edilson gudo",
         "email": "silvia@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T13:49:28.835Z",
         "referer": "http://127.0.0.1:8000/gio/",
@@ -306,7 +352,7 @@
         "name": "edilson gudo",
         "email": "silvia@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T13:50:33.497Z",
         "referer": "http://127.0.0.1:8000/gio/",
@@ -322,7 +368,7 @@
         "name": "Dua Lipa",
         "email": "edilson4football@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T14:01:53.749Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -338,7 +384,7 @@
         "name": "Edilson",
         "email": "edilsongudo@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T14:05:36.024Z",
         "referer": "http://192.168.43.143:8000/gio/",
@@ -354,7 +400,7 @@
         "name": "Cristiano",
         "email": "cristiano@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T14:07:02.376Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -370,7 +416,7 @@
         "name": "Luna",
         "email": "luna@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T14:10:08.003Z",
         "referer": "https://l.instagram.com/",
@@ -386,7 +432,7 @@
         "name": "Edilson Elias",
         "email": "edilsongudo@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T14:59:08.160Z",
         "referer": "http://192.168.43.143:8000/gio/",
@@ -402,7 +448,7 @@
         "name": "Mystery tour",
         "email": "larissa@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T15:00:13.653Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -418,7 +464,7 @@
         "name": "Mystery tour",
         "email": "edilsongudo@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T15:07:23.506Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -434,7 +480,7 @@
         "name": "Cristiano",
         "email": "edilson4football@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-23T19:06:50.337Z",
         "referer": "http://192.168.43.143:8000/gio/",
@@ -450,7 +496,7 @@
         "name": "Edilson Elias",
         "email": "primeiromilionario@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-08-29T10:47:02.862Z",
         "referer": "http://192.168.43.143:8000/gio/subscribe",
@@ -466,7 +512,7 @@
         "name": "Edilson",
         "email": "primeiromilionario@gmail.com",
         "lead_from": [
-            "dualipa"
+            "Shareit"
         ],
         "date_submited": "2021-09-18T16:31:19.926Z",
         "referer": "http://192.168.43.143:8000/jay/edit",
@@ -482,7 +528,7 @@
         "name": "Francisco Andr\u00e9",
         "email": "franciscomaculuve002@gmail.com",
         "lead_from": [
-            "cristiano"
+            "montano"
         ],
         "date_submited": "2021-10-15T10:11:15.704Z",
         "referer": "",
@@ -498,7 +544,7 @@
         "short_url": "1f31f",
         "title": "My Website",
         "user": [
-            "cristiano"
+            "montano"
         ],
         "link": "http://cristianoronaldo.com",
         "show_link": true,
@@ -514,7 +560,7 @@
         "short_url": "86917",
         "title": "Watch my 750 goals",
         "user": [
-            "cristiano"
+            "montano"
         ],
         "link": "https://youtu.be/cNfIS8UtE20",
         "show_link": true,
@@ -530,13 +576,13 @@
         "short_url": "fd591",
         "title": "Youtube",
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "link": "http://youtube.com",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
-        "view_count": 1,
-        "order": 4
+        "view_count": 2,
+        "order": 2
     }
 },
 {
@@ -546,13 +592,13 @@
         "short_url": "angelsonnyfodera",
         "title": "Angel - Sonny Fodera",
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "link": "https://youtu.be/kfRRI2-zv9Y",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
-        "view_count": 1,
-        "order": 2
+        "view_count": 2,
+        "order": 1
     }
 },
 {
@@ -562,12 +608,12 @@
         "short_url": "cr7goals",
         "title": "Cristiano's 750 Goals \ud83d\udd25",
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "link": "https://youtu.be/cNfIS8UtE20",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
-        "view_count": 0,
+        "view_count": 1,
         "order": 3
     }
 },
@@ -578,13 +624,13 @@
         "short_url": "4835d",
         "title": "Backend Developer",
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "link": "http://youtube.com",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
-        "view_count": 0,
-        "order": 1
+        "view_count": 1,
+        "order": 4
     }
 },
 {
@@ -826,11 +872,67 @@
     }
 },
 {
+    "model": "leadfy.pagevisit",
+    "pk": 245,
+    "fields": {
+        "page": 11,
+        "time": "2021-11-13T07:15:06.889Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 246,
+    "fields": {
+        "page": 15,
+        "time": "2021-11-13T07:49:31.230Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 247,
+    "fields": {
+        "page": 14,
+        "time": "2021-11-13T07:49:38.734Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 248,
+    "fields": {
+        "page": 13,
+        "time": "2021-11-13T08:17:46.603Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
     "model": "leadfy.advanced",
     "pk": 1,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "seconds_to_wait_before_asking_user_to_subscribe_again": 0
     }
@@ -840,7 +942,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "seconds_to_wait_before_asking_user_to_subscribe_again": 3600
     }
@@ -850,7 +952,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "call_to_action": "Voce gostaria de increver-se na minha lista de emails?",
         "call_to_action_button_text": "Newsletter",
@@ -862,7 +964,7 @@
     "pk": 3,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "call_to_action": "Would you like to subscribe to my email list?",
         "call_to_action_button_text": "Subscribe",
@@ -874,7 +976,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "instagram": null,
         "facebook": null,
@@ -899,7 +1001,7 @@
     "pk": 3,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "instagram": null,
         "facebook": null,
@@ -924,7 +1026,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "facebook_pixel_id": null
     }
@@ -934,7 +1036,7 @@
     "pk": 22,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "facebook_pixel_id": null
     }
@@ -951,7 +1053,7 @@
     "pk": 1,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "plan": "Premium",
         "paypal_subscription_id": "I-PYW5MHXTV1RR"
@@ -962,7 +1064,7 @@
     "pk": 55,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "plan": "Free",
         "paypal_subscription_id": "anything"
@@ -973,7 +1075,7 @@
     "pk": 38,
     "fields": {
         "user": [
-            "dualipa"
+            "Shareit"
         ],
         "email": "edilson4football@gmail.com",
         "verified": true,
@@ -985,7 +1087,7 @@
     "pk": 45,
     "fields": {
         "user": [
-            "cristiano"
+            "montano"
         ],
         "email": "edilsongudo@gmail.com",
         "verified": true,
