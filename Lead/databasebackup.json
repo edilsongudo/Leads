@@ -26,14 +26,14 @@
         "password": "pbkdf2_sha256$180000$eu3QAVllmpfh$CpC2d/mU7wZaD0p5/3ZMZp1mtO7Uqh4jmFIWpsHP2mA=",
         "last_login": "2021-11-11T18:26:36.075Z",
         "is_superuser": true,
-        "username": "Shareit",
+        "username": "Share",
         "first_name": "",
         "last_name": "",
         "is_staff": true,
         "is_active": true,
         "date_joined": "2021-08-10T18:50:19Z",
         "email": "edilson4football@gmail.com",
-        "view_count": 42,
+        "view_count": 43,
         "groups": [],
         "user_permissions": []
     }
@@ -44,14 +44,14 @@
         "password": "pbkdf2_sha256$180000$WuPEOZUb6bu5$LolTgUx8DvHh0f7yNozlwuolrUdwMKBNep9XdGrNyrI=",
         "last_login": "2021-11-13T08:30:35.295Z",
         "is_superuser": false,
-        "username": "montano",
+        "username": "cristiano",
         "first_name": "",
         "last_name": "",
         "is_staff": false,
         "is_active": true,
         "date_joined": "2021-10-09T15:38:00Z",
         "email": "edilsongudo@gmail.com",
-        "view_count": 58,
+        "view_count": 60,
         "groups": [],
         "user_permissions": []
     }
@@ -61,7 +61,7 @@
     "pk": 1,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "first_time_login": true,
         "image": "profile_pics/Pngtreecartoon_share_link_icon_download_4713518.jpg",
@@ -74,10 +74,10 @@
     "pk": 56,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "first_time_login": true,
-        "image": "profile_pics/FB_IMG_16252169241236340.jpg",
+        "image": "profile_pics/FB_IMG_16363938516299082.jpg",
         "name": "Cristiano",
         "bio": "Hello, here you can see some of my favorite links"
     }
@@ -87,7 +87,7 @@
     "pk": 1,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "template": "custom",
         "color1": "rgba(243.307, 0, 255, 1)",
@@ -112,24 +112,24 @@
     "pk": 2,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
-        "template": "14",
-        "color1": "rgba(15.497, 115.883, 255, 1)",
-        "color2": "rgba(10.858, 102.109, 97.19, 1)",
+        "template": "13",
+        "color1": "rgba(130.517, 189.457, 212.85, 1)",
+        "color2": "rgba(151.462, 111.687, 143.872, 1)",
         "body_font_color": "rgba(255, 255, 255, 1)",
         "background_image_desktop": "usersbackgroundimages/Hamza_Khan__on_Twitter_l8DknHJ.jpg",
         "background_image_mobile": "usersbackgroundimages/Hamza_Khan__on_Twitter_yZsDQCC.jpg",
-        "background_image_brightness": 50,
+        "background_image_brightness": 0,
         "use_background_image": false,
-        "font_family": "aAlwaysSmile.otf",
+        "font_family": "Juliagar.otf",
         "primary_font_size": 16,
         "name_font_size": 16,
-        "border_radius": 48,
-        "link_background_color": "rgba(0, 0, 0, 0.69)",
+        "border_radius": 50,
+        "link_background_color": "rgba(255, 255, 255, 1)",
         "link_border_color": "rgba(255, 255, 255, 1)",
-        "link_text_color": "rgba(255, 255, 255, 1)",
-        "lastmodified": "2021-11-13T09:22:08.755Z"
+        "link_text_color": "rgba(0,0,0,1)",
+        "lastmodified": "2021-11-13T10:24:21.924Z"
     }
 },
 {
@@ -208,7 +208,7 @@
         "name": "Ariana",
         "email": "marina@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-11T17:52:06.419Z",
         "referer": "http://127.0.0.1:8000/4455b/",
@@ -224,7 +224,7 @@
         "name": "Cristiano",
         "email": "cristiangudo111@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-11T18:34:09.457Z",
         "referer": "http://192.168.43.143:8000/4455b/",
@@ -240,7 +240,7 @@
         "name": "Cristiano",
         "email": "cristiangudo111@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-11T18:35:11.030Z",
         "referer": "http://192.168.43.143:8000/4455b/",
@@ -256,7 +256,7 @@
         "name": "Thiago Finch",
         "email": "finch@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-11T18:39:33.048Z",
         "referer": "http://192.168.43.143:8000/4455b/",
@@ -272,7 +272,7 @@
         "name": "Andreia",
         "email": "andy@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-19T20:19:06.674Z",
         "referer": "http://127.0.0.1:8000/gio/edit",
@@ -288,7 +288,7 @@
         "name": "Gareth",
         "email": "gareth@gmai.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-21T08:11:56.584Z",
         "referer": "http://127.0.0.1:8000/gio/edit",
@@ -304,7 +304,7 @@
         "name": "Gareth",
         "email": "gareth@gmai.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-21T08:13:13.412Z",
         "referer": "http://127.0.0.1:8000/gio/edit",
@@ -320,7 +320,7 @@
         "name": "Cristiano",
         "email": "cristiano@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-21T10:59:02.002Z",
         "referer": "None",
@@ -336,7 +336,7 @@
         "name": "edilson gudo",
         "email": "silvia@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T13:49:28.835Z",
         "referer": "http://127.0.0.1:8000/gio/",
@@ -352,7 +352,7 @@
         "name": "edilson gudo",
         "email": "silvia@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T13:50:33.497Z",
         "referer": "http://127.0.0.1:8000/gio/",
@@ -368,7 +368,7 @@
         "name": "Dua Lipa",
         "email": "edilson4football@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T14:01:53.749Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -384,7 +384,7 @@
         "name": "Edilson",
         "email": "edilsongudo@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T14:05:36.024Z",
         "referer": "http://192.168.43.143:8000/gio/",
@@ -400,7 +400,7 @@
         "name": "Cristiano",
         "email": "cristiano@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T14:07:02.376Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -416,7 +416,7 @@
         "name": "Luna",
         "email": "luna@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T14:10:08.003Z",
         "referer": "https://l.instagram.com/",
@@ -432,7 +432,7 @@
         "name": "Edilson Elias",
         "email": "edilsongudo@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T14:59:08.160Z",
         "referer": "http://192.168.43.143:8000/gio/",
@@ -448,7 +448,7 @@
         "name": "Mystery tour",
         "email": "larissa@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T15:00:13.653Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -464,7 +464,7 @@
         "name": "Mystery tour",
         "email": "edilsongudo@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T15:07:23.506Z",
         "referer": "http://3bab-197-235-53-73.ngrok.io/gio/",
@@ -480,7 +480,7 @@
         "name": "Cristiano",
         "email": "edilson4football@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-23T19:06:50.337Z",
         "referer": "http://192.168.43.143:8000/gio/",
@@ -496,7 +496,7 @@
         "name": "Edilson Elias",
         "email": "primeiromilionario@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-08-29T10:47:02.862Z",
         "referer": "http://192.168.43.143:8000/gio/subscribe",
@@ -512,7 +512,7 @@
         "name": "Edilson",
         "email": "primeiromilionario@gmail.com",
         "lead_from": [
-            "Shareit"
+            "Share"
         ],
         "date_submited": "2021-09-18T16:31:19.926Z",
         "referer": "http://192.168.43.143:8000/jay/edit",
@@ -528,7 +528,7 @@
         "name": "Francisco Andr\u00e9",
         "email": "franciscomaculuve002@gmail.com",
         "lead_from": [
-            "montano"
+            "cristiano"
         ],
         "date_submited": "2021-10-15T10:11:15.704Z",
         "referer": "",
@@ -544,12 +544,12 @@
         "short_url": "1f31f",
         "title": "My Website",
         "user": [
-            "montano"
+            "cristiano"
         ],
         "link": "http://cristianoronaldo.com",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
-        "view_count": 8,
+        "view_count": 9,
         "order": 2
     }
 },
@@ -560,7 +560,7 @@
         "short_url": "86917",
         "title": "Watch my 750 goals",
         "user": [
-            "montano"
+            "cristiano"
         ],
         "link": "https://youtu.be/cNfIS8UtE20",
         "show_link": true,
@@ -576,13 +576,13 @@
         "short_url": "fd591",
         "title": "Youtube",
         "user": [
-            "Shareit"
+            "Share"
         ],
         "link": "http://youtube.com",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
         "view_count": 2,
-        "order": 2
+        "order": 1
     }
 },
 {
@@ -592,13 +592,13 @@
         "short_url": "angelsonnyfodera",
         "title": "Angel - Sonny Fodera",
         "user": [
-            "Shareit"
+            "Share"
         ],
         "link": "https://youtu.be/kfRRI2-zv9Y",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
         "view_count": 2,
-        "order": 1
+        "order": 4
     }
 },
 {
@@ -608,13 +608,13 @@
         "short_url": "cr7goals",
         "title": "Cristiano's 750 Goals \ud83d\udd25",
         "user": [
-            "Shareit"
+            "Share"
         ],
         "link": "https://youtu.be/cNfIS8UtE20",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
         "view_count": 1,
-        "order": 3
+        "order": 2
     }
 },
 {
@@ -624,13 +624,29 @@
         "short_url": "4835d",
         "title": "Backend Developer",
         "user": [
-            "Shareit"
+            "Share"
         ],
         "link": "http://youtube.com",
         "show_link": true,
         "use_this_link_to_ask_visitors_to_subscribe": false,
         "view_count": 1,
-        "order": 4
+        "order": 3
+    }
+},
+{
+    "model": "leadfy.link",
+    "pk": 17,
+    "fields": {
+        "short_url": "5eb7b",
+        "title": "Pitch Deck",
+        "user": [
+            "cristiano"
+        ],
+        "link": "http://192.168.43.143:8000/pitch/download/",
+        "show_link": false,
+        "use_this_link_to_ask_visitors_to_subscribe": false,
+        "view_count": 1,
+        "order": 3
     }
 },
 {
@@ -928,11 +944,39 @@
     }
 },
 {
+    "model": "leadfy.pagevisit",
+    "pk": 249,
+    "fields": {
+        "page": 5,
+        "time": "2021-11-13T09:53:09.279Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
+    "model": "leadfy.pagevisit",
+    "pk": 250,
+    "fields": {
+        "page": 17,
+        "time": "2021-11-13T09:53:35.347Z",
+        "referer": "",
+        "referer_main_domain": "",
+        "location": "",
+        "location_code": "",
+        "device_type": "Mobile",
+        "os_type": "Android"
+    }
+},
+{
     "model": "leadfy.advanced",
     "pk": 1,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "seconds_to_wait_before_asking_user_to_subscribe_again": 0
     }
@@ -942,7 +986,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "seconds_to_wait_before_asking_user_to_subscribe_again": 3600
     }
@@ -952,7 +996,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "call_to_action": "Voce gostaria de increver-se na minha lista de emails?",
         "call_to_action_button_text": "Newsletter",
@@ -964,7 +1008,7 @@
     "pk": 3,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "call_to_action": "Would you like to subscribe to my email list?",
         "call_to_action_button_text": "Subscribe",
@@ -976,7 +1020,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "instagram": null,
         "facebook": null,
@@ -1001,7 +1045,7 @@
     "pk": 3,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "instagram": null,
         "facebook": null,
@@ -1026,7 +1070,7 @@
     "pk": 2,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "facebook_pixel_id": null
     }
@@ -1036,7 +1080,7 @@
     "pk": 22,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "facebook_pixel_id": null
     }
@@ -1053,7 +1097,7 @@
     "pk": 1,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "plan": "Premium",
         "paypal_subscription_id": "I-PYW5MHXTV1RR"
@@ -1064,7 +1108,7 @@
     "pk": 55,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "plan": "Free",
         "paypal_subscription_id": "anything"
@@ -1075,7 +1119,7 @@
     "pk": 38,
     "fields": {
         "user": [
-            "Shareit"
+            "Share"
         ],
         "email": "edilson4football@gmail.com",
         "verified": true,
@@ -1087,7 +1131,7 @@
     "pk": 45,
     "fields": {
         "user": [
-            "montano"
+            "cristiano"
         ],
         "email": "edilsongudo@gmail.com",
         "verified": true,

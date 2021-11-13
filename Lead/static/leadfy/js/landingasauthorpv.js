@@ -32,13 +32,23 @@ function submitorder(dataname, datavalue, url) {
 }
 
 const button = document.querySelector('#copybtn')
-const inputelem = document.querySelector('#copyinput')
 button.addEventListener('click', function () {
+    const inputelem = document.createElement('textarea')
+    inputelem.value = link
+    document.body.appendChild(inputelem)
+    console.log(inputelem.value)
     inputelem.select()
     document.execCommand('Copy')
-    button.innerText = 'Link Copied'
-    button.style.backgroundColor = 'rgba(48, 112, 212, 0.4)'
-    button.style.color = "white"
+    document.body.removeChild(inputelem)
+
+    button.innerHTML = 'Link Copied <i class="fas fa-check">'
+    button.style.color = "#eecda3"
+
+    setTimeout(function () {
+        button.innerHTML = 'Copy Link <i class="fas fa-copy">'
+        button.style.backgroundColor = 'white'
+        button.style.color = "grey"
+    }, 2500)
 })
 
 
