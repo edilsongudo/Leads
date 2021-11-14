@@ -10,6 +10,10 @@ class User(AbstractUser):
     view_count = models.IntegerField(
         default=0)
 
+    def save(self, *args, **kwargs):
+        self.username = self.username.lower()
+        super(User, self).save(*args, **kwargs)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(

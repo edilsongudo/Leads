@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from .models import Profile
+from django.db import IntegrityError
 
 
 @login_required
@@ -20,7 +21,13 @@ def profile(request):
                                   instance=request.user.profile)
 
         if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
+            try:
+                u_form.save()
+            except IntegrityError as e:
+                messages.error(
+                    request, f'Username "{u_form.instance.username}" already exists')
+                return redirect('profile')
+
             p_form.save()
             messages.success(request, f'Your account has been updated!')
             return redirect('profile')
