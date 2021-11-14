@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url("/media/fonts/aAffirmation.otf")
+    src:  url("/media/fonts/Karla-VariableFont_wght.ttf")
 }
 
 body {
@@ -11,11 +11,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(90deg, rgba(10.689, 7.235, 13.92, 1), rgba(126.589, 0.451, 205.574, 1));
+  background-image: linear-gradient(135deg, rgba(241.609, 250.655, 250.965, 1), rgba(29.505, 86.51, 99.66, 1));
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
-  font-size: 16;
+  font-size: 15;
 }
 
 /*TODO - Style Overflow*/
@@ -166,8 +166,9 @@ a:hover {
 
 
 .page-link {
+  word-wrap: break-word;
   border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 30px;
+  border-radius: 12px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
@@ -175,13 +176,18 @@ a:hover {
   align-items: center;
   justify-content: center;
   color: rgba(255, 255, 255, 1);
-  background-color: rgba(3.558, 3.833, 3.472, 0.39);
+  background-color: rgba(0, 0, 0, 0.97);
+}
+
+.link-title {
+  max-width: 80%;
 }
 
 .page-link:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
+  border-color: rgba(255, 255, 255, 1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
@@ -319,5 +325,11 @@ input:checked[type="checkbox"]:before {
 
 .thankyou {
   text-align: center;
+}
+
+textarea#id_call_to_action {
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
 }
 

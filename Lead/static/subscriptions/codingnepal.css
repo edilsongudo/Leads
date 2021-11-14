@@ -5,12 +5,18 @@
     src:  url('../leadfy/fonts/Juliagar.otf')
 }
 
+@font-face {
+    font-family: 'CeraProMedium';
+    src:  url('../leadfy/fonts/CeraProMedium.woff2')
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Juliagar", sans-serif;
+  font-family: "CeraProMedium", sans-serif;
   font-size: 1.2rem;
+  color: grey;
 }
 
 body{
@@ -18,8 +24,9 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /*background: linear-gradient(#D5A3FF 0%, #77A5F8 100%);
-*/  background: linear-gradient(#c3cfe2 0%, #c3cfe2 100%);
+  /*background: linear-gradient(#D5A3FF 0%, #77A5F8 100%);*/
+  /*background: linear-gradient(#c3cfe2 0%, #c3cfe2 100%);*/
+  background: white;
 }
 .wrapper{
   margin-top: 50px;
@@ -28,7 +35,8 @@ body{
   background: #fff;
   border-radius: 16px;
   padding: 30px;
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+  border: 3px solid rgba(213, 221, 236, 0.4);
+  box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
 }
 .wrapper header{
   height: 55px;
@@ -115,13 +123,13 @@ header .slider{
   font-size: 65px;
   font-weight: 600;
   position: relative;
-  font-family: 'Juliagar', sans-serif;
+  /*font-family: 'Juliagar', sans-serif;*/
 }
 .price-details .price::before,
 .price-details .price::after{
   position: absolute;
   font-weight: 400;
-  font-family: "Juliagar", sans-serif;
+  /*font-family: "Juliagar", sans-serif;*/
 }
 .price-details .price::before{
   content: "$";
@@ -191,7 +199,8 @@ header .slider{
     z-index: 1000;
     padding: 0;
     margin: 0;
-    box-shadow: 0.5px 0.5px 0.5px 0.5px grey;
+    /*border: 3px solid rgba(213, 221, 236, 0.4);*/
+    box-shadow: rgba(213, 221, 236, 0.4) 20px 20px 20px 20px;
 }
 
 .footer img {

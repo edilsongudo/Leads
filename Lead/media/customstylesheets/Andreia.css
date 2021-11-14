@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'customfont';
-    src:  url("/media/fonts/aAffirmation.otf")
+    src:  url("/media/fonts/Juliagar.otf")
 }
 
 body {
@@ -11,11 +11,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(135deg, rgba(8.752, 8.877, 8.312, 1), rgba(168.928, 2.663, 242.896, 1));
+  background-image: linear-gradient(135deg, rgba(130.517, 189.457, 212.85, 1), rgba(151.462, 111.687, 143.872, 1));
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
-  font-size: 21;
+  font-size: 16;
 }
 
 /*TODO - Style Overflow*/
@@ -168,15 +168,15 @@ a:hover {
 .page-link {
   word-wrap: break-word;
   border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 36px;
+  border-radius: 50px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0,0,0,1);
-  background-color: rgba(79.13, 214.065, 218.687, 0.32);
+  color: rgba(0, 0, 0, 1);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .link-title {
@@ -187,7 +187,7 @@ a:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-  border-color: rgba(0,0,0,1);
+  border-color: rgba(0, 0, 0, 1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {

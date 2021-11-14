@@ -65,7 +65,7 @@ class Preferences(models.Model):
 
 class Template(models.Model):
     name = models.CharField(max_length=50)
-    thumbnail = models.ImageField(upload_to="template_thumbnails")
+    thumbnail = models.ImageField(upload_to="template_thumbnails", null=True, blank=True)
     color1 = models.CharField(
         max_length=100, default="rgba(130.517, 189.457, 212.85, 1)")
     color2 = models.CharField(
@@ -75,11 +75,11 @@ class Template(models.Model):
     background_image_desktop = models.ImageField(
         upload_to='templatesbackgroundimages',
         default="usersbackgroundimages/defaultdesktopbackgroundimage.jpg",
-        null=True)
+        null=True, blank=True)
     background_image_mobile = models.ImageField(
         upload_to='templatesbackgroundimages',
         default="usersbackgroundimages/defaultmobilebackgroundimage.jpg",
-        null=True)
+        null=True, blank=True)
     background_image_brightness = models.IntegerField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     use_background_image = models.BooleanField(default=False)

@@ -20,7 +20,7 @@
             text-align: center;
         }
 
-        label img, #create_custom_template, .labelelem {
+        label img, #create_custom_template, #admin_create_custom_template, .labelelem {
             height: 150px;
             width: 100px;
             object-fit: cover;
@@ -39,7 +39,7 @@
             border-color: lightgreen;
         }
 
-        #create_custom_template {
+        #create_custom_template, #admin_create_custom_template {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -61,18 +61,24 @@
     <div class="content">
         <h1>Template</h1>
         <p>Choose a template or create a custom one</p>
-        {% if request.user.is_superuser == True %}
-            <a href="{% url 'create_template' %}">
-                Create new template<i class="fa fa-plus"></i>
-            </a>
-        {% endif %}
 
         <form>
             <div class="formcontent">
+
                 <div class="customtemplatecontainer">
                     <label for="create_custom_template"><div>Custom</div></label>
                     <a id="create_custom_template" href="{% url 'custom_template' %}"><i class="fas fa-paint-brush"></i></a>
                 </div>
+
+                {% if request.user.is_superuser == True %}
+                    <div class="customtemplatecontainer">
+                        <label for="admin_create_custom_template"><div>New</div></label>
+                        <a id="admin_create_custom_template" href="{% url 'create_template' %}">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                {% endif %}
+
                 {% for t in templates %}
                     <input type="radio" name="template" id="{{ t.id }}" value="{{ t.id }}"
                     {% if request.user.preferences.template == t.id|stringformat:"i" %}checked{% endif %}>
