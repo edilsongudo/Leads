@@ -83,6 +83,13 @@ class TemplateForm(forms.ModelForm):
             'link_background_color': TextInput(attrs={'type': 'color'})
         }
 
+class EmbedForm(forms.ModelForm):
+
+    class Meta:
+        model = Embed
+        fields = '__all__'
+        exclude = ['user']
+
 class PitchForm(forms.ModelForm):
 
     class Meta:

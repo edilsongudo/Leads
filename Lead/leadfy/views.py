@@ -440,6 +440,21 @@ def subscribebutton(request):
 
 
 @login_required
+def embed(request):
+    form = EmbedForm(instance=request.user.embed)
+    if request.method == 'POST':
+        form = EmbedForm(
+            request.POST, instance=request.user.embed)
+        if form.is_valid():
+            form.save()
+            return redirect(
+                'landing_as_author_pv',
+                username=request.user.username)
+    context = context_dict(user=request.user, form=form)
+    return render(request, 'leadfy/embed.html', context)
+
+
+@login_required
 def preferences(request):
     form = PreferencesForm(instance=request.user.preferences)
     user = request.user

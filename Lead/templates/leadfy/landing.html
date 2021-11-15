@@ -29,6 +29,21 @@
     <link rel="stylesheet" type="text/css" href="/media/customstylesheets/{{ user.username }}.css?{{ lastmodified }}">
     <style type="text/css">
 
+        .embed {
+            margin: 10px auto;
+            text-align: center;
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         @font-face {
             font-family: 'customfont';
             src:  url(/media/fonts/{{ font }})
@@ -135,6 +150,14 @@
                     </a>
                 {% endif %}
             {% endfor %}
+<!--             <div class="embed">
+                <iframe width="100%" height="100%" frameborder=0 src="https://open.spotify.com/embed/track/1pc5IseLeOPQCZ0tzMao9s" allowtransparence="true" allow="encrypted-media"></iframe>
+            </div> -->
+            {% if user.embed.youtube_video_id != None %}
+                <div class="embed">
+                    <iframe width="100%" height="100%" frameborder=0 src="https://www.youtube.com/embed/{{ user.embed.youtube_video_id }}"></iframe>
+                </div>
+            {% endif %}
             {% if user.subscribebutton.show == True and show_subscribe_button == True %}
                 <a href="{% url 'subscribe' user.username %}" class="page-link link">{{ user.subscribebutton.call_to_action_button_text }}
                     <i id="linkicon" class="fas fa-envelope"></i>

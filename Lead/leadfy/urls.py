@@ -22,6 +22,7 @@ urlpatterns = [
     path('create_template/', create_template, name="create_template"),
     path('settings/', settings, name="settings"),
     path('export/', export, name="export"),
+    path('embed/', embed, name="embed"),
     path('subscribebutton-edit/', subscribebutton, name="subscribebutton"),
     path('advanced/', advanced, name="advanced"),
     path('exportleads/', exportleads, name="exportleads"),

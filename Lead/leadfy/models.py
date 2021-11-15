@@ -248,6 +248,17 @@ class Social(models.Model):
         return f'{self.user.username}'
 
 
+class Embed(models.Model):
+    user = models.OneToOneField(
+        get_user_model(), on_delete=models.CASCADE, null=True)
+    youtube_video_id = models.CharField(
+        max_length=200, null=True, blank=True)
+
+
+    def __str__(self):
+        return f'{self.user.username}'
+
+
 class Integrations(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
