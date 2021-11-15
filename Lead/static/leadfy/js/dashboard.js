@@ -103,10 +103,15 @@ function getCookie(name) {
 //     alert(window.location.hash)
 // }
 
-var pageURL = window.location.href
-var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') - 1)
-lastURLSegment = lastURLSegment.replace('/', '')
+var pageURL = window.location.pathname
+pageURL = pageURL.split('/')
+console.log(pageURL)
+var lastURLSegment = pageURL[2]
 console.log(lastURLSegment)
+// var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') -2 )
+// console.log(lastURLSegment)
+// lastURLSegment = lastURLSegment.replace('/', '')
+// console.log(lastURLSegment)
 
 var card_day = document.getElementById(lastURLSegment)
 card_day.classList.add('active')
