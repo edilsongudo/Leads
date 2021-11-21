@@ -23,6 +23,7 @@ Pillow==8.1.0
 plotly
 pyseoanalyzer==4.0.3
 python-slugify==5.0.2
+pytube
 requests==2.25.1
 user-agents==2.2.0
 

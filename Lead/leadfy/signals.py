@@ -1,7 +1,7 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.contrib.auth import get_user_model
 from django.dispatch import receiver
-from .models import Preferences, Advanced, SubscribeButton, Social, Integrations, Link, Embed
+from .models import Preferences, Advanced, SubscribeButton, Social, Integrations, Link, Embed, CustomCss
 from .writecss import writecss
 from .utils import generate_ref_code
 
@@ -15,6 +15,7 @@ def create_Preferences(sender, instance, created, **kwargs):
         Integrations.objects.create(user=instance)
         SubscribeButton.objects.create(user=instance)
         Embed.objects.create(user=instance)
+        CustomCss.objects.create(user=instance)
         # Link.objects.create(short_url=generate_ref_code(),
         #                     title='demo', user=instance, show_link=False)
 
@@ -28,6 +29,18 @@ def save_Preferences(sender, instance, created, **kwargs):
         instance.social.save()
         instance.integrations.save()
         instance.embed.save()
+        instance.customcss.save()
+
+
+# @receiver(pre_save, sender=Preferences)
+"""
+    This function works like the custom filestorage
+"""
+# def save_Preferences(sender, instance, created, **kwargs):
+#     try:
+#         instance.user.custom_css.css_file.delete()
+#     except Exception as e:
+#         print(e)
 
 
 @receiver(post_save, sender=Preferences)

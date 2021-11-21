@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from .utils import generate_ref_code, generate_netloc
+from .utils import generate_ref_code, generate_netloc, get_youtube_video_id
+from .storage import OverwriteStorage
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
@@ -8,7 +9,6 @@ import os
 from PIL import Image
 from django_resized import ResizedImageField
 from ckeditor_uploader.fields import RichTextUploadingField
-
 
 fonts_folder = os.path.join(settings.MEDIA_ROOT, 'fonts')
 fonts = os.listdir(fonts_folder)
@@ -61,6 +61,16 @@ class Preferences(models.Model):
 
     def save(self, *args, **kwargs):
         super(Preferences, self).save(*args, **kwargs)
+
+
+class CustomCss(models.Model):
+    user = models.OneToOneField(
+        get_user_model(), on_delete=models.CASCADE, null=True)
+    css_file = models.FileField(upload_to="customstylesheets", storage=OverwriteStorage(), null=True, blank=True)
+    lastmodified = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username}'
 
 
 class Template(models.Model):
@@ -251,9 +261,15 @@ class Social(models.Model):
 class Embed(models.Model):
     user = models.OneToOneField(
         get_user_model(), on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=100, null=True, blank=True)
+    youtube_video_url = models.CharField(
+        max_length=200, null=True, blank=True)
     youtube_video_id = models.CharField(
         max_length=200, null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        self.youtube_video_id = get_youtube_video_id(self.youtube_video_url)
+        super(Embed, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.user.username}'

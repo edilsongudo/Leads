@@ -10,66 +10,10 @@
         {% block meta %}{% endblock %}
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/fontawesome-free-5.15.2-web/css/all.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'leadfy/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="/media/customstylesheets/{{ user.username }}.css?{{ lastmodified }}">
-        <style type="text/css">
-
-            @font-face {
-                font-family: 'customfont';
-                src:  url(/media/fonts/{{ font }})
-            }
-
-            body {
-                font-family: 'customfont', sans-serif;
-                font-size: {{ primary_font_size }}px;
-                color: {{ body_font_color }};
-                background-image: linear-gradient(90deg, {{ color1 }}, {{color2 }})
-            }
-
-            .page-link {
-                word-wrap: break-word;
-                border: 1.5px solid {{ link_border_color }};
-                color: {{ link_text_color }};
-                border-radius: {{ border_radius }}px;
-            }
-
-            #name {
-                font-size: {{ name_font_size }}px;
-            }
-
-            {% if use_background_image == "true" %}
-                body {
-                    color: #fff;
-                    background-image: linear-gradient(90deg, rgba(0,0,0,{{ brightness_css_factor }}), rgba(0,0,0,{{ brightness_css_factor }}) ), url({{ desktopimage }});
-                }
-                @media only screen and (max-width: 800px) {
-                  body {
-                    background-image: linear-gradient(90deg, rgba(0,0,0,{{ brightness_css_factor }}), rgba(0,0,0,{{ brightness_css_factor }}) ), url({{ mobileimage }});
-                  }
-                }
-            {% endif %}
-
-        </style>
-        {% block head %}
-        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ user.customcss.css_file.url }}?{{ lastmodified }}">
     </head>
     <body>
         {% block content %}
         {% endblock %}
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     </body>
-<!--     <script type="text/javascript">
-        var color1 = "{{ color1 }}"
-        var color2 = "{{ color2 }}"
-        var brightness = {{ brightness }} / 100
-        var use_background_image = {{ use_background_image }}
-        var mobileimage = "{{ mobileimage }}"
-        var desktopimage = "{{ desktopimage }}"
-        var primary_font_size = "{{ primary_font_size }}"
-        var name_font_size = "{{ name_font_size }}"
-        var border_radius = "{{ border_radius }}"
-        var link_text_color = "{{ link_text_color }}"
-        var link_background_color = "{{ link_background_color }}"
-        var font = "{{ font }}"
-    </script> -->
-    <!-- <script src="{% static 'leadfy/js/landingbase.js' %}"></script> -->
 </html>

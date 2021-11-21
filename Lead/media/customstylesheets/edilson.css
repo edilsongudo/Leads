@@ -11,11 +11,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: linear-gradient(135deg, rgba(130.517, 189.457, 212.85, 1), rgba(151.462, 111.687, 143.872, 1));
+  background-image: linear-gradient(135deg, rgba(130.517, 189.457, 212.85, 1), rgba(111.687, 135.668, 151.462, 1));
   min-height: 100vh;
   color: rgba(255, 255, 255, 1);
   font-family: 'customfont', sans-serif;
-  font-size: 16;
+  font-size: 16px;
 }
 
 /*TODO - Style Overflow*/
@@ -167,16 +167,16 @@ a:hover {
 
 .page-link {
   word-wrap: break-word;
-  border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 0px;
   padding: 20px;
   text-align: center;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0, 0, 0, 1);
-  background-color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 0, 0, 1);
 }
 
 .link-title {
@@ -187,7 +187,8 @@ a:hover {
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-  border-color: rgba(0, 0, 0, 1);
+  border-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 1);
 }
 
 .page-link .fa-pencil-alt, .page-link .linkviews {
@@ -331,5 +332,32 @@ textarea#id_call_to_action {
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.85);
   border-radius: 25px;
+}
+
+.embed_title {
+    text-align: center;
+}
+
+.embed {
+    margin: 10px auto;
+    text-align: center;
+    position: relative;
+    padding-bottom: 56.25%;
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.watermark {
+    font-size: 0.75rem;
+}
+
+.brandname {
+    text-decoration: underline;
 }
 

@@ -9,6 +9,7 @@ from django.db.models import Count
 import folium
 import pandas as pd
 from django.apps import apps
+from pytube import extract
 
 
 def context_dict(user, **kwargs):
@@ -341,3 +342,9 @@ def get_user_agent(request):
     }
 
     return context
+
+def get_youtube_video_id(url):
+    id = None
+    if url:
+        id = extract.video_id(url)
+    return id

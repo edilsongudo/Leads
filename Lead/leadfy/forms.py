@@ -87,8 +87,7 @@ class EmbedForm(forms.ModelForm):
 
     class Meta:
         model = Embed
-        fields = '__all__'
-        exclude = ['user']
+        fields = ['title', 'youtube_video_url']
 
 class PitchForm(forms.ModelForm):
 

@@ -1,6 +1,7 @@
 from django.conf import settings
 import os
 from django.apps import apps
+from django.core.files.base import File, ContentFile
 
 # def writecss(username, color1, color2, body_font_color, primary_font_size, name_font_size,
 #              border_radius, link_text_color, link_background_color, font, use_background_image,
@@ -46,6 +47,11 @@ def writecss(user):
     link_text_color = template_choosen.link_text_color
     font_family = template_choosen.font_family
 
+  if use_background_image:
+      use_background_image = "true"
+  else:
+      use_background_image = "false"
+
   css = f"""
 
 @font-face {{
@@ -63,7 +69,7 @@ body {{
   min-height: 100vh;
   color: {str(body_font_color)};
   font-family: 'customfont', sans-serif;
-  font-size: {str(primary_font_size)};
+  font-size: {str(primary_font_size)}px;
 }}
 
 /*TODO - Style Overflow*/
@@ -236,6 +242,7 @@ a:hover {{
   background-position: center;
   background-repeat: no-repeat;
   border-color: {link_text_color};
+  color: {link_background_color};
 }}
 
 .page-link .fa-pencil-alt, .page-link .linkviews {{
@@ -381,6 +388,33 @@ textarea#id_call_to_action {{
   border-radius: 25px;
 }}
 
+.embed_title {{
+    text-align: center;
+}}
+
+.embed {{
+    margin: 10px auto;
+    text-align: center;
+    position: relative;
+    padding-bottom: 56.25%;
+}}
+
+iframe {{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}}
+
+.watermark {{
+    font-size: 0.75rem;
+}}
+
+.brandname {{
+    text-decoration: underline;
+}}
+
 """
 
   if use_background_image == 'true':
@@ -396,13 +430,15 @@ textarea#id_call_to_action {{
   }}
   """
 
-  if not os.path.isdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets')):
-    os.mkdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets'))
+  # if not os.path.isdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets')):
+  #   os.mkdir(os.path.join(settings.MEDIA_ROOT, f'customstylesheets'))
 
-  PATH = os.path.join(
-      settings.MEDIA_ROOT, f'customstylesheets/{user.username}.css')
+  # PATH = os.path.join(
+  #     settings.MEDIA_ROOT, f'customstylesheets/{user.username}.css')
 
-  with open(PATH, 'w') as f:
-    f.write(css)
+  # # with open(PATH, 'w') as f:
+  # #   f.write(css)
+
+  user.customcss.css_file.save(f'{user.username}.css', ContentFile(css), save=True)
 
   return 'Css Written'

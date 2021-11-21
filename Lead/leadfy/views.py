@@ -343,10 +343,15 @@ def landing(request, username):
     if f'{user.username}_captured' in request.COOKIES:
         show_subscribe_button = False
 
+    css = user.customcss.css_file
+    content = css.read().decode('utf-8')
+    if not css.closed:
+        css.close()
+
     context = context_dict(
         user=user,
         links=links,
-        show_subscribe_button=show_subscribe_button)
+        show_subscribe_button=show_subscribe_button, content=content)
     response = render(request, 'leadfy/landing.html', context=context)
 
     if f'{user.username}_land' not in request.COOKIES:
@@ -433,7 +438,7 @@ def subscribebutton(request):
         if form.is_valid():
             form.save()
             return redirect(
-                'landing_as_author_pv',
+                'subscribe',
                 username=request.user.username)
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/subscribebutton.html', context)
@@ -448,7 +453,7 @@ def embed(request):
         if form.is_valid():
             form.save()
             return redirect(
-                'landing_as_author_pv',
+                'user-landing',
                 username=request.user.username)
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/embed.html', context)
@@ -770,7 +775,7 @@ def pitch(request):
 def desktopimage(request):
     preference = Preferences.objects.get(user=request.user)
     print('REQUEST RECEIVED', request.FILES.get('cropped'))
-    print(dir(request.FILES.get('cropped')))
+    # print(dir(request.FILES.get('cropped')))
     preference.background_image_desktop = request.FILES.get('cropped')
     preference.save()
     return JsonResponse({'success': 'success'})
@@ -780,7 +785,7 @@ def desktopimage(request):
 def mobileimage(request):
     preference = Preferences.objects.get(user=request.user)
     print('REQUEST RECEIVED', request.FILES.get('cropped'))
-    print(dir(request.FILES.get('cropped')))
+    # print(dir(request.FILES.get('cropped')))
     preference.background_image_mobile = request.FILES.get('cropped')
     preference.save()
     return JsonResponse({'success': 'success'})

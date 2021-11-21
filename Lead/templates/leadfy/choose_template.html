@@ -83,6 +83,9 @@
                     <input type="radio" name="template" id="{{ t.id }}" value="{{ t.id }}"
                     {% if request.user.preferences.template == t.id|stringformat:"i" %}checked{% endif %}>
                     <label for="{{ t.id }}"><div>{{ t.name }}</div>
+                        <div style="color: black; width: 100px;">
+
+                        </div>
                         <div class="labelelem" style="background-image: linear-gradient(45deg, {{ t.color1 }}, {{ t.color2 }} );">
                             {% if t.use_background_image == True %}
                                 <img src="{{ t.thumbnail.url }}">
