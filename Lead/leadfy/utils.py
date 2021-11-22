@@ -69,8 +69,16 @@ def context_dict(user, **kwargs):
             f'customstylesheets/{user.username}.css')):
         writecss(user)
 
+    #This line needs to below the code above
+    css = user.customcss.css_file
+    content = css.read().decode('utf-8')
+    #remember to close it, because .read() leaves it opened
+    if not css.closed:
+        css.close()
+
     data = {
         'user': user,
+        # 'content': content,
         'color1': color1,
         'color2': color2,
         'body_font_color': body_font_color,

@@ -343,15 +343,10 @@ def landing(request, username):
     if f'{user.username}_captured' in request.COOKIES:
         show_subscribe_button = False
 
-    css = user.customcss.css_file
-    content = css.read().decode('utf-8')
-    if not css.closed:
-        css.close()
-
     context = context_dict(
         user=user,
         links=links,
-        show_subscribe_button=show_subscribe_button, content=content)
+        show_subscribe_button=show_subscribe_button)
     response = render(request, 'leadfy/landing.html', context=context)
 
     if f'{user.username}_land' not in request.COOKIES:
