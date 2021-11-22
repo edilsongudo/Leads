@@ -13,6 +13,10 @@ from pytube import extract
 
 
 def context_dict(user, **kwargs):
+    # Guarantees there's always a css file
+    if not user.customcss.css_file.name:
+        writecss(user)
+
     template = user.preferences.template
     if template == 'custom':
         color1 = user.preferences.color1
@@ -61,18 +65,9 @@ def context_dict(user, **kwargs):
         else:
             use_background_image = "false"
 
-    # CSS File creation is handled by a signal. This is just to guarantee that
-    # the file will be created in case it does not exists
-    if not os.path.isfile(
-        os.path.join(
-            settings.MEDIA_ROOT,
-            f'customstylesheets/{user.username}.css')):
-        writecss(user)
 
-    #This line needs to below the code above
     css = user.customcss.css_file
     content = css.read().decode('utf-8')
-    #remember to close it, because .read() leaves it opened
     if not css.closed:
         css.close()
 
