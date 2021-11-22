@@ -29,8 +29,11 @@ def profile(request):
                 return redirect('profile')
 
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('profile')
+            # messages.success(request, f'Your account has been updated!')
+            # return redirect('profile')
+            return redirect(
+                'user-landing',
+                username=request.user.username)
 
     else:
         u_form = UserUpdateForm(instance=request.user)

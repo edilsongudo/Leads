@@ -18,6 +18,7 @@
             display: flex;
             flex-wrap: wrap;
             text-align: center;
+            font-size: 0.75rem;
         }
 
         label img, #create_custom_template, #admin_create_custom_template, .labelelem {
@@ -54,6 +55,25 @@
             text-align: center;
         }
 
+        .labelelem {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .labelelem_link {
+            margin-left: auto;
+            margin-right: auto;
+            height: 10%;
+            width: 90%;
+            font-size: 0.2rem;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
     </style>
 {% endblock %}
 
@@ -83,12 +103,29 @@
                     <input type="radio" name="template" id="{{ t.id }}" value="{{ t.id }}"
                     {% if request.user.preferences.template == t.id|stringformat:"i" %}checked{% endif %}>
                     <label for="{{ t.id }}"><div>{{ t.name }}</div>
-                        <div style="color: black; width: 100px;">
-
-                        </div>
-                        <div class="labelelem" style="background-image: linear-gradient(45deg, {{ t.color1 }}, {{ t.color2 }} );">
+                        <div class="labelelem"
+                            style="background-image: linear-gradient(45deg, {{ t.color1 }}, {{ t.color2 }} );">
                             {% if t.use_background_image == True %}
                                 <img src="{{ t.thumbnail.url }}">
+                            {% else %}
+                                <div class="labelelem_link" style="background: {{ t.link_background_color  }};
+                                    color: {{ t.link_text_color }};
+                                    border-radius: calc({{ t.border_radius }}px / 3);
+                                    border: 0.3px solid {{ t.link_border_color }};">
+                                    Link Title
+                                </div>
+                                <div class="labelelem_link" style="background: {{ t.link_background_color  }};
+                                    color: {{ t.link_text_color }};
+                                    border-radius: calc({{ t.border_radius }}px / 3);
+                                    border: 0.3px solid {{ t.link_border_color }};">
+                                    Link Title
+                                </div>
+                                <div class="labelelem_link" style="background: {{ t.link_background_color  }};
+                                    color: {{ t.link_text_color }};
+                                    border-radius: calc({{ t.border_radius }}px / 3);
+                                    border: 0.3px solid {{ t.link_border_color }};">
+                                    Link Title
+                                </div>
                             {% endif %}
                         </div>
                     </label>

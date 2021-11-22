@@ -424,7 +424,10 @@ def advanced(request):
         form = AdvancedForm(request.POST, instance=request.user.advanced)
         if form.is_valid():
             form.save()
-            return redirect('settings')
+            # return redirect('settings')
+            return redirect(
+                'user-landing',
+                username=request.user.username)
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/advanced.html', context)
 
@@ -658,7 +661,7 @@ def editlink(request, short_url):
                 form.instance.user = request.user
                 form.save()
                 return redirect(
-                    'landing_as_author_pv',
+                    'user-landing',
                     username=request.user.username)
         context = context_dict(user=request.user, form=form, link=link)
         return render(request, 'leadfy/link-edit.html', context)
@@ -697,7 +700,10 @@ def socials(request):
         form = CustomForm(request.POST, instance=request.user.social)
         if form.is_valid():
             form.save()
-            return redirect('settings')
+            # return redirect('settings')
+            return redirect(
+                'user-landing',
+                username=request.user.username)
     context = context_dict(user=request.user, form=form)
     return render(request, 'leadfy/socials.html', context)
 
