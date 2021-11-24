@@ -411,8 +411,8 @@ def export(request):
 
 @login_required
 def advanced(request):
-    if request.user.subscription.plan == 'Free':
-        return redirect('subscribe')
+    # if request.user.subscription.plan == 'Free':
+    #     return redirect('subscribe')
 
     form = AdvancedForm(instance=request.user.advanced)
     if request.method == 'POST':
@@ -679,8 +679,8 @@ def deletelink(request, short_url):
 
 @login_required
 def socials(request):
-    if request.user.subscription.plan == 'Free':
-        return redirect('subscribe')
+    # if request.user.subscription.plan == 'Free':
+    #     return redirect('subscribe')
     fields = '__all__'
     exclude = ['user']
     # widgets = {

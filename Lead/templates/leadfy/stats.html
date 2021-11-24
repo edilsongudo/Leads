@@ -35,7 +35,7 @@
                     <a data-id="{{ link.short_url }}" href="{% url 'exportlink' link.short_url %}" class="page-link link">
                         <div class="exportlink">
                             <i class="fas fa-cloud-download-alt"></i>
-                            {% if user.subscription.plan == 'Free' %}<div class="pro">Pro</div>{% endif %}
+                            {% if user.subscription.plan == 'Free' %}<i class="fas fa-crown"></i>{% endif %}
                         </div>
                         <div class="link-title">{{ link.title }}</div>
                         <div class="linkviews">

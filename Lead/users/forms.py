@@ -31,6 +31,19 @@ class UserUpdateForm(forms.ModelForm):
             'username': 'selflink.link/'
         }
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(UserUpdateForm, self).__init__(*args, **kwargs)
+
+    def clean_username(self):
+        data = self.cleaned_data.get('username')
+        user = User.objects.filter(username__iexact=data).exclude(
+            username__iexact=self.request.user.username)
+        if user:
+            raise forms.ValidationError(
+                f'User with username {data} already exists!!')
+        return data
+
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:

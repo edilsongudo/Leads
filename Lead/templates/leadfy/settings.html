@@ -18,33 +18,33 @@
                     Edit Profile
                 </a>
             </div>
-            {% if request.user.subscription.plan == 'Free' %}
+<!--             {% if request.user.subscription.plan == 'Free' %}
                 <div class="setting">
                     <a href="{% url 'subscribe' %}" class="setting-content">
                         <img src="{% static 'leadfy/img/crown.png' %}">
                         Upgrade Account
                     </a>
                 </div>
-            {% endif %}
+            {% endif %} -->
             <div class="setting">
                 <a href="{% url 'advanced' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/cookie.png' %}">
                     Advanced Settings
-                    {% if user.subscription.plan == 'Free' %}<div class="pro">Pro</div>{% endif %}
+                     <!-- {% if user.subscription.plan == 'Free' %}<i class="fas fa-crown"></i>{% endif %} -->
                 </a>
             </div>
             <div class="setting">
                 <a href="{% url 'socials' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/social/spotify.png' %}">
                     Social Links
-                    {% if user.subscription.plan == 'Free' %}<div class="pro">Pro</div>{% endif %}
+                     <!-- {% if user.subscription.plan == 'Free' %}<i class="fas fa-crown"></i>{% endif %} -->
                 </a>
             </div>
             <div class="setting">
                 <a href="{% url 'integrations' %}" class="setting-content">
                     <img src="{% static 'leadfy/img/social/facebook.png' %}">
                     Integrations
-                    {% if user.subscription.plan == 'Free' %}<div class="pro">Pro</div>{% endif %}
+                     {% if user.subscription.plan == 'Free' %}<i class="fas fa-crown"></i>{% endif %}
                 </a>
             </div>
             <div class="setting">
