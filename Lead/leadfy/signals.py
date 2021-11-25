@@ -9,38 +9,27 @@ from .utils import generate_ref_code
 @receiver(post_save, sender=get_user_model())
 def create_Preferences(sender, instance, created, **kwargs):
     if created and not kwargs.get('raw', False):
+        # customcss needs to be saved before preferences
+        CustomCss.objects.create(user=instance)
         Preferences.objects.create(user=instance)
         Advanced.objects.create(user=instance)
         Social.objects.create(user=instance)
         Integrations.objects.create(user=instance)
         SubscribeButton.objects.create(user=instance)
         Embed.objects.create(user=instance)
-        CustomCss.objects.create(user=instance)
-        # Link.objects.create(short_url=generate_ref_code(),
-        #                     title='demo', user=instance, show_link=False)
 
 
 @receiver(post_save, sender=get_user_model())
 def save_Preferences(sender, instance, created, **kwargs):
     if not kwargs.get('raw', False):
+        # customcss needs to be saved before preferences
+        instance.customcss.save()
         instance.preferences.save()
         instance.advanced.save()
         instance.subscribebutton.save()
         instance.social.save()
         instance.integrations.save()
         instance.embed.save()
-        instance.customcss.save()
-
-
-# @receiver(pre_save, sender=Preferences)
-"""
-    This function works like the custom filestorage
-"""
-# def save_Preferences(sender, instance, created, **kwargs):
-#     try:
-#         instance.user.custom_css.css_file.delete()
-#     except Exception as e:
-#         print(e)
 
 
 @receiver(post_save, sender=Preferences)
