@@ -250,8 +250,27 @@ a:hover {{
   background: transparent;
   background-position: center;
   background-repeat: no-repeat;
-  border-color: {link_text_color};
-  color: {link_background_color};
+  border-color: {body_font_color};
+  color: {body_font_color};
+  animation: shake .10s linear;
+  animation-iteration-count: 1;
+}}
+
+@keyframes shake {{
+
+  0% {{
+    transform: translateX(0);
+  }}
+  25% {{
+    transform: translateX(-10px);
+  }}
+  75% {{
+    transform: translateX(10px);
+  }}
+  100% {{
+    transform: translateX(0);
+  }}
+
 }}
 
 .page-link .fa-pencil-alt, .page-link .linkviews {{
