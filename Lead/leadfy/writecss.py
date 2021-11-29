@@ -64,8 +64,8 @@ def writecss(user):
     src:  url("/media/fonts/{font}")
 }}
 
-label {{
-  display: none:
+label[for="id_name"],  label[for="id_email"] {{
+  display: none;
 }}
 
 body {{

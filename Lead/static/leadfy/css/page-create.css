@@ -137,9 +137,8 @@ body {
   border-radius: 10px;
   padding-right: 50px;
   padding-left: 50px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-weight: bold;
+  padding-top: 6px;
+  padding-bottom: 6px;
   margin-bottom: 60px;
   cursor: pointer;
 }

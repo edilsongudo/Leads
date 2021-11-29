@@ -242,6 +242,12 @@ else:
     SECURE_SSL_REDIRECT = True
     SECURE_REFERRER_POLICY = "strict-origin"
 
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_SECONDS = 86400
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
 try:
     _ = requests.head('http://google.com', timeout=5)
 except requests.ConnectionError:

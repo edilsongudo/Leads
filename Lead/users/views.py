@@ -4,7 +4,7 @@ from .forms import UserUpdateForm, ProfileUpdateForm, ProfileImageForm
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
-from .models import Profile
+from .models import *
 from django.db import IntegrityError
 
 
@@ -31,7 +31,7 @@ def profile(request):
 
             u_form.save()
             p_form.save()
-            # messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Your account has been updated!')
             # return redirect('profile')
             return redirect(
                 'user-landing',

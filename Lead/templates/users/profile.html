@@ -53,6 +53,15 @@
 {% endblock %}
 
 {% block js %}
+<!--     <script type="text/javascript">
+        window.addEventListener('pageshow', function (event) {
+            var historyTraversal = event.persisted || (typeof window.performance != 'undefined' && window.performance.navigation.type === 2);
+            if (historyTraversal) {
+                console.log('reload')
+                window.location.reload(true)
+            }
+        })
+    </script> -->
     <script src="{% static 'leadfy/js/jquery.js' %}"></script>
     <script src="{% static 'leadfy/Croppie-2.6.4/croppie.js' %}"></script>
     <script src="{% static 'leadfy/js/cropperutils2.js' %}"></script>
