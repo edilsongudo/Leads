@@ -9,17 +9,17 @@ selflink.link
 
 ### Screenshots
 
-<img src="screenshots/print1.jpg" width="550">
+<img src="Lead/screenshots/print1.jpg" width="550">
 
-<img src="screenshots/print2.jpg" width="550">
+<img src="Lead/screenshots/print2.jpg" width="550">
 
-<img src="screenshots/print3.jpg" width="550">
+<img src="Lead/screenshots/print3.jpg" width="550">
 
-<img src="screenshots/print4.jpg" width="550">
+<img src="Lead/screenshots/print4.jpg" width="550">
 
-<img src="screenshots/print5.jpg" width="550">
+<img src="Lead/screenshots/print5.jpg" width="550">
 
-<img src="screenshots/print6.jpg" width="550">
+<img src="Lead/screenshots/print6.jpg" width="550">
 
 
 ### Installation and Usage
