@@ -160,7 +160,7 @@ def home(request):
             return redirect('profile')
         return redirect('landing_as_author_pv', username=request.user.username)
     else:
-        return render(request, 'leadfy/home.html')
+        return render(request, 'leadfy/revo.html')
 
 
 @login_required
